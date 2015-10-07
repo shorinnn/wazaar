@@ -23,6 +23,7 @@ return array(
     'video' =>'動画',
     'lesson' =>'レッスン',
     'lessons' =>'レッスン数',
+	'support' => 'Support',
     'add_file' =>'ファイルを追加',
     'details' =>'詳細',
     'lesson_price' =>'受講費用',

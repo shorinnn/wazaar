@@ -37,6 +37,7 @@ $wwwRoutes = function(){
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
     Route::get('about-the-company', 'SiteController@about');
     Route::get('contact', 'SiteController@contact');
+    Route::get('error', 'SiteController@error');
 	
     
     Route::get('/dash', 'SiteController@dashboard');

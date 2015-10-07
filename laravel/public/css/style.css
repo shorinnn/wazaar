@@ -252,7 +252,7 @@ header .main-logo .beta-wazaar{
     font-size: 12px;
     font-weight: bold;
     position: absolute;
-    right: -38px;
+    right: -30px;
     top: 3px;
 }
 header .top-menu .logged-in-top-menu{
@@ -8983,34 +8983,97 @@ input[type='number'] {
 	top: 1px;
 }
 /************* Page Footer **************/
+.footer-search{
+	background: #ebeced;
+	padding: 48px 15px;
+}
+.footer-search label {
+    display: block;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+	color: #283947;
+}
+.footer-search .search-wrap{
+	max-width: 440px;
+	margin: 24px auto 0;
+	background: #fff;
+	border-radius: 4px;
+	border: solid 1px #e3e5e6;
+}
+.footer-search .search-wrap input{
+    width: 84%;
+    height: 50px;
+    border: none;
+    margin: 0;
+    padding: 0 30px;
+    font-size: 14px;
+    color: #7e8e9e;
+    background: none;
+	float: left;
+	border-radius: 0;
+}
+.footer-search .search-wrap button{
+    width: 16%;
+    height: 50px;
+    background: none;
+    border: none;
+    margin: 0;
+    font-size: 22px;
+	float: left;
+    font-weight: 100;
+}
 footer{
 	clear:both;
 }
 .footer-container{ 
-	background-color: #fff;
-	padding: 62px 0 62px;
+	background-color: #000;
+	padding: 62px 0 0;
 }
 .gray-footer .footer-container{ 
 	background-color: #e8eced;
 }
 .footer-container h5{
-	color: #303941;
+	color: #fff;
 	margin: 0 0 6px;
 	text-transform: uppercase;
 }
-.footer-container p,
-.footer-container a{
+.footer-container .footer-links p,
+.footer-container .footer-links a{
 	font-size: 13px;
-	color: #7e8e9e;
+	color: #fff;
 	display: block;
 	margin: 15px 0 0;
 }
-.footer-container .social-icons a{
-	display: inline-block;
+.footer-container .social-icons a {
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 7px;
 }
 .footer-container .social-icons a + a{
 	margin-left: 13px;
 }
+.footer-logo{
+	float: right;
+}
+.footer-privacy-bar{
+	background: #000;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: 20px;
+}
+.footer-privacy-bar a,
+.footer-privacy-bar span{
+	display: inline-block;
+	font-size: 12px;
+	color: #fff;
+	padding: 0 20px;
+	line-height: 71px;
+}
+.footer-privacy-bar a:hover{
+	color: #fff;
+}
+
 /************** IE8 Fix *************/
 .ie8 .cat-row-1 > div.col-md-4,
 .ie8 .cat-row-2 > div.col-md-4,

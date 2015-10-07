@@ -1,9 +1,9 @@
-    @extends('layouts.default')
-    @section('content')	
+@extends('layouts.default')
+@section('content')	
 	<style>
-	.footer-search{
-		display: none;
-	}
+		.footer-search{
+			display: none;
+		}
 		.logged-out-header-search{
 			display: none;
 		}
@@ -29,9 +29,10 @@
 		}
 		.error-page{
 			margin-top: 140px;
+			margin-bottom: 100px;
 		}
 	</style>
-    <div class="alert-message container error-page">
+    <div class="container error-page">
     	<div class="row">
         	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right">
             	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error-page-icon.png" class="img-responsive right">
@@ -45,4 +46,4 @@
             </div>
         </div>
     </div>
-    @stop
+@stop

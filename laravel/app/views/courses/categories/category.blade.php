@@ -1,6 +1,5 @@
     @extends('layouts.default')
     @section('content')	
-    
 		<section class="container-fluid category-heading-container">
             <div class="container-fluid cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
@@ -92,7 +91,235 @@
                 </div>
             </div>      
         </section>
-        <section class="container-fluid category-box-container">
+        <section class="container-fluid category-box-container relative">
+        	<style>
+				.sidebar-menu{
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 260px;
+					height: auto;
+					background: #fff;
+					padding: 15px 24px;
+				}
+				.sidebar-menu .group{
+				}
+				.sidebar-menu .group h3{
+					text-transform: uppercase;
+					font-size: 11px;
+					font-weight: 600;
+					margin: 24px 0 20px;
+					color: #a7b7c4;
+				}
+				.sidebar-menu .group ul{
+				}
+				.sidebar-menu .group .main-menu .popular-list,
+				.sidebar-menu .group .main-menu .main-menu-list{
+					font-size: 13px;
+					font-weight: 600;
+					text-transform: uppercase;
+				}
+				.sidebar-menu .group .main-menu .popular-list a,
+				.sidebar-menu .group .main-menu .main-menu-list{
+					display: block;
+					padding: 9px 13px;
+					color: #303941;
+					clear: both;
+				}
+				.sidebar-menu .group .main-menu .popular-list.active a,
+				.sidebar-menu .group .main-menu .popular-list:hover a,
+				.sidebar-menu .group .main-menu .main-menu-list.active,
+				.sidebar-menu .group .main-menu .main-menu-list:hover,
+				.sidebar-menu .group .main-menu .main-menu-list.open{
+					background: #0099ff;
+					color: #fff;
+					border-radius: 2px;
+					font-weight: normal;
+				}
+				.sidebar-menu .group ul li .dropdown-toggle{
+					background: none;
+					border: none;
+					padding: 0;
+					margin: 0;
+					
+				}
+				.sidebar-menu .group ul li .dropdown-menu{
+					position: relative;
+					box-shadow: none;
+					border: none;
+					padding: 0;
+					margin: 10px 0 35px;
+					background: none;
+				}
+				.sidebar-menu .group ul li .dropdown-menu li a,
+				.sidebar-menu .group ul li .dropdown-menu li {
+					padding: 0;
+					margin: 0;
+					font-size: 13px;
+					font-weight: normal;
+					color: #798794;
+				}
+				.sidebar-menu .group ul li .dropdown-menu li a{
+					padding: 6px 8px 6px 38px;
+				}
+				.sidebar-menu .group ul li .dropdown-menu li a:hover,
+				.sidebar-menu .group ul li .dropdown-menu li a:active,
+				.sidebar-menu .group ul li .dropdown-menu li a:focus{
+					background: #0099ff;
+					color: #fff;
+					border-radius: 2px;
+				}
+				.sidebar-menu .group ul li .dropdown-menu li{
+					margin-top: 13px;
+				}
+				.sidebar-menu .popular a:hover{
+					color: #303941;
+				}
+			</style>
+            <div class="sidebar-menu">
+            	<div class="group popular">
+                	<h3>Popular</h3>
+                    <ul class="main-menu">
+                    	<li class="popular-list"><a href="#">Featured</a></li>
+                        <li class="popular-list"><a href="#">Best sellers</a></li>
+                    </ul>
+                </div>
+            	<div class="group">
+                	<h3>Categories</h3>
+                    <ul class="main-menu">
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu2" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#" class="active">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu3" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu4" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu5" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu5">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu6" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu6">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu7" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu7">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu8" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu8">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu9" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu9">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu10" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu10">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    	<li class="dropdown main-menu-list"> 
+                        	<button class="dropdown-toggle" type="button" 
+                            id="dropdownMenu11" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                            家庭と暮らし&ハンドメイド
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu11">
+                              <li><a href="#">Action</a></li>
+                              <li><a href="#">Another action</a></li>
+                              <li><a href="#">Something else here</a></li>
+                              <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             
         <div class='ajax-content'>
              {{ View::make('courses.categories.courses')->with( compact( 'courses', 'category', 'wishlisted' ) ) }}
