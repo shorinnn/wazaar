@@ -7,6 +7,7 @@ class EmailsController extends \BaseController {
         
 	public function index()
 	{
+            // lil dev change
             $instructorSaleEmail = Setting::firstOrCreate( [ 'name' => 'instructor-email-sale-content' ] );
             $studentSaleEmail = Setting::firstOrCreate( [ 'name' => 'student-email-sale-content' ] );
             $instructorNewDiscussionsUpdateEmail = Setting::firstOrCreate( [ 'name' => 'instructor-new-discussions-update-content' ] );
