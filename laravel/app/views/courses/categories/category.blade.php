@@ -37,13 +37,19 @@
                                 	<div class="segmented-buttons-wrapper segmented-controls inline-block clearfix">
                                         <div class="btn-group buttons-container" data-toggle="buttons">
                                           <label class="btn btn-default segmented-buttons @if(empty(Input::get('filter')) || Input::get('filter') == 'all' ) active @endif">
-                                            <input type="radio" name="filter" value="all" class="filter" autocomplete="off" onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.all') }}
+                                            <input type="radio" name="filter" value="all" class="filter" autocomplete="off" 
+                                                   @if(empty(Input::get('filter')) || Input::get('filter') == 'all' ) checked='checked' @endif
+                                                   onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.all') }}
                                           </label>
                                           <label class="btn btn-default segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'paid' ) active @endif">
-                                            <input type="radio" name="filter" value="paid" class="filter" autocomplete="off" onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.paid') }}
+                                            <input type="radio" name="filter" value="paid" class="filter" autocomplete="off" 
+                                                   @if(!empty(Input::get('filter')) && Input::get('filter') == 'paid' ) checked='checked' @endif
+                                                   onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.paid') }}
                                           </label>
                                           <label class="btn btn-default segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'free' ) active @endif">
-                                            <input type="radio" name="filter" value="free" class="filter" autocomplete="off" onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.free') }}
+                                            <input type="radio" name="filter" value="free" class="filter" autocomplete="off" 
+                                                   @if(!empty(Input::get('filter')) && Input::get('filter') == 'free' ) checked='checked' @endif
+                                                   onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.free') }}
                                           </label>
                                         </div>
                                     </div>
