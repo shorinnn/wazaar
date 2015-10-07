@@ -148,7 +148,7 @@ var Analytics = {
 
 $(function(){
 
-    $('#table-site-stats').on('click','a', function ($e){
+    $('#table-site-stats').on('click','.pagination a', function ($e){
         $e.preventDefault();
         showLoading();
         var $url = $(this).attr('href');
@@ -158,7 +158,7 @@ $(function(){
         });
     });
 
-    $('#table-sales-stats').on('click','a', function ($e){
+    $('#table-sales-stats').on('click','.pagination a', function ($e){
         $e.preventDefault();
         showLoading();
         var $url = $(this).attr('href');
@@ -168,7 +168,7 @@ $(function(){
         });
     });
 
-    $('#table-top-courses').on('click','a', function ($e){
+    $('#table-top-courses').on('click','.pagination a', function ($e){
         $e.preventDefault();
         showLoading();
         var $url = $(this).attr('href');
@@ -178,7 +178,7 @@ $(function(){
         });
     });
 
-    $('#table-top-affiliates').on('click','a', function ($e){
+    $('#table-top-affiliates').on('click','.pagination a', function ($e){
         $e.preventDefault();
         showLoading();
         var $url = $(this).attr('href');
