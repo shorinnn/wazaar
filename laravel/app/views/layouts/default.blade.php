@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('page_title')</title>    
-    <meta name="description" content="@yield('meta_description')">
+    <title>@yield('page_title', 'Wazaar：あなたの技がお金になる、技の動画販売フリーマーケット')</title>    
+    <meta name="description" content="@yield('meta_description', 'Wazaarは、動画販売のフリーマーケットです。あなたの知識やスキルを動画教材にして販売できます。アフィリエイターは20,000以上。技によって、「教えたい人」と「学びたい人」をつ
+なぎます。まずは無料体験！')">
     
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
