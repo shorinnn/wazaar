@@ -390,7 +390,7 @@
                                      </a>
                                 @else
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                                    <button  type='submit'class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
+                                    <button  type='submit' class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
                                     {{ trans("courses/general.course-enroll") }}
                                     </button>
                                     @if( Auth::user()->id == $course->instructor_id )
@@ -404,9 +404,9 @@
                             
                 @else
                     @if($course->cost() > 0)
-                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                        {{ Form::open([ 'disabled' => 'disabled', 'id' => 'purchase-form']) }}
                     @else
-                        {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                        {{ Form::open([ 'disabled' => 'disabled', 'id' => 'purchase-form']) }}
                     @endif
                         @if($course->isDiscounted())
                             <div class="price discount-box">
@@ -439,8 +439,7 @@
                                 @endif
                             </span>
                         @endif
-                        
-                            <button class="clearfix enroll-button blue-button extra-large-button btn-block">
+                        <button disabled="disabled" class="clearfix enroll-button blue-button extra-large-button btn-block">
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                         

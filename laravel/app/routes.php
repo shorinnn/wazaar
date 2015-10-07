@@ -124,6 +124,9 @@ $wwwRoutes = function(){
     
     // Admin Controller
     Route::group(array('prefix'=>'administration'),function(){
+        Route::get('emails', 'EmailsController@index');
+        Route::put('emails', 'EmailsController@update');
+        
         Route::post('withdrawals/update', 'WithdrawalsController@update');
         Route::get('withdrawals/bank-file/{time}', 'WithdrawalsController@bankFile');
         Route::get('withdrawals/bank-file/', 'WithdrawalsController@bankFile');
@@ -565,11 +568,10 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
-    $ch = new CourseHelper();
+    $sd = '2015-09-01';
+    $ed = '2015-09-13';
 
-    $ts = $ch->bestSellers();
-
-    echo $ts->count();
+    echo AnalyticsHelper::fillObjectWithDates($sd,$ed,[]);
 
 });
 

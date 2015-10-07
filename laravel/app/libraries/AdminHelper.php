@@ -40,6 +40,7 @@ class AdminHelper
             // ->where('product_id',$courseId)
              ->whereRaw("DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'")
              ->groupBy(DB::raw("DATE(created_at)"))
+             ->orderBy('created_at','desc')
         ;
 
         return $stats->paginate(Config::get('wazaar.PAGINATION'));
@@ -47,36 +48,41 @@ class AdminHelper
 
     public function getSiteStats($startDate, $endDate, $page = 1)
     {
-        $sql = "SELECT sum(students_instructors_count) as 'students_instructors_count',sum(affiliates_count) as 'affiliates_count', sum(revenue) as 'revenue', the_date
+        $sql = "SELECT sum(students_instructors_count) as 'students_instructors_count',sum(affiliates_count) as 'affiliates_count', sum(revenue) as 'revenue', sum(tax) as 'tax', the_date
                 FROM
                 (
 
-                (SELECT COUNT(DISTINCT(users.email)) as 'students_instructors_count', 0 as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date'
-                FROM users
-                JOIN assigned_roles ON users.id = assigned_roles.user_id
-                JOIN roles ON roles.id = assigned_roles.role_id
-                WHERE roles.id IN (2,3)
-                AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
+                    (SELECT COUNT(DISTINCT(users.email)) as 'students_instructors_count', 0 as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date', 0 as tax
+                    FROM users
+                    JOIN assigned_roles ON users.id = assigned_roles.user_id
+                    JOIN roles ON roles.id = assigned_roles.role_id
+                    WHERE roles.id IN (2,3)
+                    AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
 
+                    UNION ALL
 
-                UNION ALL
+                    (SELECT 0 as 'students_instructors_count', COUNT(DISTINCT(users.email)) as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date', 0 as tax
+                    FROM users
+                    JOIN assigned_roles ON users.id = assigned_roles.user_id
+                    JOIN roles ON roles.id = assigned_roles.role_id
+                    WHERE roles.id = 4
+                    AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
 
-                (SELECT 0 as 'students_instructors_count', COUNT(DISTINCT(users.email)) as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date'
-                FROM users
-                JOIN assigned_roles ON users.id = assigned_roles.user_id
-                JOIN roles ON roles.id = assigned_roles.role_id
-                WHERE roles.id = 4
-                AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
+                    UNION ALL
 
-                UNION ALL
+                    (SELECT 0 AS 'students_instructors_count', 0 AS 'affiliates_count', SUM(purchase_price) as 'revenue', DATE(created_at) as 'the_date', 0 as tax
+                    FROM purchases
+                    WHERE DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(created_at))
 
-                (SELECT 0 AS 'students_instructors_count', 0 AS 'affiliates_count', SUM(purchase_price) as 'revenue', DATE(created_at) as 'the_date'
-                FROM purchases
-                WHERE DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(created_at))
+                    UNION ALL
+
+                    (SELECT 0 AS 'students_instructors_count', 0 AS 'affiliates_count', 0 as 'revenue', DATE(created_at) as 'the_date', SUM(tax) as tax
+                    FROM purchases
+                    WHERE DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(created_at))
 
                 )
                  as stats
-                GROUP BY stats.the_date ";
+                GROUP BY stats.the_date DESC";
 
         if ($page){
             $page--;

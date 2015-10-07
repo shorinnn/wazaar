@@ -186,6 +186,7 @@ class User extends Ardent implements ConfideUserInterface
         else  $user_type='Affiliate';
         $profile = $this->_profile( $user_type );
         if( $profile != null){
+            if( trim($profile->photo)=='' ) return '//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg';
             return $profile->photo;
         }
         else{
