@@ -189,11 +189,12 @@
         url = url + data;
 
         $('.orders-listings-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-listings-container" data-url="'+url+'" class="load-remote orders-listings-ajax-link">loading</a>' );
-        $('.orders-listings-ajax-link').click();
 
         url = url + '&total=true';
         $('.orders-totals-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-totals-container" data-url="'+url+'" class="load-remote orders-totals-ajax-link">loading</a>' );
+        
         $('.orders-totals-ajax-link').click();
+        $('.orders-listings-ajax-link').click();
     }
     function triggerSorter()
     {
