@@ -90,7 +90,7 @@ body {
 	color: #000;
 	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
-	font: 16px 'Open Sans', Helvetica, sans-serif;
+	font: 16px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     overflow:auto;/** added because gulp version is messed **/
 }
 html{
@@ -2502,6 +2502,84 @@ h2, h3, h4, h5, h6{
 	opacity: 1;
 }
 /****** Skinning Course Description Video Ends *************/
+
+/******** Sticky header styles in description page ********/
+.sticky-header{
+	background: #18222b;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99;
+	visibility: hidden;
+	opacity: 0;
+}
+.sticky-header.fixed{
+	visibility: visible;
+	opacity: 1;
+}
+.sticky-header.unfixed{
+	visibility: hidden;
+	opacity: 0;
+}
+.enroll-button-section.fixed {
+	position: fixed;
+	width: 344px;
+	z-index: 99;
+}	
+.enroll-button-section.fixed .enroll-button-wrap{
+	background: #fff;
+	border-radius: 0 0 4px 4px;
+	border: solid #e0e1e2;
+	border-width: 0 1px 1px;
+	padding: 0 32px;
+}
+.enroll-button-section.fixed .add-to-wishlist-container{
+	background: #fff;
+	border-radius: 4px;
+	border: solid 1px #e0e1e2;
+	padding: 15px 32px;
+	margin-top: 20px;
+}
+.enroll-button-section.fixed .add-to-wishlist-container > span{
+	display: block !important;
+}
+.enroll-button-section.fixed .enroll-button{
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 11px;
+}
+.tabbed-content-header li{
+	float: left;
+}
+.tabbed-content-header a{
+	font-size: 13px;
+	font-weight: 600;
+	border: solid transparent;
+	border-width: 0 0 3px;
+	padding: 23px 22px;
+	background: none;
+	color: #7e8e9e;
+	text-transform: capitalize;
+	display: inline-block;
+}
+.tabbed-content-header a:hover,
+.tabbed-content-header a.active{
+	color: #0099ff;
+	border-color: #0099ff;
+}
+.instructor-name{
+	font-size: 13px;
+	font-weight: 600;
+	margin: 0;
+	padding: 23px 0;
+}
+.instructor-name .by{
+	color: #7e8e9e;
+}
+.instructor-name .name{
+	color: #e8eced;
+}
+/*****/
 .course-details-player{
 	margin: -230px 0 0;
 }
@@ -2644,6 +2722,12 @@ h2, h3, h4, h5, h6{
 	line-height: 40px;
 	cursor: pointer;
 }
+.add-to-wishlist-container .share-lesson{
+	border-top: solid 1px #e0e1e2;
+}
+.add-to-wishlist-container > span{
+	display: inline-block !important;
+}
 .enroll-button-section{
 	padding-left: 35px;
 }
@@ -2691,6 +2775,8 @@ h2, h3, h4, h5, h6{
     box-shadow: 0px 1px 0px #e7e8e9;
     padding-top: 7px;
     padding-bottom: 7px;
+	padding-left: 70px;
+	padding-right: 70px;
 }
 .enroll-button-section .default-button{
 	padding: 0 12px;
@@ -9051,7 +9137,7 @@ footer{
 	border-radius: 4px;
 	overflow: hidden;
 	border: solid 1px #e0e1e2;
-	margin-top: 75px;
+	margin-top: 48px;
 	margin-bottom: 75px;
 	background: #f7f9fa;
 	padding: 0 !important;
@@ -9170,14 +9256,14 @@ footer{
 	.modal-footer button + button {
 		margin-left: 18px !important;
 	}
+	.enroll-button-wrap {
+		height: 148px;
+	}
 }
 @media (min-width: 1200px){
 	.container{
 	  width: 1032px;
 	}	
-	.enroll-button-wrap {
-		height: 148px;
-	}
 }
 @media (max-width: 1200px) and (min-width: 991px){
 	.course-data .column-1 div{

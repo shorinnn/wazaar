@@ -114,11 +114,34 @@ var Analytics = {
         //Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
         //Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
         Analytics.TableSiteStats();
+        Analytics.TableSalesStats();
+        Analytics.TableTopCourses();
+        Analytics.TableTopAffiliates();
     },
 
     'TableSiteStats' : function (){
+
         $.get('/administration/analytics/site-statistics-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
             $('#table-site-stats').html($table);
+        });
+    },
+    'TableSalesStats' : function (){
+
+        $.get('/administration/analytics/sales-statistics-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#table-sales-stats').html($table);
+        });
+    },
+    'TableTopCourses' : function (){
+
+        $.get('/administration/analytics/top-courses-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#table-top-courses').html($table);
+        });
+    },
+
+    'TableTopAffiliates' : function (){
+
+        $.get('/administration/analytics/top-affiliates-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#table-top-affiliates').html($table);
         });
     }
 }
@@ -127,15 +150,45 @@ $(function(){
 
     $('#table-site-stats').on('click','a', function ($e){
         $e.preventDefault();
+        showLoading();
         var $url = $(this).attr('href');
         $.get($url, function ($table){
+            hideLoading();
             $('#table-site-stats').html($table);
+        });
+    });
+
+    $('#table-sales-stats').on('click','a', function ($e){
+        $e.preventDefault();
+        showLoading();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            hideLoading();
+            $('#table-sales-stats').html($table);
+        });
+    });
+
+    $('#table-top-courses').on('click','a', function ($e){
+        $e.preventDefault();
+        showLoading();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            hideLoading();
+            $('#table-top-courses').html($table);
+        });
+    });
+
+    $('#table-top-affiliates').on('click','a', function ($e){
+        $e.preventDefault();
+        showLoading();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            hideLoading();
+            $('#table-top-affiliates').html($table);
         });
     });
 
     Analytics.ApplyFilter('today');
     Analytics.InitCalendarFilter();
     Analytics.ApplyTableDateFilter();
-
-
 });

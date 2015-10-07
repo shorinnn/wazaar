@@ -12,14 +12,14 @@ canvas {
     -ms-backface-visibility: hidden;
 }
 
-#max-angry-container img {
+#max-angry-container img{
     position: absolute;
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
 }
 
-#max-angry-container {
+#max-angry-container{
     position: absolute;
     width: 100%;
     height: 100%;

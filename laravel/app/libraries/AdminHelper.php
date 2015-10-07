@@ -21,42 +21,74 @@ class AdminHelper
         return $allDates;
     }
 
-    public function siteStats($startDate, $endDate, $page = 1)
+    public function getSalesStats($startDate, $endDate)
     {
-        $sql = "SELECT sum(students_instructors_count) as 'students_instructors_count',sum(affiliates_count) as 'affiliates_count', sum(revenue) as 'revenue', the_date
+        $stats = DB::table('purchases')
+            ->select(
+                DB::raw("count(id) as 'sales_count'"),
+                DB::raw("sum(purchase_price) as 'sales_total'"),
+                DB::raw("sum(`instructor_earnings`) as 'instructor_earnings'"),
+                DB::raw("sum(`affiliate_earnings`) as 'affiliate_earnings'"),
+                DB::raw("sum(`ltc_affiliate_earnings`) as 'ltc_affiliate_earnings'"),
+                DB::raw("sum(`second_tier_affiliate_earnings`) as 'second_tier_affiliate_earnings'"),
+                DB::raw("sum(`second_tier_instructor_earnings`) as 'second_tier_instructor_earnings'"),
+                DB::raw("sum(`site_earnings`) as 'site_earnings'"),
+                DB::raw("sum(`tax`) as 'tax'"),
+                DB::raw("DATE(created_at) as 'date'")
+            )
+            // ->where('product_type','Course')
+            // ->where('product_id',$courseId)
+             ->whereRaw("DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'")
+             ->groupBy(DB::raw("DATE(created_at)"))
+             ->orderBy('created_at','desc')
+        ;
+
+        return $stats->paginate(Config::get('wazaar.PAGINATION'));
+    }
+
+    public function getSiteStats($startDate, $endDate, $page = 1)
+    {
+        $sql = "SELECT sum(students_instructors_count) as 'students_instructors_count',sum(affiliates_count) as 'affiliates_count', sum(revenue) as 'revenue', sum(tax) as 'tax', the_date
                 FROM
                 (
 
-                (SELECT COUNT(DISTINCT(users.email)) as 'students_instructors_count', 0 as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date'
-                FROM users
-                JOIN assigned_roles ON users.id = assigned_roles.user_id
-                JOIN roles ON roles.id = assigned_roles.role_id
-                WHERE roles.id IN (2,3)
-                AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
+                    (SELECT COUNT(DISTINCT(users.email)) as 'students_instructors_count', 0 as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date', 0 as tax
+                    FROM users
+                    JOIN assigned_roles ON users.id = assigned_roles.user_id
+                    JOIN roles ON roles.id = assigned_roles.role_id
+                    WHERE roles.id IN (2,3)
+                    AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
 
+                    UNION ALL
 
-                UNION ALL
+                    (SELECT 0 as 'students_instructors_count', COUNT(DISTINCT(users.email)) as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date', 0 as tax
+                    FROM users
+                    JOIN assigned_roles ON users.id = assigned_roles.user_id
+                    JOIN roles ON roles.id = assigned_roles.role_id
+                    WHERE roles.id = 4
+                    AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
 
-                (SELECT 0 as 'students_instructors_count', COUNT(DISTINCT(users.email)) as 'affiliates_count', 0 as 'revenue', DATE(users.created_at) as 'the_date'
-                FROM users
-                JOIN assigned_roles ON users.id = assigned_roles.user_id
-                JOIN roles ON roles.id = assigned_roles.role_id
-                WHERE roles.id = 4
-                AND DATE(users.created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(users.created_at))
+                    UNION ALL
 
-                UNION ALL
+                    (SELECT 0 AS 'students_instructors_count', 0 AS 'affiliates_count', SUM(purchase_price) as 'revenue', DATE(created_at) as 'the_date', 0 as tax
+                    FROM purchases
+                    WHERE DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(created_at))
 
-                (SELECT 0 AS 'students_instructors_count', 0 AS 'affiliates_count', SUM(purchase_price) as 'revenue', DATE(created_at) as 'the_date'
-                FROM purchases
-                WHERE DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(created_at))
+                    UNION ALL
+
+                    (SELECT 0 AS 'students_instructors_count', 0 AS 'affiliates_count', 0 as 'revenue', DATE(created_at) as 'the_date', SUM(tax) as tax
+                    FROM purchases
+                    WHERE DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}' GROUP BY DATE(created_at))
 
                 )
                  as stats
-                GROUP BY stats.the_date ";
+                GROUP BY stats.the_date DESC";
 
         if ($page){
             $page--;
-            $sql .= " LIMIT {$page},10";
+            $perPage = Config::get('wazaar.PAGINATION');
+            $page = $page * $perPage;
+            $sql .= " LIMIT {$page},{$perPage}";
         }
 
         $result = DB::select($sql);
@@ -187,10 +219,14 @@ class AdminHelper
                             'courses.name as course_name',
                             'courses.course_category_id',
                             'courses.slug',
-                            'course_categories.name as category_name'
+                            'course_categories.name as category_name',
+                            'users.email as instructor_email',
+                            'users.first_name as instructor_first_name',
+                            'users.last_name as instructor_last_name'
                         )
                 ->join('courses', 'courses.id', '=', 'purchases.product_id')
                 ->join('course_categories', 'course_categories.id' , '=', 'courses.course_category_id')
+                ->join('users', 'users.id' , '=', 'courses.instructor_id')
                 ->whereRaw("purchases.`product_type` = 'Course' AND purchases.`free_product` = '{$freeProduct}' {$filter}")
                 ->groupBy('purchases.product_id')
                 ->orderByRaw($sortOrder);
@@ -207,11 +243,13 @@ class AdminHelper
                           DB::raw("COUNT(purchases.id) as sales_count"),
                          'product_affiliate_id',
                           DB::raw("CONCAT(`user_profiles`.last_name, ' ', user_profiles.first_name) as full_name"),
-                         'users.username'
+                         'users.username',
+                         'users.email'
                         )
                 ->join('users','users.id', '=', 'purchases.product_affiliate_id')
                 ->join('user_profiles','user_profiles.owner_id', '=', 'users.id', 'LEFT')
                 ->whereRaw("purchases.id <> 0 {$filter}")
+                ->where('free_product', 'no')
                 ->groupBy('product_affiliate_id', 'username')
                 ->orderByRaw($sortOrder);
     }
