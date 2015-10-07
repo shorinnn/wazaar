@@ -14,12 +14,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{View::make('administration.users.user_items', compact('users', 'start', 'limit', 'page'))}}
+			{{View::make('administration.users.user_items', compact('users', 'start', 'limit', 'page','sort_by'))}}
 		</tbody>
 	</table>
 </div>
 <div class="container no-padding">
-	{{ $users->appends(Input::only('start', 'limit', 'sort_by', 'sort', 'name', 'email', 'join_date_low', 'join_date_high', 'total_purchased_low', 'total_purchased_high', 'role'))->links() }}
+	{{ $pagination->appends(Input::only('start', 'limit', 'sort_by', 'sort', 'name', 'email', 'join_date_low', 'join_date_high', 'total_purchased_low', 'total_purchased_high', 'role'))->links() }}
 </div>
 <script>
 	addSorterIndicator();
