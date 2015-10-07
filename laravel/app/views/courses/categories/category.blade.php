@@ -268,6 +268,7 @@
 					.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle .wa-chevron-down,
 					.sidebar-menu .group .main-menu .main-menu-list.open .dropdown-toggle .wa-chevron-up{
 						display: block;
+						float: right;
 					}
 					
 				}
@@ -282,7 +283,7 @@
                 </div>
             	<div class="group">
                 	<h3>Categories</h3>
-                    <ul class="main-menu">
+                    <ul class="main-menu clearfix">
 
                         @foreach($categories as $cat)
                             <li class="dropdown main-menu-list
@@ -292,14 +293,16 @@
                                 aria-haspopup="true" aria-expanded="true">
                                 {{ $cat->name }}
                                 <i class="wa-chevron-down right hidden-md hidden-lg"></i>
-                                <i class="wa-chevron-down up hidden-md hidden-lg"></i>
+                                <i class="wa-chevron-up hidden-md hidden-lg"></i>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu-c-{{$cat->id}}">
                                     <li><a href="{{
-                                               action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All Courses</a></li>
+                                               action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All Courses
+                                               <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
                                     @foreach($cat->courseSubcategories as $subcat)
                                         <li @if(Request::segment(4)==$subcat->slug) active @endif><a href="{{
-                                               action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
+                                               action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}
+                                               <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
                                     @endforeach
                                 </ul>
                             </li>
