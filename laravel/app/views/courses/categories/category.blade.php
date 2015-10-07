@@ -6,8 +6,9 @@
                     <form id="course-filter-form">
                         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                             @if($category->name!='')
-                                <p class="category-heading-title"> <a href="#">{{ $category->name }}</a> 
-                                    @if(isset($subcategory))
+                                <p class="category-heading-title"> <a href="{{
+                                               action('CoursesController@category',[ 'slug' => $category->slug ] ) }}">{{ $category->name }}</a> 
+                                    @if(isset($subcategory) && $subcategory!=null)
                                         <i class="wa-chevron-right"></i>
                                         {{$subcategory->name}}
                                     @endif

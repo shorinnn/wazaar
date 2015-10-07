@@ -493,7 +493,7 @@ class CoursesController extends \BaseController {
             $categories->load( 'courseSubcategories' );
             
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories') );
+            Return View::make('courses.categories.category')->with(compact('category', 'subcategory', 'difficultyLevel', 'wishlisted', 'courses', 'categories') );
                             
         }
         
