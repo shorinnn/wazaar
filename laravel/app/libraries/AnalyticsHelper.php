@@ -35,6 +35,30 @@ class AnalyticsHelper
         return $users->paginate(Config::get('wazaar.PAGINATION'));
     }
 
+    public function getTopAffiliatesByCourse($courseId)
+    {
+        if (empty($sortOrder)){
+            $sortOrder = 'total_sales DESC, sales_count DESC';
+        }
+        return  DB::table('purchases')
+            ->select(
+                DB::raw("SUM(affiliate_earnings) as total_sales"),
+                DB::raw("COUNT(purchases.id) as sales_count"),
+                'product_affiliate_id',
+                DB::raw("CONCAT(`user_profiles`.last_name, ' ', user_profiles.first_name) as full_name"),
+                'users.username',
+                'users.email'
+            )
+            ->join('users','users.id', '=', 'purchases.product_affiliate_id')
+            ->join('user_profiles','user_profiles.owner_id', '=', 'users.id', 'LEFT')
+            ->where('free_product', 'no')
+            ->where('product_id',$courseId)
+            ->where('product_type','Course')
+            ->groupBy('product_affiliate_id', 'username')
+            ->orderByRaw($sortOrder)
+            ->get();
+    }
+
 
 
 
@@ -43,13 +67,13 @@ class AnalyticsHelper
         $stats = DB::table('purchases')
             ->select(
               DB::raw("count(id) as 'sales_count'"),
-              DB::raw("sum(purchase_price) as 'sales_total'"),
-              DB::raw("sum(`instructor_earnings`) as 'instructor_earnings'"),
-              DB::raw("sum(`affiliate_earnings`) as 'affiliate_earnings'"),
-              DB::raw("sum(`ltc_affiliate_earnings`) as 'ltc_affiliate_earnings'"),
-              DB::raw("sum(`second_tier_affiliate_earnings`) as 'second_tier_affiliate_earnings'"),
-              DB::raw("sum(`site_earnings`) as 'site_earnings'"),
-              DB::raw("sum(`tax`) as 'tax'"),
+              DB::raw("COALESCE(sum(purchase_price),0) as 'sales_total'"),
+              DB::raw("COALESCE(sum(`instructor_earnings`),0) as 'instructor_earnings'"),
+              DB::raw("COALESCE(sum(`affiliate_earnings`),0) as 'affiliate_earnings'"),
+              DB::raw("COALESCE(sum(`ltc_affiliate_earnings`),0) as 'ltc_affiliate_earnings'"),
+              DB::raw("COALESCE(sum(`second_tier_affiliate_earnings`),0) as 'second_tier_affiliate_earnings'"),
+              DB::raw("COALESCE(sum(`site_earnings`),0) as 'site_earnings'"),
+              DB::raw("COALESCE(sum(`tax`),0) as 'tax'"),
               DB::raw("DATE(created_at) as 'date'")
             )
             ->where('product_type','Course')

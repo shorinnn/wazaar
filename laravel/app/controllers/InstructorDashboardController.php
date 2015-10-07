@@ -27,10 +27,10 @@ class InstructorDashboardController extends BaseController
         if ($course) {
             $salesView          = $this->salesView('', $course->id);
             $salesCountView     = $this->salesCountView('',  $course->id);
-            $trackingCodesView  = $this->trackingCodesView('', $course->id);
-            $topAffiliatesTable = $this->topAffiliatesTableView('', '', false);
-            $courseStatsTableView     = $this->courseStatsTableView($course->id);
-            return View::make('instructors.dashboard.course',compact('course', 'salesView', 'salesCountView', 'trackingCodesView', 'topAffiliatesTable','courseStatsTableView'));
+            //$trackingCodesView  = $this->trackingCodesView('', $course->id);
+            //$topAffiliatesTable = $this->topAffiliatesTableView($course->id);
+            //$courseStatsTableView     = $this->courseStatsTableView($course->id);
+            return View::make('instructors.dashboard.course',compact('course', 'salesView', 'salesCountView'));
         }
 
         return Redirect::to('analytics');
@@ -148,7 +148,7 @@ class InstructorDashboardController extends BaseController
         }
     }
 
-    public function topAffiliatesTableView($taStartDate = '', $taEndDate = '', $returnAsJson = true)
+    /*public function topAffiliatesTableView($taStartDate = '', $taEndDate = '', $returnAsJson = true)
     {
         $sortOrder   = 0;
         $pageNumber  = Input::has('page') ? Input::get('page') : 1;
@@ -178,7 +178,7 @@ class InstructorDashboardController extends BaseController
         } else {
             return $view;
         }
-    }
+    }*/
 
     public function detailedSecondTierSales($frequency)
     {
@@ -268,5 +268,17 @@ class InstructorDashboardController extends BaseController
     {
         $stats = $this->analyticsHelper->getCourseStats($courseId);
         return View::make('instructors.analytics.tableCourseStats',compact('stats'))->render();
+    }
+
+    public function topAffiliatesTableView($courseId)
+    {
+        $page = 1;
+        if (Input::has('page')){
+            $page = Input::get('page');
+        }
+        $addThisToRank = ($page - 1) * Config::get('wazaar.PAGINATION');
+        $affiliates = $this->analyticsHelper->getTopAffiliatesByCourse($courseId);
+
+        return View::make('instructors.analytics.tableTopAffiliates',compact('affiliates','addThisToRank'))->render();
     }
 }

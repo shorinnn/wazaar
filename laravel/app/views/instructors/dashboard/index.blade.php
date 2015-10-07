@@ -125,10 +125,12 @@
 
 
             <div class="row">
-                <div class="top-affiliates-table table-wrapper">
+                <div class="course-statistics-table table-wrapper">
                     @include('instructors.dashboard.partials.coursesTable')
                 </div>
             </div>
+
+
 
 
 
