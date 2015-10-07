@@ -17,7 +17,8 @@
                 @if (Session::get('error'))
                     <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                 @endif
-                <div id="course-description" class="course-description scroll-to-top no-margin-top module-box padding-top-30 padding-bottom-20">
+                <a id="course-description" class="scroll-to-top"></a>
+                <div class="course-description no-margin-top module-box padding-top-30 padding-bottom-20">
                     <h2>{{ trans('courses/general.about-this-course') }}</h2>
                     <p class="intro-paragraph short-text">
                         {{ strip_tags_and_attributes($course->description, "<p><b><ol><ul><li><u><br>")}}
@@ -58,7 +59,8 @@
                     @endif
                 </div>
 				
-                <div id="description-page-curriculum-wrap" class="scroll-to-top">
+                <a id="description-page-curriculum-wrap" class="scroll-to-top"></a>
+                <div>
                     @foreach($course->modules as $module)
                         <div class="module-box">
                             <h2>{{ $module->order }}. {{ $module->name }}</h2>
@@ -165,7 +167,8 @@
                 @endif
 
                 @if( $course->assignedInstructor != null && $course->assignedInstructor->profile !=null  )
-                    <div id="reviews" class="reviews scroll-to-top instructed-by clearfix module-box">
+                <a id="reviews" class="scroll-to-top"></a>
+                    <div class="reviews instructed-by clearfix module-box">
                         <div class="row no-margin">
                             <div class="user-thumb col-xs-12 col-sm-2 col-md-2 col-lg-2">
                             	<div class="img-wrap">
