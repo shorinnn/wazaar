@@ -763,4 +763,9 @@ class SiteController extends \BaseController {
             }
         }
     }
+    
+    public function estest(){
+        $client = AWS::get('CloudSearch');
+        dd($client);
+    }
 }

@@ -25,6 +25,7 @@ Route::get('loginTest', 'SiteController@loginTest');
 Route::get('show-me-the-env-boyeee', 'SiteController@env');
 Route::get('missing_sti_fix', 'SiteController@missing_sti_fix');
 Route::get('clear-cache/huehue', 'SiteController@clearCache');
+Route::get('estest', 'SiteController@estest');
 
 $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){

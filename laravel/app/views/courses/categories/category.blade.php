@@ -193,136 +193,21 @@
             	<div class="group">
                 	<h3>Categories</h3>
                     <ul class="main-menu">
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu2" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#" class="active">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu3" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu4" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu5" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu5">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu6" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu6">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu7" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu7">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu8" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu8">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu9" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu9">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu10" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu10">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    	<li class="dropdown main-menu-list"> 
-                        	<button class="dropdown-toggle" type="button" 
-                            id="dropdownMenu11" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                            家庭と暮らし&ハンドメイド
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu11">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
+                        @foreach($categories as $cat)
+                            <li class="dropdown main-menu-list"> 
+                                <button class="dropdown-toggle" type="button" 
+                                id="dropdownMenu-c-{{$cat->id}}" data-toggle="dropdown" 
+                                aria-haspopup="true" aria-expanded="true">
+                                {{ $cat->name }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu-c-{{$cat->id}}">
+                                    @foreach($cat->courseSubcategories as $subcat)
+                                        <li><a href="{{
+                                               action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
