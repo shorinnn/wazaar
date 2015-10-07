@@ -144,7 +144,8 @@
 <section class="container-fluid course-data">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player scroll-to-top" id="course-details-player">
+        	<a id="course-details-player" class="scroll-to-top"></a>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player" id="course-details-player">
 					<!--<div class="pre-view-image video-player">
                     @if($course->previewImage !=null)
                         <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
@@ -574,9 +575,61 @@
 				return false;
 			}
 			else{
-
-				$('.tab-header-button').each(function() {
-					$(this).on('click focus', function(){
+				/*var playerSection = $('#course-details-player').offset().top;
+				var descriptionSection = $('#course-description').offset().top;
+				var reviewsSection = $('#reviews').offset().top;
+				var curriculumSection = $('#description-page-curriculum-wrap').offset().top;
+				
+				function playerSectionAtTop() {
+					if($window.scrollTop() >= playerSection){
+						
+						$('#course-details-player').addClass('some-class');	
+					}
+					else{
+						$('#course-details-player').removeClass("some-class");
+					}
+					
+				}
+				function descriptionSectionAtTop() {
+					if($window.scrollTop() >= descriptionSection){
+						
+						$('#course-description').addClass('some-class');	
+					}
+					else{
+						$('#course-description').removeClass("some-class");
+					}
+					
+				}
+				function reviewsSectionAtTop() {
+					if($window.scrollTop() >= reviewsSection){
+						
+						$('#reviews').addClass('some-class');	
+					}
+					else{
+						$('#reviews').removeClass("some-class");
+					}
+					
+				}
+				function curriculumSectionAtTop() {
+					if($window.scrollTop() >= curriculumSection){
+						
+						$('#description-page-curriculum-wrap').addClass('some-class');	
+					}
+					else{
+						$('#description-page-curriculum-wrap').removeClass("some-class");
+					}
+					
+				}
+				
+				$window.scroll(function() {
+					playerSectionAtTop();
+					curriculumSectionAtTop();
+					reviewsSectionAtTop();	
+					descriptionSectionAtTop();
+				});*/
+								
+				$('.tab-header-button').each(function(){					
+					$(this).on('click', function(){
 						$(this).addClass('active');
 						$('.tab-header-button').not(this).removeClass('active');
 					});
