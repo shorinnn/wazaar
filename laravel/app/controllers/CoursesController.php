@@ -378,8 +378,10 @@ class CoursesController extends \BaseController {
                 $category = new stdClass;
                 $category->color_scheme = $category->name = $category->description = $category->id =  '';
                 if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ));
+                $categories = CourseCategory::has('allCourses')->get();
+                $categories->load( 'courseSubcategories' );
                 
-                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted'));
+                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted', 'categories'));
             }
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
@@ -414,9 +416,11 @@ class CoursesController extends \BaseController {
             }
 
             $courses = $courses->paginate(9);
-
+            $categories = CourseCategory::has('allCourses')->get();
+            $categories->load( 'courseSubcategories' );
+            
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories'));
                             
         }
         
@@ -493,7 +497,7 @@ class CoursesController extends \BaseController {
             $categories->load( 'courseSubcategories' );
             
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories') );
+            Return View::make('courses.categories.category')->with(compact('category', 'subcategory', 'difficultyLevel', 'wishlisted', 'courses', 'categories') );
                             
         }
         
