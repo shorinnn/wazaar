@@ -35,6 +35,30 @@ class AnalyticsHelper
         return $users->paginate(Config::get('wazaar.PAGINATION'));
     }
 
+    public function getTopAffiliatesByCourse($courseId)
+    {
+        if (empty($sortOrder)){
+            $sortOrder = 'total_sales DESC, sales_count DESC';
+        }
+        return  DB::table('purchases')
+            ->select(
+                DB::raw("SUM(affiliate_earnings) as total_sales"),
+                DB::raw("COUNT(purchases.id) as sales_count"),
+                'product_affiliate_id',
+                DB::raw("CONCAT(`user_profiles`.last_name, ' ', user_profiles.first_name) as full_name"),
+                'users.username',
+                'users.email'
+            )
+            ->join('users','users.id', '=', 'purchases.product_affiliate_id')
+            ->join('user_profiles','user_profiles.owner_id', '=', 'users.id', 'LEFT')
+            ->where('free_product', 'no')
+            ->where('product_id',$courseId)
+            ->where('product_type','Course')
+            ->groupBy('product_affiliate_id', 'username')
+            ->orderByRaw($sortOrder)
+            ->get();
+    }
+
 
 
 
