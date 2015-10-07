@@ -19,7 +19,7 @@
             <td>{{$stat->students_instructors_count}}</td>
             <td>{{$stat->affiliates_count}}</td>
             <td>{{$stat->students_instructors_count + $stat->affiliates_count}}</td>
-            <td><a href=""><i class="fa fa-arrow-right"></i></a></td>
+            <td><a href="{{url("administration/manage-orders?purchase_date_low={$stat->the_date}&purchase_date_high={$stat->the_date}&filter=paid")}}"><i class="fa fa-arrow-right"></i></a></td>
         </tr>
     @endforeach
     </tbody>

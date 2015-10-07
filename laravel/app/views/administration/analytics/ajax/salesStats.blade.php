@@ -24,7 +24,7 @@
             <td>¥{{number_format($sale->ltc_affiliate_earnings,0)}}</td>
             <td>¥{{number_format($sale->second_tier_affiliate_earnings,0)}}</td>
             <td>¥{{number_format($sale->second_tier_instructor_earnings,0)}}</td>
-            <td><a href=""><i class="fa fa-arrow-right"></i></a> </td>
+            <td><a href="{{url("administration/manage-orders?purchase_date_low={$sale->date}&purchase_date_high={$sale->date}&filter=paid")}}"><i class="fa fa-arrow-right"></i></a> </td>
         </tr>
     @endforeach
     </tbody>
