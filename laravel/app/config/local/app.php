@@ -12,7 +12,7 @@ return array(
 	|
 	*/
 
-	'debug' => true,
+	'debug' => false,
 	'url' => 'http://wazaar.dev',
 	'base_url' => 'wazaar.dev',
 // 'url' => 'http://8698e2b3.ngrok.io',

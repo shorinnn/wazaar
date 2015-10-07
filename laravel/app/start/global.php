@@ -59,6 +59,7 @@ App::error(function(Exception $exception, $code)
     }
 
     Log::error($exception);
+    return View::make( 'site.error' );
 });
 
 /*

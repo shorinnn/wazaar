@@ -611,6 +611,7 @@ class CoursesController extends \BaseController {
                     }])
                     ->first();
             if( $course==null)   {
+                return View::make( 'site.error' );
                 return View::make('site.error_encountered');
             }
             $course = courseApprovedVersion($course);
