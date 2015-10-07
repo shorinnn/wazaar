@@ -106,7 +106,7 @@ return
 	'affiliate_two_tier_fee' => 'Affiliate 2 Tier Fee',
 	'wazaar_system_fee' => 'Wazaar System Fee',
 	'publisher_sales_revenue' => 'Publisher Sales Revenue',
-	'publisher_two_tier_commission' => 'Publishr 2 tier commission ',
+	'publisher_two_tier_commission' => 'Publisher 2 tier commission ',
     'date_time' => 'Date/Time',
     'second_tier_commission' => 'Second Tier Commission',
     'ltc_commission' => 'Ltc Commission',
@@ -115,15 +115,32 @@ return
 	'affiliate_fee' => 'Affiliate fee',
 	'second_tier_sales_fee' => '2nd Tier Sales fee',
 
+
     'totalSignUps' => 'Total New Signups <br/> (Instructors & Students)',
     'totalRevenues' => 'Total Revenues',
     'totalSignUpsAffs' => 'Total New Signups <br/> (Affiliates)',
+    'totalSignupsAll' => 'Total Signups (All)',
 
     'date' => 'Date',
     'tax' => 'Tax',
     'salesStatistics' => 'Sales Statistics',
+    'siteStatistics' => 'Site Statistics',
     'registrationStatistics' => 'Registration Statistics',
-    'affiliateRegistrations' => 'Affiliate Registrations'
+    'affiliateRegistrations' => 'Affiliate Registrations',
+
+    'tableFilter' => 'Tables Filter',
+    'applyFilter' => 'Apply Filter',
+    'topAffiliates' => 'Top Affiliates',
+    'wazaarRevenue' => 'Wazaar Revenue',
+
+    'rank' => 'Rank',
+    'name' => 'Name',
+    'email' => 'Email',
+
+    'courseName' => 'Course Name',
+    'courseCategory' => 'Course Category',
+    'instructorName' => 'Instructor Name',
+    'instructorEmail' => 'Instructor Email'
 
 
 ];
