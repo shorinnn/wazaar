@@ -489,10 +489,11 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
             $category = $subcategory->courseCategory;
-            
+            $categories = CourseCategory::has('allCourses')->get();
+            $categories->load( 'courseSubcategories' );
             
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories') );
                             
         }
         
@@ -555,8 +556,12 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
 
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel', 'wishlisted' ) );
-            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel', 'wishlisted') );
+            
+            $categories = CourseCategory::has('allCourses')->get();
+            $categories->load( 'courseSubcategories' );
+            
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel', 'wishlisted', 'categories' ) );
+            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel', 'wishlisted', 'categories') );
                             
         }
         
@@ -672,7 +677,6 @@ class CoursesController extends \BaseController {
             if( Input::has('gid') ) $gid = Input::get('gid');
             else $gid = Cookie::get('gid-'.$course->id);
             $gift = Gift::find( PseudoCrypt::unhash( $gid ) );
-
 
 
 

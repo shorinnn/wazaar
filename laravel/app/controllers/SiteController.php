@@ -763,4 +763,15 @@ class SiteController extends \BaseController {
             }
         }
     }
+    
+    public function estest(){
+        $client = AWS::get('CloudSearch');
+        dd($client);
+        /*
+         * Search Endpoint:    search-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com
+Document Endpoint:    doc-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com
+Domain ARN:    arn:aws:cloudsearch:ap-northeast-1:932188653619:domain/wazaar
+Engine Type:    CloudSearch (2013 API)
+         */
+    }
 }
