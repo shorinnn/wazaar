@@ -193,16 +193,20 @@
             	<div class="group">
                 	<h3>Categories</h3>
                     <ul class="main-menu">
+
                         @foreach($categories as $cat)
-                            <li class="dropdown main-menu-list"> 
+                            <li class="dropdown main-menu-list
+                                @if(Request::segment(3)==$cat->slug) open @endif"> 
                                 <button class="dropdown-toggle" type="button" 
                                 id="dropdownMenu-c-{{$cat->id}}" data-toggle="dropdown" 
                                 aria-haspopup="true" aria-expanded="true">
                                 {{ $cat->name }}
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu-c-{{$cat->id}}">
+                                    <li><a href="{{
+                                               action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All Courses</a></li>
                                     @foreach($cat->courseSubcategories as $subcat)
-                                        <li><a href="{{
+                                        <li @if(Request::segment(4)==$subcat->slug) active @endif><a href="{{
                                                action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}</a></li>
                                     @endforeach
                                 </ul>
