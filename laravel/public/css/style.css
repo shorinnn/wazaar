@@ -5689,6 +5689,10 @@ h2, h3, h4, h5, h6{
 .discussion-sidebar .questioner{
 	margin: 22px 30px 49px;	
 }
+.discussion-sidebar .sidebar-questioner-parent .questioner{
+	padding: 22px 30px 32px;
+	margin: 0px;
+}
 .discussion-sidebar .questioner-info{
 	margin-bottom: 15px;
 }
