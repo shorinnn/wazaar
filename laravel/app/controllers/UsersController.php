@@ -652,22 +652,63 @@ class UsersController extends Controller
         $role = (isset($data['role']))?$data['role']:'2';
         $page = (isset($data['page']))?$data['page']:1;
         $start = (isset($data['start']))?$data['start']:0;
-        $limit = (isset($data['limit']))?$data['limit']:15;
-        $roles = ['' => 'Select Role', '2'=>'Student', '3'=>'Instructor', '4'=>'Affiliate'];
+        $limit = (isset($data['limit']))?$data['limit']:30;
+        $roles = ['' => 'Select Role', 'Student'=>'Student', 'Instructor'=>'Instructor', 'Affiliate'=>'Affiliate'];
         $role = (isset($data['role']))?$data['role']:'';
-        $user_filter = (isset($data['user_filter']))?$data['user_filter']:'only';
+        $user_filter = (isset($data['user_filter']))?$data['user_filter']:'or';        
+
         if(Request::ajax()){
-                $query = User::select(DB::raw('users.*'), DB::raw("CONCAT(users.last_name, ', ', users.first_name) as name"), DB::raw('roles.name as role_name'), DB::raw('purchases.purchase_price as purchase_total'))
+            
+            $exclude_role = [1,5];
+            if($sort_by != 'purchase_total'){
+                $query = DB::select(DB::raw("SELECT DISTINCT ar.user_id, users.id, users.email, users.created_at, users.confirmed, users.status, CONCAT(users.last_name, ', ', users.first_name) as name, roles.name as role_name from assigned_roles AS ar join users join roles where (ar.role_id = 2 and ar.role_id != 3 and ar.role_id not in (".implode(',', $exclude_role).")) and users.id = ar.user_id and roles.id = ar.role_id order by email asc"));
+            } else {
+                $exclude_role[] = 4;
+
+                $query = DB::select(DB::raw("SELECT DISTINCT ar.user_id, users.id, users.email, users.created_at, users.confirmed, users.status, CONCAT(users.last_name, ', ', users.first_name) as name, roles.name as role_name, (select sum(purchases.purchase_price) as purchase_total from purchases where purchases.student_id = ar.user_id) from assigned_roles AS ar join users join roles where (ar.role_id = 2 and ar.role_id != 3 and ar.role_id not in (".implode(',', $exclude_role).")) and users.id = ar.user_id and roles.id = ar.role_id order by email asc"));
+            }
+            $rows = array_chunk($query, $limit, true);
+            $pagination = Paginator::make($query, count($query), $limit);
+            $users = $rows[$page - 1];
+
+            return View::make('administration.users.listing', compact('start', 'limit', 'page', 'users', 'name', 'email', 'join_date_low', 'join_date_high', 'total_purchased_low', 'total_purchased_high', 'email_verified', 'user_filter', 'sort', 'sort_by', 'roles', 'role', 'pagination'));
+        }
+
+        return View::make('administration.users.index', compact('start', 'limit', 'page', 'name', 'email', 'join_date_low', 'join_date_high', 'total_purchased_low', 'total_purchased_high', 'email_verified', 'user_filter', 'sort', 'sort_by', 'roles', 'role'));
+    }
+
+    public function oldAdminManageUsers()
+    {
+        $data = Request::all();
+
+        $sort_by = (isset($data['sort_by']))?$data['sort_by']:'users.created_at';
+        $sort = (isset($data['sort']))?$data['sort']:'desc';
+        $name = (isset($data['name']))?$data['name']:'';
+        $email = (isset($data['email']))?$data['email']:'';
+        $join_date_low = (isset($data['join_date_low']))?$data['join_date_low']:'';
+        $join_date_high = (isset($data['join_date_high']))?$data['join_date_high']:'';
+        $total_purchased_low = (isset($data['total_purchased_low']))?$data['total_purchased_low']:'';
+        $total_purchased_high = (isset($data['total_purchased_high']))?$data['total_purchased_high']:'';
+        $email_verified = (isset($data['email_verified']))?$data['email_verified']:'';
+        $role = (isset($data['role']))?$data['role']:'2';
+        $page = (isset($data['page']))?$data['page']:1;
+        $start = (isset($data['start']))?$data['start']:0;
+        $limit = (isset($data['limit']))?$data['limit']:30;
+        $roles = ['' => 'Select Role', 'Student'=>'Student', 'Instructor'=>'Instructor', 'Affiliate'=>'Affiliate'];
+        $role = (isset($data['role']))?$data['role']:'';
+        $user_filter = (isset($data['user_filter']))?$data['user_filter']:'or';
+        if(Request::ajax()){
+                // $query = DB::raw("SELECT users.id, users.email, users.created_at, users.confirmed, users.status, CONCAT('users.last_name', ', ', 'users.first_name') as name, sum(purchases.purchase_price) as purchase_total");
+                $exclude_role = [1,4,5];
+                $query = DB::select(DB::raw("SELECT DISTINCT ar.user_id, users.id, users.email, users.created_at, users.confirmed, users.status, CONCAT('users.last_name', ', ', 'users.first_name') as name, roles.name as role_name from assigned_roles AS ar join users join roles where (ar.role_id = 2 and ar.role_id != 3) and users.id = ar.user_id and roles.id = ar.role_id order by email asc"));
+                $pagination = Paginator::make($query, count($query), 1);
+                dd($query);
+                $query = User::select(DB::raw('users.*'), DB::raw("CONCAT(users.last_name, ', ', users.first_name) as name"), DB::raw('roles.name as role_name'))
+                // , DB::raw('purchases.purchase_price as purchase_total'))
                                 ->leftJoin('assigned_roles', 'assigned_roles.user_id', '=', 'users.id')
                                 ->leftJoin('roles', 'roles.id', '=', 'assigned_roles.role_id')
-                                ->join('purchases', 'purchases.student_id', '=', 'users.id')
                                 ->where('roles.id', '!=', '1')
-                        // GERRY -  ADD THE ROLE SEARCH HERE
-                                ->whereHas(
-                                    'roles', function($q){
-                                        $q->where('name', 'Instructor');
-                                    }
-                                )
+                                // ->join('purchases', 'purchases.student_id', '=', 'users.id')
                                 ->where(function ($query) use ($name, $email, $join_date_low, $join_date_high, $email_verified, $total_purchased_low, $total_purchased_high, $role, $user_filter){
 
                                     if($name){
@@ -678,29 +719,81 @@ class UsersController extends Controller
                                         $query->where('users.email', 'like', "%$email%");
                                     }
 
-                                    $role_ids = array();
+                                    $exclude_roles = array('Admin', 'InstructorAgency');
                                     if(!empty($role)){
-                                        // GERRY - COMMENTING THIS BECAUSE THIS MAKES IT RETURN NOTHING
-//                                        for($i=2; $i<=4; $i++){
-//                                            if($i != $role){
-//                                                $role_ids[] = $i;
-//                                            }
-//                                        }
-//
-//                                        if($role != 4){
-//                                            $next_role = ($role == 2)?3:2;
-//                                            if($user_filter == 'only'){
-//                                                $query->where('assigned_roles.role_id', '=', $role)->where('assigned_roles.user_id', '=', 'users.id')
-//                                                        ->where(function ($query2) use ($role, $next_role){
-//                                                            $query2->where('assigned_roles.role_id', '!=', $next_role)->where('assigned_roles.user_id', '=', 'users.id');
-//                                                        });
-//                                            } else {
-//                                                $query->where('assigned_roles.role_id', '=', $role)->orWhere('assigned_roles.role_id', $next_role)->where('assigned_roles.user_id', '=', 'users.id');
-//                                            }
-//
-//                                        } else {
-//                                            $query->where('assigned_roles.role_id', '=', $role)->whereNotIn('assigned_roles.role_id', $role_ids)->where('assigned_roles.user_id', '=', 'users.id');
-//                                        }
+
+                                        if($role != 'Affiliate'){
+                                            $next_role = ($role == 'Student')?'Instructor':'Student';
+                                            echo $role.'<br>';
+                                            $exclude_roles[] = 'Affiliate';
+                                            if($user_filter == 'only'){
+                                                $exclude_roles[] = $next_role;
+                                                $query->whereHas(
+                                                            'roles', function($q) use ($role){
+                                                                $q->where('roles.name', $role);
+                                                            }, '>=', 1
+                                                        )->whereHas(
+                                                            'roles', function($q) use ($exclude_roles){
+                                                                $q->whereIn('roles.name', $exclude_roles);
+                                                            }
+                                                        , '<', 1);
+                                            } else {
+                                                $query->whereHas(
+                                                            'roles', function($q) use ($role){
+                                                                $q->where('roles.name', $role);
+                                                            }, '>=', 1
+                                                        )->whereHas(
+                                                            'roles', function($q) use ($exclude_roles){
+                                                                $q->whereIn('roles.name', $exclude_roles);
+                                                            }
+                                                        , '<', 1);
+                                            }
+                                            print_r($exclude_roles);
+
+                                        } else {
+                                            $exclude_roles[] = 'Student';
+                                            $exclude_roles[] = 'Instructor';
+                                            $query->whereHas(
+                                                        'roles', function($q) use ($role){
+                                                            $q->where('roles.name', $role);
+                                                        }
+                                                    )->whereHas(
+                                                        'roles', function($q) use ($exclude_roles) {
+                                                            $q->whereIn('roles.name', $exclude_roles);
+                                                        }
+                                                    , '<', 1);
+                                        }
+                                    } else {
+                                        $user_roles = ['Student', 'Instructor', 'Affiliate'];
+                                        foreach($user_roles as $user_role){
+                                            if($user_role == 'Affiliate'){
+                                                $query->orWhereHas(
+                                                        'roles', function($q) use ($user_role){
+                                                            $q->where('roles.name', $user_role);
+                                                        }, '=', 1
+                                                    );
+                                            } else {
+                                                if(!in_array('Affiliate', $exclude_roles)){
+                                                    $exclude_roles[] = 'Affiliate';
+                                                }
+
+                                                $query->whereHas(
+                                                        'roles', function($q) use ($user_role){
+                                                            $q->where('roles.name', $user_role);
+                                                        }
+                                                    )->whereHas(
+                                                            'roles', function($q) use ($exclude_roles){
+                                                                $q->whereIn('roles.name', $exclude_roles);
+                                                            }
+                                                        , '<', 1);
+                                            }
+                                        }
+
+                                        $query->whereHas(
+                                                    'roles', function($q) use ($exclude_roles){
+                                                        $q->whereIn('roles.name', $exclude_roles);
+                                                    }
+                                                , '<', 1)->distinct();
                                     }
 
                                     if($join_date_low && $join_date_high){
