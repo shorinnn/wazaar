@@ -115,10 +115,37 @@
     </div>
     </div>
 </section>
+
+<section class="container-fluid sticky-header">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            	<ul class="tabbed-content-header">
+                	<li>
+                    	<a href="#course-details-player" class="scroll-to-video tab-header-button active">{{ trans("general.video") }}</a>
+                    </li>
+                	<li>
+                    	<a href="#course-description" class="scroll-to-description tab-header-button">{{ trans("courses/general.course_description") }}</a>
+                    </li>
+                	<li>
+                    	<a href="#description-page-curriculum-wrap" class="scroll-to-curriculum tab-header-button">{{ trans("courses/general.curriculum") }} </a>
+                    </li>
+                	<li>
+                    	<a href="#reviews" class="scroll-to-reviews tab-header-button">{{ trans("general.reviews") }}</a>
+                    </li>
+                </ul>
+            </div>
+        	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            	<p class="no-margin instructor-name"><span class="by">{{ trans("courses/general.by") }} </span><a class="name" href="#">{{$instructor->last_name}} {{$instructor->first_name}}</a></p>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="container-fluid course-data">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
+        	<a id="course-details-player" class="scroll-to-top" style="top: -230px;"></a>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player" id="course-details-player">
 					<!--<div class="pre-view-image video-player">
                     @if($course->previewImage !=null)
                         <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
@@ -223,7 +250,8 @@
                         }
                         ?>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            	<div class="enroll-button-section">
                 <div class="enroll-button-wrap clearfix paid-content">
                 @if( $course->cost() > 0 && !Input::has('preview') )
                         <form id="form-payment" method="post" action="https://mc-credit.com.sg/service/credit/input.html">
@@ -425,7 +453,7 @@
                      <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
                             @if( !in_array($course->id, $wishlisted) )
-                            	<span class="" title="{{ trans('courses/general.add_to_wishlist')}}" style="display:inline-block !important">
+                            	<span class="" title="{{ trans('courses/general.add_to_wishlist')}}">
                                     <i class="wish-icon-holder fa fa-heart-o  wishlist-change-button" data-auth="{{ intval(Auth::check() )}}" 
                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0" style="display:inline"
                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
@@ -434,7 +462,7 @@
                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'>
                                         {{ trans('courses/general.add_to_wishlist')}}</span>
                                 @else
-                                <span class="" title="{{ trans('courses/general.remove_from_wishlist')}}"  style="display:inline-block !important">
+                                <span class="" title="{{ trans('courses/general.remove_from_wishlist')}}">
                                     <i class="wish-icon-holder fa fa-heart wishlist-change-button" data-auth="{{ intval(Auth::check() )}}"
                                        data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1" style="display:inline"
                                        data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
@@ -462,6 +490,7 @@
                         </div>
 
                             </div>
+                        </div>
                         </div>
     	</div>
  
@@ -533,6 +562,105 @@
 @section('extra_js')
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
+		function fixStickyHeader(){
+			var stickyHeaderHeight = $('.sticky-header').height();
+			var triggerElemTop = $('.enroll-button-section .price').offset().top - stickyHeaderHeight;
+			$window = $(window);	
+			$windowWidth = $window.width();
+			
+			if($windowWidth <= 991){
+				$window.on('load resize scroll', function(){
+					$('.sticky-header, .enroll-button-section').removeClass('fixed').addClass('unfixed');
+				});
+				return false;
+			}
+			else{
+				/*var playerSection = $('#course-details-player').offset().top;
+				var descriptionSection = $('#course-description').offset().top;
+				var reviewsSection = $('#reviews').offset().top;
+				var curriculumSection = $('#description-page-curriculum-wrap').offset().top;
+				
+				function playerSectionAtTop() {
+					if($window.scrollTop() >= playerSection){
+						
+						$('#course-details-player').addClass('some-class');	
+					}
+					else{
+						$('#course-details-player').removeClass("some-class");
+					}
+					
+				}
+				function descriptionSectionAtTop() {
+					if($window.scrollTop() >= descriptionSection){
+						
+						$('#course-description').addClass('some-class');	
+					}
+					else{
+						$('#course-description').removeClass("some-class");
+					}
+					
+				}
+				function reviewsSectionAtTop() {
+					if($window.scrollTop() >= reviewsSection){
+						
+						$('#reviews').addClass('some-class');	
+					}
+					else{
+						$('#reviews').removeClass("some-class");
+					}
+					
+				}
+				function curriculumSectionAtTop() {
+					if($window.scrollTop() >= curriculumSection){
+						
+						$('#description-page-curriculum-wrap').addClass('some-class');	
+					}
+					else{
+						$('#description-page-curriculum-wrap').removeClass("some-class");
+					}
+					
+				}
+				
+				$window.scroll(function() {
+					playerSectionAtTop();
+					curriculumSectionAtTop();
+					reviewsSectionAtTop();	
+					descriptionSectionAtTop();
+				});*/
+								
+				$('.tab-header-button').each(function(){					
+					$(this).on('click', function(){
+						$(this).addClass('active');
+						$('.tab-header-button').not(this).removeClass('active');
+					});
+                });					
+				
+				function fixElement(){
+					if($window.scrollTop() >= triggerElemTop){
+						$('.sticky-header, .enroll-button-section').addClass('fixed').removeClass('unfixed');
+						$('.enroll-button-section.fixed').css('top', stickyHeaderHeight);
+					}
+					else{
+						$('.sticky-header, .enroll-button-section').addClass('unfixed').removeClass('fixed');
+					}
+				}
+				
+				$window.on('load scroll', function(){
+					fixElement();
+				});
+
+			}
+			
+		}
+		
+		$(window).resize(function(){
+			fixStickyHeader();
+		});
+		
+		$(document).ready(function(){
+			fixStickyHeader();	
+		});
+		
 		$( document ).ajaxComplete(function() {
 		 addGiftLabel();
 		});

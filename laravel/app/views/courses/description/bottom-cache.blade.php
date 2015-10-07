@@ -17,6 +17,7 @@
                 @if (Session::get('error'))
                     <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                 @endif
+                <a id="course-description" class="scroll-to-top"></a>
                 <div class="course-description no-margin-top module-box padding-top-30 padding-bottom-20">
                     <h2>{{ trans('courses/general.about-this-course') }}</h2>
                     <p class="intro-paragraph short-text">
@@ -57,91 +58,94 @@
                         </ul>
                     @endif
                 </div>
-
-                @foreach($course->modules as $module)
-                    <div class="module-box">
-                        <h2>{{ $module->order }}. {{ $module->name }}</h2>
-                        <p class="regular-paragraph">
-                            <!--A short description of the module goes here...-->
-                        </p>
-                        <ul class="lesson-topics expandable-content clearfix">
-                            @foreach($module->lessons as $i=>$lesson)
-                                <li class="lessons lesson-1 bordered clearfix">
-                                    <span class="hidden-xs"><i class="wa-play"></i></span>
-                                    <!--{{ Str::limit( $lesson->name, Config::get('custom.course-desc-lesson-chars') )  }}-->
-                                    <a class="clearfix lesson-name" data-toggle="tooltip" title="{{$lesson->name}}" @if($i == 0) data-placement="bottom" @endif>{{$lesson->name}}</a>
-                                    <!--<em>Type of lesson</em>-->
-                                    <div class="buttons">
-                                        @if($lesson->blocks()->where('type','video')->first() != null
-                                            && VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )
-                                                    ->first() !=null
-                                            )
-                                            <a href="#" class="default-button reading-button large-button">
-                                                {{
-                                                    VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )->first()
-                                                            ->duration
-                                                }}</a>
-                                        @endif
-
-                                        @if( $lesson->free_preview == 'yes' )
-                                            <!--<a href="#" class="default-button preview-button large-button">Preview</a>-->
-                                                @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
-                                                        <a href='{{ action( 'ClassroomController@lesson', 
-                                                        [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
-                                                    'lesson' => $lesson->slug ] )}}' class='blue-button preview-button large-button' >Enter</a>
-                                                @else
-                                                <!-- to purchase -->
-                                                    @if($now > $show_on)
-                                                        {{ Form::open( [ 'action' => ['CoursesController@crashLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
-                                                    @else
-                                                        {{ Form::open( [  'class' => 'inline-form' ] ) }}
-                                                    @endif
-                                                    <button type="submit" class='blue-button preview-button large-button'
-                                                    @if( $now<$show_on || 
-                                                    (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
-                                                            disabled="disabled" data-crash-disabled='1'
-                                                            @endif
-                                                            ><small class="hidden-xs">{{ trans('courses/general.free_preview') }}</small><i class="fa fa-eye hidden-sm hidden-md hidden-lg"></i></button>
-                                                      {{ Form::close() }}
-                                                      <!-- / to purchase -->
-                                                @endif
-                                        @else
-                                            @if( $lesson->individual_sale == 'yes' )
-                                                <!--<a href="#" class="blue-button buy-button large-button">Buy</a>-->
+				
+                <a id="description-page-curriculum-wrap" class="scroll-to-top"></a>
+                <div>
+                    @foreach($course->modules as $module)
+                        <div class="module-box">
+                            <h2>{{ $module->order }}. {{ $module->name }}</h2>
+                            <p class="regular-paragraph">
+                                <!--A short description of the module goes here...-->
+                            </p>
+                            <ul class="lesson-topics expandable-content clearfix">
+                                @foreach($module->lessons as $i=>$lesson)
+                                    <li class="lessons lesson-1 bordered clearfix">
+                                        <span class="hidden-xs"><i class="wa-play"></i></span>
+                                        <!--{{ Str::limit( $lesson->name, Config::get('custom.course-desc-lesson-chars') )  }}-->
+                                        <a class="clearfix lesson-name" data-toggle="tooltip" title="{{$lesson->name}}" @if($i == 0) data-placement="bottom" @endif>{{$lesson->name}}</a>
+                                        <!--<em>Type of lesson</em>-->
+                                        <div class="buttons">
+                                            @if($lesson->blocks()->where('type','video')->first() != null
+                                                && VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )
+                                                        ->first() !=null
+                                                )
+                                                <a href="#" class="default-button reading-button large-button">
+                                                    {{
+                                                        VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )->first()
+                                                                ->duration
+                                                    }}</a>
+                                            @endif
+    
+                                            @if( $lesson->free_preview == 'yes' )
+                                                <!--<a href="#" class="default-button preview-button large-button">Preview</a>-->
                                                     @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
                                                             <a href='{{ action( 'ClassroomController@lesson', 
                                                             [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
                                                         'lesson' => $lesson->slug ] )}}' class='blue-button preview-button large-button' >Enter</a>
+                                                    @else
+                                                    <!-- to purchase -->
+                                                        @if($now > $show_on)
+                                                            {{ Form::open( [ 'action' => ['CoursesController@crashLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
                                                         @else
-                                                            <!-- can purchase -->
-                                                            @if($now > $show_on)
-                                                                {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
-                                                            @else
-                                                                {{ Form::open( [ 'class' => 'inline-form' ] ) }}
-                                                            @endif
-                                                            <button class="blue-button buy-button large-button"
-                                                             @if( $now<$show_on || 
-                                                                (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
-                                                                    disabled="disabled" data-crash-disabled='1'
-                                                                    @endif
-                                                                    >{{ trans('courses/general.purchase') }}</button>
-                                                            {{ Form::close() }}
-                                                            @endif
-                                                            <!-- / can purchase -->
+                                                            {{ Form::open( [  'class' => 'inline-form' ] ) }}
                                                         @endif
-                                                      
-                                        @endif
-
-
-
-                                    </div>
-                                </li>
-
-                            @endforeach
-                        </ul>
-                            <!--<span class="hide-lesson-topics">{{ trans('courses/general.show-more-lessons') }}</span>-->
-                    </div>
-                @endforeach
+                                                        <button type="submit" class='blue-button preview-button large-button'
+                                                        @if( $now<$show_on || 
+                                                        (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
+                                                                disabled="disabled" data-crash-disabled='1'
+                                                                @endif
+                                                                ><small class="hidden-xs">{{ trans('courses/general.free_preview') }}</small><i class="fa fa-eye hidden-sm hidden-md hidden-lg"></i></button>
+                                                          {{ Form::close() }}
+                                                          <!-- / to purchase -->
+                                                    @endif
+                                            @else
+                                                @if( $lesson->individual_sale == 'yes' )
+                                                    <!--<a href="#" class="blue-button buy-button large-button">Buy</a>-->
+                                                        @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
+                                                                <a href='{{ action( 'ClassroomController@lesson', 
+                                                                [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
+                                                            'lesson' => $lesson->slug ] )}}' class='blue-button preview-button large-button' >Enter</a>
+                                                            @else
+                                                                <!-- can purchase -->
+                                                                @if($now > $show_on)
+                                                                    {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
+                                                                @else
+                                                                    {{ Form::open( [ 'class' => 'inline-form' ] ) }}
+                                                                @endif
+                                                                <button class="blue-button buy-button large-button"
+                                                                 @if( $now<$show_on || 
+                                                                    (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
+                                                                        disabled="disabled" data-crash-disabled='1'
+                                                                        @endif
+                                                                        >{{ trans('courses/general.purchase') }}</button>
+                                                                {{ Form::close() }}
+                                                                @endif
+                                                                <!-- / can purchase -->
+                                                            @endif
+                                                          
+                                            @endif
+    
+    
+    
+                                        </div>
+                                    </li>
+    
+                                @endforeach
+                            </ul>
+                                <!--<span class="hide-lesson-topics">{{ trans('courses/general.show-more-lessons') }}</span>-->
+                        </div>
+                    @endforeach
+                </div>
                 
                 @if( $gift != null )
                 
@@ -163,6 +167,7 @@
                 @endif
 
                 @if( $course->assignedInstructor != null && $course->assignedInstructor->profile !=null  )
+                <a id="reviews" class="scroll-to-top"></a>
                     <div class="reviews instructed-by clearfix module-box">
                         <div class="row no-margin">
                             <div class="user-thumb col-xs-12 col-sm-2 col-md-2 col-lg-2">
