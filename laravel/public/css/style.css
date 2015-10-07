@@ -9127,6 +9127,7 @@ footer{
 }
 .privacy-policy h3{
 	margin: 0;
+	font-size: 16px;
 }
 
 .contact-us.main,
@@ -10800,7 +10801,7 @@ header .profile-name ul{
 }
 .margin-bottom-30
 {
-	margin-bottom: 30px;
+	margin-bottom: 30px !important;
 }
 .padding-top-10{
 	padding-top: 10px;

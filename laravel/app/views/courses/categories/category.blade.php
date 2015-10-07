@@ -98,14 +98,14 @@
                 </div>
             </div>      
         </section>
-        <section class="container-fluid category-box-container relative">
+        <section class="container-fluid category-box-container">
         	<style>
 				.sidebar-menu{
 					position: absolute;
 					left: 0;
 					top: 0;
 					width: 260px;
-					height: 100%;
+					height: auto;
 					background: #fff;
 					padding: 15px 24px;
 				}
@@ -155,6 +155,8 @@
 					border: none;
 					padding: 0;
 					margin: 0;
+					width: 100%;
+					text-align: left;
 					
 				}
 				.sidebar-menu .group ul li .dropdown-menu{
@@ -162,6 +164,7 @@
 					box-shadow: none;
 					border: none;
 					padding: 0;
+					width: 100%;
 					margin: 5px 0 30px;
 					background: none;
 				}
@@ -187,6 +190,18 @@
 				}
 				.sidebar-menu .popular a:hover{
 					color: #303941;
+				}
+				@media (min-width:991px){
+					.sidebar-menu ~ .ajax-content{
+						padding-left: 280px;
+					}
+					.sidebar-menu{
+						top: 155px;
+						height: 100%;
+					}
+					footer{
+						position: relative;
+					}
 				}
 				@media (max-width:991px){
 					.sidebar-menu{

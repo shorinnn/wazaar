@@ -234,7 +234,7 @@
                 </button>
                 <ul id="logged-out-header-menu" class="logged-out clearfix collapse navbar-collapse">
                     <li>
-                        <a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> 
+                        <!--<a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> -->
                     </li>
                     <li>
                         <a href="{{ action('UsersController@login') }}"> {{trans('site/menus.homepage.login')}}</a> 
