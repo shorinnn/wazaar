@@ -43,13 +43,13 @@ class AnalyticsHelper
         $stats = DB::table('purchases')
             ->select(
               DB::raw("count(id) as 'sales_count'"),
-              DB::raw("sum(purchase_price) as 'sales_total'"),
-              DB::raw("sum(`instructor_earnings`) as 'instructor_earnings'"),
-              DB::raw("sum(`affiliate_earnings`) as 'affiliate_earnings'"),
-              DB::raw("sum(`ltc_affiliate_earnings`) as 'ltc_affiliate_earnings'"),
-              DB::raw("sum(`second_tier_affiliate_earnings`) as 'second_tier_affiliate_earnings'"),
-              DB::raw("sum(`site_earnings`) as 'site_earnings'"),
-              DB::raw("sum(`tax`) as 'tax'"),
+              DB::raw("COALESCE(sum(purchase_price),0) as 'sales_total'"),
+              DB::raw("COALESCE(sum(`instructor_earnings`),0) as 'instructor_earnings'"),
+              DB::raw("COALESCE(sum(`affiliate_earnings`),0) as 'affiliate_earnings'"),
+              DB::raw("COALESCE(sum(`ltc_affiliate_earnings`),0) as 'ltc_affiliate_earnings'"),
+              DB::raw("COALESCE(sum(`second_tier_affiliate_earnings`),0) as 'second_tier_affiliate_earnings'"),
+              DB::raw("COALESCE(sum(`site_earnings`),0) as 'site_earnings'"),
+              DB::raw("COALESCE(sum(`tax`),0) as 'tax'"),
               DB::raw("DATE(created_at) as 'date'")
             )
             ->where('product_type','Course')
