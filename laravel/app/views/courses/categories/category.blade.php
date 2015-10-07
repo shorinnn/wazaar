@@ -105,7 +105,7 @@
 					left: 0;
 					top: 0;
 					width: 260px;
-					height: auto;
+					height: 100%;
 					background: #fff;
 					padding: 15px 24px;
 				}
@@ -115,7 +115,7 @@
 					text-transform: uppercase;
 					font-size: 11px;
 					font-weight: 600;
-					margin: 24px 0 20px;
+					margin: 24px 0 11px;
 					color: #a7b7c4;
 				}
 				.sidebar-menu .group ul{
@@ -124,10 +124,11 @@
 				.sidebar-menu .group .main-menu .main-menu-list{
 					font-size: 13px;
 					font-weight: 600;
+					clear: both;
 					text-transform: uppercase;
 				}
 				.sidebar-menu .group .main-menu .popular-list a,
-				.sidebar-menu .group .main-menu .main-menu-list{
+				.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle{
 					display: block;
 					padding: 9px 13px;
 					color: #303941;
@@ -135,13 +136,19 @@
 				}
 				.sidebar-menu .group .main-menu .popular-list.active a,
 				.sidebar-menu .group .main-menu .popular-list:hover a,
-				.sidebar-menu .group .main-menu .main-menu-list.active,
-				.sidebar-menu .group .main-menu .main-menu-list:hover,
-				.sidebar-menu .group .main-menu .main-menu-list.open{
+				.sidebar-menu .group .main-menu .main-menu-list.active .dropdown-toggle,
+				.sidebar-menu .group .main-menu .main-menu-list.active:hover .dropdown-toggle,
+				.sidebar-menu .group .main-menu .main-menu-list.open:hover .dropdown-toggle,
+				.sidebar-menu .group .main-menu .main-menu-list.open .dropdown-toggle{
 					background: #0099ff;
 					color: #fff;
 					border-radius: 2px;
 					font-weight: normal;
+				}
+				.sidebar-menu .group .main-menu .main-menu-list:hover .dropdown-toggle{
+					background: #e8eced;
+					color: #303941;
+					border-radius: 2px;
 				}
 				.sidebar-menu .group ul li .dropdown-toggle{
 					background: none;
@@ -155,7 +162,7 @@
 					box-shadow: none;
 					border: none;
 					padding: 0;
-					margin: 10px 0 35px;
+					margin: 5px 0 30px;
 					background: none;
 				}
 				.sidebar-menu .group ul li .dropdown-menu li a,
@@ -170,30 +177,113 @@
 					padding: 6px 8px 6px 38px;
 				}
 				.sidebar-menu .group ul li .dropdown-menu li a:hover,
-				.sidebar-menu .group ul li .dropdown-menu li a:active,
+				.sidebar-menu .group ul li .dropdown-menu li a.active,
 				.sidebar-menu .group ul li .dropdown-menu li a:focus{
 					background: #0099ff;
 					color: #fff;
 					border-radius: 2px;
 				}
 				.sidebar-menu .group ul li .dropdown-menu li{
-					margin-top: 13px;
 				}
 				.sidebar-menu .popular a:hover{
 					color: #303941;
+				}
+				@media (max-width:991px){
+					.sidebar-menu{
+						width: 100%;
+						position: relative;
+						padding: 15px 0 0;
+						background: #ebeced;
+						
+					}
+					.sidebar-menu .group ul{
+						background: #fff;
+					}
+					.sidebar-menu .group ul li .dropdown-menu li a:hover,
+					.sidebar-menu .group ul li .dropdown-menu li a:active,
+					.sidebar-menu .group ul li .dropdown-menu li a:focus{
+						background: none;
+						width: 100%;
+						color: #798794;
+					}
+					.sidebar-menu .group ul li .dropdown-menu li{
+						border-bottom: solid 1px #ebeced;
+					}
+					.sidebar-menu .group ul li .dropdown-menu li a{
+						color: #798794;
+						padding-top: 15px;
+						padding-bottom: 15px;
+					}
+					.sidebar-menu .group ul li .dropdown-menu{
+						width: 100%;
+						margin: 0;
+					}
+					.sidebar-menu .group .main-menu .main-menu-list:hover .dropdown-toggle,
+					.sidebar-menu .group .main-menu .popular-list.active a,
+					.sidebar-menu .group .main-menu .popular-list:hover a,
+					.sidebar-menu .group .main-menu .main-menu-list.active .dropdown-toggle,
+					.sidebar-menu .group .main-menu .main-menu-list.active:hover .dropdown-toggle,
+					.sidebar-menu .group .main-menu .main-menu-list.open:hover .dropdown-toggle,
+					.sidebar-menu .group .main-menu .main-menu-list.open .dropdown-toggle{
+						background: none;
+						width: 100%;
+						color: #303941;
+						font-weight: 600;
+						border-radius: 0;
+						text-align: left;
+					}
+					.sidebar-menu .group ul li .dropdown-menu li a{
+						padding-right: 13px;
+					}
+					.sidebar-menu .group .main-menu .popular-list,
+					.sidebar-menu .group .main-menu .main-menu-list{
+						border-bottom: solid 1px #ebeced;
+						padding: 0 15px 0 12px;
+					}
+					.sidebar-menu .group .main-menu .main-menu-list{
+						padding: 0;
+					}
+					.sidebar-menu .group h3{
+						padding: 0 25px;
+					}			
+					.sidebar-menu .group .main-menu .popular-list a, 
+					.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle{
+						width: 100%;
+						text-align: left;
+						padding-top: 15px;
+						padding-bottom: 15px;
+					}
+					.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle{
+						padding-right: 15px;
+						padding-left: 25px;
+					}
+					.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle i{
+						position: relative;
+						top: 4px;
+					}
+					.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle .wa-chevron-up,
+					.sidebar-menu .group .main-menu .main-menu-list.open .dropdown-toggle .wa-chevron-down{
+						display: none;
+					}
+					.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle .wa-chevron-down,
+					.sidebar-menu .group .main-menu .main-menu-list.open .dropdown-toggle .wa-chevron-up{
+						display: block;
+						float: right;
+					}
+					
 				}
 			</style>
             <div class="sidebar-menu">
             	<div class="group popular">
                 	<h3>Popular</h3>
                     <ul class="main-menu">
-                    	<li class="popular-list"><a href="#">Featured</a></li>
-                        <li class="popular-list"><a href="#">Best sellers</a></li>
+                    	<li class="popular-list"><a href="#">Featured<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
+                        <li class="popular-list"><a href="#">Best sellers<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
                     </ul>
                 </div>
             	<div class="group">
                 	<h3>Categories</h3>
-                    <ul class="main-menu">
+                    <ul class="main-menu clearfix">
 
                         @foreach($categories as $cat)
                             <li class="dropdown main-menu-list
@@ -202,13 +292,17 @@
                                 id="dropdownMenu-c-{{$cat->id}}" data-toggle="dropdown" 
                                 aria-haspopup="true" aria-expanded="true">
                                 {{ $cat->name }}
+                                <i class="wa-chevron-down right hidden-md hidden-lg"></i>
+                                <i class="wa-chevron-up hidden-md hidden-lg"></i>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu-c-{{$cat->id}}">
                                     <li><a href="{{
-                                               action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All Courses</a></li>
+                                               action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All Courses
+                                               <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
                                     @foreach($cat->courseSubcategories as $subcat)
                                         <li @if(Request::segment(4)==$subcat->slug) active @endif><a href="{{
-                                               action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}</a></li>
+                                               action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}
+                                               <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
                                     @endforeach
                                 </ul>
                             </li>
