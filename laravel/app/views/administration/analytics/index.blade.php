@@ -112,7 +112,7 @@
         <hr/>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Tables Filter</h3>
+            <h3 class="panel-title">{{trans('analytics.tableFilter')}}</h3>
           </div>
           <div class="panel-body">
               <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 50%">
@@ -120,7 +120,7 @@
                   <span></span> <b class="caret"></b>
               </div>
 
-              <button class="btn btn-success" onclick="Analytics.ApplyTableDateFilter(); return false;" style="margin-left: 10px">Apply Filter</button>
+              <button class="btn btn-success" onclick="Analytics.ApplyTableDateFilter(); return false;" style="margin-left: 10px">{{trans('analytics.applyFilter')}}</button>
           </div>
         </div>
         <div class="row-fluid">
