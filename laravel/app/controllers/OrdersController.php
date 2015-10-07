@@ -76,9 +76,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($sale_amount_low && $sale_amount_high){
-											$query->orWhere(function ($query2) use ($sale_amount_low, $sale_amount_high) {
-												$query2->whereBetween('purchases.purchase_price', array($sale_amount_low, $sale_amount_high));
-											});
+											$query->whereBetween('purchases.purchase_price', array($sale_amount_low, $sale_amount_high));
 										} else if($sale_amount_low && empty($sale_amount_high)){
 											$query->where('purchases.purchase_price', '>=', $sale_amount_low);
 										} else if($sale_amount_high && empty($sale_amount_low)){
@@ -86,9 +84,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($product_price_low && $product_price_high){
-											$query->orWhere(function ($query3) use ($product_price_low, $product_price_high) {
-												$query3->whereBetween('purchases.original_price', array($product_price_low, $product_price_high));
-											});
+											$query->whereBetween('purchases.original_price', array($product_price_low, $product_price_high));
 										} else if($product_price_low && empty($product_price_high)){
 											$query->where('purchases.original_price', '>=', $product_price_low);
 										} else if($product_price_high && empty($product_price_low)){
@@ -96,13 +92,11 @@ class OrdersController extends \BaseController {
 										}
 
 										if($purchase_date_low && $purchase_date_high){
-											$query->orWhere(function ($query3) use ($purchase_date_low, $purchase_date_high) {
-												$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
-												$purchase_date_low = $purchase_date_low->startOfDay();
-												$purchase_date_high = \Carbon\Carbon::parse($purchase_date_high);
-												$purchase_date_high = $purchase_date_high->endOfDay();
-												$query3->whereBetween('purchases.created_at', array($purchase_date_low, $purchase_date_high));
-											});
+											$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
+											$purchase_date_low = $purchase_date_low->startOfDay();
+											$purchase_date_high = \Carbon\Carbon::parse($purchase_date_high);
+											$purchase_date_high = $purchase_date_high->endOfDay();
+											$query->whereBetween('purchases.created_at', array($purchase_date_low, $purchase_date_high));
 										} else if($purchase_date_low && empty($purchase_date_high)){
 											$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
 											$purchase_date_low = $purchase_date_low->startOfDay();
@@ -154,9 +148,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($sale_amount_low && $sale_amount_high){
-											$query->orWhere(function ($query2) use ($sale_amount_low, $sale_amount_high) {
-												$query2->whereBetween('purchases.purchase_price', array($sale_amount_low, $sale_amount_high));
-											});
+											$query->whereBetween('purchases.purchase_price', array($sale_amount_low, $sale_amount_high));
 										} else if($sale_amount_low && empty($sale_amount_high)){
 											$query->where('purchases.purchase_price', '>=', $sale_amount_low);
 										} else if($sale_amount_high && empty($sale_amount_low)){
@@ -164,9 +156,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($product_price_low && $product_price_high){
-											$query->orWhere(function ($query3) use ($product_price_low, $product_price_high) {
-												$query3->whereBetween('purchases.original_price', array($product_price_low, $product_price_high));
-											});
+											$query->whereBetween('purchases.original_price', array($product_price_low, $product_price_high));
 										} else if($product_price_low && empty($product_price_high)){
 											$query->where('purchases.original_price', '>=', $product_price_low);
 										} else if($product_price_high && empty($product_price_low)){
@@ -174,13 +164,11 @@ class OrdersController extends \BaseController {
 										}
 
 										if($purchase_date_low && $purchase_date_high){
-											$query->orWhere(function ($query3) use ($purchase_date_low, $purchase_date_high) {
-												$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
-												$purchase_date_low = $purchase_date_low->startOfDay();
-												$purchase_date_high = \Carbon\Carbon::parse($purchase_date_high);
-												$purchase_date_high = $purchase_date_high->endOfDay();
-												$query3->whereBetween('purchases.created_at', array($purchase_date_low, $purchase_date_high));
-											});
+											$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
+											$purchase_date_low = $purchase_date_low->startOfDay();
+											$purchase_date_high = \Carbon\Carbon::parse($purchase_date_high);
+											$purchase_date_high = $purchase_date_high->endOfDay();
+											$query->whereBetween('purchases.created_at', array($purchase_date_low, $purchase_date_high));
 										} else if($purchase_date_low && empty($purchase_date_high)){
 											$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
 											$purchase_date_low = $purchase_date_low->startOfDay();
@@ -280,9 +268,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($sale_amount_low && $sale_amount_high){
-											$query->orWhere(function ($query2) use ($sale_amount_low, $sale_amount_high) {
-												$query2->whereBetween('purchases.purchase_price', array($sale_amount_low, $sale_amount_high));
-											});
+											$query->whereBetween('purchases.purchase_price', array($sale_amount_low, $sale_amount_high));
 										} else if($sale_amount_low && empty($sale_amount_high)){
 											$query->where('purchases.purchase_price', '>=', $sale_amount_low);
 										} else if($sale_amount_high && empty($sale_amount_low)){
@@ -290,9 +276,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($product_price_low && $product_price_high){
-											$query->orWhere(function ($query3) use ($product_price_low, $product_price_high) {
-												$query3->whereBetween('purchases.original_price', array($product_price_low, $product_price_high));
-											});
+											$query->whereBetween('purchases.original_price', array($product_price_low, $product_price_high));
 										} else if($product_price_low && empty($product_price_high)){
 											$query->where('purchases.original_price', '>=', $product_price_low);
 										} else if($product_price_high && empty($product_price_low)){
@@ -300,13 +284,11 @@ class OrdersController extends \BaseController {
 										}
 
 										if($purchase_date_low && $purchase_date_high){
-											$query->orWhere(function ($query3) use ($purchase_date_low, $purchase_date_high) {
-												$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
-												$purchase_date_low = $purchase_date_low->startOfDay();
-												$purchase_date_high = \Carbon\Carbon::parse($purchase_date_high);
-												$purchase_date_high = $purchase_date_high->endOfDay();
-												$query3->whereBetween('purchases.created_at', array($purchase_date_low, $purchase_date_high));
-											});
+											$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
+											$purchase_date_low = $purchase_date_low->startOfDay();
+											$purchase_date_high = \Carbon\Carbon::parse($purchase_date_high);
+											$purchase_date_high = $purchase_date_high->endOfDay();
+											$query->whereBetween('purchases.created_at', array($purchase_date_low, $purchase_date_high));
 										} else if($purchase_date_low && empty($purchase_date_high)){
 											$purchase_date_low = \Carbon\Carbon::parse($purchase_date_low);
 											$purchase_date_low = $purchase_date_low->startOfDay();
