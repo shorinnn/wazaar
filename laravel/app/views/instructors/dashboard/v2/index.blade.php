@@ -126,7 +126,7 @@
                                                                 <img src="{{ $course->previewImage->url }}" class="img-responsive" />
                                                             </a>
                                                             @else
-                                                            	<img src="http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg" class="img-responsive">
+                                                            	<img src="http://placehold.it/360x203" class="img-responsive">
                                                                 <!--<p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>-->
                                                             @endif 
                                                       </div>
