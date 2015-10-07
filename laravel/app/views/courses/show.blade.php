@@ -251,7 +251,7 @@
                         ?>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            	<div class="enroll-button-section right">
+            	<div class="enroll-button-section">
                 <div class="enroll-button-wrap clearfix paid-content">
                 @if( $course->cost() > 0 && !Input::has('preview') )
                         <form id="form-payment" method="post" action="https://mc-credit.com.sg/service/credit/input.html">
