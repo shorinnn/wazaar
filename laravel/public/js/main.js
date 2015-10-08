@@ -104,6 +104,21 @@ $(document).ready(function(){
    	  skinVideoControls();
 	});
 
+    if($('.category-menu-item').length >= 1){
+        $('.category-menu-item').on('click', function(){
+            if(!$(this).parent().hasClass('active')){
+                $('.category-menu-list li.main-menu-list').removeClass('active');
+                $(this).parent().addClass('active').next().removeClass('active');
+            }
+        })
+
+        $('.sub-categoty-menu-item').on('click', function(){
+            $('.sub-categoty-menu-item').each(function(){
+                $(this).parent().removeClass('active');
+            })
+            $(this).parent().addClass('active');
+        })
+    }
 });
 
 function setLessonSidebarRepliesScrollHeight()

@@ -1,8 +1,6 @@
 @extends('layouts.default')
 
-@section('page_title')
-    Dashboard - 
-@stop
+@section('page_title') 売上管理 - Wazaar @stop
 
 @section('content')
 	<style>

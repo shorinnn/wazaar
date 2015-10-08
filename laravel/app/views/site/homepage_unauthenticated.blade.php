@@ -18,7 +18,7 @@
 			display: inline-block;
 		}
 		.home-search-form-wrap{
-			margin-top: 72px;
+			margin-top: 52px;
 		}
 		.browse-category-button{
 			padding: 20px 25px;

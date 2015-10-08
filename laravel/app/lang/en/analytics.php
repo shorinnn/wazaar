@@ -140,7 +140,9 @@ return
     'courseName' => 'Course Name',
     'courseCategory' => 'Course Category',
     'instructorName' => 'Instructor Name',
-    'instructorEmail' => 'Instructor Email'
+    'instructorEmail' => 'Instructor Email',
+
+    'courses' => 'Courses'
 
 
 ];

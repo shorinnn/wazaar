@@ -624,7 +624,7 @@ header .profile-name li:hover ul{
 	background-position: left top; 
 }
 .homepage-header{
-	padding-bottom: 93px;
+	padding-bottom: 53px;
 }
 .homepage-header .extra-large-heading{
 	color: #fff;
@@ -993,6 +993,9 @@ header .profile-name li:hover ul{
 /********** Home page Category heading ********************/
 .category-heading-container{
 	background: #fff;
+}
+.category-content-container .category-heading-container{
+	background: none;
 }
 .category-heading{
 	margin-bottom: 24px;
@@ -1564,9 +1567,7 @@ header .profile-name li:hover ul{
 .sidebar-menu .group .main-menu .popular-list.active a,
 .sidebar-menu .group .main-menu .popular-list:hover a,
 .sidebar-menu .group .main-menu .main-menu-list.active .dropdown-toggle,
-.sidebar-menu .group .main-menu .main-menu-list.active:hover .dropdown-toggle,
-.sidebar-menu .group .main-menu .main-menu-list.open:hover .dropdown-toggle,
-.sidebar-menu .group .main-menu .main-menu-list.open .dropdown-toggle{
+.sidebar-menu .group .main-menu .main-menu-list.active:hover .dropdown-toggle{
 	background: #0099ff;
 	color: #fff;
 	border-radius: 2px;
@@ -1609,12 +1610,25 @@ header .profile-name li:hover ul{
 .sidebar-menu .group ul li .dropdown-menu li a{
 	padding: 6px 8px 6px 38px;
 }
-.sidebar-menu .group ul li .dropdown-menu li a:hover,
+/*.sidebar-menu .group ul li .dropdown-menu li a:hover,*/
 .sidebar-menu .group ul li .dropdown-menu li.active a,
 .sidebar-menu .group ul li .dropdown-menu li a:focus{
 	background: #0099ff;
 	color: #fff;
 	border-radius: 2px;
+}
+.sidebar-menu .group .category-menu-list .main-menu-list:hover .dropdown-toggle{
+	background: none;
+	color: #303941;
+	border-radius: 0px;
+}
+.sidebar-menu .group .category-menu-list .main-menu-list .dropdown-toggle:hover{
+	background: #e8eced;
+	color: #303941;
+	border-radius: 2px;
+}
+.sidebar-menu .group ul li .dropdown-menu li a.sub-categoty-menu-item{
+	white-space: normal !important;
 }
 .sidebar-menu .group ul li .dropdown-menu li{
 }
@@ -9074,7 +9088,7 @@ input[type='number'] {
 /************* Page Footer **************/
 .footer-search{
 	background: #ebeced;
-	padding: 48px 15px;
+	padding: 0px 15px 48px 15px;
 }
 .footer-search label {
     display: block;
@@ -9116,7 +9130,7 @@ footer{
 	clear:both;
 }
 .footer-container{ 
-	background-color: #000;
+	background-color: #18222b;
 	padding: 62px 0 0;
 }
 .gray-footer .footer-container{ 
@@ -9146,7 +9160,7 @@ footer{
 	float: right;
 }
 .footer-privacy-bar{
-	background: #000;
+	background: #18222b;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	margin-top: 20px;
@@ -9422,7 +9436,7 @@ footer{
 	.enroll-button-wrap {
 		height: 148px;
 	}
-	.sidebar-menu ~ .ajax-content{
+	.sidebar-menu ~ .category-content-container{
 		-webkit-flex: 1;
 		-moz-flex: 1;
 		-ms-flex: 1;

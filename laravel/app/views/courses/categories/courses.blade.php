@@ -5,9 +5,9 @@
     @endforeach
     </div>
 </div>  
-    @if($courses->count() % 3!=0)
+    <!-- @if($courses->count() % 3!=0)
     </div>
-    @endif
+    @endif -->
 <div class="container no-padding">
 {{ $courses->appends(Input::only('sort','difficulty','filter'))->links() }}
 </div>
