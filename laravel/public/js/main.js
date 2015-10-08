@@ -106,11 +106,9 @@ $(document).ready(function(){
 
     if($('.category-menu-item').length >= 1){
         $('.category-menu-item').on('click', function(){
-            if($(this).parent().hasClass('open')){
-                $(this).parent().removeClass('open');
-            } else {
-                $('.category-menu-list li.main-menu-list').removeClass('open');
-                $(this).parent().addClass('open').next().removeClass('open');
+            if(!$(this).parent().hasClass('active')){
+                $('.category-menu-list li.main-menu-list').removeClass('active');
+                $(this).parent().addClass('active').next().removeClass('active');
             }
         })
 
