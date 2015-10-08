@@ -105,7 +105,7 @@
                 </div>
             </div>      
         </section>
-        <section class="container-fluid category-box-container">
+        <section class="container-fluid category-box-container relative">
             <div class="sidebar-menu">
             	<div class="group popular">
                 	<h3>Popular</h3>
@@ -164,7 +164,34 @@
                 $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
                 $('.course-desc-ajax-link').click();
             }
-            $(function(){
+			function arrangeCourseBox(){
+				var $window = $(window);
+				var $windowWidth = $window.width();
+
+				$window.on('load resize', function(){
+					if($windowWidth <= 1200 && $windowWidth >= 991){
+						$('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
+						$('.category-box-container .ajax-content > .container').css('width', '100%');	
+					}
+				});
+				
+			}
+			$(window).resize(function(){
+				arrangeCourseBox();
+			});
+			
+			$(window).load(function(){
+				arrangeCourseBox();
+			});
+			
+			$(document).ready(function(e) {
+               arrangeCourseBox(); 
+            });
+				
+			$( document ).ajaxComplete(function() {
+			   arrangeCourseBox(); 
+			});
+			$(function(){
                 $('.level-buttons-container a').click(function(){
                     $('.level-buttons-container a').removeClass('active');
                 });

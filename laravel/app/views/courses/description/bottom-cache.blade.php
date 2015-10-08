@@ -167,7 +167,7 @@
                 @endif
 
                 @if( $course->assignedInstructor != null && $course->assignedInstructor->profile !=null  )
-                <a id="reviews" class="scroll-to-top"></a>
+                
                     <div class="reviews instructed-by clearfix module-box">
                         <div class="row no-margin">
                             <div class="user-thumb col-xs-12 col-sm-2 col-md-2 col-lg-2">
@@ -195,8 +195,10 @@
                         </div>
                     </div>
                 @endif
-
+                
+				<a id="reviews" class="scroll-to-top"></a>
                 @if($course->allTestimonials->count() > 0)
+                
                     <div class="lesson-reviews">
                         <h2>{{ $course->testimonials()->where('content','!=','')->count() }} {{ trans("courses/general.reviews") }}</h2>
                         <div class='bottom-testimonials'>

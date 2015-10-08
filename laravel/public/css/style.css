@@ -198,6 +198,9 @@ ul {
 .block{
 	display: block;
 }
+.flex{
+	display: flex;
+}
 .inline{
 	display: inline;
 }
@@ -1529,15 +1532,10 @@ header .profile-name li:hover ul{
 	margin-bottom: 30px 
 }
 .sidebar-menu{
-	position: absolute;
-	left: 0;
-	top: 0;
 	width: 260px;
 	height: auto;
 	background: #fff;
 	padding: 15px 24px;
-}
-.sidebar-menu .group{
 }
 .sidebar-menu .group h3{
 	text-transform: uppercase;
@@ -9424,10 +9422,22 @@ footer{
 		height: 148px;
 	}
 	.sidebar-menu ~ .ajax-content{
+		-webkit-flex: 1;
+		-moz-flex: 1;
+		-ms-flex: 1;
+		flex: 1;
 	}
 	.sidebar-menu{
-		top: 155px;
-		height: 100%;
+		display: flex;
+		-webkit-flex-direction: column;
+		-moz-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		overflow: auto;
+	}
+	.category-box-container{
+		padding: 0;
+		display: flex;
 	}
 	footer{
 		position: relative;
