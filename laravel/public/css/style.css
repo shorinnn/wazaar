@@ -624,7 +624,7 @@ header .profile-name li:hover ul{
 	background-position: left top; 
 }
 .homepage-header{
-	padding-bottom: 93px;
+	padding-bottom: 53px;
 }
 .homepage-header .extra-large-heading{
 	color: #fff;
@@ -9088,7 +9088,7 @@ input[type='number'] {
 /************* Page Footer **************/
 .footer-search{
 	background: #ebeced;
-	padding: 48px 15px;
+	padding: 0px 15px 48px 15px;
 }
 .footer-search label {
     display: block;
