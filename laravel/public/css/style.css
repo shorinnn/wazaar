@@ -650,6 +650,7 @@ header .profile-name li:hover ul{
 	width: 440px;
 	height: 60px;
 	margin: 0 auto 0;
+	vertical-align: top;
 }
 .homepage-header .home-search-form input[type='search']{
 	width: 84%;

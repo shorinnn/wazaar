@@ -169,10 +169,10 @@
 				var $windowWidth = $window.width();
 
 				$window.on('load resize', function(){
-					if($windowWidth <= 1200 && $windowWidth >= 991){
-						$('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
-						$('.category-box-container .ajax-content > .container').css('width', '100%');	
-					}
+				if($windowWidth <= 1200 && $windowWidth >= 991){
+					$('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
+					$('.category-box-container .ajax-content > .container').css('width', '100%');	
+				}
 				});
 				
 			}
@@ -184,9 +184,6 @@
 				arrangeCourseBox();
 			});
 			
-			$(document).ready(function(e) {
-               arrangeCourseBox(); 
-            });
 				
 			$( document ).ajaxComplete(function() {
 			   arrangeCourseBox(); 

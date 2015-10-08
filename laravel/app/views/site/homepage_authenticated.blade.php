@@ -23,7 +23,8 @@
 		.browse-category-button{
 			padding: 20px 25px;
 			position: relative;
-			top: -27px;
+			vertical-align: top;
+			margin-bottom: 15px;
 		}
 
 
