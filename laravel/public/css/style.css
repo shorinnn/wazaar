@@ -2628,13 +2628,24 @@ h2, h3, h4, h5, h6{
 	position: fixed;
 	width: 344px;
 	z-index: 99;
+	padding-left: 2px;
 }	
+.enroll-button-section .enroll-button-wrap{
+	border: solid transparent;
+	border-width: 0 1px 1px;
+}
 .enroll-button-section.fixed .enroll-button-wrap{
 	background: #fff;
 	border-radius: 0 0 4px 4px;
 	border: solid #e0e1e2;
 	border-width: 0 1px 1px;
 	padding: 0 32px;
+	-webkit-transition: border 0.3s;
+	-moz-transition: border 0.3s;
+	transition: border 0.3s;
+}
+.enroll-button-section.fixed .add-to-wishlist-container{
+	border: solid 1px transparent;
 }
 .enroll-button-section.fixed .add-to-wishlist-container{
 	background: #fff;
@@ -2642,6 +2653,9 @@ h2, h3, h4, h5, h6{
 	border: solid 1px #e0e1e2;
 	padding: 15px 32px;
 	margin-top: 20px;
+	-webkit-transition: border 0.3s;
+	-moz-transition: border 0.3s;
+	transition: border 0.3s;
 }
 .enroll-button-section.fixed .add-to-wishlist-container > span{
 	display: block !important;

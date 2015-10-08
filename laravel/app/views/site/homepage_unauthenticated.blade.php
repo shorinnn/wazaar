@@ -193,7 +193,22 @@
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter') ) }} 
             </div>
         </div>
-    </section>
+        </section>
+            <section class="footer-search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <form action='{{ action('CoursesController@search') }}' class="clearfix">
+                                <label>会員になって、学びたいことを探す！</label>
+                                <div class="search-wrap clearfix">
+                                    <input type="text" name="term"  placeholder="Search...">
+                                    <button><i class="wa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
     
 @stop
 

@@ -564,7 +564,7 @@
     <script>
 		function fixStickyHeader(){
 			var stickyHeaderHeight = $('.sticky-header').height();
-			var triggerElemTop = $('.enroll-button-section .price').offset().top - stickyHeaderHeight;
+			var triggerElemTop = $('.enroll-button-section .price').offset().top - 93;
 			$window = $(window);	
 			$windowWidth = $window.width();
 			
