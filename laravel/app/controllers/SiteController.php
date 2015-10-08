@@ -537,6 +537,10 @@ class SiteController extends \BaseController {
     public function contact(){
         return View::make( 'site.contact' );
     }
+
+    public function error(){
+        return View::make( 'site.error' );
+    }
     
     public function missing_sti_fix(){
         $emails = [
@@ -758,5 +762,16 @@ class SiteController extends \BaseController {
                 RecommendedCourses::create($new_recommended_course);
             }
         }
+    }
+    
+    public function estest(){
+        $client = AWS::get('CloudSearch');
+        dd($client);
+        /*
+         * Search Endpoint:    search-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com
+Document Endpoint:    doc-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com
+Domain ARN:    arn:aws:cloudsearch:ap-northeast-1:932188653619:domain/wazaar
+Engine Type:    CloudSearch (2013 API)
+         */
     }
 }

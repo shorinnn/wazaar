@@ -7,7 +7,8 @@
             <a href="{{ action('SiteController@index') }}" class="main-logo">
                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
                class="img-responsive" alt="">
-               <span class="beta-wazaar">ベータ版</span>
+               <span class="beta-wazaar">BETA</span>
+               <!--<span class="beta-wazaar">ベータ版</span>-->
             </a>
             @if (!Request::segment(1))
                 <style>
@@ -203,14 +204,14 @@
             @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
             <ul class="logged-out clearfix" style="margin-right: 15px;">
                 <li>
-                    <a href="{{ action('CoursesController@category') }}"> <span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
+                    <a href="{{ action('CoursesController@category') }}"> <span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
                 </li>
             </ul>
             @endif
             @if(Auth::check() && Auth::user()->hasRole('Instructor'))
             <ul class="logged-out clearfix" style="margin-right: 15px;">
                 <li>
-                    <a href="{{ action('CoursesController@category') }}"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
+                    <a href="{{ action('CoursesController@category') }}"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
                 </li>
             </ul>
             @endif
@@ -233,7 +234,7 @@
                 </button>
                 <ul id="logged-out-header-menu" class="logged-out clearfix collapse navbar-collapse">
                     <li>
-                        <a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> 
+                        <!--<a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> -->
                     </li>
                     <li>
                         <a href="{{ action('UsersController@login') }}"> {{trans('site/menus.homepage.login')}}</a> 
@@ -243,12 +244,16 @@
                         <a href="{{ action('UsersController@create') }}"> {{ trans('site/menus.homepage.register') }}</a>
                         <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
                     </li>
+                    <li class="affiliate-register-button">
+                        <a href="{{ action('AffiliateController@create') }}"> アフィリエイターの方</a>
+                        <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                    </li>
                 </ul>
             </div>
             <!-- please check if the code below are still usable if not lets remove -->
             <ul class="logged-out clearfix visible-xs-block hidden-sm hidden-md hidden-lg hide">
                 <li>
-                    <a href="{{ action('CoursesController@category') }}"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
+                    <!--<a href="{{ action('CoursesController@category') }}"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> -->
                 </li>
                 <li>
                     <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
@@ -256,6 +261,10 @@
                 </li>
                 <li class="register-button">
                     <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}</a>
+                    <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                </li>
+                <li class="affiliate-register-button">
+                    <a href="{{ action('AffiliateController@create') }}">アフィリエイターの方</a>
                     <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
                 </li>
             </ul>
@@ -308,7 +317,7 @@
             </div>
             <ul class="logged-out hidden-xs hide clearfix">
                 <li>
-                    <a href="{{ action('CoursesController@category') }}"><span class="hidden-xs">{{trans('general.browse-courses')}}a</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}s</span></a> 
+                    <!--<a href="{{ action('CoursesController@category') }}"><span class="hidden-xs">{{trans('general.browse-courses')}}a</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}s</span></a>--> 
                 </li>
                 <li>
                     <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>-->
@@ -317,6 +326,10 @@
                 <li class="register-button">
                     <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
                     <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}d</a>
+                </li>
+                <li class="affiliate-register-button">
+                    <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                    <a href="{{ action('AffiliateController@create') }}"> アフィリエイターの方d</a>
                 </li>
             </ul>
         @endif

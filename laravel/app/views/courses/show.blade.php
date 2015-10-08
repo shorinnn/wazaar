@@ -575,59 +575,6 @@
 				return false;
 			}
 			else{
-				/*var playerSection = $('#course-details-player').offset().top;
-				var descriptionSection = $('#course-description').offset().top;
-				var reviewsSection = $('#reviews').offset().top;
-				var curriculumSection = $('#description-page-curriculum-wrap').offset().top;
-				
-				function playerSectionAtTop() {
-					if($window.scrollTop() >= playerSection){
-						
-						$('#course-details-player').addClass('some-class');	
-					}
-					else{
-						$('#course-details-player').removeClass("some-class");
-					}
-					
-				}
-				function descriptionSectionAtTop() {
-					if($window.scrollTop() >= descriptionSection){
-						
-						$('#course-description').addClass('some-class');	
-					}
-					else{
-						$('#course-description').removeClass("some-class");
-					}
-					
-				}
-				function reviewsSectionAtTop() {
-					if($window.scrollTop() >= reviewsSection){
-						
-						$('#reviews').addClass('some-class');	
-					}
-					else{
-						$('#reviews').removeClass("some-class");
-					}
-					
-				}
-				function curriculumSectionAtTop() {
-					if($window.scrollTop() >= curriculumSection){
-						
-						$('#description-page-curriculum-wrap').addClass('some-class');	
-					}
-					else{
-						$('#description-page-curriculum-wrap').removeClass("some-class");
-					}
-					
-				}
-				
-				$window.scroll(function() {
-					playerSectionAtTop();
-					curriculumSectionAtTop();
-					reviewsSectionAtTop();	
-					descriptionSectionAtTop();
-				});*/
-								
 				$('.tab-header-button').each(function(){					
 					$(this).on('click', function(){
 						$(this).addClass('active');

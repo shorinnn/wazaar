@@ -378,8 +378,10 @@ class CoursesController extends \BaseController {
                 $category = new stdClass;
                 $category->color_scheme = $category->name = $category->description = $category->id =  '';
                 if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ));
+                $categories = CourseCategory::has('allCourses')->get();
+                $categories->load( 'courseSubcategories' );
                 
-                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted'));
+                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted', 'categories'));
             }
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
@@ -414,9 +416,11 @@ class CoursesController extends \BaseController {
             }
 
             $courses = $courses->paginate(9);
-
+            $categories = CourseCategory::has('allCourses')->get();
+            $categories->load( 'courseSubcategories' );
+            
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories'));
                             
         }
         
@@ -489,10 +493,11 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
             $category = $subcategory->courseCategory;
-            
+            $categories = CourseCategory::has('allCourses')->get();
+            $categories->load( 'courseSubcategories' );
             
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
+            Return View::make('courses.categories.category')->with(compact('category', 'subcategory', 'difficultyLevel', 'wishlisted', 'courses', 'categories') );
                             
         }
         
@@ -555,8 +560,12 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
 
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel', 'wishlisted' ) );
-            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel', 'wishlisted') );
+            
+            $categories = CourseCategory::has('allCourses')->get();
+            $categories->load( 'courseSubcategories' );
+            
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel', 'wishlisted', 'categories' ) );
+            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel', 'wishlisted', 'categories') );
                             
         }
         
@@ -602,6 +611,7 @@ class CoursesController extends \BaseController {
                     }])
                     ->first();
             if( $course==null)   {
+                return View::make( 'site.error' );
                 return View::make('site.error_encountered');
             }
             $course = courseApprovedVersion($course);
@@ -672,7 +682,6 @@ class CoursesController extends \BaseController {
             if( Input::has('gid') ) $gid = Input::get('gid');
             else $gid = Cookie::get('gid-'.$course->id);
             $gift = Gift::find( PseudoCrypt::unhash( $gid ) );
-
 
 
 

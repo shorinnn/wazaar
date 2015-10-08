@@ -10,7 +10,7 @@ return array(
 	'homepage'=> array(
 			'browse' => '商品を検索する',
 			//'login' => 'ログイン',
-			'login' => '購入者＆販売者ログイン',
-			'register' => '登録',
+			'login' => 'ログイン ',
+			'register' => '新規登録 ',
 		)
 );

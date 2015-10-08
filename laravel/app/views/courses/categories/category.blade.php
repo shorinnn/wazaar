@@ -1,14 +1,21 @@
     @extends('layouts.default')
     @section('content')	
-    
+    <style>
+	.category-heading-title,
+		.footer-search{
+			display: none;
+		}
+		
+	</style>
 		<section class="container-fluid category-heading-container">
             <div class="container-fluid cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
                     <form id="course-filter-form">
                         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                             @if($category->name!='')
-                                <p class="category-heading-title"> <a href="#">{{ $category->name }}</a> 
-                                    @if(isset($subcategory))
+                                <p class="category-heading-title"> <a href="{{
+                                               action('CoursesController@category',[ 'slug' => $category->slug ] ) }}">{{ $category->name }}</a> 
+                                    @if(isset($subcategory) && $subcategory!=null)
                                         <i class="wa-chevron-right"></i>
                                         {{$subcategory->name}}
                                     @endif
@@ -37,13 +44,19 @@
                                 	<div class="segmented-buttons-wrapper segmented-controls inline-block clearfix">
                                         <div class="btn-group buttons-container" data-toggle="buttons">
                                           <label class="btn btn-default segmented-buttons @if(empty(Input::get('filter')) || Input::get('filter') == 'all' ) active @endif">
-                                            <input type="radio" name="filter" value="all" class="filter" autocomplete="off" onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.all') }}
+                                            <input type="radio" name="filter" value="all" class="filter" autocomplete="off" 
+                                                   @if(empty(Input::get('filter')) || Input::get('filter') == 'all' ) checked='checked' @endif
+                                                   onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.all') }}
                                           </label>
                                           <label class="btn btn-default segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'paid' ) active @endif">
-                                            <input type="radio" name="filter" value="paid" class="filter" autocomplete="off" onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.paid') }}
+                                            <input type="radio" name="filter" value="paid" class="filter" autocomplete="off" 
+                                                   @if(!empty(Input::get('filter')) && Input::get('filter') == 'paid' ) checked='checked' @endif
+                                                   onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.paid') }}
                                           </label>
                                           <label class="btn btn-default segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'free' ) active @endif">
-                                            <input type="radio" name="filter" value="free" class="filter" autocomplete="off" onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.free') }}
+                                            <input type="radio" name="filter" value="free" class="filter" autocomplete="off" 
+                                                   @if(!empty(Input::get('filter')) && Input::get('filter') == 'free' ) checked='checked' @endif
+                                                   onchange="loadFilteredCourseCategory();"> {{ trans('courses/general.filter.free') }}
                                           </label>
                                         </div>
                                     </div>
@@ -92,7 +105,44 @@
                 </div>
             </div>      
         </section>
-        <section class="container-fluid category-box-container">
+        <section class="container-fluid category-box-container relative">
+            <div class="sidebar-menu">
+            	<div class="group popular">
+                	<h3>Popular</h3>
+                    <ul class="main-menu">
+                    	<li class="popular-list"><a href="#">Featured<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
+                        <li class="popular-list"><a href="#">Best sellers<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
+                    </ul>
+                </div>
+            	<div class="group">
+                	<h3>Categories</h3>
+                    <ul class="main-menu clearfix">
+
+                        @foreach($categories as $cat)
+                            <li class="dropdown main-menu-list
+                                @if(Request::segment(3)==$cat->slug) open @endif"> 
+                                <button class="dropdown-toggle" type="button" 
+                                id="dropdownMenu-c-{{$cat->id}}" data-toggle="dropdown" 
+                                aria-haspopup="true" aria-expanded="true">
+                                {{ $cat->name }}
+                                <i class="wa-chevron-down right hidden-md hidden-lg"></i>
+                                <i class="wa-chevron-up hidden-md hidden-lg"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu-c-{{$cat->id}}">
+                                    <li><a href="{{
+                                               action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All Courses
+                                               <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
+                                    @foreach($cat->courseSubcategories as $subcat)
+                                        <li @if(Request::segment(4)==$subcat->slug) class='active' @endif><a href="{{
+                                               action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}
+                                               <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
             
         <div class='ajax-content'>
              {{ View::make('courses.categories.courses')->with( compact( 'courses', 'category', 'wishlisted' ) ) }}
@@ -114,7 +164,31 @@
                 $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
                 $('.course-desc-ajax-link').click();
             }
-            $(function(){
+			function arrangeCourseBox(){
+				var $window = $(window);
+				var $windowWidth = $window.width();
+
+				$window.on('load resize', function(){
+				if($windowWidth <= 1200 && $windowWidth >= 991){
+					$('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
+					$('.category-box-container .ajax-content > .container').css('width', '100%');	
+				}
+				});
+				
+			}
+			$(window).resize(function(){
+				arrangeCourseBox();
+			});
+			
+			$(window).load(function(){
+				arrangeCourseBox();
+			});
+			
+				
+			$( document ).ajaxComplete(function() {
+			   arrangeCourseBox(); 
+			});
+			$(function(){
                 $('.level-buttons-container a').click(function(){
                     $('.level-buttons-container a').removeClass('active');
                 });

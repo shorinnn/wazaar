@@ -2,11 +2,13 @@
 @section('content')
 <section class="container-fluid privacy-policy header">
 	<div class="container">
-    	<h2>個人情報の取扱いについて</h2>
+    	<h2>プライバシーポリシー</h2>
     </div>
 </section>
 <section class="container-fluid privacy-policy main">
 	<div class="container">
+  	<p class="margin-bottom-30"> MAX PAYMENT GATEWAY SERVICES PTE. LTD.（以下、「当社」）は、当社が運営するオンライン動画配信サービス『Wazaar』（以下、「本サービス」）における、利用者の皆様（以下、「会員」）についての個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」）を定めます。</p>
+
     	<h3>個人情報の取扱いについて</h3>
         <ol>
         	<li class="title">個人情報対応窓口
@@ -85,8 +87,20 @@
         <p> 当社は、保有するお客様ご自身の個人情報について、開示等の請求に対応させていただいております。
 			詳細につきましては、下記開示等の請求についてをご覧ください。
         </p>
-		<h3 class="title">開示等のご請求について</h3>
-        <p>開示等のご請求を行う場合は、下記開示請求窓口までお電話・メールにてお問い合わせください。</p>
+		<h3 class="title">【開示請求窓口】 </h3>
+        <p>Address : 150 Orchard Road #07-13 Orchard Plaza </p>
+        <p>Singapore 238841 </p>
+        <p>Company Name : Max Payment Gateway Services Pte. Ltd.</p> 
+        <p>E-mail：privacy＠wazaar.jp </p>
+        <p>個人情報保護管理者：個人情報担当 </p>
+
+		<h3>&nbsp;</h3>
+        <p>ご請求にあたってはご本人を確認できる本人確認書類のご提示をお願いします。 尚、開示の請求、利用目的の通知の請求につきましては有料（1,000円）とさせていただきます。 </p>
+		<h3 class="title">【苦情のお申し出について】 </h3>
+        <p>E-mail：privacy＠wazaar.jp </p>
+		<p>Max Payment Gateway Services Pte. Ltd. Director : Takahama Kenichi</p>
+        <h3>&nbsp;</h3>
+        <p class="text-right">制定日　2015年7月5日</p>
     </div>
 </section>
 
