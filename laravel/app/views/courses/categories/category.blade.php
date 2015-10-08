@@ -121,7 +121,6 @@
 
           function makeFluid()
           {
-            alert('arthur js');
             if($(window).width() <= 1300){
               $('.ajax-content .container').each(function(){
                 $(this).addClass('fluid-added').removeClass('container').addClass('container-fluid');
@@ -142,6 +141,10 @@
               } else {
                 $('.sidebar-menu').height(category_content);
               }
+            }
+            if($(window).width() <= 1200 && $(window).width() >= 991){
+              $('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
+              $('.category-box-container .ajax-content > .container').css('width', '100%'); 
             }
 
           }
