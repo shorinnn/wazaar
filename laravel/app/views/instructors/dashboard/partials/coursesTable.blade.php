@@ -1,7 +1,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-top-20">
     <div class="top-affiliates-table table-wrapper">
         <div class="table-header clearfix">
-            <h1 class="left">Courses</h1>
+            <h1 class="left">{{trans('analytics.courses')}}</h1>
 
         </div>
 
@@ -13,13 +13,13 @@
                     <th width="15%" style="text-align: center">{{trans('analytics.salesCount')}}</th>
                     <th width="15%" style="text-align: center">{{trans('instructors/analytics.sales-revenue')}}</th>
                     <th width="10%" style="text-align: center">{{trans('analytics.tax')}}</th>
-                    <th width="10%" style="text-align: center">{{trans('instructors/analytics.price')}}</th>
+                    {{--<th width="10%" style="text-align: center">{{trans('instructors/analytics.price')}}</th>--}}
                 </tr>
                 </thead>
 
                 <tbody>
 
-                @if ($courses)
+                @if ($courses->count() > 0)
 
 
                         @foreach($courses as $course)
@@ -48,13 +48,14 @@
                                     @endif
 
                                 </td>
+                                {{--
                                 <td align="center">
                                     @if ($course->free == 'no')
                                         ¥ {{number_format($course->price)}}
                                     @else
                                         {{trans('courses/create.free')}}
                                     @endif
-                                </td>
+                                </td>--}}
                             </tr>
                         @endforeach
                 @else

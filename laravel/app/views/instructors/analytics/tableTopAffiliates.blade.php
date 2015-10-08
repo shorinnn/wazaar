@@ -5,7 +5,7 @@
     <th>{{trans('analytics.email')}}</th>
     <th>{{trans('analytics.salesTotal')}}</th>
     <th>{{trans('analytics.salesCount')}}</th>
-    
+
     </thead>
 
     <tbody>
