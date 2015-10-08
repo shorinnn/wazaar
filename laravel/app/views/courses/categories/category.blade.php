@@ -105,7 +105,7 @@
                 </div>
             </div>      
         </section>
-        <section class="container-fluid category-box-container relative">
+        <section class="container-fluid category-box-container relative style="display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;}">
             <div class="sidebar-menu">
             	<div class="group popular">
                 	<h3>Popular</h3>
@@ -168,12 +168,13 @@
 				var $window = $(window);
 				var $windowWidth = $window.width();
 
-				$window.on('load resize', function(){
 				if($windowWidth <= 1200 && $windowWidth >= 991){
 					$('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
 					$('.category-box-container .ajax-content > .container').css('width', '100%');	
 				}
-				});
+				else if($windowWidth > 1300){
+					$('.category-box-container .ajax-content > .container').css('width', '1032px');
+				}
 				
 			}
 			$(window).resize(function(){
