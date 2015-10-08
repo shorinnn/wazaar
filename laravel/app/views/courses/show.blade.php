@@ -147,7 +147,7 @@
 <section class="container-fluid course-data">
     <div class="container">
         <div class="row">
-        	<a id="course-details-player" class="scroll-to-top" style="top: -230px;"></a>
+        	<a id="course-details-player" class="scroll-to-top" style="top: -260px;"></a>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player" id="course-details-player">
 					<!--<div class="pre-view-image video-player">
                     @if($course->previewImage !=null)
