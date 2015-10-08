@@ -122,7 +122,7 @@
           function makeFluid()
           {
             alert('arthur js');
-            if($(window).width() <= 1050){
+            if($(window).width() <= 1300){
               $('.ajax-content .container').each(function(){
                 $(this).addClass('fluid-added').removeClass('container').addClass('container-fluid');
               })
