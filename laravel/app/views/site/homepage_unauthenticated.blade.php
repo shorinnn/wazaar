@@ -38,7 +38,7 @@
                     </h1>
                     <!--<a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>-->
                     <div class="videoWrapper">
-                    	<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=0" frameborder="0" allowfullscreen></iframe>
+                    	
                     </div>
                     <div class=" clearfix clear text-center home-search-form-wrap">
                         <a href="{{ action('CoursesController@category') }}" class="blue-button large-button browse-category-button">コース一覧</a>
@@ -220,6 +220,9 @@
     <script src="{{url('plugins/smoothscroll/jquery.mousewheel.min.js')}}" type="text/javascript"></script>
     <script src="{{url('plugins/smoothscroll/jquery.smoothdivscroll-1.3-min.js')}}" type="text/javascript"></script>
     <script>
+		$(document).ready(function(e) {
+            $('.homepage-header .videoWrapper').html('<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=0" frameborder="0" allowfullscreen></iframe>');
+        });
         $(function(){
             $('.whats-hot-slider').smoothDivScroll({
                 autoScrollingMode: "onStart",
