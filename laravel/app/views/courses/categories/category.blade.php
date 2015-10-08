@@ -7,8 +7,11 @@
 		}
 		
 	</style>
-  <section class="container-fluid category-box-container relative">
-    <div class="sidebar-menu">
+  <section class="visible-xs visible-sm hidden-md hidden-lg">
+    @include('courses.categories.partials._filter_partial')
+  </section>
+  <section class="container-fluid category-box-container relative no-padding">
+    <div class="sidebar-menu pull-left">
         <div class="group popular">
             <h3>Popular</h3>
             <ul class="main-menu">
@@ -89,89 +92,76 @@
             </ul>
         </div>
     </div>
-    <div class="category-content-container">
-      <div>
+    <div class="category-content-container pull-left">
+      <div class="hidden-xs hidden-sm visible-md visible-lg">
         @include('courses.categories.partials._filter_partial')
       </div>
       <div class='ajax-content'>
            {{ View::make('courses.categories.courses')->with( compact( 'courses', 'category', 'wishlisted' ) ) }}
       </div>
     </div>
+    <div class="clearfix"></div>
   </section>
 
     @stop
 
     @section('extra_js')
         <script type="text/javascript">
-            function loadFilteredCourseCategory()
-            {
-                var url = '/courses/category?';
-                var data = Array('term='+$('.header-search').val(),'sort='+$('.course-sort').val(),'filter='+$('.filter:checked').val(),'difficulty='+$('.difficulty:checked').val())
-                // console.log(data);
+          function loadFilteredCourseCategory()
+          {
+              var url = '/courses/category?';
+              var data = Array('term='+$('.header-search').val(),'sort='+$('.course-sort').val(),'filter='+$('.filter:checked').val(),'difficulty='+$('.difficulty:checked').val())
+              // console.log(data);
 
-                url = url + data.join('&');
+              url = url + data.join('&');
 
-                $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
-                $('.course-desc-ajax-link').click();
+              $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+              $('.course-desc-ajax-link').click();
+          }
+
+          function makeFluid()
+          {
+            if($(window).width() <= 1300){
+              $('.ajax-content .container').each(function(){
+                $(this).addClass('fluid-added').removeClass('container').addClass('container-fluid');
+              })
+            } else {
+              $('.ajax-content .fluid-added').each(function(){
+                $(this).removeClass('container-fluid').addClass('container');
+              });
             }
-			function arrangeCourseBox(){
-				var $window = $(window);
-				var $windowWidth = $window.width();
 
-				if($windowWidth <= 1200 && $windowWidth >= 991){
-					$('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
-					$('.category-box-container .ajax-content > .container').css('width', '100%');	
-				}
-				else if($windowWidth > 1300){
-					$('.category-box-container .ajax-content > .container').css('width', '1032px');
-				}
-				
-			}
-			$(window).resize(function(){
-				arrangeCourseBox();
-			});
-			
-			$(window).load(function(){
-				arrangeCourseBox();
-			});
-			
-				
-			$( document ).ajaxComplete(function() {
-			   arrangeCourseBox(); 
-			});
-			$(function(){
-                $('.level-buttons-container a').click(function(){
-                    $('.level-buttons-container a').removeClass('active');
-                });
-                
-//                 $('select[name=sort]').on('change', function(){
-//                     var sort = $("select[name=sort] option:selected").val();
-//                     var loc = location.href;
-//                     loc += loc.indexOf("?") === -1 ? "?" : "&";
-//                     var existingParams = document.URL.split('?');
+            if($(document).width() <= 1000){
+              $('.category-content-container, .sidebar-menu').css('height', 'auto');
+            } else {
+              var sidebar_height = $('.sidebar-menu').height();
+              var category_content = $('.category-content-container').height();
+              if(Number(sidebar_height) >= Number(category_content)){
+                $('.category-content-container').height(sidebar_height);
+              } else {
+                $('.sidebar-menu').height(category_content);
+              }
+            }
+            if($(window).width() <= 1200 && $(window).width() >= 991){
+              $('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
+              $('.category-box-container .ajax-content > .container').css('width', '100%'); 
+            }
 
-//                     if (existingParams.length > 1){
-//                         var params = existingParams[1].split('&');
-//                         var validParams = new Array();
-//                         for(var i = 0; i< params.length; i++){
-//                             if (params[i].indexOf('sort') < 0){
-//                                 validParams.push(params[i]);
-//                             }
-//                         }
-// //                        location.href = existingParams[0] + '?' + validParams.join('&') + '&' + "sort=" + sort;
-//                         url = existingParams[0] + '?' + validParams.join('&') + '&' + "sort=" + sort;
-//                     }
-//                     else {
-// //                        location.href = loc + "sort=" + sort;
-//                         url = loc + "sort=" + sort;
-//                     }
-                    
-//                     $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
-//                     $('.course-desc-ajax-link').click();
-//                 });
+          }
+
+    			$(window).resize(function(){
+            makeFluid();
+    			});
+		
+    			$(function(){
+            makeFluid();
+            $('.level-buttons-container a').click(function(){
+                $('.level-buttons-container a').removeClass('active');
             });
-            
-            ajaxifyPagination( null );
+                    
+          });
+          
+          ajaxifyPagination( null );
             
         </script>
     @stop

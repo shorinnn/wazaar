@@ -8,6 +8,9 @@
     <!-- @if($courses->count() % 3!=0)
     </div>
     @endif -->
-<div class="container no-padding">
+<div class="container">
 {{ $courses->appends(Input::only('sort','difficulty','filter'))->links() }}
 </div>
+<script>
+	makeFluid();
+</script>
