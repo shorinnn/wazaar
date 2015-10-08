@@ -1616,6 +1616,9 @@ header .profile-name li:hover ul{
 	color: #fff;
 	border-radius: 2px;
 }
+.sidebar-menu .group ul li .dropdown-menu li a.sub-categoty-menu-item{
+	white-space: normal !important;
+}
 .sidebar-menu .group ul li .dropdown-menu li{
 }
 .sidebar-menu .popular a:hover{
