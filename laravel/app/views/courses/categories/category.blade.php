@@ -133,7 +133,7 @@
                                                action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All Courses
                                                <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
                                     @foreach($cat->courseSubcategories as $subcat)
-                                        <li @if(Request::segment(4)==$subcat->slug) active @endif><a href="{{
+                                        <li @if(Request::segment(4)==$subcat->slug) class='active' @endif><a href="{{
                                                action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">{{$subcat->name}}
                                                <i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
                                     @endforeach
