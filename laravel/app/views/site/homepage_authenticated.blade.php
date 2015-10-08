@@ -14,6 +14,17 @@
             height: 330px;
             position: relative;
         }
+		.home-search-form{
+			display: inline-block;
+		}
+		.home-search-form-wrap{
+			margin-top: 72px;
+		}
+		.browse-category-button{
+			padding: 20px 25px;
+			position: relative;
+			top: -27px;
+		}
 
 
     </style>
@@ -27,14 +38,20 @@
                         <p class="lead">{{trans('site/homepage.learning_has_never_been_easier')}}</p>
                     </h1>
                     
-                    <a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>
-                    <div class="home-search-form">
-                        <form action='{{ action('CoursesController@search') }}'>
-                            <div>
-                                <input type="search" name="term" class="left" placeholder="{{trans('site/homepage.what-do-you-want-to-learn')}}">
-                                <button><i class="wa-search"></i></button>
-                            </div>
-                        </form>
+                    <!--<a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>-->
+                    <div class="videoWrapper">
+                    	<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class=" clearfix clear text-center home-search-form-wrap">
+                        <a href="{{ action('CoursesController@category') }}" class="blue-button large-button browse-category-button">コース一覧</a>
+                        <div class="home-search-form">
+                            <form action='{{ action('CoursesController@search') }}'>
+                                <div>
+                                    <input type="search" name="term" class="left" placeholder="{{trans('site/homepage.what-do-you-want-to-learn')}}">
+                                    <button><i class="wa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
