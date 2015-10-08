@@ -1536,7 +1536,7 @@ header .profile-name li:hover ul{
 	margin-bottom: 30px 
 }
 .sidebar-menu{
-	width: 260px;
+	max-width: 260px;
 	height: auto;
 	background: #fff;
 	padding: 15px 24px;
@@ -1564,8 +1564,6 @@ header .profile-name li:hover ul{
 	color: #303941;
 	clear: both;
 }
-.sidebar-menu .group .main-menu .popular-list.active a,
-.sidebar-menu .group .main-menu .popular-list:hover a,
 .sidebar-menu .group .main-menu .main-menu-list.active .dropdown-toggle,
 .sidebar-menu .group .main-menu .main-menu-list.active:hover .dropdown-toggle{
 	background: #0099ff;
@@ -1622,6 +1620,8 @@ header .profile-name li:hover ul{
 	color: #303941;
 	border-radius: 0px;
 }
+.sidebar-menu .group .main-menu .popular-list.active a,
+.sidebar-menu .group .main-menu .popular-list:hover a,
 .sidebar-menu .group .category-menu-list .main-menu-list .dropdown-toggle:hover{
 	background: #e8eced;
 	color: #303941;
@@ -9436,7 +9436,15 @@ footer{
 	.enroll-button-wrap {
 		height: 148px;
 	}
-	.sidebar-menu ~ .category-content-container{
+	/*.sidebar-menu,
+	.category-content-container{
+		display: table-cell;
+	}*/
+
+	.category-content-container{
+		width: calc(100% - 260px);
+	}
+	/*.sidebar-menu ~ .category-content-container{
 		-webkit-flex: 1;
 		-moz-flex: 1;
 		-ms-flex: 1;
@@ -9453,7 +9461,7 @@ footer{
 	.category-box-container{
 		padding: 0;
 		display: flex;
-	}
+	}*/
 	footer{
 		position: relative;
 	}
@@ -9806,6 +9814,7 @@ footer{
 		float: left;
 	}
 	.sidebar-menu{
+		max-width: 100%;
 		width: 100%;
 		position: relative;
 		padding: 15px 0 0;
