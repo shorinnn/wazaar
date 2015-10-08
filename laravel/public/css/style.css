@@ -9088,7 +9088,7 @@ input[type='number'] {
 /************* Page Footer **************/
 .footer-search{
 	background: #ebeced;
-	padding: 48px 15px;
+	padding: 0px 15px 48px 15px;
 }
 .footer-search label {
     display: block;
