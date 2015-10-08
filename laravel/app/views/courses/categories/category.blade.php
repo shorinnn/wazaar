@@ -90,7 +90,7 @@
         </div>
     </div>
     <div class="category-content-container">
-      <div class="hidden-xs hidden-sm visible-md visible-lg">
+      <div>
         @include('courses.categories.partials._filter_partial')
       </div>
       <div class='ajax-content'>
