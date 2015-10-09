@@ -167,8 +167,5 @@ return array(
     ],
     'analytics' =>[
         'page-title' => 'Analytics',
-    ],
-    'enrolled' =>[
-        'page-title' => 'Enrolled Courses',
     ]
 );

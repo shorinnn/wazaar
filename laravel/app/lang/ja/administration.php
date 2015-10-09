@@ -167,8 +167,5 @@ return array(
     ],
     'analytics' =>[
         'page-title' => '受注管理',
-    ],
-    'enrolled' =>[
-        'page-title' => '販売管理（みんカレ）',
     ]
 );
