@@ -284,11 +284,30 @@ class CoursesController extends \BaseController {
             if( $instructor->accepted_instructor_terms!='yes' ){
                 return Redirect::action('InstructorsController@acceptTerms');
             }
-            $courses = $instructor->courses()
-                    ->with( [ 'dashboardComments' => function($query){
-                        $query->where('instructor_read', 'no');
-                    } ] )
-                    ->paginate(10);
+            
+            switch( Input::get('sort')){
+               case 'date-old': $sortField = 'created_at'; $sortDir = 'ASC'; break;
+               case 'public': $sortField = 'privacy_status'; $sortDir = 'DESC'; break;
+               case 'private': $sortField = 'privacy_status'; $sortDir = 'ASC'; break;
+               case 'unlisted': $sortField = 'publish_status'; $sortDir = 'DESC'; break;
+               default: $sortField = 'created_at'; $sortDir = 'DESC'; break;
+            }
+            
+            if( $sortField == 'publish_status' ){
+                $courses = $instructor->courses()->orderBy( DB::raw( 'CAST( publish_status AS CHAR )' ), $sortDir )
+                        ->with( [ 'dashboardComments' => function($query){
+                            $query->where('instructor_read', 'no');
+                        } ] )
+                        ->paginate(10);
+            }
+            else{
+                $courses = $instructor->courses()->orderBy( $sortField, $sortDir )
+                        ->with( [ 'dashboardComments' => function($query){
+                            $query->where('instructor_read', 'no');
+                        } ] )
+                        ->paginate(10);
+            }
+            
             $profile = $instructor->profile;
             
             $student = Student::find( Auth::user()->id );
