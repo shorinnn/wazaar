@@ -292,13 +292,14 @@
                                                         </td>
                                                         <td colspan="3" class="text-right">
                                                             <form>
-                                                                <select>
-                                                                    <option>作成日 新しい</option>
-                                                                    <option>作成日 古い</option>
-                                                                    <option>公開</option>
-                                                                    <option>限定公開</option>
-                                                                    <option>非公開</option>
-                                                                </select>
+                                                                {{ Form::select('sort',[
+                                                                    'date-new' => '作成日 新しい',
+                                                                    'date-old' => '作成日 古い',
+                                                                    'public' => '公開',
+                                                                    'unlisted' => '限定公開',
+                                                                    'private' => '非公開',
+                                                                ], Input::get('sort'), ['onchange' => 'this.form.submit()']) }}
+                                                               
                                                             </form>
                                                         </td>
                                                     </tr>
@@ -312,7 +313,7 @@
                             </div>
                           <!-- /summary area -->
                           
-                          {{ $courses->links() }}
+                          {{ $courses->appends( [ 'sort' => Input::get('sort') ] )->links() }}
                           
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
@@ -433,11 +434,13 @@
         
     $(function(){
         
-        @if( Request::segment(3) !='' )
-            $('[href="#{{Request::segment(3)}}"]').click();
-        @else
-            @if($purchasedCourses->count() > 0)
-                $('[href="#enrolled"]').click();
+        @if( !Input::has('sort'))
+            @if( Request::segment(3) !='' )
+                $('[href="#{{Request::segment(3)}}"]').click();
+            @else
+                @if($purchasedCourses->count() > 0)
+                    $('[href="#enrolled"]').click();
+                @endif
             @endif
         @endif
 
