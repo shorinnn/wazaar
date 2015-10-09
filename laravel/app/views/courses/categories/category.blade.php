@@ -13,11 +13,27 @@
       max-width: 1050px;
       margin: 0px auto;
     }
-    /*@media (min-width: 1190px){
-      .course-main-container{
-        padding: 0px 40px;
-      }
-    }*/
+    .mobile-main-category-list .list-group-item,
+    .mobile-sub-category-list .list-group-item{
+      padding-left: 27px;
+      padding-right: 30px;
+    }
+    .mobile-main-category-list .list-group-item a,
+    .mobile-sub-category-list .list-group-item a{
+      display: block;
+    }
+    .mobile-main-category-list .arrow,
+    .mobile-sub-category-list .arrow{
+      line-height: 25px;
+    }
+    .selected-main-category,
+    .selected-sub-category{
+      cursor: pointer;
+    }
+    .selected-sub-category .small{
+      font-size: 12px;
+      color: #798794;
+    }
     @media (max-width: 650px){
       .category-content-container{
         width: 100%;
@@ -49,6 +65,74 @@
   </section>
   <section class="container-fluid category-box-container relative no-padding">
     <div class="sidebar-menu pull-left">
+        <section class="visible-xs visible-sm hidden-md hidden-lg filter-container">
+          @if(count(Request::segments()) == 3)
+            <ul class="mobile-main-category-list list-group">
+              <li class="selected-main-category list-group-item">
+                <div>
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)==$cat->slug)
+                    {{ $cat->name }}
+                  @endif
+                @endforeach
+                  <i class="arrow wa-chevron-down right"></i>
+                  <div class="clearfix"></div>
+                </div>
+              </li>
+              <div class="other-main-category-list hide">
+                @foreach($categories as $cat)
+                    @if(Request::segment(3)!=$cat->slug)
+                        <li class="other-main-category-list-item list-group-item">
+                            <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
+                                {{ $cat->name }}
+                              <i class="arrow wa-chevron-right right"></i>
+                              <div class="clearfix"></div>
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+              </div>
+            </ul>
+          @endif
+
+          @if(count(Request::segments()) == 4)
+            <ul class="mobile-sub-category-list list-group">
+              <li class="selected-sub-category list-group-item">
+                <div>
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)==$cat->slug)
+                    <div class="small"> {{ $cat->name }}</div>
+                    @foreach($cat->courseSubcategories as $subcat)
+                        @if(Request::segment(4)==$subcat->slug)
+                          {{$subcat->name}}
+                        @endif
+                    @endforeach
+                  @endif
+                @endforeach
+                  <i class="arrow wa-chevron-down right"></i>
+                  <div class="clearfix"></div>
+                </div>
+              </li>
+              <div class="other-sub-category-list hide">
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)==$cat->slug)
+                    @foreach($cat->courseSubcategories as $subcat)
+                        @if(Request::segment(4)!=$subcat->slug)
+                        <li class="other-sub-category-list-item list-group-item">
+                            <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
+                              {{$subcat->name}}
+                              <i class="arrow wa-chevron-right right"></i>
+                              <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        @endif
+                    @endforeach
+                  @endif
+                @endforeach
+              </div>
+            </ul>
+          @endif
+        </section>
         <div class="group popular">
             <h3>Popular</h3>
             <ul class="main-menu">
@@ -194,7 +278,8 @@
             } else {
               var sidebar_height = $('.sidebar-menu').height();
               var category_content = $('.category-content-container').height();
-
+              console.log(sidebar_height)
+              console.log(category_content)
               if(Number(sidebar_height) >= Number(category_content)){
                 $('.category-content-container').height(sidebar_height);
               } else {
@@ -217,7 +302,31 @@
             $('.level-buttons-container a').click(function(){
                 $('.level-buttons-container a').removeClass('active');
             });
-                    
+
+            if($('.selected-main-category').length >= 1){
+              $('.selected-main-category').on('click', function(){
+                if($(this).hasClass('open')){
+                  $(this).removeClass('open').find('.arrow').removeClass('wa-chevron-up').addClass('wa-chevron-down')
+                  $(this).next('.other-main-category-list').hide();
+                } else {
+                  $(this).addClass('open').find('.arrow').removeClass('wa-chevron-down').addClass('wa-chevron-up')
+                  $(this).next('.other-main-category-list').hide().removeClass('hide').show();
+                }
+              })
+            }
+
+            if($('.selected-sub-category').length >= 1){
+              $('.selected-sub-category').on('click', function(){
+                if($(this).hasClass('open')){
+                  $(this).removeClass('open').find('.arrow').removeClass('wa-chevron-up').addClass('wa-chevron-down')
+                  $(this).next('.other-sub-category-list').hide();
+                } else {
+                  $(this).addClass('open').find('.arrow').removeClass('wa-chevron-down').addClass('wa-chevron-up')
+                  $(this).next('.other-sub-category-list').hide().removeClass('hide').show();
+                }
+              })
+            }
+
           });
           
           ajaxifyPagination( null );
