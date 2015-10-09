@@ -9448,7 +9448,9 @@ footer{
 	}*/
 
 	.category-content-container{
-		width: calc(100% - 260px);
+		width: calc(100% - 250px);
+		width: -moz-calc(100% - 250px);
+		width: -webkit-calc(100% - 250px);
 	}
 	/*.sidebar-menu ~ .category-content-container{
 		-webkit-flex: 1;
