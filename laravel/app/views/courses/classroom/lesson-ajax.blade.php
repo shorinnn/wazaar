@@ -438,7 +438,7 @@
                 showReviewsModal();
             @endif
         @endif
-        //decryptVideoSrc();
+        decryptVideoSrc();
         makeYTfluid();
         skinVideoControls();
         showMoreContent();
