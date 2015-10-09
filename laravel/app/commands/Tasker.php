@@ -625,7 +625,7 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                         'id'        => $course->id,
                         'fields'    => ['author' => $author, 
                                         'company' => $company, 
-                                        'id' => 1, 
+                                        'id' => $course->id, 
                                         'short_description' => $course->short_description, 
                                         'title' => $course->name ]
                     ];

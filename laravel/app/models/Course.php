@@ -587,7 +587,7 @@ class Course extends Ardent{
             'id'        => $this->id,
             'fields'    => ['author' => $author, 
                             'company' => $company, 
-                            'id' => 1, 
+                            'id' => $this->id, 
                             'short_description' => $this->short_description, 
                             'title' => $this->name ]
         ];
