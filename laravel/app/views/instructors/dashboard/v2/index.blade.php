@@ -267,11 +267,40 @@
                                                         <td>販売収入</td>
                                                     </tr>
                                                     <tr>　　　　　　　 
-                                                        <td>総売上額</td>
-                                                        <td>アフィリエイター報酬</td>
-                                                        <td>２ティア報酬</td>
-                                                        <td>システム手数料</td>
-                                                        <td>販売収入</td>
+                                                        <td> 
+                                                            ¥{{ number_format( $instructor->money('purchase_price','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('second_tier_affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('total_site_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('instructor_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="text-left">
+                                                            <a href="{{action('CoursesController@create')}}" class="add-new-course add-new-from-header large-button blue-button">
+                                                                <i class="fa fa-plus"></i> 
+                                                                {{ trans('courses/create.create-btn-instructor') }}
+                                                            </a> 
+                                                        </td>
+                                                        <td colspan="3" class="text-right">
+                                                            <form>
+                                                                <select>
+                                                                    <option>作成日 新しい</option>
+                                                                    <option>作成日 古い</option>
+                                                                    <option>公開</option>
+                                                                    <option>限定公開</option>
+                                                                    <option>非公開</option>
+                                                                </select>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 </table>
                                             </div>
