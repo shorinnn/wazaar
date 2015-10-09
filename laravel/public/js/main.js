@@ -1610,6 +1610,7 @@ function toggleRightBar(e, json){
     if( showingQuestionForm ){
         showingQuestionForm = false;
         $('.ask-question').addClass('active');
+        if( $('.right-slide-menu').hasClass('in') ) return false;
         
     }
     
