@@ -219,11 +219,11 @@ class Instructor extends User{
      
      public function commentName($userType=null){
         if( $this->profile != null ){
-            return $this->profile->first_name.' '.$this->profile->last_name;
+            return $this->profile->last_name.' '.$this->profile->first_name;
         }
         else{
-            if($this->first_name=='') return $this->email;
-            else return $this->first_name.' '.$this->last_name;
+            if($this->first_name=='') return '';
+            else return $this->last_name.' '.$this->first_name;
         }
     }
 

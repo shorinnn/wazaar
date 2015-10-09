@@ -229,6 +229,8 @@ class Course extends Ardent{
         foreach($this->modules as $module){
             $module->delete();
         }
+        // remove from CloudSearch
+        $this->updateCloudSearch(  'delete' );
     }
     
 //    public function afterSave(){
@@ -571,6 +573,28 @@ class Course extends Ardent{
             return $coursePurchases + $lessonPurchase;
         }
         
+    }
+    
+    public function updateCloudSearch( $operation = 'add' ){
+        $client = AWS::get('cloudsearchdomain', [ 'endpoint' => Config::get('custom.cloudsearch-document-endpoint') ] );
+        $author = $this->instructor->commentName();
+        $company = '';
+        if( isset($this->instructor->profile) && trim($this->instructor->profile->corporation_name) != ''){
+            $company = $this->instructor->profile->corporation_name;
+        }
+        $batch[] = [
+            'type'      => $operation,
+            'id'        => $this->id,
+            'fields'    => ['author' => $author, 
+                            'company' => $company, 
+                            'id' => 1, 
+                            'short_description' => $this->short_description, 
+                            'title' => $this->name ]
+        ];
+        $result = $client->uploadDocuments(array(
+            'documents'     => json_encode($batch),
+            'contentType'     =>'application/json'
+        ));
     }
 
 
