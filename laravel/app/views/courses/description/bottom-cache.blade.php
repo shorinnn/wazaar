@@ -17,7 +17,7 @@
                 @if (Session::get('error'))
                     <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                 @endif
-                <a id="course-description" class="scroll-to-top"></a>
+                <a id="course-description" class="scroll-to-top header-tab-links"></a>
                 <div class="course-description no-margin-top module-box padding-top-30 padding-bottom-20">
                     <h2>{{ trans('courses/general.about-this-course') }}</h2>
                     <p class="intro-paragraph short-text">
@@ -59,8 +59,8 @@
                     @endif
                 </div>
 				
-                <a id="description-page-curriculum-wrap" class="scroll-to-top"></a>
                 <div>
+                <a id="description-page-curriculum-wrap" class="scroll-to-top header-tab-links"></a>
                     @foreach($course->modules as $module)
                         <div class="module-box">
                             <h2>{{ $module->order }}. {{ $module->name }}</h2>
@@ -196,7 +196,7 @@
                     </div>
                 @endif
                 
-				<a id="reviews" class="scroll-to-top"></a>
+                <a id="reviews" class="scroll-to-top header-tab-links"></a>
                 @if($course->allTestimonials->count() > 0)
                 
                     <div class="lesson-reviews">
@@ -219,7 +219,7 @@
                         @endif
                     </div>
                 @else 
-					<div class="no-margin-top module-box padding-top-30 padding-bottom-20">
+                    <div class="no-margin-top module-box padding-top-30 padding-bottom-20">
                     	<h4 class="text-center">{{trans('courses/general.no_reviews_yet') }}</h4>
                     </div>
                 @endif
