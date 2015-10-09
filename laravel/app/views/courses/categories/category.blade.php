@@ -35,6 +35,7 @@
     .selected-sub-category{
       cursor: pointer;
     }
+    .selected-main-category .small,
     .selected-sub-category .small{
       font-size: 12px;
       color: #798794;
@@ -75,7 +76,26 @@
             <ul class="mobile-main-category-list list-group">
               <li class="selected-main-category list-group-item">
                 <div>
-                  Categories
+                  @if(count(Request::segments()) == 4)
+                    @foreach($categories as $cat)
+                      @if(Request::segment(3)==$cat->slug)
+                        <div class="small"> {{ $cat->name }}</div>
+                        @foreach($cat->courseSubcategories as $subcat)
+                            @if(Request::segment(4)==$subcat->slug)
+                              {{$subcat->name}}
+                            @endif
+                        @endforeach
+                      @endif
+                    @endforeach
+                  @elseif(count(Request::segments()) == 3)
+                    @foreach($categories as $cat)
+                      @if(Request::segment(3)==$cat->slug)
+                        {{ $cat->name }}
+                      @endif
+                    @endforeach
+                  @else
+                    Categories
+                  @endif
                   <i class="arrow wa-chevron-down right"></i>
                   <div class="clearfix"></div>
                 </div>
@@ -83,6 +103,7 @@
               <div class="other-main-category-list hide">
                 @foreach($categories as $cat)
                   @if(Request::segment(3)==$cat->slug)
+                    @if(count(Request::segments()) == 4)
                     <li class="other-main-category-list-item list-group-item">
                         <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
                             {{ $cat->name }}
@@ -90,8 +111,9 @@
                           <div class="clearfix"></div>
                         </a>
                     </li>
+                    @endif
+
                     @foreach($cat->courseSubcategories as $subcat)
-                      @if(Request::segment(4)!=$subcat->slug)
                       <li class="other-sub-category-list-item list-group-item">
                           <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
                             {{$subcat->name}}
@@ -99,10 +121,19 @@
                             <div class="clearfix"></div>
                           </a>
                       </li>
-                      @endif
                     @endforeach
                   @endif
                 @endforeach
+
+                @if(count(Request::segments()) >= 3)
+                    <li class="other-main-category-list-item list-group-item">
+                        <a href="{{ action('CoursesController@category') }}">
+                            All Categories
+                          <i class="arrow wa-chevron-right right"></i>
+                          <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
                 @foreach($categories as $cat)
                   @if(Request::segment(3)!=$cat->slug)
                       <li class="other-main-category-list-item list-group-item">
@@ -163,80 +194,80 @@
                 <li class="popular-list"><a href="#">Best sellers<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
             </ul>
         </div>
-        <?php /*
-        <div class="group">
-            <h3>Categories</h3>
-            <ul class="main-menu clearfix category-menu-list">
-                @if(count(Request::segments()) >= 3)
-                    @foreach($categories as $cat)
-                        @if(Request::segment(3)==$cat->slug)
-                            <li class="dropdown main-menu-list open @if(count(Request::segments()) == 3) active @endif">
-                                <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}" class="dropdown-toggle category-menu-item" id="dropdownMenu-c-{{$cat->id}}">
-                                    {{ $cat->name }}
-                                    <i class="wa-chevron-down right hidden-md hidden-lg"></i>
-                                    <i class="wa-chevron-up hidden-md hidden-lg"></i>
-                                </a>
-                                <ul class="dropdown-menu sub-category-menu-list">
-                                    @foreach($cat->courseSubcategories as $subcat)
-                                        <li @if(Request::segment(4)==$subcat->slug) class='active' @endif>
-                                            <a class="sub-categoty-menu-item" href="{{
-                                            action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
-                                                <span class="sub-category-menu-item-label">{{$subcat->name}}</span>
-                                                <i class="wa-chevron-right right hidden-md hidden-lg"></i>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                        @endif
-                    @endforeach
-                
-                    @foreach($categories as $cat)
-                        @if(Request::segment(3)!=$cat->slug)
-                            <li class="dropdown main-menu-list"> 
-                                <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}" class="dropdown-toggle category-menu-item" id="dropdownMenu-c-{{$cat->id}}">
-                                    {{ $cat->name }}
-                                    <i class="wa-chevron-down right hidden-md hidden-lg"></i>
-                                    <i class="wa-chevron-up hidden-md hidden-lg"></i>
-                                </a>
-                                <ul class="dropdown-menu sub-category-menu-list">
-                                    @foreach($cat->courseSubcategories as $subcat)
-                                        <li>
-                                            <a class="sub-categoty-menu-item" href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
-                                                <span class="sub-category-menu-item-label">{{$subcat->name}}</span>
-                                                <i class="wa-chevron-right right hidden-md hidden-lg"></i>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                        @endif
-                    @endforeach
+        <div class="hidden-xs hidden-sm visible-md visible-lg">
+          <div class="group">
+              <h3>Categories</h3>
+              <ul class="main-menu clearfix category-menu-list">
+                  @if(count(Request::segments()) >= 3)
+                      @foreach($categories as $cat)
+                          @if(Request::segment(3)==$cat->slug)
+                              <li class="dropdown main-menu-list open @if(count(Request::segments()) == 3) active @endif">
+                                  <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}" class="dropdown-toggle category-menu-item" id="dropdownMenu-c-{{$cat->id}}">
+                                      {{ $cat->name }}
+                                      <i class="wa-chevron-down right hidden-md hidden-lg"></i>
+                                      <i class="wa-chevron-up hidden-md hidden-lg"></i>
+                                  </a>
+                                  <ul class="dropdown-menu sub-category-menu-list">
+                                      @foreach($cat->courseSubcategories as $subcat)
+                                          <li @if(Request::segment(4)==$subcat->slug) class='active' @endif>
+                                              <a class="sub-categoty-menu-item" href="{{
+                                              action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
+                                                  <span class="sub-category-menu-item-label">{{$subcat->name}}</span>
+                                                  <i class="wa-chevron-right right hidden-md hidden-lg"></i>
+                                              </a>
+                                          </li>
+                                      @endforeach
+                                  </ul>
+                              </li>
+                          @endif
+                      @endforeach
+                  
+                      @foreach($categories as $cat)
+                          @if(Request::segment(3)!=$cat->slug)
+                              <li class="dropdown main-menu-list"> 
+                                  <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}" class="dropdown-toggle category-menu-item" id="dropdownMenu-c-{{$cat->id}}">
+                                      {{ $cat->name }}
+                                      <i class="wa-chevron-down right hidden-md hidden-lg"></i>
+                                      <i class="wa-chevron-up hidden-md hidden-lg"></i>
+                                  </a>
+                                  <ul class="dropdown-menu sub-category-menu-list">
+                                      @foreach($cat->courseSubcategories as $subcat)
+                                          <li>
+                                              <a class="sub-categoty-menu-item" href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
+                                                  <span class="sub-category-menu-item-label">{{$subcat->name}}</span>
+                                                  <i class="wa-chevron-right right hidden-md hidden-lg"></i>
+                                              </a>
+                                          </li>
+                                      @endforeach
+                                  </ul>
+                              </li>
+                          @endif
+                      @endforeach
 
-                @elseif(count(Request::segments()) <= 2)
-                    @foreach($categories as $cat)
-                        <li class="dropdown main-menu-list"> 
-                            <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}" class="dropdown-toggle category-menu-item" id="dropdownMenu-c-{{$cat->id}}">
-                                {{ $cat->name }}
-                                <i class="wa-chevron-down right hidden-md hidden-lg"></i>
-                                <i class="wa-chevron-up hidden-md hidden-lg"></i>
-                            </a>
-                            <ul class="dropdown-menu sub-category-menu-list">
-                                @foreach($cat->courseSubcategories as $subcat)
-                                <li>
-                                    <a class="sub-categoty-menu-item" href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
-                                        <span class="sub-category-menu-item-label">{{$subcat->name}}</span>
-                                        <i class="wa-chevron-right right hidden-md hidden-lg"></i>
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    @endforeach
-                @endif
-            </ul>
+                  @elseif(count(Request::segments()) <= 2)
+                      @foreach($categories as $cat)
+                          <li class="dropdown main-menu-list"> 
+                              <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}" class="dropdown-toggle category-menu-item" id="dropdownMenu-c-{{$cat->id}}">
+                                  {{ $cat->name }}
+                                  <i class="wa-chevron-down right hidden-md hidden-lg"></i>
+                                  <i class="wa-chevron-up hidden-md hidden-lg"></i>
+                              </a>
+                              <ul class="dropdown-menu sub-category-menu-list">
+                                  @foreach($cat->courseSubcategories as $subcat)
+                                  <li>
+                                      <a class="sub-categoty-menu-item" href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
+                                          <span class="sub-category-menu-item-label">{{$subcat->name}}</span>
+                                          <i class="wa-chevron-right right hidden-md hidden-lg"></i>
+                                      </a>
+                                  </li>
+                                  @endforeach
+                              </ul>
+                          </li>
+                      @endforeach
+                  @endif
+              </ul>
+          </div>
         </div>
-         */ ?>
     </div>
     <div class="category-content-container pull-right">
       <div class="hidden-xs hidden-sm visible-md visible-lg filter-container">
