@@ -251,6 +251,38 @@
                             </div>
                           @endforeach
                           
+                          <!-- summary area -->
+                          <div class="row margin-bottom-25 ">
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="clearfix teaching-lesson no-border finished-lesson">
+                                        <div class="row row-1">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 column-1">
+                                                <table class="table">
+                                                    <tr>　　　　　　　 
+                                                        <td>総売上額</td>
+                                                        <td>アフィリエイター報酬</td>
+                                                        <td>２ティア報酬</td>
+                                                        <td>システム手数料</td>
+                                                        <td>販売収入</td>
+                                                    </tr>
+                                                    <tr>　　　　　　　 
+                                                        <td>総売上額</td>
+                                                        <td>アフィリエイター報酬</td>
+                                                        <td>２ティア報酬</td>
+                                                        <td>システム手数料</td>
+                                                        <td>販売収入</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                          <!-- /summary area -->
+                          
                           {{ $courses->links() }}
                           
                       </div>
