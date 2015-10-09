@@ -9563,6 +9563,7 @@ footer{
 	}
 	.enroll-button-section{
 		text-align: center;
+		padding-left: 0px;
 	}	
 	.enroll-button-section .enroll-button{
 		display: inline-block;
