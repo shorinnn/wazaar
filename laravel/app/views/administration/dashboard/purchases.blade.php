@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class='icon admin-page-title'>{{ trans('administration.purchases.page-title' )}}</h1>
+        </div>
+    </div>
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard  analytics-page">
             <div class="top-courses-purchased-wrapper">

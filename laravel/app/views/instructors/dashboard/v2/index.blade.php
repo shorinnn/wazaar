@@ -5,6 +5,9 @@
             .instructor-dashboard .tab-content{
                 min-height: 300px;
             }			
+            h1.admin-page-title{
+              padding: 0px 0px 30px;
+            }
     </style>
 	<div class="container-fluid new-dashboard instructor-dashboard top-section">
     	<div class="container">
@@ -255,6 +258,12 @@
                           
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <h1 class='icon admin-page-title'>{{ trans('administration.enrolled.page-title' )}}</h1>
+                              </div>
+                          </div>
+
                            @if( $purchasedCourses->count() == 0 )
                                 @if(Auth::user()->_profile('Instructor') != null)
                                     @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')

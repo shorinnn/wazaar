@@ -11353,3 +11353,10 @@ header .profile-name ul{
 	box-shadow: none;
 }
 /*end course category page course filter new buttons */
+/* generic admin page title */
+h1.admin-page-title{
+	text-align: center;
+	color: #09F;
+	padding-top: 30px;
+}
+/* end generic admin page title */

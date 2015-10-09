@@ -21,6 +21,12 @@
     }
 </style>
 
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class='icon admin-page-title'>{{ trans('administration.members.page-title' )}}</h1>
+        </div>
+    </div>
+
 {{ View::make('administration.members.partials.table')->with( compact('members') )->with( compact('url_filters') ) }}
 
 @stop
