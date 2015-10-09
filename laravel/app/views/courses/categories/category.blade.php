@@ -5,9 +5,36 @@
 		.footer-search{
 			display: none;
 		}
-		
+    .course-main-container .course-box-wrap.pull-left{
+      padding: 0px 10px;
+    }
+    @media (min-width: 1190px){
+      .course-main-container{
+        padding: 0px 40px;
+      }
+    }
+    @media (max-width: 800px){
+      .course-main-container .course-box-wrap.pull-left{
+        padding: 0px 10px !important;
+      }
+    }
+    @media (max-width: 650px){
+      .category-content-container{
+        width: 100%;
+        float: none;
+      }
+      .course-main-container .course-box-wrap.pull-left{
+        float: none !important;
+        margin: 0px auto;
+      }
+    }
+    @media (min-width:790px) and (max-width: 900px){
+      .course-main-container{
+        padding: 0px 20px;
+      }
+    }
 	</style>
-  <section class="visible-xs visible-sm hidden-md hidden-lg">
+  <section class="visible-xs visible-sm hidden-md hidden-lg filter-container">
     @include('courses.categories.partials._filter_partial')
   </section>
   <section class="container-fluid category-box-container relative no-padding">
@@ -92,8 +119,8 @@
             </ul>
         </div>
     </div>
-    <div class="category-content-container pull-left">
-      <div class="hidden-xs hidden-sm visible-md visible-lg">
+    <div class="category-content-container pull-right">
+      <div class="hidden-xs hidden-sm visible-md visible-lg filter-container">
         @include('courses.categories.partials._filter_partial')
       </div>
       <div class='ajax-content'>
@@ -107,10 +134,31 @@
 
     @section('extra_js')
         <script type="text/javascript">
-          function loadFilteredCourseCategory()
+          function loadFilteredCourseCategory(el)
           {
+              var parent_visible_container = $('.filter-container:visible');
+              var parent_hidden_container = $('.filter-container:hidden');
+              
+              $(parent_hidden_container).find('.course-sort').val($(parent_visible_container).find('.course-sort').val())
+              $(parent_hidden_container).find('.filter').each(function(){
+                if($(this).val() != $(parent_visible_container).find('.filter:checked').val()){
+                  $(this).prop('checked', false).parent().removeClass('active');
+                } else {
+                  $(this).prop('checked', true).parent().addClass('active');
+                }
+              })
+
+              $(parent_hidden_container).find('.difficulty').each(function(){
+                if($(this).val() != $(parent_visible_container).find('.difficulty:checked').val()){
+                  $(this).prop('checked', false).parent().removeClass('active');
+                } else {
+                  $(this).prop('checked', true).parent().addClass('active');
+                }
+              })
+
               var url = '/courses/category?';
-              var data = Array('term='+$('.header-search').val(),'sort='+$('.course-sort').val(),'filter='+$('.filter:checked').val(),'difficulty='+$('.difficulty:checked').val())
+              var data = Array('term='+$('.header-search').val(),'sort='+$(parent_visible_container).find('.course-sort').val(),'filter='+$(parent_visible_container).find('.filter:checked').val(),'difficulty='+$(parent_visible_container).find('.difficulty:checked').val())
+              // var data = Array('term='+$('.header-search').val(),'sort='+$('.course-sort').val(),'filter='+$('.filter:checked').val(),'difficulty='+$('.difficulty:checked').val())
               // console.log(data);
 
               url = url + data.join('&');
@@ -136,16 +184,17 @@
             } else {
               var sidebar_height = $('.sidebar-menu').height();
               var category_content = $('.category-content-container').height();
+
               if(Number(sidebar_height) >= Number(category_content)){
                 $('.category-content-container').height(sidebar_height);
               } else {
                 $('.sidebar-menu').height(category_content);
               }
             }
-            if($(window).width() <= 1200 && $(window).width() >= 991){
-              $('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
-              $('.category-box-container .ajax-content > .container').css('width', '100%'); 
-            }
+            // if($(window).width() <= 1200 && $(window).width() >= 991){
+            //   $('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
+            //   $('.category-box-container .ajax-content > .container').css('width', '100%'); 
+            // }
 
           }
 
