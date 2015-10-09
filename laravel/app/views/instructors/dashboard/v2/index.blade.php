@@ -100,10 +100,7 @@
                             <p class="text-center">{{ trans('courses/create.no-courses-yet-create-one') }}</p>
                             
                             <div class="text-center clearfix">
-                            <a href="{{action('CoursesController@create')}}" class="margin-top-15 add-new-course large-button blue-button">
-                                <i class="fa fa-plus"></i> 
-                                {{ trans('courses/create.create-btn-instructor') }}
-                            </a> 
+                            <br />
                             </div>
                           @endif
                           
