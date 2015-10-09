@@ -652,8 +652,11 @@
                 offset: -1,
                 handler: function(direction) {
                     $('.tabbed-content-header a').removeClass('active');
-                    $('[href="#'+this.element.id+'"]').addClass('active');
-                    console.log( '[href="#'+this.element.id+'"]') ;
+                    if(direction=='up')
+                        $('[href="#'+this.element.id+'"]').parent().prev('li').find('a').addClass('active');
+                    else
+                        $('[href="#'+this.element.id+'"]').addClass('active');
+                    console.log(direction);
                 }
           })
 
