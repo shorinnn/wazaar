@@ -31,6 +31,14 @@
 			margin-top: 140px;
 			margin-bottom: 100px;
 		}
+		.link-to-index{
+			color: #0099ff;
+			margin-top: 20px;
+			display: block;
+		}
+		.link-to-index:hover{
+			color: #0099ff;
+		}
 	</style>
     <div class="container error-page">
     	<div class="row">
@@ -38,11 +46,10 @@
             	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error-page-icon.png" class="img-responsive right">
             </div>
             <div class="col-xs-8 col-sm-8 col-md-6 col-lg-6">
-            	<h1>Request error</h1>
-                <h2>We are sorry, but there was a problem serving your requested page. </h2>
-                <p>This may be temporary, so please try to refresh a page, the problem may be temporary.</p>
-                <p>If it doesn’t help, please come back in few minutes.</p>
-                <p>We will do our best to selve this as soon as possible. </p>	
+            	<!--<h1>Request error</h1>-->
+                <h2 class="no-margin">何かお探しですか？
+					<span class="block">入力したURLが当サイトのページと一致しません。</span></h2>
+				<a href="{{ action('SiteController@index') }}" class="link-to-index">Wazaar.jp トップページ</a>
             </div>
         </div>
     </div>

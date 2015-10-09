@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'no_reviews_yet' => 'This course has no reviews yet.',
     'recommends' => 'オススメする',
     'does_not_recommend' => 'オススメしない',
     'found_helpful' => 'このレビューは役に立った',

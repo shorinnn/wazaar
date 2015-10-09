@@ -18,7 +18,7 @@
 			display: inline-block;
 		}
 		.home-search-form-wrap{
-			margin-top: 72px;
+			margin-top: 52px;
 		}
 		.browse-category-button{
 			padding: 20px 25px;
@@ -38,7 +38,7 @@
                     </h1>
                     <!--<a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>-->
                     <div class="videoWrapper">
-                    	<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=0" frameborder="0" allowfullscreen></iframe>
+                    	
                     </div>
                     <div class=" clearfix clear text-center home-search-form-wrap">
                         <a href="{{ action('CoursesController@category') }}" class="blue-button large-button browse-category-button">コース一覧</a>
@@ -193,7 +193,22 @@
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter') ) }} 
             </div>
         </div>
-    </section>
+        </section>
+            <section class="footer-search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <form action='{{ action('CoursesController@search') }}' class="clearfix">
+                                <label>会員になって、学びたいことを探す！</label>
+                                <div class="search-wrap clearfix">
+                                    <input type="text" name="term"  placeholder="Search...">
+                                    <button><i class="wa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
     
 @stop
 
@@ -205,6 +220,9 @@
     <script src="{{url('plugins/smoothscroll/jquery.mousewheel.min.js')}}" type="text/javascript"></script>
     <script src="{{url('plugins/smoothscroll/jquery.smoothdivscroll-1.3-min.js')}}" type="text/javascript"></script>
     <script>
+		$(document).ready(function(e) {
+            $('.homepage-header .videoWrapper').html('<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=0" frameborder="0" allowfullscreen></iframe>');
+        });
         $(function(){
             $('.whats-hot-slider').smoothDivScroll({
                 autoScrollingMode: "onStart",

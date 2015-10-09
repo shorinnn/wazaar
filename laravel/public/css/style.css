@@ -624,7 +624,7 @@ header .profile-name li:hover ul{
 	background-position: left top; 
 }
 .homepage-header{
-	padding-bottom: 93px;
+	padding-bottom: 53px;
 }
 .homepage-header .extra-large-heading{
 	color: #fff;
@@ -917,7 +917,7 @@ header .profile-name li:hover ul{
 }
 .discover-section{
 	background-color: #ebeced;
-	padding-bottom: 100px;
+	padding-bottom: 50px;
 }
 .oldhomepage .home-page-filter{
 	display: none !important;
@@ -993,6 +993,9 @@ header .profile-name li:hover ul{
 /********** Home page Category heading ********************/
 .category-heading-container{
 	background: #fff;
+}
+.category-content-container .category-heading-container{
+	background: none;
 }
 .category-heading{
 	margin-bottom: 24px;
@@ -1533,7 +1536,7 @@ header .profile-name li:hover ul{
 	margin-bottom: 30px 
 }
 .sidebar-menu{
-	width: 260px;
+	max-width: 260px;
 	height: auto;
 	background: #fff;
 	padding: 15px 24px;
@@ -1552,7 +1555,6 @@ header .profile-name li:hover ul{
 	font-size: 13px;
 	font-weight: 600;
 	clear: both;
-	text-transform: uppercase;
 }
 .sidebar-menu .group .main-menu .popular-list a,
 .sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle{
@@ -1561,12 +1563,8 @@ header .profile-name li:hover ul{
 	color: #303941;
 	clear: both;
 }
-.sidebar-menu .group .main-menu .popular-list.active a,
-.sidebar-menu .group .main-menu .popular-list:hover a,
 .sidebar-menu .group .main-menu .main-menu-list.active .dropdown-toggle,
-.sidebar-menu .group .main-menu .main-menu-list.active:hover .dropdown-toggle,
-.sidebar-menu .group .main-menu .main-menu-list.open:hover .dropdown-toggle,
-.sidebar-menu .group .main-menu .main-menu-list.open .dropdown-toggle{
+.sidebar-menu .group .main-menu .main-menu-list.active:hover .dropdown-toggle{
 	background: #0099ff;
 	color: #fff;
 	border-radius: 2px;
@@ -1609,12 +1607,27 @@ header .profile-name li:hover ul{
 .sidebar-menu .group ul li .dropdown-menu li a{
 	padding: 6px 8px 6px 38px;
 }
-.sidebar-menu .group ul li .dropdown-menu li a:hover,
+/*.sidebar-menu .group ul li .dropdown-menu li a:hover,*/
 .sidebar-menu .group ul li .dropdown-menu li.active a,
 .sidebar-menu .group ul li .dropdown-menu li a:focus{
 	background: #0099ff;
 	color: #fff;
 	border-radius: 2px;
+}
+.sidebar-menu .group .category-menu-list .main-menu-list:hover .dropdown-toggle{
+	background: none;
+	color: #303941;
+	border-radius: 0px;
+}
+.sidebar-menu .group .main-menu .popular-list.active a,
+.sidebar-menu .group .main-menu .popular-list:hover a,
+.sidebar-menu .group .category-menu-list .main-menu-list .dropdown-toggle:hover{
+	background: #e8eced;
+	color: #303941;
+	border-radius: 2px;
+}
+.sidebar-menu .group ul li .dropdown-menu li a.sub-categoty-menu-item{
+	white-space: normal !important;
 }
 .sidebar-menu .group ul li .dropdown-menu li{
 }
@@ -2612,9 +2625,14 @@ h2, h3, h4, h5, h6{
 }
 .enroll-button-section.fixed {
 	position: fixed;
-	width: 344px;
+	width: 346px;
 	z-index: 99;
+	padding-left: 3px;
 }	
+.enroll-button-section .enroll-button-wrap{
+	border: solid transparent;
+	border-width: 0 1px 1px;
+}
 .enroll-button-section.fixed .enroll-button-wrap{
 	background: #fff;
 	border-radius: 0 0 4px 4px;
@@ -2623,11 +2641,13 @@ h2, h3, h4, h5, h6{
 	padding: 0 32px;
 }
 .enroll-button-section.fixed .add-to-wishlist-container{
+	border: solid 1px transparent;
+}
+.enroll-button-section.fixed .add-to-wishlist-container{
 	background: #fff;
 	border-radius: 4px;
 	border: solid 1px #e0e1e2;
-	padding: 15px 32px;
-	margin-top: 20px;
+	padding: 0 32px;
 }
 .enroll-button-section.fixed .add-to-wishlist-container > span{
 	display: block !important;
@@ -2635,7 +2655,6 @@ h2, h3, h4, h5, h6{
 .enroll-button-section.fixed .enroll-button{
 	padding-right: 10px;
 	padding-left: 10px;
-	font-size: 11px;
 }
 .tabbed-content-header li{
 	float: left;
@@ -2659,7 +2678,7 @@ h2, h3, h4, h5, h6{
 .course-data .scroll-to-top,
 .course-description-container .scroll-to-top{
 	position: relative;
-	top: -69px;
+	top: -89px;
 	height: 1px;
 	display: block;
 }
@@ -2674,6 +2693,7 @@ h2, h3, h4, h5, h6{
 }
 .instructor-name .name{
 	color: #e8eced;
+	cursor: pointer;
 }
 /*****/
 .course-details-player{
@@ -9074,7 +9094,7 @@ input[type='number'] {
 /************* Page Footer **************/
 .footer-search{
 	background: #ebeced;
-	padding: 48px 15px;
+	padding: 50px 15px 48px 15px;
 }
 .footer-search label {
     display: block;
@@ -9116,7 +9136,7 @@ footer{
 	clear:both;
 }
 .footer-container{ 
-	background-color: #000;
+	background-color: #18222b;
 	padding: 62px 0 0;
 }
 .gray-footer .footer-container{ 
@@ -9146,7 +9166,7 @@ footer{
 	float: right;
 }
 .footer-privacy-bar{
-	background: #000;
+	background: #18222b;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	margin-top: 20px;
@@ -9422,7 +9442,15 @@ footer{
 	.enroll-button-wrap {
 		height: 148px;
 	}
-	.sidebar-menu ~ .ajax-content{
+	/*.sidebar-menu,
+	.category-content-container{
+		display: table-cell;
+	}*/
+
+	.category-content-container{
+		width: calc(100% - 260px);
+	}
+	/*.sidebar-menu ~ .category-content-container{
 		-webkit-flex: 1;
 		-moz-flex: 1;
 		-ms-flex: 1;
@@ -9434,12 +9462,11 @@ footer{
 		-moz-flex-direction: column;
 		-ms-flex-direction: column;
 		flex-direction: column;
-		overflow: auto;
 	}
 	.category-box-container{
 		padding: 0;
 		display: flex;
-	}
+	}*/
 	footer{
 		position: relative;
 	}
@@ -9536,6 +9563,7 @@ footer{
 	}
 	.enroll-button-section{
 		text-align: center;
+		padding-left: 0px;
 	}	
 	.enroll-button-section .enroll-button{
 		display: inline-block;
@@ -9792,6 +9820,7 @@ footer{
 		float: left;
 	}
 	.sidebar-menu{
+		max-width: 100%;
 		width: 100%;
 		position: relative;
 		padding: 15px 0 0;
@@ -11325,3 +11354,10 @@ header .profile-name ul{
 	box-shadow: none;
 }
 /*end course category page course filter new buttons */
+/* generic admin page title */
+h1.admin-page-title{
+	text-align: center;
+	color: #09F;
+	padding-top: 30px;
+}
+/* end generic admin page title */

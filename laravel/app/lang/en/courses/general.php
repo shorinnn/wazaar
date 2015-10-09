@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'no_reviews_yet' => 'This course has no reviews yet.',
     'recommends' => 'Recommends',
     'does_not_recommend' => 'Does not Recommend',
     'found_helpful' => 'You found this helpful',
@@ -62,6 +63,7 @@ return array(
     'sale_ends_on' => "Sale Ends On",
     'sale_ends_in' => "Sale Ends In",
     'description' => 'Description',
+    'top' => 'Top',
     'lesson-description' => 'Description',
     'what_you_will_achieve' => 'What you will achieve at the end of the course',
     'your_teacher' => 'Your Teacher',

@@ -5,9 +5,12 @@
     @endforeach
     </div>
 </div>  
-    @if($courses->count() % 3!=0)
+    <!-- @if($courses->count() % 3!=0)
     </div>
-    @endif
-<div class="container no-padding">
+    @endif -->
+<div class="container">
 {{ $courses->appends(Input::only('sort','difficulty','filter'))->links() }}
 </div>
+<script>
+	makeFluid();
+</script>

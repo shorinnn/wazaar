@@ -122,10 +122,10 @@
         	<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
             	<ul class="tabbed-content-header">
                 	<li>
-                    	<a href="#course-details-player" class="scroll-to-video tab-header-button active">{{ trans("general.video") }}</a>
+                    	<a href="#course-details-player" class="scroll-to-video tab-header-button active">{{ trans("courses/general.top") }}</a>
                     </li>
                 	<li>
-                    	<a href="#course-description" class="scroll-to-description tab-header-button">{{ trans("courses/general.course_description") }}</a>
+                    	<a href="#course-description" class="scroll-to-description tab-header-button">{{ trans("courses/general.description") }}</a>
                     </li>
                 	<li>
                     	<a href="#description-page-curriculum-wrap" class="scroll-to-curriculum tab-header-button">{{ trans("courses/general.curriculum") }} </a>
@@ -136,7 +136,10 @@
                 </ul>
             </div>
         	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            	<p class="no-margin instructor-name"><span class="by">{{ trans("courses/general.by") }} </span><a class="name" href="#">{{$instructor->last_name}} {{$instructor->first_name}}</a></p>
+            	<p class="no-margin instructor-name">
+                	<span class="by">{{ trans("courses/general.by") }} </span>
+                	<span class="name" data-toggle="modal" data-target="#instructor-bio">{{$instructor->last_name}} {{$instructor->first_name}}</span>
+                </p>
             </div>
         </div>
     </div>
@@ -144,7 +147,7 @@
 <section class="container-fluid course-data">
     <div class="container">
         <div class="row">
-        	<a id="course-details-player" class="scroll-to-top" style="top: -230px;"></a>
+        	<a id="course-details-player" class="scroll-to-top" style="top: -260px;"></a>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player" id="course-details-player">
 					<!--<div class="pre-view-image video-player">
                     @if($course->previewImage !=null)
@@ -564,9 +567,18 @@
     <script>
 		function fixStickyHeader(){
 			var stickyHeaderHeight = $('.sticky-header').height();
-			var triggerElemTop = $('.enroll-button-section .price').offset().top - stickyHeaderHeight;
+			var triggerElemTop = $('.enroll-button-section .price').offset().top - 93;
 			$window = $(window);	
 			$windowWidth = $window.width();
+			var video = $('video')[0];
+			
+			if(video){
+				$('.scroll-to-video').html('{{ trans("general.video") }}');
+			}
+			else{
+				$('.scroll-to-video').html('{{ trans("courses/general.top") }}');
+				
+			}
 			
 			if($windowWidth <= 991){
 				$window.on('load resize scroll', function(){

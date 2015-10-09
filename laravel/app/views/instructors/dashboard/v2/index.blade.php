@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title') 売上管理 - Wazaar @stop
 @section('content')
 	<style>
             .instructor-dashboard .tab-content{
@@ -249,6 +250,67 @@
 
                             </div>
                           @endforeach
+                          
+                          <!-- summary area -->
+                          <div class="row margin-bottom-25 ">
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="clearfix teaching-lesson no-border finished-lesson">
+                                        <div class="row row-1">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 column-1">
+                                                <table class="table">
+                                                    <tr>　　　　　　　 
+                                                        <td>総売上額</td>
+                                                        <td>アフィリエイター報酬</td>
+                                                        <td>２ティア報酬</td>
+                                                        <td>システム手数料</td>
+                                                        <td>販売収入</td>
+                                                    </tr>
+                                                    <tr>　　　　　　　 
+                                                        <td> 
+                                                            ¥{{ number_format( $instructor->money('purchase_price','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('second_tier_affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('total_site_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                        <td>
+                                                            ¥{{ number_format( $instructor->money('instructor_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="text-left">
+                                                            <a href="{{action('CoursesController@create')}}" class="add-new-course add-new-from-header large-button blue-button">
+                                                                <i class="fa fa-plus"></i> 
+                                                                {{ trans('courses/create.create-btn-instructor') }}
+                                                            </a> 
+                                                        </td>
+                                                        <td colspan="3" class="text-right">
+                                                            <form>
+                                                                <select>
+                                                                    <option>作成日 新しい</option>
+                                                                    <option>作成日 古い</option>
+                                                                    <option>公開</option>
+                                                                    <option>限定公開</option>
+                                                                    <option>非公開</option>
+                                                                </select>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                          <!-- /summary area -->
                           
                           {{ $courses->links() }}
                           
