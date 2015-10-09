@@ -13,9 +13,13 @@
       max-width: 1050px;
       margin: 0px auto;
     }
-    .mobile-main-category-list .list-group-item,
-    .mobile-sub-category-list .list-group-item{
+    .other-main-category-list-item,
+    .selected-main-category{
       padding-left: 27px;
+      padding-right: 30px;
+    }
+    .other-sub-category-list-item{
+      padding-left: 50px;
       padding-right: 30px;
     }
     .mobile-main-category-list .list-group-item a,
@@ -25,6 +29,7 @@
     .mobile-main-category-list .arrow,
     .mobile-sub-category-list .arrow{
       line-height: 25px;
+      font-size: 13px;
     }
     .selected-main-category,
     .selected-sub-category{
@@ -66,36 +71,54 @@
   <section class="container-fluid category-box-container relative no-padding">
     <div class="sidebar-menu pull-left">
         <section class="visible-xs visible-sm hidden-md hidden-lg filter-container">
-          @if(count(Request::segments()) == 3)
+          @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
               <li class="selected-main-category list-group-item">
                 <div>
-                @foreach($categories as $cat)
-                  @if(Request::segment(3)==$cat->slug)
-                    {{ $cat->name }}
-                  @endif
-                @endforeach
+                  Categories
                   <i class="arrow wa-chevron-down right"></i>
                   <div class="clearfix"></div>
                 </div>
               </li>
               <div class="other-main-category-list hide">
                 @foreach($categories as $cat)
-                    @if(Request::segment(3)!=$cat->slug)
-                        <li class="other-main-category-list-item list-group-item">
-                            <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
-                                {{ $cat->name }}
-                              <i class="arrow wa-chevron-right right"></i>
-                              <div class="clearfix"></div>
-                            </a>
-                        </li>
-                    @endif
+                  @if(Request::segment(3)==$cat->slug)
+                    <li class="other-main-category-list-item list-group-item">
+                        <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
+                            {{ $cat->name }}
+                          <i class="arrow wa-chevron-right right"></i>
+                          <div class="clearfix"></div>
+                        </a>
+                    </li>
+                    @foreach($cat->courseSubcategories as $subcat)
+                      @if(Request::segment(4)!=$subcat->slug)
+                      <li class="other-sub-category-list-item list-group-item">
+                          <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
+                            {{$subcat->name}}
+                            <i class="arrow wa-chevron-right right"></i>
+                            <div class="clearfix"></div>
+                          </a>
+                      </li>
+                      @endif
+                    @endforeach
+                  @endif
+                @endforeach
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)!=$cat->slug)
+                      <li class="other-main-category-list-item list-group-item">
+                          <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
+                              {{ $cat->name }}
+                            <i class="arrow wa-chevron-right right"></i>
+                            <div class="clearfix"></div>
+                          </a>
+                      </li>
+                  @endif
                 @endforeach
               </div>
             </ul>
           @endif
 
-          @if(count(Request::segments()) == 4)
+          <?php /*@if(count(Request::segments()) == 4)
             <ul class="mobile-sub-category-list list-group">
               <li class="selected-sub-category list-group-item">
                 <div>
@@ -131,7 +154,7 @@
                 @endforeach
               </div>
             </ul>
-          @endif
+          @endif */?>
         </section>
         <div class="group popular">
             <h3>Popular</h3>
@@ -140,6 +163,7 @@
                 <li class="popular-list"><a href="#">Best sellers<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
             </ul>
         </div>
+        <?php /*
         <div class="group">
             <h3>Categories</h3>
             <ul class="main-menu clearfix category-menu-list">
@@ -212,6 +236,7 @@
                 @endif
             </ul>
         </div>
+         */ ?>
     </div>
     <div class="category-content-container pull-right">
       <div class="hidden-xs hidden-sm visible-md visible-lg filter-container">
