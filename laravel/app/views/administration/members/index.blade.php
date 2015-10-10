@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title')Wazaar - 会員管理@stop
 @section('content')	
     
 @if (Session::get('success'))
