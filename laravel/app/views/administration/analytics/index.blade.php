@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title')Wazaar - 受注管理@stop
 @section('content')
     <div class="container affiliate-dashboard dashboard  analytics-page">
         {{-- Filters --}}
