@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title')Wazaar - 販売管理@stop
 @section('content')
     <div class="wrapper clearfix">
         <div class="container affiliate-dashboard dashboard  analytics-page">
