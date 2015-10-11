@@ -92,12 +92,10 @@ $(document).ready(function(){
 	//stickyFooter();
 	rescaleBckgrdOverlay();
     newHomepageToggleData();
-    
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
       dynamicLessonNameWidth();
    	  skinVideoControls();
-      setLessonSidebarRepliesScrollHeight();
 	});
 	
 	$(".classroom-view #myVideo").resize(function() {
@@ -106,15 +104,6 @@ $(document).ready(function(){
 
 });
 
-function setLessonSidebarRepliesScrollHeight()
-{
-    if($('.lesson-sidebar').length >= 1){
-        var height = $(window).height();
-        var deductions = $('.lesson-sidebar .discussion-sidebar-header').height() + $('.lesson-sidebar .sidebar-questioner-parent').height() + $('.lesson-sidebar .discussion-sidebar-footer').height() + 24 + 24;
-        height = Number(height) - Number(deductions);
-        $('.lesson-sidebar .replies-holder').height(height);
-    }
-}
 function newHomepageToggleData(){
     if($('.homepage-course-groups').length >= 1){
         $('.show_all_courses').click(function(){
@@ -414,7 +403,6 @@ function linkToRemote(e){
             if( typeof(callback)!= 'undefined'){
                 window[callback](e, result);
             }
-            setLessonSidebarRepliesScrollHeight();
         }
         else{
             console.log( result );
@@ -1933,19 +1921,3 @@ function ajaxifyPagination(e){
         $(this).attr( 'data-target', '.ajax-content' );
     });
 }
-
-
-        
-function showReviewsModal() {
-    $('.review-modal').modal('show');
-}
-
-function cancelReviewsModal() {
-    $('.review-modal').modal('hide');
-}
-
-function courseReviewPosted(e, json) {
-    $('.review-modal').modal('hide');
-    $.bootstrapGrowl(_('Thank you for your review.'), {align: 'center', type: 'success'});
-}
-        

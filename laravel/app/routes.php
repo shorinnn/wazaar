@@ -39,6 +39,7 @@ $wwwRoutes = function(){
     Route::get('about-the-company', 'SiteController@about');
     Route::get('contact', 'SiteController@contact');
     Route::get('error', 'SiteController@error');
+    Route::get('sitemap', 'SiteController@sitemap');
 	
     
     Route::get('/dash', 'SiteController@dashboard');

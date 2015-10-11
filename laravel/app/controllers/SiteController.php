@@ -542,6 +542,10 @@ class SiteController extends \BaseController {
         return View::make( 'site.error' );
     }
     
+    public function sitemap(){
+        return View::make( 'site.sitemap' );
+    }
+
     public function missing_sti_fix(){
         $emails = [
             'lovelyahiruchian@gmail.com',

@@ -2682,16 +2682,16 @@ h2, h3, h4, h5, h6{
 	height: 1px;
 	display: block;
 }
-.instructor-name{
+.sticky-header-instructor-name{
 	font-size: 13px;
 	font-weight: 600;
 	margin: 0;
 	padding: 23px 0;
 }
-.instructor-name .by{
+.sticky-header-instructor-name .by{
 	color: #7e8e9e;
 }
-.instructor-name .name{
+.sticky-header-instructor-name .name{
 	color: #e8eced;
 	cursor: pointer;
 }
@@ -9824,7 +9824,7 @@ footer{
 		position: relative;
 		padding: 15px 0 0;
 		background: #ebeced;
-		
+
 	}
 	.sidebar-menu .group ul{
 		background: #fff;
@@ -9875,8 +9875,8 @@ footer{
 	}
 	.sidebar-menu .group h3{
 		padding: 0 25px;
-	}			
-	.sidebar-menu .group .main-menu .popular-list a, 
+	}
+	.sidebar-menu .group .main-menu .popular-list a,
 	.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle{
 		width: 100%;
 		text-align: left;

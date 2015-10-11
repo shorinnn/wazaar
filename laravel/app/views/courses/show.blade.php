@@ -136,7 +136,7 @@
                 </ul>
             </div>
         	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            	<p class="no-margin instructor-name">
+            	<p class="no-margin sticky-header-instructor-name">
                 	<span class="by">{{ trans("courses/general.by") }} </span>
                 	<span class="name" data-toggle="modal" data-target="#instructor-bio">{{$instructor->last_name}} {{$instructor->first_name}}</span>
                 </p>
