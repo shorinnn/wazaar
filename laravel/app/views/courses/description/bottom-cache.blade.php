@@ -220,7 +220,7 @@
                     </div>
                 @else 
                     <div class="no-margin-top module-box padding-top-30 padding-bottom-20">
-                    	<h4 class="text-center">{{trans('courses/general.no_reviews_yet') }}</h4>
+                    	<h4 class="text-center no-reviews-yet">{{trans('courses/general.no_reviews_yet') }}</h4>
                     </div>
                 @endif
 

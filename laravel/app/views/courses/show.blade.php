@@ -566,6 +566,11 @@
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script src="{{ url('js/jquery.waypoints.min.js') }}"></script>
     <script>
+        $('.affiliate-top-header #affiliate-toolbar-link').click( function() {
+            $(this).focus();
+            $(this).select();
+        });
+
 		function fixStickyHeader(){
 			var stickyHeaderHeight = $('.sticky-header').height();
 			var triggerElemTop = $('.enroll-button-section .price').offset().top - 93;

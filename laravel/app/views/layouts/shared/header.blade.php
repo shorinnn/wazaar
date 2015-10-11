@@ -1,8 +1,8 @@
 <div class="row">
 	 @if(Auth::check())
-    	<div class="top-menu clearfix col-md-12">
+    	<div class="top-menu clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
      @else
-     	<div class="top-menu unauthenticated-home-header clearfix col-md-12">
+     	<div class="top-menu unauthenticated-home-header clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
      @endif
             <a href="{{ action('SiteController@index') }}" class="main-logo">
                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 

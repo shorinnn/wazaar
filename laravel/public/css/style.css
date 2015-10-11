@@ -2678,9 +2678,12 @@ h2, h3, h4, h5, h6{
 .course-data .scroll-to-top,
 .course-description-container .scroll-to-top{
 	position: relative;
-	top: -89px;
+	top: -80px;
 	height: 1px;
 	display: block;
+}
+.no-reviews-yet{
+    color: #7e8e9e;
 }
 .sticky-header-instructor-name{
 	font-size: 13px;
@@ -9889,6 +9892,7 @@ footer{
 	.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle{
 		padding-right: 15px;
 		padding-left: 25px;
+        cursor:  pointer;
 	}
 	.sidebar-menu .group .main-menu .main-menu-list .dropdown-toggle i{
 		position: relative;
@@ -11363,3 +11367,14 @@ h1.admin-page-title{
 	padding-top: 30px;
 }
 /* end generic admin page title */
+/* Remove extra padding-right added by Bootstrap modal box*/
+body.modal-open-noscroll
+{
+    padding-right: 0 !important;
+    overflow: hidden;
+}
+.modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom
+{
+    padding-right: 0 !important;
+}
+
