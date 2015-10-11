@@ -284,11 +284,30 @@ class CoursesController extends \BaseController {
             if( $instructor->accepted_instructor_terms!='yes' ){
                 return Redirect::action('InstructorsController@acceptTerms');
             }
-            $courses = $instructor->courses()
-                    ->with( [ 'dashboardComments' => function($query){
-                        $query->where('instructor_read', 'no');
-                    } ] )
-                    ->paginate(10);
+            
+            switch( Input::get('sort')){
+               case 'date-old': $sortField = 'created_at'; $sortDir = 'ASC'; break;
+               case 'public': $sortField = 'privacy_status'; $sortDir = 'DESC'; break;
+               case 'private': $sortField = 'privacy_status'; $sortDir = 'ASC'; break;
+               case 'unlisted': $sortField = 'publish_status'; $sortDir = 'DESC'; break;
+               default: $sortField = 'created_at'; $sortDir = 'DESC'; break;
+            }
+            
+            if( $sortField == 'publish_status' ){
+                $courses = $instructor->courses()->orderBy( DB::raw( 'CAST( publish_status AS CHAR )' ), $sortDir )
+                        ->with( [ 'dashboardComments' => function($query){
+                            $query->where('instructor_read', 'no');
+                        } ] )
+                        ->paginate(10);
+            }
+            else{
+                $courses = $instructor->courses()->orderBy( $sortField, $sortDir )
+                        ->with( [ 'dashboardComments' => function($query){
+                            $query->where('instructor_read', 'no');
+                        } ] )
+                        ->paginate(10);
+            }
+            
             $profile = $instructor->profile;
             
             $student = Student::find( Auth::user()->id );
@@ -501,7 +520,7 @@ class CoursesController extends \BaseController {
                             
         }
         
-        public function search(){
+        public function oldSearch(){
             $difficultyLevel = Input::get('difficulty') ?: null;
             $wishlisted = [];
             if( Auth::check() ){
@@ -532,6 +551,77 @@ class CoursesController extends \BaseController {
                         $query->where( 'name', 'like', "%$search%" )
                         ->orWhere( 'description', 'like', "%$search%" );
                     })
+                    ->where(function($query){
+                        $query->where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+//                                    ->where('featured',0)
+                                    ->where('publish_status', 'pending')
+                                    ->where('approved_data', '!=', "");
+                        });
+                    });
+
+
+            if ( $difficultyLevel != null ){
+                $courses = $courses->where('course_difficulty_id', $difficultyLevel);
+            }
+
+            if ($sort == 'date'){
+                $courses = $courses->orderBy('created_at','desc');
+            }
+            else if ($sort == 'date-oldest'){
+                $courses = $courses->orderBy('created_at','asc');
+            }
+            else{
+                $courses = $courses->orderBy('id','desc');
+            }
+
+            $courses = $courses->paginate(9);
+
+            
+            $categories = CourseCategory::has('allCourses')->get();
+            $categories->load( 'courseSubcategories' );
+            
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel', 'wishlisted', 'categories' ) );
+            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel', 'wishlisted', 'categories') );
+                            
+        }
+        
+        public function search(){
+            $search = trim( Input::get('term') );
+            
+            $cloudSearch  = AWS::get('cloudsearchdomain', [ 'endpoint' => Config::get('custom.cloudsearch-search-endpoint') ] );
+            $res = $cloudSearch->search( [ 'query' => $search ] );
+            $ids = $res['hits']['hit'];
+            $ids = array_column( $ids , 'id' );
+            
+            $difficultyLevel = Input::get('difficulty') ?: null;
+            $wishlisted = [];
+            if( Auth::check() ){
+                $student = Student::find( Auth::user()->id );
+                $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+            }
+            $sort = null;
+            $category = new stdClass;
+            $category->color_scheme = $category->name = $category->description = $category->id =  '';
+            
+            if (Input::has('sort')){
+                if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
+                    
+                    $courseHelper = new CourseHelper();
+                    $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
+                    $courses = $courseHelper->bestSellers(null,'AT',9,['course_difficulty_id' => $difficultyLevel], $order, null, $search );
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
+                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses'));
+                }
+
+                $sort = Input::get('sort');
+            }
+
+            
+            $courses = Course::with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
+                    ->whereIn('id', $ids)
                     ->where(function($query){
                         $query->where('publish_status', 'approved')
                         ->where('privacy_status','public')

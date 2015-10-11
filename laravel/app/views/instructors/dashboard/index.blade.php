@@ -2,6 +2,20 @@
 @section('content')
     <div class="wrapper clearfix">
         <div class="container affiliate-dashboard dashboard  analytics-page">
+            
+            <h1>
+                販売管理（
+                @if(Auth::user()->_profile('Instructor') != null)
+                    @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
+                        {{ Auth::user()->_profile('Instructor')->corporation_name }}
+                    @else
+                        {{ Auth::user()->_profile('Instructor')->last_name }} {{ Auth::user()->_profile('Instructor')->first_name }}
+                    @endif 
+                @else
+                    {{Auth::user()->last_name}} {{Auth::user()->first_name}}
+                @endif
+                ）
+            </h1>
 
             {{-- Button Filters --}}
             <div class="row-fluid">

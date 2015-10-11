@@ -564,6 +564,7 @@
  
 @section('extra_js')
     <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="{{ url('js/jquery.waypoints.min.js') }}"></script>
     <script>
 		function fixStickyHeader(){
 			var stickyHeaderHeight = $('.sticky-header').height();
@@ -645,6 +646,20 @@
              $("#embeded-video")[0].src += "&autoplay=1";
         }
         $(function(){       
+            
+//            var waypoint = new Waypoint({
+            var waypoints = $('.header-tab-links').waypoint({
+                offset: -1,
+                handler: function(direction) {
+                    $('.tabbed-content-header a').removeClass('active');
+                    if(direction=='up')
+                        $('[href="#'+this.element.id+'"]').parent().prev('li').find('a').addClass('active');
+                    else
+                        $('[href="#'+this.element.id+'"]').addClass('active');
+                    console.log(direction);
+                }
+          })
+
             @if( Auth::guest() )
                 $('#purchase-form').submit(function(e){
 //                    e.preventDefault();

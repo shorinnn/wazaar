@@ -769,13 +769,23 @@ class SiteController extends \BaseController {
     }
     
     public function estest(){
-        $client = AWS::get('CloudSearch');
-        dd($client);
-        /*
-         * Search Endpoint:    search-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com
-Document Endpoint:    doc-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com
-Domain ARN:    arn:aws:cloudsearch:ap-northeast-1:932188653619:domain/wazaar
-Engine Type:    CloudSearch (2013 API)
-         */
+        /** search index **/
+//        $client = AWS::get('cloudsearchdomain', [ 'endpoint' => Config::get('custom.cloudsearch-search-endpoint') ] );
+//        $res = $client->search( [ 'query' => 'author' ] );
+//        print_r($res);
+//        dd($res);
+        /** add index **/
+//        $client = AWS::get('cloudsearchdomain', [ 'endpoint' => Config::get('custom.cloudsearch-document-endpoint') ] );
+//        $batch[] = [
+//            'type'      => 'add',
+//            'id'        => 2,
+//            'fields'    => ['author' => 'Instructor', 'company' => 'Company', 'id' => 2, 'short_description' => 'Short Desc', 'title' => 'Title']
+//        ];
+//        $result = $client->uploadDocuments(array(
+//                'documents'     => json_encode($batch),
+//                'contentType'     =>'application/json'
+//            ));
+//        dd($result);
+        
     }
 }

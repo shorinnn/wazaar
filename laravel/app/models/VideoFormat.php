@@ -14,9 +14,10 @@ class VideoFormat extends \LaravelBook\Ardent\Ardent
     public function getVideoUrlAttribute($value)
     {
         // return old url for production
+        // edit: all videos will now expire (Oct 9 2015) including production
         if(App::environment()=='production'){
-            $outputDomain   = 'http://'. Config::get('wazaar.AWS_WEB_DOMAIN');
-            return $outputDomain . '/' . $value;
+            //$outputDomain   = 'http://'. Config::get('wazaar.AWS_WEB_DOMAIN');
+            //return $outputDomain . '/' . $value;
         }
         
         // create video url that expires in 5 seconds

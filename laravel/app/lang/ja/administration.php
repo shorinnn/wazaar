@@ -158,5 +158,14 @@ return array(
             'join-date' => 'Join Date',
             'roles' => 'Roles',
         ]
+    ],
+    'purchases' =>[
+        'page-title' => '売上集計データ管理',
+    ],
+    'members' =>[
+        'page-title' => '会員管理',
+    ],
+    'analytics' =>[
+        'page-title' => '受注管理',
     ]
 );

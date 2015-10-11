@@ -39,7 +39,7 @@ class TaskerCommand extends Command {
        {
            return array(
                array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub, 
-                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney, fix_student_count'),
+                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney, fix_student_count, cloud_search_index_all'),
                array('sale', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney sale ID'),
                array('price', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney new price value'),
            );
@@ -587,6 +587,62 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                 $course->student_count = $updated;
                 $course->updateUniques();
             }
+        }
+        
+        public function cloud_search_index_all(){
+            $client = AWS::get('cloudsearchdomain', [ 'endpoint' => Config::get('custom.cloudsearch-document-endpoint') ] );
+            $total = Course::where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+                                    ->where('publish_status', 'pending')
+                                    ->where('approved_data', '!=', "");
+                        })->count();
+            $this->info("$total courses to index");
+            $count = 1;
+            $updated = 0;
+            $i = 0;
+            while($count != 0){
+                $result = Course::where('publish_status', 'approved')
+                    ->where('privacy_status','public')
+                    ->orWhere(function($query2){
+                        $query2->where('privacy_status','public')
+                                ->where('publish_status', 'pending')
+                                ->where('approved_data', '!=', "");
+                    })->limit(500)->skip($updated)->get();
+                        
+                $count = $result->count();
+                if( $count == 0 ) break;
+                $batch = [];
+                foreach($result as $course){
+                    $author = $course->instructor->commentName();
+                    $company = '';
+                    if( isset($course->instructor->profile) && trim($course->instructor->profile->corporation_name) != ''){
+                        $company = $course->instructor->profile->corporation_name;
+                    }
+                    $batch[] = [
+                        'type'      => 'add',
+                        'id'        => $course->id,
+                        'fields'    => ['author' => $author, 
+                                        'company' => $company, 
+                                        'id' => $course->id, 
+                                        'short_description' => $course->short_description, 
+                                        'title' => $course->name ]
+                    ];
+                }
+                $indexResult = $client->uploadDocuments(array(
+                    'documents'     => json_encode($batch),
+                    'contentType'     =>'application/json'
+                ));
+                
+                $updated += $count;
+                $this->comment("$updated rows updated. Sleep 1 second");
+                ++$i;
+                sleep(1);
+                $this->comment('Resuming...');
+            }
+            
+            $this->info('INDEXING COMPLETE');
         }
 
 }

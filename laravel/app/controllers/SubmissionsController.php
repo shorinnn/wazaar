@@ -49,6 +49,7 @@ class SubmissionsController extends \BaseController {
             if( $course->forceSave() ){
                 $user = $course->instructor;
                 if(Input::get('value')=='approved'){
+                    $course->updateCloudSearch();
                     $subject = 'Course Approved';
                     $content = EmailTemplate::where('tag','course-approved')->first()->content;
                     Flatten::flushSection( 'courses-show-details'.$course->id );

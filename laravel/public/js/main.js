@@ -43,7 +43,7 @@ $(document).ready(function(){
         time = time.toString(); 
         console.log(time);
         $(this).countdown(time, function(event) {
-               $(this).html( event.strftime('%D '+_('days')+' %H  '+_('hours')+' %M  '+_('minutes')+' %S '+_('seconds')) );
+               $(this).html( event.strftime('%D'+_('days')+' %H'+_('hours')+' %M'+_('minutes')+' %S'+_('seconds')) );
              } );
     });
 	
@@ -1464,8 +1464,24 @@ function dynamicLessonNameWidth(){
                         var width = Number($(this).width()) - deductWidth;
                         $(this).children('a.lesson-name').css('width', width);
                     } else {
-                        $(this).children('a.lesson-name').css('width', 'inherit');
+                        if($(window).width() < 460){
+                            deductWidth = 15;
+                        } else {
+                            deductWidth = 40;
+                        }
+                        var width = Number($(this).width()) - deductWidth;
+
+                        $(this).children('a.lesson-name').css('width', width);
                     }
+                } else {
+                    if($(window).width() < 460){
+                        deductWidth = 15;
+                    } else {
+                        deductWidth = 40;
+                    }
+                    var width = Number($(this).width()) - deductWidth;
+
+                    $(this).children('a.lesson-name').css('width', width);
                 }
             })
         }
@@ -1598,6 +1614,7 @@ function toggleRightBar(e, json){
     if( showingQuestionForm ){
         showingQuestionForm = false;
         $('.ask-question').addClass('active');
+        if( $('.right-slide-menu').hasClass('in') ) return false;
         
     }
     

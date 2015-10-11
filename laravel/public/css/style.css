@@ -9448,7 +9448,9 @@ footer{
 	}*/
 
 	.category-content-container{
-		width: calc(100% - 260px);
+		width: calc(100% - 250px);
+		width: -moz-calc(100% - 250px);
+		width: -webkit-calc(100% - 250px);
 	}
 	/*.sidebar-menu ~ .category-content-container{
 		-webkit-flex: 1;
@@ -9563,6 +9565,7 @@ footer{
 	}
 	.enroll-button-section{
 		text-align: center;
+		padding-left: 0px;
 	}	
 	.enroll-button-section .enroll-button{
 		display: inline-block;
@@ -11353,3 +11356,10 @@ header .profile-name ul{
 	box-shadow: none;
 }
 /*end course category page course filter new buttons */
+/* generic admin page title */
+h1.admin-page-title{
+	text-align: center;
+	color: #09F;
+	padding-top: 30px;
+}
+/* end generic admin page title */
