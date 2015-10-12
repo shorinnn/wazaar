@@ -8,7 +8,7 @@ return array(
 	'other' => 'Other',
         'submit' => 'Submit',
         'type-of-issue' => 'Type of issue',
-            'type-of-question' => 'Type of question',
+        'type-of-question' => 'Type of question',
         'your-name' => 'Your Name',
         'email' => 'Email',
         'subject' => 'Subject',

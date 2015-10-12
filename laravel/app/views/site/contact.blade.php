@@ -16,10 +16,10 @@
                 </div>
                 <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                        <label>{{ trans('site/contact.type-of-question')}}<sup>*</sup> </label>
+                        <label class="no-margin-top">{{ trans('site/contact.type-of-question')}}<sup>*</sup> </label>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-                        <div class="radio-buttons clearfix">
+                        <div class="radio-buttons clearfix relative">
                             <div class="radio-item">
                                 <div class="radio-checkbox radio-checked">
                                     <input type='radio' name='user' value='{{ trans('site/contact.student')}}' id='user-1' required />
@@ -59,8 +59,8 @@
                         <label>{{ trans('site/contact.type-of-issue')}} <sup> *</sup></label>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5">
-                        <select name='question_type' required data-parsley-error-message="この値は必須です。" data-parsley-minlength="6">
-                                <option value="ご質問内容をお選びください。">ご質問内容をお選びください。</option>
+                        <select name='question_type' required data-parsley-error-message="この値は必須です。" data-parsley-minlength="1">
+                                <option value="">ご質問内容をお選びください。</option>
                                 <option value="Wazaarの使い方">Wazaarの使い方</option>
                                 <option value="会員登録">会員登録</option>
                                 <option value="講座受講">講座受講</option>

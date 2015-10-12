@@ -9257,8 +9257,8 @@ footer{
 .contact-us.main label{
 	float: right;
 	margin-top: 9px;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 16px;
+	font-weight: normal;
     margin-left: 0 !important;
 }
 .contact-us.main .tip{
