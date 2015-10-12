@@ -10747,9 +10747,9 @@ header .profile-name ul{
 
 }
 @media (max-width:451px){
-	.homepage-header-wrapper {
+	/*.homepage-header-wrapper {
 		margin-top: -140px;
-	}
+	}*/
 	.course-data .column-1 div{
 		width: 32%;
 		padding: 0 0 0 20px !important;
