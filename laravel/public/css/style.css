@@ -11419,7 +11419,8 @@ body.modal-open-noscroll
 	color: #09F;
 	text-decoration: underline !important;
 }
-.teach-img-container{
+.teach-img-container,
+.no-results-container{
 	padding-top: 20px;
 }
 .teach-img-container img{
