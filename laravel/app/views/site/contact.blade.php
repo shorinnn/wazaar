@@ -14,10 +14,12 @@
                         <label>Type of question</label>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                        <input type='radio' name='user' value='Student' id='user-1' required /> Student
-                        <input type='radio' name='user' value='Instructor' id='user-2' /> Instructor
-                        <input type='radio' name='user' value='Affiliate' id='user-3' /> Affiliate
-                        <input type='radio' name='user' value='Other' id='user-4' /> Other
+                        <div>
+                            <input type='radio' name='user' value='Student' id='user-1' required /> Student
+                            <input type='radio' name='user' value='Instructor' id='user-2' /> Instructor
+                            <input type='radio' name='user' value='Affiliate' id='user-3' /> Affiliate
+                            <input type='radio' name='user' value='Other' id='user-4' /> Other
+                        </div>
                     </div>
                 </div>
                 <div class="row input-row">
