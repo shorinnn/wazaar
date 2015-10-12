@@ -9945,6 +9945,12 @@ footer{
 		display: block;
 		float: right;
 	}
+	.category-content-container{
+		float: none !important;
+	}
+	.no-results-container{
+		padding-bottom: 20px;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
