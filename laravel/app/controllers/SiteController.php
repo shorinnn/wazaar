@@ -434,6 +434,10 @@ class SiteController extends \BaseController {
              Return View::make('TEMPORARYVIEWS.affiliate_dashboard');
         }
         
+        public function new_analytics(){
+             Return View::make('TEMPORARYVIEWS.new_analytics');
+        }
+
         public function classroomdash(){
              Return View::make('TEMPORARYVIEWS.classroom_dashboard');
         }

@@ -61,6 +61,7 @@ $wwwRoutes = function(){
 	Route::get('checkout', 'SiteController@checkout');
 	Route::get('newclassroom', 'SiteController@newclassroom');
 	Route::get('analytics', 'SiteController@analytics');
+	Route::get('new_analytics', 'SiteController@new_analytics');
 	Route::get('studentdashboard', 'SiteController@studentdashboard');
 	Route::get('studentaccount', 'SiteController@studentaccount');
 	Route::get('studentcourse', 'SiteController@studentcourse');
