@@ -80,13 +80,18 @@ var Analytics = {
     'InitCalendarFilter' : function(){
         function cb(start, end) {
             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            Analytics.DateFilterStart = start.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd =end.format('YYYY-MM-DD');
         }
         cb(moment().subtract(29, 'days'), moment());
         var $date = new Date();
+        var $startDate = new Date($date.getFullYear(), $date.getMonth(), 1);
+        var $endDate = new Date($date.getFullYear(), $date.getMonth() + 1, 0);
+
         $('#reportrange').daterangepicker({
             locale: 'jp',
-            startDate: new Date($date.getFullYear(), $date.getMonth(), 1),
-            endDate: new Date($date.getFullYear(), $date.getMonth() + 1, 0),
+            startDate: $startDate,
+            endDate: $endDate,
             ranges: {
                 'Today': [moment(), moment()],
                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -98,26 +103,91 @@ var Analytics = {
         }, cb);
 
         $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-
+            Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
         });
     },
     'DateFilterStart' : '',
     'DateFilterEnd' : '',
     'ApplyTableDateFilter' : function (){
 
-        Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
-        Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+        //Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+        //Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
         Analytics.TableSiteStats();
+        Analytics.TableSalesStats();
+        Analytics.TableTopCourses();
+        Analytics.TableTopAffiliates();
     },
 
     'TableSiteStats' : function (){
+
         $.get('/administration/analytics/site-statistics-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
             $('#table-site-stats').html($table);
+        });
+    },
+    'TableSalesStats' : function (){
+
+        $.get('/administration/analytics/sales-statistics-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#table-sales-stats').html($table);
+        });
+    },
+    'TableTopCourses' : function (){
+
+        $.get('/administration/analytics/top-courses-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#table-top-courses').html($table);
+        });
+    },
+
+    'TableTopAffiliates' : function (){
+
+        $.get('/administration/analytics/top-affiliates-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#table-top-affiliates').html($table);
         });
     }
 }
 
 $(function(){
+
+    $('#table-site-stats').on('click','.pagination a', function ($e){
+        $e.preventDefault();
+        showLoading();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            hideLoading();
+            $('#table-site-stats').html($table);
+        });
+    });
+
+    $('#table-sales-stats').on('click','.pagination a', function ($e){
+        $e.preventDefault();
+        showLoading();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            hideLoading();
+            $('#table-sales-stats').html($table);
+        });
+    });
+
+    $('#table-top-courses').on('click','.pagination a', function ($e){
+        $e.preventDefault();
+        showLoading();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            hideLoading();
+            $('#table-top-courses').html($table);
+        });
+    });
+
+    $('#table-top-affiliates').on('click','.pagination a', function ($e){
+        $e.preventDefault();
+        showLoading();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            hideLoading();
+            $('#table-top-affiliates').html($table);
+        });
+    });
+
     Analytics.ApplyFilter('today');
     Analytics.InitCalendarFilter();
     Analytics.ApplyTableDateFilter();
