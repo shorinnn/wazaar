@@ -571,3 +571,53 @@ Route::group(['prefix' => 'api'], function(){
 });
 
 Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
+
+
+Route::get('test2', function (){
+    $cloudFront = \Aws\CloudFront\CloudFrontClient::factory(array(
+        'private_key' => base_path() . '/pk-APKAJZS4MECIWRQNYUTA.pem',
+        'key_pair_id' => 'APKAJZS4MECIWRQNYUTA',
+    ));
+
+    $videoFileName = '0kAbDMC4XeUlg3ih1436790034239byka2c.mp4';
+    $expires = time() + 300;
+    $signedUrlCannedPolicy = $cloudFront->getSignedUrl(array(
+        'url'     => 'http://' . Config::get('wazaar.AWS_WEB_DOMAIN') . '/' . $videoFileName,
+        'expires' => $expires,
+    ));
+
+    dd($signedUrlCannedPolicy);
+});
+
+
+Route::get('test', function (){
+    // key pair generated for cloudfront
+    $keyPairId = 'APKAJZS4MECIWRQNYUTA';
+    $resource = '0kAbDMC4XeUlg3ih1436790034239byka2c.mp4';
+    $expires = time() + 600;
+    $json = '{"Statement":[{"Resource":"' . $resource . '","Condition":{"DateLessThan":{"AWS:EpochTime":' . $expires . '}}}]}';
+
+    // read cloudfront private key pair
+    $fp = fopen( base_path() . '/pk-' . $keyPairId . '.pem', 'r');
+    $priv_key = fread($fp, 8192);
+    fclose($fp);
+
+    // create the private key
+    $key = openssl_get_privatekey($priv_key);
+
+    // sign the policy with the private key
+    // depending on your php version you might have to use
+    // openssl_sign($json, $signed_policy, $key, OPENSSL_ALGO_SHA1)
+    openssl_sign($json, $signed_policy, $key);
+
+    openssl_free_key($key);
+
+    // create url safe signed policy
+    $base64_signed_policy = base64_encode($signed_policy);
+    $signature = str_replace(array('+', '=', '/'), array('-', '_', '~'), $base64_signed_policy);
+
+    // construct the url
+    $url = $resource . '?Expires=' . $expires . '&Signature=' . $signature . '&Key-Pair-Id=' . $keyPairId;
+
+    dd($url);
+});
