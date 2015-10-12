@@ -619,8 +619,8 @@ header .profile-name li:hover ul{
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
-	margin-top: -70px;
-	padding-top: 70px;
+	margin-top: -88px;
+	padding-top: 88px;
 	background-position: left top; 
 }
 .homepage-header{
@@ -9397,7 +9397,9 @@ footer{
 	margin: 0;
 	text-transform: uppercase;
 }
-
+.contact-confirmation p{
+    text-transform: none;
+}
 /*************** Media Query fixes **************************/
 @media (max-width: 1250px) and (min-width: 991px){
 .questions-sidebar .ask-question .img-container{
@@ -10207,9 +10209,9 @@ header .profile-name ul{
 	padding: 15px 20px 12px !important;
 	display: table-cell;
 }
-.homepage-header-wrapper{
+/*.homepage-header-wrapper{
 	margin-top: -90px;
-}
+}*/
 #discover-courses-area center img {
     margin-top: 50px !important;
 }
@@ -10548,9 +10550,9 @@ header .profile-name ul{
 	header{
 		padding: 0 40px 18px !important;
 	}
-	.homepage-header-wrapper{
+	/*.homepage-header-wrapper{
 		margin-top: -140px;
-	}
+	}*/
 	.category-heading-buttons{
 		width: 100%;
 	}
@@ -10872,7 +10874,7 @@ header .profile-name ul{
 	}
 	.homepage-header .extra-large-heading {
 		margin-top: 0;
-		padding-top: 55px;
+		padding-top: 20px;
 	}
 	.affiliate-top-header .add-gift, .affiliate-top-header .add-tracking-id{
 		font-size: 13px !important;
