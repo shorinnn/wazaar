@@ -23,7 +23,7 @@
                         <tbody>
                             @foreach($courses as $i => $course)
                             <tr>
-                                <td>#</td>
+                                <td>{{$i+1}}</td>
                                 <td>{{$course->name}}</td>
                                 <td>
                                     @if(isset($course->courseCategory->name) && !empty($course->courseCategory->name))

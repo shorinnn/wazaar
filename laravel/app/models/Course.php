@@ -597,5 +597,9 @@ class Course extends Ardent{
         ));
     }
 
+    public static function getAdminList()
+    {
+        return self::select('courses.*', DB::raw('course_categories.name as course_category'))->leftJoin('course_categories', 'course_categories.id', '=', 'courses.course_category_id')->where('publish_status', 'approved')->orderBy('course_category', 'asc')->get();
+    }
 
 }
