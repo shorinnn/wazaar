@@ -586,7 +586,7 @@ class SiteController extends \BaseController {
                 function ($message) use ($subject) {
                     $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
                     $message
-                        ->to('wazaar@mailinator.com', 'wazaar@mailinator.com')
+                        ->to( Config::get('custom.emails.contact-form-admin'), Config::get('custom.emails.contact-form-admin') )
                         ->subject( $subject );
                 }
             );
