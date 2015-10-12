@@ -1099,7 +1099,7 @@ function fullScreen(){
         expandCurriculum.reverse();
 
         //And then hide the close button when not in fullscreen mode
-        $(this).hide();;
+        $(this).hide();
 
         $('body').css('overflow', 'auto');
 
