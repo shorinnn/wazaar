@@ -274,7 +274,7 @@
         @include('courses.categories.partials._filter_partial')
       </div>
       <div class='ajax-content'>
-           {{ View::make('courses.categories.courses')->with( compact( 'courses', 'category', 'wishlisted' ) ) }}
+           {{ View::make('courses.categories.courses')->with( compact( 'courses', 'category', 'subcategory', 'search', 'wishlisted' ) ) }}
       </div>
     </div>
     <div class="clearfix"></div>
