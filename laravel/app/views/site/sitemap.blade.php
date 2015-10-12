@@ -39,10 +39,17 @@
             .sitemap .sidebar-menu{
                 width: auto;
                 max-width: none;
-                display: inline-block;
             }
             .sidebar-menu .group ul{
                 background: none;
+            }
+        }
+        @media (max-width:767px){
+            .sidebar-menu .group ul li .dropdown-menu {
+                margin: 5px 0 0px;
+            }
+            .sidebar-menu .group ul li .dropdown-menu li{
+            margin: 0;
             }
         }
     </style>

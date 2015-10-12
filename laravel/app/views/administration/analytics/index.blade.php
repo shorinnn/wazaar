@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title') 受注管理 - Wazaar @stop
 @section('content')
     <div class="row">
         <div class="col-md-12">

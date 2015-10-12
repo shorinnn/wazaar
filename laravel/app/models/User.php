@@ -254,5 +254,16 @@ class User extends Ardent implements ConfideUserInterface
         $this->custom = json_encode($custom);
         return true;
     }
+    
+    public function instructorNameOrCompany(){
+        $this->profile = $this->_profile('Instructor');
+        if( $this->profile != null ){
+            if( trim($this->profile->corporation_name) == '') return $this->profile->last_name.' '.$this->profile->first_name;
+            return $this->profile->corporation_name;
+        }
+        else{
+            return $this->last_name.' '.$this->first_name;
+        }
+    }
 
 }

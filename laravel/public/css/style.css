@@ -11415,3 +11415,14 @@ body.modal-open-noscroll
     padding-right: 0 !important;
 }
 
+.blue-link{
+	color: #09F;
+	text-decoration: underline !important;
+}
+.teach-img-container,
+.no-results-container{
+	padding-top: 20px;
+}
+.teach-img-container img{
+	margin: 0px auto;
+}

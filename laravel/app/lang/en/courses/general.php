@@ -244,5 +244,8 @@ return array(
     'previewers' => 'Previewers',
     'see_statistics' => 'See statistics',
     'buyers' => 'Buyers',
-    'available-for-customers' => 'Available for customers'
+    'available-for-customers' => 'Available for customers',
+    'no-course' => 'There is no course of :cat',
+    'teach-new-course' => "Why don't you teach your skill :cat",
+    'no-search-result' => 'no result found'
 );

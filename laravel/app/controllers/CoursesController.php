@@ -514,8 +514,7 @@ class CoursesController extends \BaseController {
             $category = $subcategory->courseCategory;
             $categories = CourseCategory::has('allCourses')->get();
             $categories->load( 'courseSubcategories' );
-            
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'subcategory', 'wishlisted'));
             Return View::make('courses.categories.category')->with(compact('category', 'subcategory', 'difficultyLevel', 'wishlisted', 'courses', 'categories') );
                             
         }
@@ -653,9 +652,9 @@ class CoursesController extends \BaseController {
             
             $categories = CourseCategory::has('allCourses')->get();
             $categories->load( 'courseSubcategories' );
-            
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel', 'wishlisted', 'categories' ) );
-            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel', 'wishlisted', 'categories') );
+            $subcategory = '';
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'subcategory', 'search', 'difficultyLevel', 'wishlisted', 'categories' ) );
+            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'subcategory', 'search', 'difficultyLevel', 'wishlisted', 'categories') );
                             
         }
         
