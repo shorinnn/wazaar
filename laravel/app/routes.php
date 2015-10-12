@@ -38,9 +38,10 @@ $wwwRoutes = function(){
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
     Route::get('about-the-company', 'SiteController@about');
     Route::get('contact', 'SiteController@contact');
+    Route::post('contact', 'SiteController@doContact');
     Route::get('contact_copy', 'SiteController@contact_copy');
-    Route::get('contact_confirmation', 'SiteController@contact_confirmation');
-    Route::get('thank_you', 'SiteController@thank_you');
+    Route::post('contact-confirmation', 'SiteController@contact_confirmation');
+    Route::get('thank-you', 'SiteController@thank_you');
     Route::get('error', 'SiteController@error');
     Route::get('sitemap', 'SiteController@sitemap');
 	

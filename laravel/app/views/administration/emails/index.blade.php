@@ -56,10 +56,21 @@
     
     <div class="row">
     	<div class="col-md-12 well">
-            <p><b>Contact Form Confirmation Email</b></p>
+            <p><b>Contact Form Wazaar Email</b></p>
             {{ Form::open(['action'=> 'EmailsController@update', 'method'=>'PUT', 'class'=>'ajax-form', 'data-callback'=>'formSaved' ] ) }}
-                <textarea name='content'>{{$contactFormSubmitted->value}}</textarea>
-                <input type="hidden" name="name" value="contact-form-submitted-content" />
+                <textarea name='content'>{{$contactFormSubmittedWazaar->value}}</textarea>
+                <input type="hidden" name="name" value="contact-form-submitted-wazaar-content" />
+                <p class="text-center"><button type="submit" class="btn btn-primary">Update</button></p>
+            {{ Form::close() }}
+        </div>
+    </div>
+    
+    <div class="row">
+    	<div class="col-md-12 well">
+            <p><b>Contact Form Customer Email</b></p>
+            {{ Form::open(['action'=> 'EmailsController@update', 'method'=>'PUT', 'class'=>'ajax-form', 'data-callback'=>'formSaved' ] ) }}
+                <textarea name='content'>{{$contactFormSubmittedUser->value}}</textarea>
+                <input type="hidden" name="name" value="contact-form-submitted-user-content" />
                 <p class="text-center"><button type="submit" class="btn btn-primary">Update</button></p>
             {{ Form::close() }}
         </div>

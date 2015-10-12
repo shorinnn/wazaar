@@ -15,7 +15,7 @@
         	    <p>どのようなタイプの質問ですか？</p>
             </div>
         	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-column">
-        	    <p>受講生</p>
+        	    <p>{{ Input::get('user') }}</p>
             </div>
         </div>
     	<div class="row no-margin">
@@ -23,23 +23,23 @@
         	    <p>どのようなご質問ですか？</p>
             </div>
         	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-column">
-        	    <p>コースの購入</p>
+        	    <p>{{ Input::get('question_type') }}</p>
             </div>
         </div>
-    	<div class="row no-margin">
+<!--    	<div class="row no-margin">
         	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 left-column">
         	    <p></p>
             </div>
         	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-column">
         	    <p>お支払いについて</p>
             </div>
-        </div>
+        </div>-->
     	<div class="row no-margin">
         	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 left-column">
         	    <p>お名前</p>
             </div>
         	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-column">
-        	    <p>技　ありこ</p>
+        	    <p>{{ Input::get('name') }}</p>
             </div>
         </div>
     	<div class="row no-margin">
@@ -47,7 +47,7 @@
         	    <p>メールアドレス</p>
             </div>
         	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-column">
-        	    <p>ariko@gmail.com</p>
+        	    <p>{{ Input::get('email') }}</p>
             </div>
         </div>
     	<div class="row no-margin">
@@ -55,7 +55,7 @@
         	    <p>件名</p>
             </div>
         	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-column">
-        	    <p>支払日</p>
+        	    <p>{{ Input::get('subject') }}</p>
             </div>
         </div>
     	<div class="row no-margin">
@@ -63,7 +63,7 @@
         	    <p>内容</p>
             </div>
         	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 right-column">
-        	    <p>口座に振り込まれるのはいつですか？</p>
+        	    <p>{{ Input::get('message') }}</p>
             </div>
         </div>
     </div>
@@ -73,8 +73,16 @@
 
             </div>
             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 text-center">
-            	<button class="large-button blue-button clear">書き直す</button>
-            	<button class="large-button blue-button confirmation">確認する</button>
+                <form method='post' action='contact'>
+                    <button class="large-button blue-button clear" onclick="window.history.back()">書き直す</button>
+                    <input type='hidden' name='user' value='{{Input::get('user')}}' />
+                    <input type='hidden' name='question_type' value='{{Input::get('question_type')}}' />
+                    <input type='hidden' name='name' value='{{Input::get('name')}}' />
+                    <input type='hidden' name='email' value='{{Input::get('email')}}' />
+                    <input type='hidden' name='subject' value='{{Input::get('subject')}}' />
+                    <input type='hidden' name='message' value='{{Input::get('message')}}' />
+                    <button type='submit' class="large-button blue-button confirmation">確認する</button>
+                </form>
             </div>
         </div>
     </div>

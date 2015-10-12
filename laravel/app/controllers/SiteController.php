@@ -535,7 +535,29 @@ class SiteController extends \BaseController {
         return View::make( 'site.about' );
     }
     public function contact(){
+        
         return View::make( 'site.contact' );
+    }
+    
+    public function doContact(){
+        $data = Input::all();
+        $msg = "User: $data[user]
+                Q type: $data[question_type]
+                Name: $data[name] 
+                Email: $data[email]
+                Message: $data[message]
+                ";
+        Mail::send(
+            'emails.test',
+            compact('msg'),
+            function ($message) use ($data) {
+                $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                $message
+                    ->to($data['email'], $data['name'])
+                    ->subject( $data['subject'] );
+            }
+        );
+        return Redirect::to('thank-you');
     }
 
     public function contact_copy(){

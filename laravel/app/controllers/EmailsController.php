@@ -11,9 +11,10 @@ class EmailsController extends \BaseController {
             $instructorSaleEmail = Setting::firstOrCreate( [ 'name' => 'instructor-email-sale-content' ] );
             $studentSaleEmail = Setting::firstOrCreate( [ 'name' => 'student-email-sale-content' ] );
             $instructorNewDiscussionsUpdateEmail = Setting::firstOrCreate( [ 'name' => 'instructor-new-discussions-update-content' ] );
-            $contactFormSubmitted = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-content' ] );
+            $contactFormSubmittedWazaar = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-wazaar-content' ] );
+            $contactFormSubmittedUser = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-user-content' ] );
             return View::make('administration.emails.index')->with( compact('instructorSaleEmail', 'studentSaleEmail', 
-                    'instructorNewDiscussionsUpdateEmail', 'contactFormSubmitted' ) );
+                    'instructorNewDiscussionsUpdateEmail', 'contactFormSubmittedWazaar', 'contactFormSubmittedUser' ) );
 	}
         
         public function update(){
