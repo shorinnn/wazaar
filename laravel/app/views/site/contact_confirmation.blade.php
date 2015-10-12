@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section class="container-fluid privacy-policy main">
+<section class="container-fluid privacy-policy main contact-confirmation">
     <div class="container extra-policy">
     	<div class="row no-margin no-border">
         	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 left-column">

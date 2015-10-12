@@ -51,8 +51,6 @@
             top: 0;
         }
 
-
-
         .plus {
             display: flex;
             margin: 0 auto;
