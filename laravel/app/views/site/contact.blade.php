@@ -27,7 +27,7 @@
                         <label>{{ trans('site/contact.type-of-issue')}}</label>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                        <select name='question_type' required data-parsley-error-message="この値は必須です。" data-parsley-minlength="6">
+                        <select name='question_type' required data-parsley-error-message="この値は必須です。" data-parsley-minlength="1">
                                 <option value="ご質問内容をお選びください。">ご質問内容をお選びください。</option>
                                 <option value="Wazaarの使い方">Wazaarの使い方</option>
                                 <option value="会員登録">会員登録</option>
