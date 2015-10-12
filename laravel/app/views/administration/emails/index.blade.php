@@ -70,6 +70,10 @@
                 <input type="hidden" name="fields[]" value='contact-form-submitted-wazaar-content' />
                 <p class="text-center"><button type="submit" class="btn btn-primary">Update</button></p>
             {{ Form::close() }}
+            <small> 
+                Available tags:<br />
+                @date@, @role@, @question-type@, @name@, @email@, @subject@, @issue@
+            </small>
         </div>
     </div>
     
@@ -83,6 +87,10 @@
                 <input type="hidden" name="fields[]" value="contact-form-submitted-user-content" />
                 <p class="text-center"><button type="submit" class="btn btn-primary">Update</button></p>
             {{ Form::close() }}
+            <small> 
+                Available tags:<br />
+                @date@, @role@, @question-type@, @name@, @email@, @subject@, @issue@
+            </small>
         </div>
     </div>
 </div>
