@@ -10756,9 +10756,9 @@ header .profile-name ul{
 	}
 }
 @media (max-width:420px){
-	.homepage-header-wrapper.logged-in{
+	/*.homepage-header-wrapper.logged-in{
 		margin-top: -160px;
-	}	
+	}*/
 	.category-heading-buttons{
 		width: 100%;
 	}
