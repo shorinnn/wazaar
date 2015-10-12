@@ -1210,7 +1210,7 @@ class CoursesController extends \BaseController {
 
     public function adminIndex()
     {
-        $courses = Course::orderBy('updated_at', 'desc')->get();
+        $courses = Course::getAdminList();
 
         return View::make('administration.courses.index', compact('courses'));
     }
