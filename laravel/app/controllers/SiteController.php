@@ -555,7 +555,26 @@ class SiteController extends \BaseController {
     }
     
     public function sitemap(){
-        return View::make( 'site.sitemap' );
+        $categories = CourseCategory::with('courseSubcategories')->orderBy('name')->get();
+        $columns = 4;
+        $rowsPerColumn = ceil($categories->count() / $columns);
+
+        $data = [];
+
+        $index = 0;
+        $loopCounter = 1;
+        foreach($categories as $category){
+
+            if ( $loopCounter > $rowsPerColumn )
+            {
+                $loopCounter = 1;
+                $index++;
+            }
+
+            $data[$index][] = $category;
+            $loopCounter++;
+        }
+        return View::make( 'site.sitemap', compact('data') );
     }
 
     public function missing_sti_fix(){
