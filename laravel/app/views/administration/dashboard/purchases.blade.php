@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title') 売上集計データ管理 - Wazaar @stop
 @section('content')
     <div class="row">
         <div class="col-md-12">
