@@ -9945,6 +9945,12 @@ footer{
 		display: block;
 		float: right;
 	}
+	.category-content-container{
+		float: none !important;
+	}
+	.no-results-container{
+		padding-bottom: 20px;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -11415,3 +11421,14 @@ body.modal-open-noscroll
     padding-right: 0 !important;
 }
 
+.blue-link{
+	color: #09F;
+	text-decoration: underline !important;
+}
+.teach-img-container,
+.no-results-container{
+	padding-top: 20px;
+}
+.teach-img-container img{
+	margin: 0px auto;
+}

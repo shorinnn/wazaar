@@ -8,6 +8,7 @@ return [
             '1436790034239-byka2c' => 'Low Resolution'
         ],
     'AWS_WEB_DOMAIN' => 'd2t29bdxhtuuvy.cloudfront.net',
+    'CLOUDFRONT_KEY_PAIR' => 'APKAJZS4MECIWRQNYUTA',
     'S3_PROFILES_BUCKET' => 'profile_pictures',
     'TAX' => '.08',
     'API_URL' => 'http://cocorium.com/api/',
