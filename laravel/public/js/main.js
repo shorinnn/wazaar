@@ -1952,3 +1952,13 @@ function ajaxifyPagination(e){
         $(this).attr( 'data-target', '.ajax-content' );
     });
 }
+
+
+function decryptVideoSrc(){
+    if( $('source').length > 0){
+        src = $('source').attr('src');
+        src = GibberishAES.dec(src, 'wzrencvid');
+        $('source').attr('src', src);
+        $('video')[0].load();
+    }
+}
