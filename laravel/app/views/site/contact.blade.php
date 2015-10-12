@@ -11,22 +11,54 @@
 	<div class="container">
                 <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                        <label>{{ trans('site/contact.type-of-question')}}</label>
+                        <label class="required-tip right">*必須項目</label>
                     </div>
-                    <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                        <div>
-                            <input type='radio' name='user' value='{{ trans('site/contact.student')}}' id='user-1' required /> {{ trans('site/contact.student')}}
-                            <input type='radio' name='user' value='{{ trans('site/contact.instructor')}}' id='user-2' /> {{ trans('site/contact.instructor')}}
-                            <input type='radio' name='user' value='{{ trans('site/contact.affiliate')}}' id='user-3' /> {{ trans('site/contact.affiliate')}}
-                            <input type='radio' name='user' value='{{ trans('site/contact.other')}}' id='user-4' /> {{ trans('site/contact.other')}}
+                </div>
+                <div class="row input-row">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <label>{{ trans('site/contact.type-of-question')}}<sup>*</sup> </label>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+                        <div class="radio-buttons clearfix">
+                            <div class="radio-item">
+                                <div class="radio-checkbox radio-checked">
+                                    <input type='radio' name='user' value='{{ trans('site/contact.student')}}' id='user-1' required />
+                                    <label for="user-1" class="small-radio"></label>
+                                </div>
+                                <span class="radio-button-label">{{ trans('site/contact.student')}}</span>
+                            </div>
+                            <div class="radio-item">
+                                <div class="radio-checkbox radio-checked">
+                                    <input type='radio' name='user' value='{{ trans('site/contact.instructor')}}' id='user-2' />
+                                    <label for="user-2" class="small-radio"></label>
+                                </div>
+                                <span class="radio-button-label">{{ trans('site/contact.instructor')}}</span>
+                            </div>
+                            <div class="radio-item">
+                                <div class="radio-checkbox radio-checked">
+                                    <input type='radio' name='user' value='{{ trans('site/contact.affiliate')}}' id='user-3' />
+                                    <label for="user-3" class="small-radio"></label>
+                                </div>
+                                <span class="radio-button-label">{{ trans('site/contact.affiliate')}}</span>
+                            </div>
+                            <div class="radio-item">
+                                <div class="radio-checkbox radio-checked">
+                                    <input type='radio' name='user' value='{{ trans('site/contact.other')}}' id='user-4' />
+                                    <label for="user-4" class="small-radio"></label>
+                                </div>
+                                <span class="radio-button-label">{{ trans('site/contact.other')}}</span>
+                            </div>
+
+
+
                         </div>
                     </div>
                 </div>
                 <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                        <label>{{ trans('site/contact.type-of-issue')}}</label>
+                        <label>{{ trans('site/contact.type-of-issue')}} <sup> *</sup></label>
                     </div>
-                    <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5">
                         <select name='question_type' required data-parsley-error-message="この値は必須です。" data-parsley-minlength="6">
                                 <option value="ご質問内容をお選びください。">ご質問内容をお選びください。</option>
                                 <option value="Wazaarの使い方">Wazaarの使い方</option>
@@ -39,51 +71,51 @@
                         </select>
                     </div>
                 </div>
-                    <div class="row input-row">
+                <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <label>{{ trans('site/contact.your-name')}}</label>
+                        <label>{{ trans('site/contact.your-name')}} <sup> *</sup></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5">
+                        <input type="text" name='name' placeholder="{{ trans('site/contact.enter-name') }}" required />
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                    <input type="text" name='name' placeholder="{{ trans('site/contact.enter-name') }}" required />
-                </div>
-            </div>
-                    <div class="row input-row">
+                <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <label>{{ trans('site/contact.email')}}</label>
+                        <label>{{ trans('site/contact.email')}} <sup> *</sup></label>
 
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                    <input type="email" name='email' placeholder="Email" required data-parsley-trigger="change" />
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5">
+                        <input type="email" name='email' placeholder="Email" required data-parsley-trigger="change" />
 
+                     </div>
                 </div>
-            </div>
-                    <div class="row input-row">
+                <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <label>{{ trans('site/contact.subject')}}</label>
+                        <label>{{ trans('site/contact.subject')}}</label>
 
-                </div>
-                <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                    <input type="text" name='subject' placeholder="{{ trans('site/contact.enter-subject') }}" required />
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5">
+                        <input type="text" name='subject' placeholder="{{ trans('site/contact.enter-subject') }}" required />
 
+                    </div>
                 </div>
-            </div>
-                    <div class="row input-row">
+                <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <label>{{ trans('site/contact.message')}}</label>
+                        <label>{{ trans('site/contact.message')}}</label>
 
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5">
+                        <textarea name='message' placeholder="{{ trans('site/contact.enter-message') }}" required></textarea>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                    <textarea name='message' placeholder="{{ trans('site/contact.enter-message') }}" required></textarea>
-                </div>
-            </div>
-                    <div class="row input-row">
+                <div class="row input-row">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5">
+                        <button type='submit' class="large-button blue-button send">{{ trans('site/contact.submit')}}</button>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                    <button type='submit' class="large-button blue-button send">{{ trans('site/contact.submit')}}</button>
-                </div>
-            </div>
         </div>
     </form>
 </section>

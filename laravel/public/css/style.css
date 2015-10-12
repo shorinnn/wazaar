@@ -145,6 +145,7 @@ textarea,
 .value-unit,
 input[type='text'],
 input[type='date'],
+input[type='email'],
 input[type='password']{
 	display: inline-block;
 	height: 38px;
@@ -9258,7 +9259,7 @@ footer{
 	margin-top: 9px;
 	font-size: 14px;
 	font-weight: 600;
-    margin-left: 0;
+    margin-left: 0 !important;
 }
 .contact-us.main .tip{
 	margin-top: 8px;
@@ -9292,11 +9293,16 @@ footer{
 }
 .contact-us.main .input-row .radio-item{
     display: inline-block;
-    margin: 0 15px 0 0;
+    margin: 0 15px 5px 0;
     padding: 0;
+    vertical-align: top;
 }
 .contact-us.main .input-row .radio-item .radio-button-label{
     margin-left: 7px;
+}
+.contact-us.main .input-row .parsley-errors-list{
+    position:  absolute;
+    top: 0;
 }
 .contact-us.main .input-row .confirmation{
     min-width: 180px;
