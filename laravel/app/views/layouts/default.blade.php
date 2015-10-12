@@ -163,7 +163,7 @@
                             <!--<a href="{{ action('SiteController@about') }}">運営会社</a>-->
                             <a href="{{ action('SiteController@privacyPolicy') }}">プライバシーポリシー</a>
                             <span>利用規約　</span>
-                            <span>特定商取引法に基づく表記</span>
+                            <a href="{{ action('SiteController@about') }}">特定商取引法に基づく表記</a>
                             <a href="#" class="footer-logo"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" alt="Wazaar" /></a>
                         </div>
                     </div>

@@ -2888,6 +2888,7 @@ h2, h3, h4, h5, h6{
 	background: #0099ff;
 	text-decoration: none;
 	outline: none;
+    width: 100%;
 	text-transform: uppercase;
 	-webkit-box-shadow: 0px 1px 0px #e7e8e9;
     -moz-box-shadow: 0px 1px 0px #e7e8e9;
@@ -9255,6 +9256,7 @@ footer{
 	margin-top: 9px;
 	font-size: 14px;
 	font-weight: 600;
+    margin-left: 0;
 }
 .contact-us.main .tip{
 	margin-top: 8px;
@@ -9278,6 +9280,40 @@ footer{
 }
 .contact-us.main .input-row + .input-row{
 	margin-top: 24px;
+}
+.contact-us.main .input-row sup{
+    color: #ff0000;
+}
+.contact-us.main .input-row .radio-buttons{
+    float: none;
+    margin: 0;
+}
+.contact-us.main .input-row .radio-item{
+    display: inline-block;
+    margin: 0 15px 0 0;
+    padding: 0;
+}
+.contact-us.main .input-row .radio-item .radio-button-label{
+    margin-left: 7px;
+}
+.contact-us.main .input-row .confirmation{
+    min-width: 180px;
+    float: right;
+}
+.contact-us.thank-you{
+    padding-bottom: 180px;
+    padding-top: 50px;
+}
+.privacy-policy.main .input-row .confirmation{
+    min-width: 180px;
+    margin-left: 15px;
+}
+
+.contact-us.main .input-row .required-tip{
+    color: #ff0000;
+}
+.contact-us.main .input-row p{
+    margin: 0;
 }
 .privacy-policy.main .container{
 	padding-top: 48px;
@@ -11370,7 +11406,6 @@ h1.admin-page-title{
 /* Remove extra padding-right added by Bootstrap modal box*/
 body.modal-open-noscroll
 {
-    padding-right: 0 !important;
     overflow: hidden;
 }
 .modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom

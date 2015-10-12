@@ -538,6 +538,18 @@ class SiteController extends \BaseController {
         return View::make( 'site.contact' );
     }
 
+    public function contact_copy(){
+        return View::make( 'site.contact_copy' );
+    }
+
+    public function contact_confirmation(){
+        return View::make( 'site.contact_confirmation' );
+    }
+
+    public function thank_you(){
+        return View::make( 'site.thank_you' );
+    }
+
     public function error(){
         return View::make( 'site.error' );
     }
