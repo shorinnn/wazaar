@@ -1,6 +1,6 @@
 @extends('layouts.default')
+@section('page_title') 会員管理 - Wazaar @stop
 @section('content')	
-    
 @if (Session::get('success'))
     <div class="alert alert-success">{{{ Session::get('success') }}}</div>
 @endif
