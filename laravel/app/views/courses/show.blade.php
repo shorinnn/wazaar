@@ -565,6 +565,7 @@
 @section('extra_js')
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script src="{{ url('js/jquery.waypoints.min.js') }}"></script>
+    <script src='{{url('js/Gibberish-AES.js')}}'></script>
     <script>
         $('.affiliate-top-header #affiliate-toolbar-link').click( function() {
             $(this).focus();
@@ -707,7 +708,7 @@
                 // }, 1000)                
             @endif
 
-            //decryptVideoSrc();
+            decryptVideoSrc();
         });    
     </script>
 @stop

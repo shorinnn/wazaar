@@ -9,17 +9,31 @@ class EmailsController extends \BaseController {
 	{
             // lil dev change
             $instructorSaleEmail = Setting::firstOrCreate( [ 'name' => 'instructor-email-sale-content' ] );
+            $instructorSaleEmailSubject = Setting::firstOrCreate( [ 'name' => 'instructor-email-sale-subject' ] );
+            
             $studentSaleEmail = Setting::firstOrCreate( [ 'name' => 'student-email-sale-content' ] );
+            $studentSaleEmailSubject = Setting::firstOrCreate( [ 'name' => 'student-email-sale-subject' ] );
+            
             $instructorNewDiscussionsUpdateEmail = Setting::firstOrCreate( [ 'name' => 'instructor-new-discussions-update-content' ] );
-            $contactFormSubmitted = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-content' ] );
+            $instructorNewDiscussionsUpdateEmailSubject = Setting::firstOrCreate( [ 'name' => 'instructor-new-discussions-update-subject' ] );
+            
+            $contactFormSubmittedWazaar = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-wazaar-content' ] );
+            $contactFormSubmittedWazaarSub = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-wazaar-subject' ] );
+            $contactFormSubmittedUser = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-user-content' ] );
+            $contactFormSubmittedUserSub = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-user-subject' ] );
             return View::make('administration.emails.index')->with( compact('instructorSaleEmail', 'studentSaleEmail', 
-                    'instructorNewDiscussionsUpdateEmail', 'contactFormSubmitted' ) );
+                    'instructorNewDiscussionsUpdateEmail', 'contactFormSubmittedWazaar', 'contactFormSubmittedUser', 'contactFormSubmittedUserSub',
+                    'contactFormSubmittedWazaarSub', 'instructorSaleEmailSubject', 'studentSaleEmailSubject', 'instructorNewDiscussionsUpdateEmailSubject'
+                    ) );
 	}
         
         public function update(){
-            $email = Setting::where('name', Input::get('name'))->first();
-            $email->value = Input::get('content');
-            $email->updateUniques();
+            foreach( Input::get('fields') as $name=>$val ){
+                $set = Setting::where('name', $val)->first();
+                $set->value = Input::get( $val );
+                $set->updateUniques();
+            }
+            
             if(Request::ajax()) return json_encode (['status'=>'success']);
             return Redirect::back()->withSuccess('Email Updated');
         }

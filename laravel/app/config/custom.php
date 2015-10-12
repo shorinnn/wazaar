@@ -31,4 +31,7 @@ return [
     'course-desc-lesson-chars' => 25,
     'cloudsearch-document-endpoint' => 'doc-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com',
     'cloudsearch-search-endpoint' => 'search-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com',
+    'emails' => [
+        'contact-form-admin' => 'wazaar@mailinator.com'
+    ]
 ];

@@ -539,7 +539,62 @@ class SiteController extends \BaseController {
         return View::make( 'site.about' );
     }
     public function contact(){
+        
         return View::make( 'site.contact' );
+    }
+    
+    public function doContact(){
+        $data = Input::all();
+        $msg = "User: $data[user]
+                Q type: $data[question_type]
+                Name: $data[name] 
+                Email: $data[email]
+                Message: $data[message]
+                ";
+        // mail to customer
+            $msg = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-user-content' ] )->value;
+            $subject = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-user-subject' ] )->value;
+            $date = date('Y年m月d日 h時i分s秒');
+            $msg = str_replace('@date@', $date, $msg);
+            $msg = str_replace('@role@', $data['user'], $msg);
+            $msg = str_replace('@question-type@', $data['question_type'], $msg);
+            $msg = str_replace('@name@', $data['name'], $msg);
+            $msg = str_replace('@email@', $data['email'], $msg);
+            $msg = str_replace('@subject@', $data['subject'], $msg);
+            $msg = str_replace('@issue@', $data['message'], $msg);
+            Mail::send(
+                'emails.test',
+                compact('msg'),
+                function ($message) use ($data, $subject) {
+                    $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                    $message
+                        ->to($data['email'], $data['name'])
+                        ->subject( $subject );
+                }
+            );
+        
+        // mail to wazaar
+            $msg = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-wazaar-content' ] )->value;
+            $subject = Setting::firstOrCreate( [ 'name' => 'contact-form-submitted-wazaar-subject' ] )->value;
+            $date = date('Y年m月d日 h時i分s秒');
+            $msg = str_replace('@date@', $date, $msg);
+            $msg = str_replace('@role@', $data['user'], $msg);
+            $msg = str_replace('@question-type@', $data['question_type'], $msg);
+            $msg = str_replace('@name@', $data['name'], $msg);
+            $msg = str_replace('@email@', $data['email'], $msg);
+            $msg = str_replace('@subject@', $data['subject'], $msg);
+            $msg = str_replace('@issue@', $data['message'], $msg);
+            Mail::send(
+                'emails.test',
+                compact('msg'),
+                function ($message) use ($subject) {
+                    $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                    $message
+                        ->to( Config::get('custom.emails.contact-form-admin'), Config::get('custom.emails.contact-form-admin') )
+                        ->subject( $subject );
+                }
+            );
+        return Redirect::to('thank-you');
     }
 
     public function contact_copy(){
