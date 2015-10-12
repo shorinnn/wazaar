@@ -706,6 +706,8 @@
                 //     discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
                 // }, 1000)                
             @endif
+
+            //decryptVideoSrc();
         });    
     </script>
 @stop

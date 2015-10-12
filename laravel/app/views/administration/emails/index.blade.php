@@ -53,6 +53,17 @@
             </small>
         </div>
     </div>
+    
+    <div class="row">
+    	<div class="col-md-12 well">
+            <p><b>Contact Form Confirmation Email</b></p>
+            {{ Form::open(['action'=> 'EmailsController@update', 'method'=>'PUT', 'class'=>'ajax-form', 'data-callback'=>'formSaved' ] ) }}
+                <textarea name='content'>{{$contactFormSubmitted->value}}</textarea>
+                <input type="hidden" name="name" value="contact-form-submitted-content" />
+                <p class="text-center"><button type="submit" class="btn btn-primary">Update</button></p>
+            {{ Form::close() }}
+        </div>
+    </div>
 </div>
 
 @stop
