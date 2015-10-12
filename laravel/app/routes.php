@@ -542,7 +542,6 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('admin/users-csv/','AdminDashboardController@usersCsv');
     Route::get('admin/courses-csv/','AdminDashboardController@coursesCsv');
     Route::get('admin/monthly-stats/','AdminDashboardController@monthlyStats');
-    
 });
 
 
@@ -568,15 +567,3 @@ Route::group(['prefix' => 'api'], function(){
 });
 
 Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
-
-Route::get('test', function(){
-
-    $sd = '2015-09-01';
-    $ed = '2015-09-13';
-
-    echo AnalyticsHelper::fillObjectWithDates($sd,$ed,[]);
-
-});
-
-
-Route::get('payment-test', 'PaymentTestController@pay');
