@@ -12,11 +12,11 @@ class CoursesController extends \BaseController {
             
         }
 
-	public function index()
-	{
+    public function index()
+    {
             $categories = CourseCategory::all();
             Return View::make('courses.index')->with(compact('categories'));
-	}
+    }
         
         public function create(){
             $course = new Course;
@@ -1207,4 +1207,11 @@ class CoursesController extends \BaseController {
             else
                 return Redirect::back()->withError( 'Could not disapprove Course ' );
         }
+
+    public function adminIndex()
+    {
+        $courses = Course::getAdminList();
+
+        return View::make('administration.courses.index', compact('courses'));
+    }
 }
