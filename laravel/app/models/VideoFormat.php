@@ -33,10 +33,11 @@ class VideoFormat extends \LaravelBook\Ardent\Ardent
             $cloudFront = \Aws\CloudFront\CloudFrontClient::factory(array(
                 'private_key' => base_path() . '/pk-'. $cloudFrontKeyPair .'.pem',
                 'key_pair_id' => $cloudFrontKeyPair,
+                'region' => 'ap-northeast-1'
             ));
 
             $videoFileName = $value;
-            $expires = time() + 60; //expires in 1 min
+            $expires = time() + 10; //expires in 1 min
             $url = $cloudFront->getSignedUrl(array(
                 'url'     => 'http://' . Config::get('wazaar.AWS_WEB_DOMAIN') . '/' . $videoFileName,
                 'expires' => $expires
