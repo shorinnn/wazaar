@@ -19,7 +19,7 @@
                         <label class="no-margin-top">{{ trans('site/contact.type-of-question')}}<sup>*</sup> </label>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
-                        <div class="radio-buttons clearfix relative">
+                        <div class="radio-buttons clearfix">
                             <div class="radio-item">
                                 <div class="radio-checkbox radio-checked">
                                     <input type='radio' name='user' value='{{ trans('site/contact.student')}}' id='user-1' required />

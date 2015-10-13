@@ -9300,9 +9300,11 @@ footer{
 .contact-us.main .input-row .radio-item .radio-button-label{
     margin-left: 7px;
 }
-.contact-us.main .input-row .parsley-errors-list{
-    position:  absolute;
-    top: 0;
+.contact-us.main .input-row .parsley-errors-list {
+    position: absolute;
+    bottom: -15px;
+    left: 18px;
+    padding: 0;
 }
 .contact-us.main .input-row .confirmation{
     min-width: 180px;
@@ -9408,6 +9410,91 @@ footer{
 .contact-confirmation p{
     text-transform: none;
 }
+
+/* New Analytics UI */
+.new_analytics{
+    background-color: #f0f4f5;
+}
+.new_analytics h2{
+    color: #45494d;
+    margin-bottom: 13px;
+    line-height: 30px;
+}
+.new_analytics h2 i{
+    color: #a7b7c4;
+    line-height: 16px;
+    font-size: 16px;
+    font-weight: 400;
+}
+.new_analytics .course-summary-block{
+    background: #fff;
+    border: 1px solid #e0e1e2;
+    border-radius: 4px;
+}
+.new_analytics .course-summary-block .column-1 .row{
+    padding: 24px 24px 24px 30px;
+}
+
+.new_analytics .course-summary-block h3{
+    color: #303941;
+    margin: 0;
+}
+.new_analytics .course-summary-block .sales span,
+.new_analytics .course-summary-block .earnings span{
+    color: #a7b7c4;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 15px;
+    text-transform: uppercase;
+}
+.new_analytics .course-summary-block .sales em,
+.new_analytics .course-summary-block .earnings em{
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 34px;
+    color: #7ed321;
+    margin-top: 17px;
+    font-style: normal;
+    display: block;
+}
+.new_analytics .course-summary-block .earnings {
+    margin-right: 43px;
+}
+.new_analytics .course-summary-block .sales em{
+    color: #303941;
+}
+.new_analytics .course-summary-block .column-3,
+.new_analytics .course-summary-block .column-2{
+    border-left: 1px solid #ebebeb;
+    margin: 12px 0 11px;
+    padding: 16px 24px 0px 24px;
+}
+.new_analytics .course-summary-block .column-3 p,
+.new_analytics .course-summary-block .column-2 p{
+    margin: 0;
+    color: #a7b7c4;
+    font-size: 11px;
+    line-height: 22px;
+    margin-bottom: 13px;
+    text-transform: uppercase;
+}
+.new_analytics .course-summary-block .column-3 p span,
+.new_analytics .course-summary-block .column-2 p span{
+    float: right;
+    color: #303941;
+    font-size: 14px;
+}
+.new_analytics .periodic-stats{
+    border: 1px solid #e0e1e2;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-top: 13px;
+}
+.new_analytics .periodic-stats .tabbed-content-header{
+    background-color: #f7f9fa;
+    border: 1px solid #e0e1e2;
+}
+
 /*************** Media Query fixes **************************/
 @media (max-width: 1250px) and (min-width: 991px){
 .questions-sidebar .ask-question .img-container{
