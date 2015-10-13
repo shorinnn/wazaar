@@ -90,6 +90,7 @@ class InstructorCashoutCommand extends ScheduledCommand {
             })->get();
             
             foreach( $instructors as $instructor ){
+                $this->info("Processing instructor $instructor->id");
                 $transactions = $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
                         ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )
                         ->where(function ($q) use ($testPurchases){
@@ -97,9 +98,25 @@ class InstructorCashoutCommand extends ScheduledCommand {
                             ->orWhereNull('purchase_id');                            
                         })
                         ->get();
-                
-                if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
-                    $instructor->debit( $transactions->sum('amount'), null, $transactions );
+                $sum = $transactions->sum('amount'); 
+                $this->info("AMT: $sum");
+                if( $sum >= Config::get('custom.cashout.threshold') ){
+                    if ( !$instructor->debit( $transactions->sum('amount'), null, $transactions ) ){
+                        $this->error('Could not debit - '.$instructor->debit_error);
+                        if( isset($instructor->balance_error) && $instructor->balance_error == true ){
+                            unset($instructor->balance_error);
+                            unset($instructor->debit_error);
+                            $instructor->instructor_balance = $sum;
+                            $instructor->updateUniques();
+                            $this->comment('Balance fixed');
+                        }
+                    }
+                    else{
+                        $this->comment('DEBITED!');
+                    }
+                }
+                else{
+                    $this->comment('Amount less than trashold. Not attempting cashout.');
                 }
             }
 	}

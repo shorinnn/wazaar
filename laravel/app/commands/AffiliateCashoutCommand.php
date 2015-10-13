@@ -89,14 +89,32 @@ class AffiliateCashoutCommand extends ScheduledCommand {
                             });
             })->get();
             foreach( $affiliates as $affiliate ){
+                $this->info("Processing affiliate $affiliate->id");
                 $transactions = $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')
                         ->where('created_at', '<=', $cutoffDate )
                         ->where(function ($q) use ($testPurchases){
                             $q->whereNotIn( 'purchase_id', $testPurchases )
                             ->orWhereNull('purchase_id');                            
                         })->get();
-                if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
-                    $affiliate->debit( $transactions->sum('amount'), null, $transactions );
+                $sum = $transactions->sum('amount'); 
+                $this->info("AMT: $sum");
+                if( $sum >= Config::get('custom.cashout.threshold') ){
+                    if( !$affiliate->debit( $transactions->sum('amount'), null, $transactions ) ){
+                        $this->error('Could not debit - '.$affiliate->debit_error);
+                        if( isset($affiliate->balance_error) && $affiliate->balance_error == true ){
+                            unset($affiliate->balance_error);
+                            unset($affiliate->debit_error);
+                            $affiliate->affiliate_balance = $sum;
+                            $affiliate->updateUniques();
+                            $this->comment('Balance fixed');
+                        }
+                    }
+                    else{
+                        $this->comment('DEBITED!');
+                    }
+                }
+                else{
+                    $this->comment('Amount less than trashold. Not attempting cashout.');
                 }
             }
 	}
