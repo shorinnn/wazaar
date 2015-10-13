@@ -22,6 +22,9 @@
       padding-left: 50px;
       padding-right: 30px;
     }
+    .modal-body .mobile-main-category-list{
+      padding-top: 10px;
+    }
     .mobile-main-category-list .list-group-item a,
     .mobile-sub-category-list .list-group-item a{
       display: block;
@@ -232,9 +235,9 @@
 <div id="category-list-modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-      </div>
       <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
+        <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
               <li class="selected-main-category list-group-item">
