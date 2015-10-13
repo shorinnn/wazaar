@@ -24,26 +24,26 @@
                         <td>DateTime</td>
                     </tr>
                     @foreach($purchases as $purchase)
-                    <tr>
-                        <td>{{ $purchase->id }}</td>
-                        <td>{{ $purchase->product->name.' ('.$purchase->product_type.')' }}</td>
-                        <td>{{ $purchase->purchase_price }}</td>
-                        <td>
-                            @if($purchase->product_type=='Course')
-                                {{ $purchase->product->instructor->fullName() }}
-                            @else
-                                {{ $purchase->product->module->course->instructor->fullName() }}
-                            @endif
-                        </td>
-                        <td>
-                            @if($purchase->student==null)
-                                ACCOUNT NO LONGER EXISTS
-                            @else
-                            {{ $purchase->student->fullName() }}
-                            @endif
-                        </td>
-                        <td>{{ $purchase->created_at }}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $purchase->id }}</td>
+                            <td>{{ $purchase->product->name.' ('.$purchase->product_type.')' }}</td>
+                            <td>{{ $purchase->purchase_price }}</td>
+                            <td>
+                                @if($purchase->product_type=='Course')
+                                    {{ $purchase->product->instructor->fullName() }}
+                                @else
+                                    {{ $purchase->product->module->course->instructor->fullName() }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($purchase->student==null)
+                                    ACCOUNT NO LONGER EXISTS
+                                @else
+                                    {{ $purchase->student->fullName() }}
+                                @endif
+                            </td>
+                            <td>{{ $purchase->created_at }}</td>
+                        </tr>
                     @endforeach
                 </table>
                 {{ $purchases->appends(['filter'=>Input::get('filter')])->links() }}
