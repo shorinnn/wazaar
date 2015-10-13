@@ -29,7 +29,9 @@ class Purchase extends CocoriumArdent{
         $now = new DateTime();
         $purchased  = new DateTime( $this->created_at );
         $dDiff = $now->diff($purchased);
-        if( $dDiff->days > 30) return false;
+        $cutoff = date( 'Y-m-01', strtotime('-1 day') );
+        if( $this->created_at <= $cutoff ) return false;
+//        if( $dDiff->days > 30) return false;
         return true;
     }
     public function refund(){
