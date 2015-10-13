@@ -20,7 +20,8 @@ class WithdrawalsCest{
         $instructor = Instructor::where('username', 'instructor')->first();
         Transaction::truncate();
         Transaction::unguard();
-        $t = date('Y-m-01', strtotime('-40 day') );
+//        $t = date('Y-m-01', strtotime('-40 day') );
+        $t = date('Y-m-01', strtotime('-1 day') );
         Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
@@ -61,7 +62,8 @@ class WithdrawalsCest{
         $instructor = Instructor::where('username', 'instructor')->first();
         Transaction::truncate();
         Transaction::unguard();
-        $t = date('Y-m-01', strtotime('-40 day') );
+//        $t = date('Y-m-01', strtotime('-40 day') );
+        $t = date('Y-m-01', strtotime('-1 day') );
         Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'second_tier_instructor_credit', 'amount' => 50, 'product_id' => 1, 
