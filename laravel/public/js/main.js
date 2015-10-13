@@ -118,6 +118,15 @@ $(document).ready(function(){
 
 });
 
+function clear_backdrop(){
+    $('body').removeClass('modal-open');
+    $("#menu-backdrop").remove();
+}
+
+function show_backdrop(){   
+    $('body').addClass('modal-open').append('<div class="modal-backdrop fade in" id="menu-backdrop"></div>');   
+}
+
 function newHomepageToggleData(){
     if($('.homepage-course-groups').length >= 1){
         $('.show_all_courses').click(function(){

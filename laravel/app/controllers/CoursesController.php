@@ -328,6 +328,7 @@ class CoursesController extends \BaseController {
         public function category($slug=''){
             $difficultyLevel = Input::get('difficulty') ?: null;
             $filter = Input::get('filter') ?: null;
+            $subcategory = null;
             $sort = null;
             $wishlisted = [];
             if( Auth::check() ){
@@ -352,8 +353,8 @@ class CoursesController extends \BaseController {
                     $categories = CourseCategory::has('allCourses')->get();
                     $categories->load( 'courseSubcategories' );
 
-                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with( compact( 'category', 'courses', 'wishlisted', 'categories' ) );
-                    return View::make('courses.categories.category')->with( compact( 'category', 'difficultyLevel', 'courses', 'wishlisted', 'categories') );
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with( compact( 'category', 'courses', 'wishlisted', 'categories', 'subcategory' ) );
+                    return View::make('courses.categories.category')->with( compact( 'category', 'difficultyLevel', 'courses', 'wishlisted', 'categories', 'subcategory') );
                 }
 
                 $sort = Input::get('sort');
@@ -402,8 +403,8 @@ class CoursesController extends \BaseController {
                 $categories = CourseCategory::has('allCourses')->get();
                 $categories->load( 'courseSubcategories' );
 
-                if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted', 'categories'));                
-                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted', 'categories'));
+                if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted', 'categories', 'subcategory'));                
+                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted', 'categories', 'subcategory'));
             }
 
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
@@ -450,8 +451,8 @@ class CoursesController extends \BaseController {
             $categories = CourseCategory::has('allCourses')->get();
             $categories->load( 'courseSubcategories' );
             
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories'));
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted', 'categories', 'subcategory'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories', 'subcategory'));
                             
         }
         
@@ -486,8 +487,8 @@ class CoursesController extends \BaseController {
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
                     $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order, $subcat, '', $filter);
-                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted', 'categories' ) );
-                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories') );
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted', 'categories', 'subcategory'  ) );
+                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories', 'subcategory') );
                 }
 
                 $sort = Input::get('sort');

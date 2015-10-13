@@ -187,13 +187,6 @@
             </ul>
           @endif */?>
         </section>
-        <!-- <div class="group popular">
-            <h3>Popular</h3>
-            <ul class="main-menu">
-                <li class="popular-list"><a href="#">Featured<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
-                <li class="popular-list"><a href="#">Best sellers<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
-            </ul>
-        </div> -->
         <div class="hidden-xs hidden-sm visible-md visible-lg">
           <div class="group">
               <h3>Categories</h3>
@@ -308,7 +301,7 @@
               var url = '/courses/category';
               @if(isset($category->slug) && !empty($category->slug))
                 url = url + '/{{$category->slug}}';
-                @if(isset($category->slug) && !empty($category->slug))
+                @if(isset($subcategory->slug) && !empty($subcategory->slug))
                   url = url + '/{{$subcategory->slug}}';
                 @endif
               @endif
