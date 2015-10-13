@@ -37,7 +37,7 @@ class VideoFormat extends \LaravelBook\Ardent\Ardent
             ));
 
             $videoFileName = $value;
-            $expires = time() + 10; //expires in 1 min
+            $expires = time() + (60 * 30); //expires in 30 min
             $url = $cloudFront->getSignedUrl(array(
                 'url'     => 'http://' . Config::get('wazaar.AWS_WEB_DOMAIN') . '/' . $videoFileName,
                 'expires' => $expires
