@@ -101,13 +101,6 @@ class AffiliateCashoutCommand extends ScheduledCommand {
                 if( $sum >= Config::get('custom.cashout.threshold') ){
                     if( !$affiliate->debit( $transactions->sum('amount'), null, $transactions ) ){
                         $this->error('Could not debit - '.$affiliate->debit_error);
-                        if( isset($affiliate->balance_error) && $affiliate->balance_error == true ){
-                            unset($affiliate->balance_error);
-                            unset($affiliate->debit_error);
-                            $affiliate->affiliate_balance = $sum;
-                            $affiliate->updateUniques();
-                            $this->comment('Balance fixed');
-                        }
                     }
                     else{
                         $this->comment('DEBITED!');

@@ -103,13 +103,6 @@ class InstructorCashoutCommand extends ScheduledCommand {
                 if( $sum >= Config::get('custom.cashout.threshold') ){
                     if ( !$instructor->debit( $transactions->sum('amount'), null, $transactions ) ){
                         $this->error('Could not debit - '.$instructor->debit_error);
-                        if( isset($instructor->balance_error) && $instructor->balance_error == true ){
-                            unset($instructor->balance_error);
-                            unset($instructor->debit_error);
-                            $instructor->instructor_balance = $sum;
-                            $instructor->updateUniques();
-                            $this->comment('Balance fixed');
-                        }
                     }
                     else{
                         $this->comment('DEBITED!');
