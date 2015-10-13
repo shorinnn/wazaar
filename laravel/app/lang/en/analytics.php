@@ -52,7 +52,10 @@ return
 
 	'profit' => 'Profit',
 	'revenue' => 'Revenue',
-	
+    'see_statistics' => 'See statistics',
+    'previewers' => 'PREVIEWERS',
+    'reviews' => 'REVIEWS',
+
     'Monday' => 'Monday',
     'Tuesday' => 'Tuesday',
     'Wednesday' => 'Wednesday',
@@ -140,7 +143,9 @@ return
     'courseName' => 'Course Name',
     'courseCategory' => 'Course Category',
     'instructorName' => 'Instructor Name',
-    'instructorEmail' => 'Instructor Email'
+    'instructorEmail' => 'Instructor Email',
+
+    'courses' => 'Courses'
 
 
 ];

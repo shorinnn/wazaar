@@ -8,7 +8,7 @@ class CourseHelper {
      * @param array $otherFilters
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\Paginator|static[]
      */
-    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [], $sort = 'DESC', $subcategory = null, $searchString='')
+    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [], $sort = 'DESC', $subcategory = null, $searchString='', $filter = null)
     {
         $courses = null;
 
@@ -40,6 +40,14 @@ class CourseHelper {
         }
         else{}
 
+        if (!empty($filter)){
+            if($filter == 'free'){
+                $courses = $courses->where('free', 'yes');
+            } else if($filter == 'paid') {
+                $courses = $courses->where('free', 'no');
+            }
+        }
+        
         $validFilters = ['course_difficulty_id'];
 
         foreach($otherFilters as $filterKey => $filterVal){
@@ -53,6 +61,7 @@ class CourseHelper {
                     ->orWhere( 'course_description', 'like', "%$searchString%" );
             });
         }
+
 
         $courses->orderBy('total_sales', $sort);
         
@@ -135,8 +144,8 @@ class CourseHelper {
         $options = [
             ''    => trans('general.select-sort'),
             'best-at' => trans('courses/general.sort.best-selling-all-time'), 
-            'best-m' => trans('courses/general.sort.best-selling-this-month'), 
-            'best-w' => trans('courses/general.sort.best-selling-this-week'), 
+            // 'best-m' => trans('courses/general.sort.best-selling-this-month'), 
+            // 'best-w' => trans('courses/general.sort.best-selling-this-week'), 
             'date' => trans('courses/general.sort.recent-courses'),
             'date-oldest' => trans('courses/general.sort.oldest-courses')
         ];

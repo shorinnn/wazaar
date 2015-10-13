@@ -51,16 +51,27 @@ class Instructor extends User{
     }
     
     public function money($field = 'revenue', $timespan='today'){
-        $field = ($field=='revenue') ? 'purchase_price' : 'instructor_earnings';
+        if($field=='revenue')  $field = 'purchase_price';
+        if($field=='profit')  $field = 'instructor_earnings';
+        
+//        $field = ($field=='revenue') ? 'purchase_price' : 'instructor_earnings';
         $timespan = strtolower($timespan);
         switch($timespan){
             case 'today': $start = date('Y-m-d 00:00:00'); $stop = date('Y-m-d 23:59:59'); break;
+            case 'all-time': $start = date('2000-01-01 00:00:00'); $stop = date('Y-m-d 23:59:59'); break;
             default: $start = date('Y-m-d 00:00:00'); $stop = date('Y-m-d 23:59:59'); break;
         }
         
         if($field=='instructor_earnings'){
             return Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
                     ->sum($field);
+        }
+        elseif($field=='total_site_earnings'){
+            $site = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum('site_earnings');
+            $ltc = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum('ltc_affiliate_earnings');
+            return $site+$ltc;
         }
         else{
             $purchases = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
@@ -208,11 +219,11 @@ class Instructor extends User{
      
      public function commentName($userType=null){
         if( $this->profile != null ){
-            return $this->profile->first_name.' '.$this->profile->last_name;
+            return $this->profile->last_name.' '.$this->profile->first_name;
         }
         else{
-            if($this->first_name=='') return $this->email;
-            else return $this->first_name.' '.$this->last_name;
+            if($this->first_name=='') return '';
+            else return $this->last_name.' '.$this->first_name;
         }
     }
 

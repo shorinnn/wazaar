@@ -25,6 +25,7 @@ Route::get('loginTest', 'SiteController@loginTest');
 Route::get('show-me-the-env-boyeee', 'SiteController@env');
 Route::get('missing_sti_fix', 'SiteController@missing_sti_fix');
 Route::get('clear-cache/huehue', 'SiteController@clearCache');
+Route::get('estest', 'SiteController@estest');
 
 $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
@@ -37,6 +38,12 @@ $wwwRoutes = function(){
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
     Route::get('about-the-company', 'SiteController@about');
     Route::get('contact', 'SiteController@contact');
+    Route::post('contact', 'SiteController@doContact');
+    Route::get('contact_copy', 'SiteController@contact_copy');
+    Route::post('contact-confirmation', 'SiteController@contact_confirmation');
+    Route::get('thank-you', 'SiteController@thank_you');
+    Route::get('error', 'SiteController@error');
+    Route::get('sitemap', 'SiteController@sitemap');
 	
     
     Route::get('/dash', 'SiteController@dashboard');
@@ -55,6 +62,7 @@ $wwwRoutes = function(){
 	Route::get('checkout', 'SiteController@checkout');
 	Route::get('newclassroom', 'SiteController@newclassroom');
 	Route::get('analytics', 'SiteController@analytics');
+	Route::get('new_analytics', 'SiteController@new_analytics');
 	Route::get('studentdashboard', 'SiteController@studentdashboard');
 	Route::get('studentaccount', 'SiteController@studentaccount');
 	Route::get('studentcourse', 'SiteController@studentcourse');
@@ -192,6 +200,7 @@ $wwwRoutes = function(){
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('manage-orders', 'OrdersController@index');
         Route::get('manage-users', 'UsersController@adminManageUsers');
+        Route::get('manage-courses', 'CoursesController@adminIndex');
     });
 //});
 };
@@ -492,7 +501,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
         Route::get('/course/stats/{courseId?}', 'InstructorDashboardController@courseStatsTableView');
         Route::get('sales/get-count/{frequency?}/{courseId?}','InstructorDashboardController@salesCountView');
         Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@salesView');
-        Route::any('affiliatestable','InstructorDashboardController@topAffiliatesTableView');
+        Route::any('course/affiliates/{courseId}','InstructorDashboardController@topAffiliatesTableView');
 
         Route::get('instructor/sales/{frequency}','InstructorDashboardController@detailedSales');
         Route::get('instructor/second-tier-sales/{frequency}','InstructorDashboardController@detailedSecondTierSales');
@@ -539,7 +548,6 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('admin/users-csv/','AdminDashboardController@usersCsv');
     Route::get('admin/courses-csv/','AdminDashboardController@coursesCsv');
     Route::get('admin/monthly-stats/','AdminDashboardController@monthlyStats');
-    
 });
 
 
@@ -566,14 +574,52 @@ Route::group(['prefix' => 'api'], function(){
 
 Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
 
-Route::get('test', function(){
 
-    $sd = '2015-09-01';
-    $ed = '2015-09-13';
+Route::get('test2', function (){
+    $cloudFront = \Aws\CloudFront\CloudFrontClient::factory(array(
+        'private_key' => base_path() . '/pk-APKAJZS4MECIWRQNYUTA.pem',
+        'key_pair_id' => 'APKAJZS4MECIWRQNYUTA',
+    ));
 
-    echo AnalyticsHelper::fillObjectWithDates($sd,$ed,[]);
+    $videoFileName = '0kAbDMC4XeUlg3ih1436790034239byka2c.mp4';
+    $expires = time() + 300;
+    $signedUrlCannedPolicy = $cloudFront->getSignedUrl(array(
+        'url'     => 'http://' . Config::get('wazaar.AWS_WEB_DOMAIN') . '/' . $videoFileName,
+        'expires' => $expires,
+    ));
 
+    dd($signedUrlCannedPolicy);
 });
 
 
-Route::get('payment-test', 'PaymentTestController@pay');
+Route::get('test', function (){
+    // key pair generated for cloudfront
+    $keyPairId = 'APKAJZS4MECIWRQNYUTA';
+    $resource = '0kAbDMC4XeUlg3ih1436790034239byka2c.mp4';
+    $expires = time() + 600;
+    $json = '{"Statement":[{"Resource":"' . $resource . '","Condition":{"DateLessThan":{"AWS:EpochTime":' . $expires . '}}}]}';
+
+    // read cloudfront private key pair
+    $fp = fopen( base_path() . '/pk-' . $keyPairId . '.pem', 'r');
+    $priv_key = fread($fp, 8192);
+    fclose($fp);
+
+    // create the private key
+    $key = openssl_get_privatekey($priv_key);
+
+    // sign the policy with the private key
+    // depending on your php version you might have to use
+    // openssl_sign($json, $signed_policy, $key, OPENSSL_ALGO_SHA1)
+    openssl_sign($json, $signed_policy, $key);
+
+    openssl_free_key($key);
+
+    // create url safe signed policy
+    $base64_signed_policy = base64_encode($signed_policy);
+    $signature = str_replace(array('+', '=', '/'), array('-', '_', '~'), $base64_signed_policy);
+
+    // construct the url
+    $url = $resource . '?Expires=' . $expires . '&Signature=' . $signature . '&Key-Pair-Id=' . $keyPairId;
+
+    dd($url);
+});

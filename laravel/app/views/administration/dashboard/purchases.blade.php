@@ -1,6 +1,11 @@
 @extends('layouts.default')
-@section('page_title')Wazaar - 売上集計データ管理@stop
+@section('page_title') 売上集計データ管理 - Wazaar @stop
 @section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class='icon admin-page-title'>{{ trans('administration.purchases.page-title' )}}</h1>
+        </div>
+    </div>
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard  analytics-page">
             <div class="top-courses-purchased-wrapper">
@@ -19,26 +24,26 @@
                         <td>DateTime</td>
                     </tr>
                     @foreach($purchases as $purchase)
-                    <tr>
-                        <td>{{ $purchase->id }}</td>
-                        <td>{{ $purchase->product->name.' ('.$purchase->product_type.')' }}</td>
-                        <td>{{ $purchase->purchase_price }}</td>
-                        <td>
-                            @if($purchase->product_type=='Course')
-                                {{ $purchase->product->instructor->fullName() }}
-                            @else
-                                {{ $purchase->product->module->course->instructor->fullName() }}
-                            @endif
-                        </td>
-                        <td>
-                            @if($purchase->student==null)
-                                ACCOUNT NO LONGER EXISTS
-                            @else
-                            {{ $purchase->student->fullName() }}
-                            @endif
-                        </td>
-                        <td>{{ $purchase->created_at }}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $purchase->id }}</td>
+                            <td>{{ $purchase->product->name.' ('.$purchase->product_type.')' }}</td>
+                            <td>{{ $purchase->purchase_price }}</td>
+                            <td>
+                                @if($purchase->product_type=='Course')
+                                    {{ $purchase->product->instructor->fullName() }}
+                                @else
+                                    {{ $purchase->product->module->course->instructor->fullName() }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($purchase->student==null)
+                                    ACCOUNT NO LONGER EXISTS
+                                @else
+                                    {{ $purchase->student->fullName() }}
+                                @endif
+                            </td>
+                            <td>{{ $purchase->created_at }}</td>
+                        </tr>
                     @endforeach
                 </table>
                 {{ $purchases->appends(['filter'=>Input::get('filter')])->links() }}

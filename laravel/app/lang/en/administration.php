@@ -158,5 +158,14 @@ return array(
             'join-date' => 'Join Date',
             'roles' => 'Roles',
         ]
+    ],
+    'purchases' =>[
+        'page-title' => 'Purchases',
+    ],
+    'members' =>[
+        'page-title' => 'Members',
+    ],
+    'analytics' =>[
+        'page-title' => 'Analytics',
     ]
 );

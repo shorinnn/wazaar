@@ -17,6 +17,7 @@ return array(
 	'weeks-of-learning' => 'weeks of learning',
 	'catalogue' => 'Catalogue',
 	'my_name_is' => 'Hi, my name is',
+	'support' => 'Support',
     'email' => 'Email',
     'facebook' => 'Facebook',
     'google' => 'Google',

@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('page_title') 会員管理 - Wazaar @stop
+
 @section('content') 
 <style>
     .form-horizontal input,

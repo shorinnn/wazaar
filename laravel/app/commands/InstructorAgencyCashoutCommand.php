@@ -51,7 +51,7 @@ class InstructorAgencyCashoutCommand extends ScheduledCommand {
 	 */
 	public function fire()
 	{
-            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
             
             // get all affiliates that meet the threshold
             $agencies = InstructorAgency::whereHas('allTransactions', function($query) use ($cutoffDate){

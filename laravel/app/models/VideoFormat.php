@@ -14,20 +14,34 @@ class VideoFormat extends \LaravelBook\Ardent\Ardent
     public function getVideoUrlAttribute($value)
     {
         // return old url for production
-        if(App::environment()=='production'){
-            $outputDomain   = 'http://'. Config::get('wazaar.AWS_WEB_DOMAIN');
-            return $outputDomain . '/' . $value;
-        }
+        // edit: all videos will now expire (Oct 9 2015) including production
+        //if(App::environment()=='production'){
+            //$outputDomain   = 'http://'. Config::get('wazaar.AWS_WEB_DOMAIN');
+            //return $outputDomain . '/' . $value;
+        //}
         
         // create video url that expires in 5 seconds
-        $client = AWS::get('s3');
-        $command = $client->getCommand('GetObject', array(
-            'Bucket' => 'videosoutput-tokyo',
-            'Key' => $value
-        ));
+        //$client = AWS::get('s3');
+        //$command = $client->getCommand('GetObject', array(
+        //    'Bucket' => 'videosoutput-tokyo',
+        //    'Key' => $value
+        //));
 
         try{
-            $url = $command->createPresignedUrl('+5 seconds');
+            //$url = $command->createPresignedUrl('+5 seconds');
+            $cloudFrontKeyPair = Config::get('wazaar.CLOUDFRONT_KEY_PAIR');
+            $cloudFront = \Aws\CloudFront\CloudFrontClient::factory(array(
+                'private_key' => base_path() . '/pk-'. $cloudFrontKeyPair .'.pem',
+                'key_pair_id' => $cloudFrontKeyPair,
+                'region' => 'ap-northeast-1'
+            ));
+
+            $videoFileName = $value;
+            $expires = time() + 10; //expires in 1 min
+            $url = $cloudFront->getSignedUrl(array(
+                'url'     => 'http://' . Config::get('wazaar.AWS_WEB_DOMAIN') . '/' . $videoFileName,
+                'expires' => $expires
+            ));
         }
         catch(Exception $e){
             return $e->getMessage();

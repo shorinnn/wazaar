@@ -601,7 +601,7 @@ function timeUntil($futureDate, $returnSeconds = false){
     $int = $interval = $future_date->diff($now);
     if($int->format("%d")>0){
 //        $time = $interval->format("%d days %h:%i:%s");
-        $time = $interval->days.' days'.' '.$interval->format(" %h:%i:%s");
+        $time = $interval->days.'days '.$interval->format("%h:%i:%s");
     }
     else{
         $time = $interval->format("%h:%i:%s");

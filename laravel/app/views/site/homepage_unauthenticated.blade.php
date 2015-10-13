@@ -1,6 +1,4 @@
 @extends('layouts.default')
-@section('page_title')Wazaar - 技の動画フリーマーケット「ワザール」遂に始動@stop
-@section('meta_description')あなたの「好き」がお金になる。@stop
 @section('content')
     <style>
         .popular-courses{
@@ -16,8 +14,18 @@
             height: 330px;
             position: relative;
         }
-
-
+		.home-search-form{
+			display: inline-block;
+		}
+		.home-search-form-wrap{
+			margin-top: 52px;
+		}
+		.browse-category-button{
+			padding: 20px 25px;
+			position: relative;
+			vertical-align: top;
+			margin-bottom: 15px;
+		}
     </style>
     <section class="homepage-header-wrapper clearfix">
         <span class="background-image-overlay"></span>
@@ -28,15 +36,20 @@
                         {{trans('site/homepage.take_skill_to_new_level')}}
                         <p class="lead">{{trans('site/homepage.learning_has_never_been_easier')}}</p>
                     </h1>
-                    <a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>
-                    <div class="home-search-form">
-                        
-                        <form action='{{ action('CoursesController@search') }}'>
-                            <div>
-                                <input type="search" name="term" class="left" placeholder="{{trans('site/homepage.what-do-you-want-to-learn')}}">
-                                <button><i class="wa-search"></i></button>
-                            </div>
-                        </form>
+                    <!--<a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>-->
+                    <div class="videoWrapper">
+                    	
+                    </div>
+                    <div class=" clearfix clear text-center home-search-form-wrap">
+                        <a href="{{ action('CoursesController@category') }}" class="blue-button large-button browse-category-button">コース一覧</a>
+                        <div class="home-search-form">
+                            <form action='{{ action('CoursesController@search') }}'>
+                                <div>
+                                    <input type="search" name="term" class="left" placeholder="{{trans('site/homepage.what-do-you-want-to-learn')}}">
+                                    <button><i class="wa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -180,7 +193,22 @@
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter') ) }} 
             </div>
         </div>
-    </section>
+        </section>
+            <section class="footer-search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <form action='{{ action('CoursesController@search') }}' class="clearfix">
+                                <label>会員になって、学びたいことを探す！</label>
+                                <div class="search-wrap clearfix">
+                                    <input type="text" name="term"  placeholder="Search...">
+                                    <button><i class="wa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
     
 @stop
 
@@ -192,6 +220,9 @@
     <script src="{{url('plugins/smoothscroll/jquery.mousewheel.min.js')}}" type="text/javascript"></script>
     <script src="{{url('plugins/smoothscroll/jquery.smoothdivscroll-1.3-min.js')}}" type="text/javascript"></script>
     <script>
+		$(document).ready(function(e) {
+            $('.homepage-header .videoWrapper').html('<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=0" frameborder="0" allowfullscreen></iframe>');
+        });
         $(function(){
             $('.whats-hot-slider').smoothDivScroll({
                 autoScrollingMode: "onStart",

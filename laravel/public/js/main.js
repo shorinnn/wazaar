@@ -11,7 +11,21 @@ function isset(variable){
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
-    
+
+    $('.modal').on('show.bs.modal', function () {
+        if ($(document).height() > $(window).height()) {
+            // no-scroll
+            $('body').addClass("modal-open-noscroll");
+        }
+        else {
+            $('body').removeClass("modal-open-noscroll");
+        }
+    })
+    $('.modal').on('hidden.bs.modal', function () {
+        $('body').removeClass("modal-open-noscroll");
+        console.log("Hidden");
+    });
+
     $('body').delegate('video', "contextmenu",function(){
             return false;
         });
@@ -43,7 +57,7 @@ $(document).ready(function(){
         time = time.toString(); 
         console.log(time);
         $(this).countdown(time, function(event) {
-               $(this).html( event.strftime('%D '+_('days')+' %H  '+_('hours')+' %M  '+_('minutes')+' %S '+_('seconds')) );
+               $(this).html( event.strftime('%D'+_('days')+' %H'+_('hours')+' %M'+_('minutes')+' %S'+_('seconds')) );
              } );
     });
 	
@@ -92,12 +106,10 @@ $(document).ready(function(){
 	//stickyFooter();
 	rescaleBckgrdOverlay();
     newHomepageToggleData();
-    
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
       dynamicLessonNameWidth();
    	  skinVideoControls();
-      setLessonSidebarRepliesScrollHeight();
 	});
 	
 	$(".classroom-view #myVideo").resize(function() {
@@ -106,15 +118,6 @@ $(document).ready(function(){
 
 });
 
-function setLessonSidebarRepliesScrollHeight()
-{
-    if($('.lesson-sidebar').length >= 1){
-        var height = $(window).height();
-        var deductions = $('.lesson-sidebar .discussion-sidebar-header').height() + $('.lesson-sidebar .sidebar-questioner-parent').height() + $('.lesson-sidebar .discussion-sidebar-footer').height() + 24 + 24;
-        height = Number(height) - Number(deductions);
-        $('.lesson-sidebar .replies-holder').height(height);
-    }
-}
 function newHomepageToggleData(){
     if($('.homepage-course-groups').length >= 1){
         $('.show_all_courses').click(function(){
@@ -414,7 +417,6 @@ function linkToRemote(e){
             if( typeof(callback)!= 'undefined'){
                 window[callback](e, result);
             }
-            setLessonSidebarRepliesScrollHeight();
         }
         else{
             console.log( result );
@@ -1097,7 +1099,7 @@ function fullScreen(){
         expandCurriculum.reverse();
 
         //And then hide the close button when not in fullscreen mode
-        $(this).hide();;
+        $(this).hide();
 
         $('body').css('overflow', 'auto');
 
@@ -1476,8 +1478,24 @@ function dynamicLessonNameWidth(){
                         var width = Number($(this).width()) - deductWidth;
                         $(this).children('a.lesson-name').css('width', width);
                     } else {
-                        $(this).children('a.lesson-name').css('width', 'inherit');
+                        if($(window).width() < 460){
+                            deductWidth = 15;
+                        } else {
+                            deductWidth = 40;
+                        }
+                        var width = Number($(this).width()) - deductWidth;
+
+                        $(this).children('a.lesson-name').css('width', width);
                     }
+                } else {
+                    if($(window).width() < 460){
+                        deductWidth = 15;
+                    } else {
+                        deductWidth = 40;
+                    }
+                    var width = Number($(this).width()) - deductWidth;
+
+                    $(this).children('a.lesson-name').css('width', width);
                 }
             })
         }
@@ -1610,6 +1628,7 @@ function toggleRightBar(e, json){
     if( showingQuestionForm ){
         showingQuestionForm = false;
         $('.ask-question').addClass('active');
+        if( $('.right-slide-menu').hasClass('in') ) return false;
         
     }
     
@@ -1935,17 +1954,11 @@ function ajaxifyPagination(e){
 }
 
 
-        
-function showReviewsModal() {
-    $('.review-modal').modal('show');
+function decryptVideoSrc(){
+    if( $('source').length > 0){
+        src = $('source').attr('src');
+        src = GibberishAES.dec(src, 'wzrencvid');
+        $('source').attr('src', src);
+        $('video')[0].load();
+    }
 }
-
-function cancelReviewsModal() {
-    $('.review-modal').modal('hide');
-}
-
-function courseReviewPosted(e, json) {
-    $('.review-modal').modal('hide');
-    $.bootstrapGrowl(_('Thank you for your review.'), {align: 'center', type: 'success'});
-}
-        

@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title') 売上管理 - Wazaar @stop
 @section('content')
 	<style>
             .instructor-dashboard .tab-content{
@@ -84,12 +85,7 @@
                            {{trans('general.dash.wishlist')}}</a>
                         </li>
                     </ul> 
-                    @if( $courses->count() > 0 )
-                        <a href="{{action('CoursesController@create')}}" class="right add-new-course add-new-from-header large-button blue-button">
-                            <i class="fa fa-plus"></i> 
-                            {{ trans('courses/create.create-btn-instructor') }}
-                        </a>    
-                    @endif
+                    
                 </div>
             </div>
         </div>
@@ -104,10 +100,7 @@
                             <p class="text-center">{{ trans('courses/create.no-courses-yet-create-one') }}</p>
                             
                             <div class="text-center clearfix">
-                            <a href="{{action('CoursesController@create')}}" class="margin-top-15 add-new-course large-button blue-button">
-                                <i class="fa fa-plus"></i> 
-                                {{ trans('courses/create.create-btn-instructor') }}
-                            </a> 
+                            <br />
                             </div>
                           @endif
                           
@@ -180,7 +173,7 @@
                                                     </div>
                                                 	<div class="col-xs-6 col-sm-6 col-md-7 col-lg-7 text-right">
                                                     	<a href="{{ action('InstructorDashboardController@course', $course->slug)}}" class="default-button see-stat"><i class="fa fa-line-chart"></i>
-                                                            <span class="hidden-xs">{{ trans('courses/general.see_statistics') }}</span>
+                                                            <span class="hidden-xs">{{ trans('analytics.see_statistics') }}</span>
                                                         </a>
                                                             <div class="settings activate-dropdown">
                                                             <button aria-expanded="false" data-toggle="dropdown" 
@@ -231,7 +224,7 @@
                                                       {{ trans('courses/general.purchases') }} <span class="count new">
                                                           {{ $course->sales()->count() + $course->lessonSalesCount() }}--></span>
                                                   </p>
-                                                 <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.previewers') }} 
+                                                 <p><i class="fa fa-smile-o"></i>{{ trans('analytics.previewers') }} 
                                                      <span class="count new">
                                                          @if( $course->nonBuyerPreviews(true) > 0)
                                                              {{ $course->nonBuyerPreviews(true) }} NEW
@@ -239,7 +232,7 @@
                                                          <em> ({{ $course->nonBuyerPreviews() }})</em></span>
                                                  </p>
                                                  
-                                                 <p><i class="wa-like"></i>{{ trans('general.reviews') }}
+                                                 <p><i class="wa-like"></i>{{ trans('analytics.reviews') }}
                                                      <span class="count">{{ $course->total_reviews }} <em> ({{ $course->reviewsScore() }})</em></span></p>
                                             </div>
                                         </div>
@@ -250,7 +243,69 @@
                             </div>
                           @endforeach
                           
-                          {{ $courses->links() }}
+                          <!-- summary area -->
+                          <div class="row margin-bottom-25 ">
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="clearfix teaching-lesson no-border finished-lesson">
+                                        <div class="row row-1">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 column-1" style='min-height:50px; padding:0px'>
+                                                <table class="table table-borderless" style='margin:0px; margin-top:-25px'>
+                                                    <tr>　　　　　　　 
+                                                        <td>総売上額</td>
+                                                        <td>アフィリエイター報酬</td>
+                                                        <td>２ティア報酬</td>
+                                                        <td>システム手数料</td>
+                                                        <td>販売収入</td>
+                                                    </tr>
+                                                    <tr>　　　　　　　 
+                                                        <td> 
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('purchase_price','all-time') , Config::get('custom.currency_decimals')) }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('second_tier_affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('total_site_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('instructor_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                                <a href="{{action('CoursesController@create')}}" class="add-new-course add-new-from-header large-button blue-button">
+                                    <i class="fa fa-plus"></i> 
+                                    {{ trans('courses/create.create-btn-instructor') }}
+                                </a> 
+                              </div>
+                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6"></div>
+                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                                <form>
+                                    {{ Form::select('sort',[
+                                        'date-new' => '作成日 新しい',
+                                        'date-old' => '作成日 古い',
+                                        'public' => '公開',
+                                        'unlisted' => '限定公開',
+                                        'private' => '非公開',
+                                    ], Input::get('sort'), [ 'onchange' => 'this.form.submit()', 'class' => 'form-control' ] ) }}
+
+                                </form>
+                              </div>
+
+
+                            </div>
+                          <!-- /summary area -->
+                          
+                          {{ $courses->appends( [ 'sort' => Input::get('sort') ] )->links() }}
                           
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
@@ -371,11 +426,13 @@
         
     $(function(){
         
-        @if( Request::segment(3) !='' )
-            $('[href="#{{Request::segment(3)}}"]').click();
-        @else
-            @if($purchasedCourses->count() > 0)
-                $('[href="#enrolled"]').click();
+        @if( !Input::has('sort'))
+            @if( Request::segment(3) !='' )
+                $('[href="#{{Request::segment(3)}}"]').click();
+            @else
+                @if($purchasedCourses->count() > 0)
+                    $('[href="#enrolled"]').click();
+                @endif
             @endif
         @endif
 

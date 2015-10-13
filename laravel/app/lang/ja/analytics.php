@@ -42,7 +42,10 @@ return
     'course' => 'コース',
 
 	'profit' => '販売収益',
-	'revenue' => '総売上額',
+    'revenue' => '総売上額',
+    'see_statistics' => '販売に関する分析',
+    'previewers' => 'previewers',
+    'reviews' => 'つのレビュー',
 
     'Monday' => '月曜日',
     'Tuesday' => '火曜日',
@@ -108,4 +111,32 @@ return
 	'affiliate_fee' => 'アフィリエイターへの報酬額',
 	'second_tier_sales_fee' => 'アフィリ２ティアへの報酬額',
 
+
+    'totalSignUps' => 'Total New Signups <br/> (Instructors & Students)',
+    'totalRevenues' => 'Total Revenues',
+    'totalSignUpsAffs' => 'Total New Signups <br/> (Affiliates)',
+    'totalSignupsAll' => 'Total Signups (All)',
+
+    'date' => 'Date',
+    'tax' => 'Tax',
+    'salesStatistics' => 'Sales Statistics',
+    'siteStatistics' => 'Site Statistics',
+    'registrationStatistics' => 'Registration Statistics',
+    'affiliateRegistrations' => 'Affiliate Registrations',
+
+    'tableFilter' => 'Tables Filter',
+    'applyFilter' => 'Apply Filter',
+    'topAffiliates' => 'Top Affiliates',
+    'wazaarRevenue' => 'Wazaar Revenue',
+
+    'rank' => 'Rank',
+    'name' => 'Name',
+    'email' => 'Email',
+
+    'courseName' => 'Course Name',
+    'courseCategory' => 'Course Category',
+    'instructorName' => 'Instructor Name',
+    'instructorEmail' => 'Instructor Email',
+
+    'courses' => '販売分析'
 ];

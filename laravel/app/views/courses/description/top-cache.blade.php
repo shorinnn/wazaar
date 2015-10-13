@@ -16,7 +16,11 @@
     </div>
     <div class="recommends">
         <span>{{ trans("general.recommends") }}</span>
-        <em>{{ $course->reviews_positive_score }}%</em>
+        @if ($course->total_review == 0)
+            <em>{{trans('general.na')}}</em>
+        @else
+            <em>{{ $course->reviews_positive_score }}%</em>
+        @endif
 
     </div>
     <div class="difficulty-level">

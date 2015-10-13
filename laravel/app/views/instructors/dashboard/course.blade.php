@@ -118,19 +118,33 @@
             </div>
 
 
-            <div class="row">
+            <div class="row hide">
                 <div class="top-affiliates-table table-wrapper">
                     {{-- @include('administration.dashboard.partials.user.topAffiliates') --}}
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row hide">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">{{trans('analytics.courseStats')}}</h3>
                   </div>
                   <div class="panel-body">
-                      <div class="top-affiliates-table table-stats-wrapper">
+                      <div class="table-stats-wrapper">
+                          <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+
+            <div class="row hide">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{{trans('analytics.topAffiliates')}}</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="table-affiliates-wrapper">
                           <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                       </div>
                   </div>
@@ -169,6 +183,10 @@
 
             $.get('/analytics/course/stats/{{$course->id}}', function ($table){
                 $('.table-stats-wrapper').html($table);
+            });
+
+            $.get('/analytics/course/affiliates/{{$course->id}}', function ($table){
+                $('.table-affiliates-wrapper').html($table);
             });
 
             $('.table-stats-wrapper').on('click','a', function ($e){

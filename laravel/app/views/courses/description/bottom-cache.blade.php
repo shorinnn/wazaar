@@ -17,7 +17,7 @@
                 @if (Session::get('error'))
                     <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                 @endif
-                <a id="course-description" class="scroll-to-top"></a>
+                <a id="course-description" class="scroll-to-top header-tab-links"></a>
                 <div class="course-description no-margin-top module-box padding-top-30 padding-bottom-20">
                     <h2>{{ trans('courses/general.about-this-course') }}</h2>
                     <p class="intro-paragraph short-text">
@@ -59,8 +59,8 @@
                     @endif
                 </div>
 				
-                <a id="description-page-curriculum-wrap" class="scroll-to-top"></a>
                 <div>
+                <a id="description-page-curriculum-wrap" class="scroll-to-top header-tab-links"></a>
                     @foreach($course->modules as $module)
                         <div class="module-box">
                             <h2>{{ $module->order }}. {{ $module->name }}</h2>
@@ -167,7 +167,7 @@
                 @endif
 
                 @if( $course->assignedInstructor != null && $course->assignedInstructor->profile !=null  )
-                <a id="reviews" class="scroll-to-top"></a>
+                
                     <div class="reviews instructed-by clearfix module-box">
                         <div class="row no-margin">
                             <div class="user-thumb col-xs-12 col-sm-2 col-md-2 col-lg-2">
@@ -195,8 +195,10 @@
                         </div>
                     </div>
                 @endif
-
+                
+                <a id="reviews" class="scroll-to-top header-tab-links"></a>
                 @if($course->allTestimonials->count() > 0)
+                
                     <div class="lesson-reviews">
                         <h2>{{ $course->testimonials()->where('content','!=','')->count() }} {{ trans("courses/general.reviews") }}</h2>
                         <div class='bottom-testimonials'>
@@ -215,6 +217,10 @@
                                 {{ trans( 'general.read-more' ) }}
                             </a>
                         @endif
+                    </div>
+                @else 
+                    <div class="no-margin-top module-box padding-top-30 padding-bottom-20">
+                    	<h4 class="text-center no-reviews-yet">{{trans('courses/general.no_reviews_yet') }}</h4>
                     </div>
                 @endif
 

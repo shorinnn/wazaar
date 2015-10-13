@@ -229,6 +229,8 @@ class Course extends Ardent{
         foreach($this->modules as $module){
             $module->delete();
         }
+        // remove from CloudSearch
+        $this->updateCloudSearch(  'delete' );
     }
     
 //    public function afterSave(){
@@ -572,6 +574,32 @@ class Course extends Ardent{
         }
         
     }
+    
+    public function updateCloudSearch( $operation = 'add' ){
+        $client = AWS::get('cloudsearchdomain', [ 'endpoint' => Config::get('custom.cloudsearch-document-endpoint') ] );
+        $author = $this->instructor->commentName();
+        $company = '';
+        if( isset($this->instructor->profile) && trim($this->instructor->profile->corporation_name) != ''){
+            $company = $this->instructor->profile->corporation_name;
+        }
+        $batch[] = [
+            'type'      => $operation,
+            'id'        => $this->id,
+            'fields'    => ['author' => $author, 
+                            'company' => $company, 
+                            'id' => $this->id, 
+                            'short_description' => $this->short_description, 
+                            'title' => $this->name ]
+        ];
+        $result = $client->uploadDocuments(array(
+            'documents'     => json_encode($batch),
+            'contentType'     =>'application/json'
+        ));
+    }
 
+    public static function getAdminList()
+    {
+        return self::select('courses.*', DB::raw('course_categories.name as course_category'))->leftJoin('course_categories', 'course_categories.id', '=', 'courses.course_category_id')->where('publish_status', 'approved')->orderBy('course_category', 'asc')->get();
+    }
 
 }

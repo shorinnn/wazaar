@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'no_reviews_yet' => 'This course has no reviews yet.',
     'recommends' => 'オススメする',
     'does_not_recommend' => 'オススメしない',
     'found_helpful' => 'このレビューは役に立った',
@@ -230,5 +231,8 @@ jpeg, png',
     'previewers' => 'Previewers',
     'see_statistics' => 'See statistics',
     'buyers' => 'Buyers',
-    'available-for-customers' => '公開中'
+    'available-for-customers' => '公開中',
+    'no-course' => ':cat では、 まだコースの登録がありません。',
+    'teach-new-course' => ':cat のジャンルで、 あなたの 『技』 を教えてみませんか？',
+    'no-search-result' => '現在、 コースはございません。'
 );

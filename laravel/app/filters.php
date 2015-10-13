@@ -208,6 +208,7 @@ Route::filter('logCourseView', function($request){
 
     $user_logged = CourseLog::where('user_id', $viewed_course_data['user_id'])->first();
     $course = Course::where('slug', $request->getParameter('slug'))->first();
+    if($course==null) return;
     $current_viewer = (Session::has('current_viewer'))? Session::get('current_viewer') : array( $viewed_course_data['user_id'] => array() ) ;
 
     $courses_viewed_today = (array_key_exists($viewed_course_data['user_id'], $current_viewer) && count($current_viewer[$viewed_course_data['user_id']]) >= 1)? $current_viewer[$viewed_course_data['user_id']] : array() ;
