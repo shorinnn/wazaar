@@ -31,6 +31,9 @@
       line-height: 25px;
       font-size: 13px;
     }
+    .subcat-selected .arrow{
+      margin-top: -13px;
+    }
     .selected-main-category,
     .selected-sub-category{
       cursor: pointer;
@@ -75,11 +78,11 @@
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
               <li class="selected-main-category list-group-item">
-                <div>
+                <div @if(count(Request::segments()) == 4)class="subcat-selected"@endif>
                   @if(count(Request::segments()) == 4)
                     @foreach($categories as $cat)
                       @if(Request::segment(3)==$cat->slug)
-                        <div class="small"> {{ $cat->name }}</div>
+                        <span class="small"> {{ $cat->name }}</span><br />
                         @foreach($cat->courseSubcategories as $subcat)
                             @if(Request::segment(4)==$subcat->slug)
                               {{$subcat->name}}
@@ -359,9 +362,11 @@
             if($('.selected-main-category').length >= 1){
               $('.selected-main-category').on('click', function(){
                 if($(this).hasClass('open')){
+                  clear_backdrop();
                   $(this).removeClass('open').find('.arrow').removeClass('wa-chevron-up').addClass('wa-chevron-down')
                   $(this).next('.other-main-category-list').hide();
                 } else {
+                  show_backdrop();
                   $(this).addClass('open').find('.arrow').removeClass('wa-chevron-down').addClass('wa-chevron-up')
                   $(this).next('.other-main-category-list').hide().removeClass('hide').show();
                 }
