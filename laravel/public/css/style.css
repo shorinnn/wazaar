@@ -217,6 +217,9 @@ ul {
 .wazaar-blue-text{
 	color: #0099ff;
 }
+.wazaar-green-text{
+	color: #7EC95F;
+}
 a,
 input::-moz-focus-inner {
    outline: none !important;
