@@ -1,6 +1,6 @@
-    @extends('layouts.default')
-    @section('content')	
-    <style>
+@extends('layouts.default')
+@section('content')	
+<style>
 	.category-heading-title,
 		.footer-search{
 			display: none;
@@ -305,16 +305,22 @@
                   $(this).prop('checked', true).parent().addClass('active');
                 }
               })
-
-              var url = '/courses/category?';
+              var url = '/courses/category';
+              @if(isset($category->slug) && !empty($category->slug))
+                url = url + '/{{$category->slug}}';
+                @if(isset($category->slug) && !empty($category->slug))
+                  url = url + '/{{$subcategory->slug}}';
+                @endif
+              @endif
               var data = Array('term='+$('.header-search').val(),'sort='+$(parent_visible_container).find('.course-sort').val(),'filter='+$(parent_visible_container).find('.filter:checked').val(),'difficulty='+$(parent_visible_container).find('.difficulty:checked').val())
               // var data = Array('term='+$('.header-search').val(),'sort='+$('.course-sort').val(),'filter='+$('.filter:checked').val(),'difficulty='+$('.difficulty:checked').val())
               // console.log(data);
 
-              url = url + data.join('&');
+              url = url + '?' + data.join('&');
 
               $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
               $('.course-desc-ajax-link').click();
+              $('.category-content-container').css('height', 'auto');
           }
 
           function makeFluid()
@@ -334,8 +340,6 @@
             } else {
               var sidebar_height = $('.sidebar-menu').height();
               var category_content = $('.category-content-container').height();
-              console.log(sidebar_height)
-              console.log(category_content)
               if(Number(sidebar_height) >= Number(category_content)){
                 $('.category-content-container').height(sidebar_height);
               } else {

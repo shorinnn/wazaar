@@ -38,6 +38,8 @@
 </div>
 @if(Request::ajax())
 <script>
-	makeFluid();
+	setTimeout(function(){
+		makeFluid();
+	}, 1000);
 </script>
 @endif

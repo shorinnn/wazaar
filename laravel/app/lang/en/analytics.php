@@ -52,7 +52,10 @@ return
 
 	'profit' => 'Profit',
 	'revenue' => 'Revenue',
-	
+    'see_statistics' => 'See statistics',
+    'previewers' => 'PREVIEWERS',
+    'reviews' => 'REVIEWS',
+
     'Monday' => 'Monday',
     'Tuesday' => 'Tuesday',
     'Wednesday' => 'Wednesday',

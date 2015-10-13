@@ -348,9 +348,12 @@ class CoursesController extends \BaseController {
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
-                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order);
-                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with( compact( 'category', 'courses', 'wishlisted' ) );
-                    return View::make('courses.categories.category')->with( compact( 'category', 'difficultyLevel', 'courses', 'wishlisted') );
+                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order, '', '', $filter);
+                    $categories = CourseCategory::has('allCourses')->get();
+                    $categories->load( 'courseSubcategories' );
+
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with( compact( 'category', 'courses', 'wishlisted', 'categories' ) );
+                    return View::make('courses.categories.category')->with( compact( 'category', 'difficultyLevel', 'courses', 'wishlisted', 'categories') );
                 }
 
                 $sort = Input::get('sort');
@@ -396,12 +399,13 @@ class CoursesController extends \BaseController {
 
                 $category = new stdClass;
                 $category->color_scheme = $category->name = $category->description = $category->id =  '';
-                if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ));
                 $categories = CourseCategory::has('allCourses')->get();
                 $categories->load( 'courseSubcategories' );
-                
+
+                if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted', 'categories'));                
                 Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted', 'categories'));
             }
+
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
             }
@@ -424,6 +428,14 @@ class CoursesController extends \BaseController {
                 $courses = $courses->where('course_difficulty_id', $difficultyLevel);
             }
 
+            if (!empty($filter)){
+                if($filter == 'free'){
+                    $courses = $courses->where('free', 'yes');
+                } else if($filter == 'paid') {
+                    $courses = $courses->where('free', 'no');
+                }
+            }
+
             if ($sort == 'date'){
                 $courses = $courses->orderBy('created_at','desc');
             }
@@ -444,6 +456,7 @@ class CoursesController extends \BaseController {
         }
         
         public function subCategory($slug='', $subcat=''){
+            $filter = Input::get('filter') ?: null;
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
             }
@@ -472,9 +485,9 @@ class CoursesController extends \BaseController {
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
-                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order, $subcat);
-                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ) );
-                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
+                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order, $subcat, '', $filter);
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted', 'categories' ) );
+                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses', 'categories') );
                 }
 
                 $sort = Input::get('sort');
@@ -500,6 +513,14 @@ class CoursesController extends \BaseController {
                 $courses = $courses->where('course_difficulty_id', $difficultyLevel);
             }
 
+            if (!empty($filter)){
+                if($filter == 'free'){
+                    $courses = $courses->where('free', 'yes');
+                } else if($filter == 'paid') {
+                    $courses = $courses->where('free', 'no');
+                }
+            }
+
             if ($sort == 'date'){
                 $courses = $courses->orderBy('created_at','desc');
             }
@@ -514,7 +535,7 @@ class CoursesController extends \BaseController {
             $category = $subcategory->courseCategory;
             $categories = CourseCategory::has('allCourses')->get();
             $categories->load( 'courseSubcategories' );
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'subcategory', 'wishlisted'));
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'subcategory', 'wishlisted', 'categories'));
             Return View::make('courses.categories.category')->with(compact('category', 'subcategory', 'difficultyLevel', 'wishlisted', 'courses', 'categories') );
                             
         }
