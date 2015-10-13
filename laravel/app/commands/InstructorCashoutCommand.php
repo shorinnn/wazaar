@@ -78,15 +78,26 @@ class InstructorCashoutCommand extends ScheduledCommand {
 //            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
             $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
             $this->info("Cashout for purchases up until $cutoffDate");
+            $testPurchases = [7044, 6959, 4403, 14, 8];
             
-            $instructors = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate){
+            $instructors = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
                 $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
-                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+                        ->whereNull('cashed_out_on')
+                        ->where('created_at', '<=', $cutoffDate )->where(function ($q) use ($testPurchases){
+                            $q->whereNotIn( 'purchase_id', $testPurchases )
+                            ->orWhereNull('purchase_id');                            
+                        });
             })->get();
             
             foreach( $instructors as $instructor ){
                 $transactions = $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
-                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )->get();
+                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )
+                        ->where(function ($q) use ($testPurchases){
+                            $q->whereNotIn( 'purchase_id', $testPurchases )
+                            ->orWhereNull('purchase_id');                            
+                        })
+                        ->get();
+                
                 if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
                     $instructor->debit( $transactions->sum('amount'), null, $transactions );
                 }
