@@ -73,7 +73,9 @@ class AffiliateCashoutCommand extends ScheduledCommand {
 	public function fire()
 	{
             //$affiliates = LTCAffiliate::where('affiliate_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
-            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+//            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+            $this->info("Cashout for purchases up until $cutoffDate");
             
             // get all affiliates that meet the threshold
             $affiliates = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate){

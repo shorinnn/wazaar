@@ -75,7 +75,9 @@ class InstructorCashoutCommand extends ScheduledCommand {
             // get all instructors that meet the threshold
             //$instructors = Instructor::where('instructor_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
             
-            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+//            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+            $this->info("Cashout for purchases up until $cutoffDate");
             
             $instructors = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate){
                 $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
