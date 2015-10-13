@@ -214,7 +214,7 @@ class AdminDashboardController extends BaseController
             $start = date('Y-m-01');
         }
         $end = date('Y-m-d', strtotime( $start.' + 1 month' ) );
-        $testPurchases = [7044, 6959, 4403, 14, 8];
+        $testPurchases = [7044, 4403, 14, 8];
         $stats = DB::table('purchases')->select( DB::raw(" SUM(purchase_price) AS `p_price`,
                                                             SUM(original_price) AS `o_price`,
                                                             SUM(discount_value) AS `d_value`,
