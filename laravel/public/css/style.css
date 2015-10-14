@@ -310,6 +310,8 @@ header .top-menu .logged-out-header-search .catalogue-button{
 	text-transform: uppercase;
 	background: #242d36;
 	outline: none;
+    display: block;
+    line-height: 36px;
 }
 header .top-menu .logged-out-header-search .catalogue-button:hover i,
 header .top-menu .logged-out-header-search .catalogue-button:hover{
@@ -10585,6 +10587,12 @@ header .profile-name ul{
 	.homepage-header .home-search-form{
 		width: auto;
 	}
+    .new_analytics .course-summary-block .column-3,
+    .new_analytics .course-summary-block .column-2{
+        margin: 0;
+        border-left: 0;
+        border-top: 1px solid #ebebeb;
+    }
 }
 @media (max-width:752px){
 .navbar-nav{ 

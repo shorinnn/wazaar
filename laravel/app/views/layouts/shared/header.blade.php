@@ -27,13 +27,13 @@
                 <?php if('dont-show' == 'dont-show'):?>
                 <div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
-                        <button aria-expanded="false" data-toggle="dropdown" 
+                        <!--<button aria-expanded="false" data-toggle="dropdown"
                                 class="catalogue-button dropdown-toggle" type="button" id="btnGroupDrop2">
                             <i class="wa-tiny-list"></i>
                             <em>{{trans('general.catalogue')}}</em>
-                        </button>
-                        
-                        <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
+                        </button>-->
+                        <a href="{{ action('CoursesController@category') }}" class="catalogue-button">{{trans('general.browse-courses')}}</a>
+                        <!--<div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
                                 <?php 
                                 echo Flatten::section('header-categories-catalog', 10, function ()  { 
@@ -58,7 +58,7 @@
                                     
                                     <?php }); ?>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <form action='{{ action('CoursesController@search') }}'>
                         <div>
@@ -116,7 +116,9 @@
                              src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
                     @endif
                     
-                </div>                <ul class="profile-name">
+                </div>
+
+                <ul class="profile-name">
                     <li class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" 
                                 class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
@@ -204,14 +206,14 @@
             @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
             <ul class="logged-out clearfix" style="margin-right: 15px;">
                 <li>
-                    <a href="{{ action('CoursesController@category') }}"> <span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
+                    <a href="{{ action('CoursesController@category') }}"> <span class="hidden-xs hidden-sm hidden-md hidden-lg">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
                 </li>
             </ul>
             @endif
             @if(Auth::check() && Auth::user()->hasRole('Instructor'))
             <ul class="logged-out clearfix" style="margin-right: 15px;">
                 <li>
-                    <a href="{{ action('CoursesController@category') }}"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
+                    <a href="{{ action('CoursesController@category') }}"><span class="hidden-xs hidden-sm hidden-md hidden-lg">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
                 </li>
             </ul>
             @endif
@@ -272,15 +274,16 @@
                  <?php if('dont-show' == 'dont-show'):?>
             	<div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
-                        <button aria-expanded="false" data-toggle="dropdown" 
+                        <!--<button aria-expanded="false" data-toggle="dropdown"
                                 class="catalogue-button dropdown-toggle" type="button" id="btnGroupDrop2">
                             <i class="wa-tiny-list"></i>
                             <em>{{trans('general.catalogue')}}</em>
-                        </button>
-                        <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
+                        </button>-->
+                        <a href="{{ action('CoursesController@category') }}" class="catalogue-button">{{trans('general.browse-courses')}}</a>
+                        <!--<div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
                                 
-                               <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
+                               <?php echo Flatten::section('header-categories-catalog', 10, function (){
                                     $categories = CourseCategory::has('allCourses')->get();
                                     $categories->load( 'courseSubcategories' );?>
                                
@@ -304,7 +307,7 @@
                                     <?php }); ?>
 
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <form action='{{ action('CoursesController@search') }}'>
                         <div>

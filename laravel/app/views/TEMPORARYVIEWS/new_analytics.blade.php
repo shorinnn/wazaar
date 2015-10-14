@@ -7,7 +7,7 @@
                 <h2>あなたもたった１週間でピアノで作曲が出来…<i class="wa-chevron-down"></i></h2>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-summary-block">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 column-1">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-6 column-1">
                             <div class="row">
                                 <h3>Course summary</h3>
                                 <span class="earnings inline-block">
@@ -20,7 +20,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-2">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 column-2">
                             <p>
                                 AFFFILIATE REVENUE
                                 <span>¥ 291,384</span>
@@ -34,7 +34,7 @@
                                 <span>¥ 291,384</span>
                             </p>
                         </div>
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-3">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 column-3">
                             <p>
                                 LTC COMISSIONS
                                 <span>¥ 291,384</span>
@@ -68,8 +68,8 @@
                         <a href="#">All time</a>
                     </li>
                 </ul>
-                <div class="table-wrap">
-                    <table class="table table-responsive">
+                <div class="table-wrap table-responsive">
+                    <table class="table">
                         <thead>
                             <tr class="">
                                 <th class="no-border-top">&nbsp&nbsp&nbsp</th>
@@ -237,8 +237,8 @@
                 <div class="datepick right">
 
                 </div>
-                <div class="table-wrap courses-table clear">
-                    <table class="table table-responsive">
+                <div class="table-wrap courses-table clear table-responsive">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
