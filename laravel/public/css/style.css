@@ -10460,6 +10460,7 @@ header .profile-name > li button{
 }
 header .profile-name{
 	min-width: auto;
+    width: 30px;
 }
 header .profile-name ul{
 	left: -117px;
