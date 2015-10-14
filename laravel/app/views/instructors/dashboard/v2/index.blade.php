@@ -61,27 +61,26 @@
                 </div>
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 no-padding">
                     <ul class="nav nav-pills left" role="tablist">
-                        <li role="presentation" class="active">
-                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled"  aria-expanded="true"
-                                   onclick='toggleNumbers(1); dashUrl("{{url("courses/mycourses/teaching") }}")'>
-                                  
+                        <li role="presentation" @if(count(Request::segments()) == 4 && Request::segment(3) == 'teaching') class="active" @endif>
+                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="teaching"
+                                    aria-expanded="true" onclick='toggleNumbers(1); dashUrl("{{url("courses/mycourses/teaching") }}")'>                                  
                                     {{trans('general.dash.teaching')}}
                                 </a>
                         </li>
-                        <li role="presentation" class="">
+                        <li role="presentation" @if(( count(Request::segments()) == 3 || count(Request::segments()) == 4) && Request::segment(3) == 'enrolled') class="active" @endif>
                         	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled"  
-                                   onclick='toggleNumbers(0);dashUrl("{{url("courses/mycourses/enrolled")}}")'
+                                   onclick='toggleNumbers(0); dashUrl("{{url("courses/mycourses/enrolled")}}")'
                                    aria-expanded="true">
                                 {{trans('general.dash.enrolled')}}</a>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" @if(count(Request::segments()) == 4 && Request::segment(3) == 'finished') class="active" @endif>
                         	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished"
                                    onclick='toggleNumbers(0); dashUrl("{{url("courses/mycourses/finished") }}")'>
                                  {{trans('general.dash.finished')}}</a>
                         </li>
-                        <li role="presentation" class="dropdown">
+                        <li role="presentation" @if(count(Request::segments()) == 4 && Request::segment(3) == 'wishlist') class="active" @endif>
                           <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab"  aria-controls="wishlist"
-                             onclick='toggleNumbers(0);dashUrl("{{url("courses/mycourses/wishlist") }}")'>
+                             onclick='toggleNumbers(0); dashUrl("{{url("courses/mycourses/wishlist") }}")'>
                            {{trans('general.dash.wishlist')}}</a>
                         </li>
                     </ul> 
@@ -95,7 +94,7 @@
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">
                     <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane fade in active margin-bottom-25" id="teaching">
+                      <div role="tabpanel" class="tab-pane fade in margin-bottom-25  @if(count(Request::segments()) == 4 && Request::segment(3) == 'teaching') active @endif" id="teaching">
                           @if( $courses->count() == 0 )
                             <p class="text-center">{{ trans('courses/create.no-courses-yet-create-one') }}</p>
                             
@@ -308,7 +307,7 @@
                           {{ $courses->appends( [ 'sort' => Input::get('sort') ] )->links() }}
                           
                       </div>
-                      <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
+                      <div role="tabpanel" class="tab-pane fade margin-bottom-25 @if((count(Request::segments()) == 3 || count(Request::segments()) == 4) && Request::segment(3) == 'enrolled') active @endif" id="enrolled">
                            @if( $purchasedCourses->count() == 0 )
                                 @if(Auth::user()->_profile('Instructor') != null)
                                     @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
@@ -334,7 +333,7 @@
                           @endforeach
                           
                       </div>
-                      <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="finished">
+                      <div role="tabpanel" class="tab-pane fade margin-bottom-25 @if(count(Request::segments()) == 4 && Request::segment(3) == 'finished') active @endif" id="finished">
              
                           @foreach($purchasedCourses as $course)
                               <?php
@@ -350,7 +349,7 @@
                              <p class="text-center margin-top-10"> さあ、コースを探してみよう！</p>
                           @endif
                       </div>
-                      <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="wishlist">
+                      <div role="tabpanel" class="tab-pane fade margin-bottom-25 @if(count(Request::segments()) == 4 && Request::segment(3) == 'finished') active @endif" id="wishlist">
                           @if($wishlist->count() == 0 )
                               <p class="text-center">お気に入りのコースはありません。</p>
                           @endif
