@@ -61,7 +61,7 @@
                 </div>
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 no-padding">
                     <ul class="nav nav-pills left" role="tablist">
-                        <li role="presentation" @if(count(Request::segments()) == 4 && Request::segment(3) == 'teaching') class="active" @endif>
+                        <li role="presentation" @if((count(Request::segments()) == 4 && Request::segment(3) == 'teaching') || Input::has('sort')) class="active" @endif>
                         	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="teaching"
                                     aria-expanded="true" onclick='toggleNumbers(1); dashUrl("{{url("courses/mycourses/teaching") }}")'>                                  
                                     {{trans('general.dash.teaching')}}
@@ -94,7 +94,7 @@
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">
                     <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane fade in margin-bottom-25  @if(count(Request::segments()) == 4 && Request::segment(3) == 'teaching') active @endif" id="teaching">
+                      <div role="tabpanel" class="tab-pane fade in margin-bottom-25  @if((count(Request::segments()) == 4 && Request::segment(3) == 'teaching') || Input::has('sort')) active @endif" id="teaching">
                           @if( $courses->count() == 0 )
                             <p class="text-center">{{ trans('courses/create.no-courses-yet-create-one') }}</p>
                             
