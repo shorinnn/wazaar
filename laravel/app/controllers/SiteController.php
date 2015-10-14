@@ -878,4 +878,8 @@ class SiteController extends \BaseController {
 //        dd($result);
         
     }
+    
+    public function splash(){
+        return View::make('splash2');
+    }
 }
