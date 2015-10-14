@@ -404,6 +404,7 @@
           }
           function makeCategoryModalHeightFixed()
           {
+            $('html').css('overflow', 'hidden');
             var window_height = $(window).height();
             var modal_body_height = Number(window_height) - 51;
             $('#category-list-modal .modal-backdrop').height('100%');
@@ -411,7 +412,6 @@
           }
 
     			$(window).resize(function(){
-            alert('am i called '+$(window).height()+' '+screen.height);
             makeFluid();
             makeCategoryModalHeightFixed();
     			})
@@ -427,16 +427,20 @@
 
             if($('.selected-main-category').length >= 1){
               $('.selected-main-category').on('click', function(){
-                $('#category-list-modal').modal().on('show.bs.modal', function () {
+                $('#category-list-modal').modal().on('shown.bs.modal', function () {
                     makeCategoryModalHeightFixed()
+                }).on('hidden.bs.modal', function () {
+                    $('html').css('overflow', 'auto');
                 });
               })
             }
 
             if($('.selected-sub-category').length >= 1){
               $('.selected-sub-category').on('click', function(){
-                $('#category-list-modal').modal().on('show.bs.modal', function () {
+                $('#category-list-modal').modal().on('shown.bs.modal', function () {
                     makeCategoryModalHeightFixed()
+                }).on('hidden.bs.modal', function () {
+                    $('html').css('overflow', 'auto');
                 });
               })
             }
