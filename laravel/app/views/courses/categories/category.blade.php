@@ -413,13 +413,17 @@
 
             if($('.selected-main-category').length >= 1){
               $('.selected-main-category').on('click', function(){
-                $('#category-list-modal').modal();
+                $('#category-list-modal').modal().on('show.bs.modal', function () {
+                    makeCategoryModalHeightFixed()
+                });
               })
             }
 
             if($('.selected-sub-category').length >= 1){
               $('.selected-sub-category').on('click', function(){
-                $('#category-list-modal').modal();
+                $('#category-list-modal').modal().on('show.bs.modal', function () {
+                    makeCategoryModalHeightFixed()
+                });
               })
             }
 
