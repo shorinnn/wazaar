@@ -233,7 +233,7 @@
     <div class="clearfix"></div>
   </section>
 <div id="category-list-modal" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="margin:0px !important">
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
