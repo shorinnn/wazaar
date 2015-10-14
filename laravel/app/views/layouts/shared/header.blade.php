@@ -236,9 +236,6 @@
                 </button>
                 <ul id="logged-out-header-menu" class="logged-out clearfix collapse navbar-collapse">
                     <li>
-                        <!--<a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> -->
-                    </li>
-                    <li>
                         <a href="{{ action('UsersController@login') }}"> {{trans('site/menus.homepage.login')}}</a> 
                         <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>--> 
                     </li>
@@ -249,6 +246,9 @@
                     <li class="affiliate-register-button">
                         <a href="{{ action('AffiliateController@create') }}"> アフィリエイターの方</a>
                         <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                    </li>
+                    <li>
+                        <a class="hidden-md hidden-lg" href="{{url('/')}}/courses/category">{{trans('general.browse-courses')}}</a>
                     </li>
                 </ul>
             </div>
