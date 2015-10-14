@@ -10338,6 +10338,14 @@ header .top-menu .logged-out-header-search .catalogue-button em{
 }
 header .main-logo{
 	margin: 10px 0 0px 0;
+    float: left;
+    display: inline-block !important;
+    vertical-align: top;
+}
+header .logged-in-menu-holder{
+    display: inline-block;
+    float: right;
+    vertical-align: top;
 }
 header .top-menu .logged-out-header-search{
 	margin: 25px 0;
