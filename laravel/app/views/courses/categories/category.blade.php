@@ -403,7 +403,9 @@
     			$(window).resize(function(){
             makeFluid();
             makeCategoryModalHeightFixed();
-    			}).scroll(function(){
+    			})
+          $(document).scroll(function(){
+            alert('asdasd');
             makeCategoryModalHeightFixed();
           });
     			$(function(){
