@@ -232,9 +232,9 @@
     </div>
     <div class="clearfix"></div>
   </section>
-<div id="category-list-modal" class="modal fade" style="border-radius:0px;">
+<div id="category-list-modal" class="modal fade" style="overflow-y:hidden;">
   <div class="modal-dialog" style="margin:0px !important">
-    <div class="modal-content">
+    <div class="modal-content" style="border-radius:0px;">
       <div class="modal-header" style="border-bottom: 0px none; padding-bottom: 0px; z-index: 1; width: 100%; height: 50px; position: fixed; background: #fff;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
         <div class="clearfix"></div>
@@ -397,8 +397,7 @@
           {
             var window_height = $(window).height();
             var modal_header_height = $('#category-list-modal .modal-header').height();
-            console.log(modal_header_height);
-            var modal_body_height = Number(window_height) - Number(modal_header_height);
+            var modal_body_height = Number(window_height) - 50;
             $('#category-list-modal .modal-body').height(modal_body_height).css({'margin-top':modal_header_height, 'overflow':'auto'});
           }
 
