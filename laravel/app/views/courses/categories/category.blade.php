@@ -239,7 +239,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
         <div class="clearfix"></div>
       </div>
-      <div class="modal-body" style="padding:0px;">
+      <div class="modal-body" style="padding:0px; overflow:auto;">
         <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
@@ -398,11 +398,11 @@
             var window_height = $(window).height();
             var modal_body_height = Number(window_height) - 51;
             $('#category-list-modal .modal-backdrop').height('100%');
-            $('#category-list-modal .modal-body').height(modal_body_height).css({'overflow':'auto'});
+            $('#category-list-modal .modal-body').height(modal_body_height);
           }
 
     			$(window).resize(function(){
-            alert('am i called');
+            alert('am i called '+$(window).height());
             makeFluid();
             makeCategoryModalHeightFixed();
     			})
