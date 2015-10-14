@@ -397,10 +397,12 @@
           {
             var window_height = $(window).height();
             var modal_body_height = Number(window_height) - 51;
+            $('#category-list-modal .modal-backdrop').height('100%');
             $('#category-list-modal .modal-body').height(modal_body_height).css({'overflow':'auto'});
           }
 
     			$(window).resize(function(){
+            alert('am i called');
             makeFluid();
             makeCategoryModalHeightFixed();
     			})
