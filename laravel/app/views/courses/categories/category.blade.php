@@ -1,4 +1,13 @@
 @extends('layouts.default')
+@section('page_title')
+    
+    @if( Input::has('term') ) {{ Input::get('term') }} - 
+    @else
+        @if( isset($subcategory->name) ) {{ $subcategory->name }} - @endif
+        @if( isset($category->name) ) {{ $category->name }} - @endif
+    @endif
+    Wazaar
+@stop
 @section('content')	
 <style>
 	.category-heading-title,
