@@ -588,6 +588,7 @@ header .profile-thumbnail{
 	margin-top: 20px;
 	border-radius: 30px;
     vertical-align: top;
+    float: left;
 	background: #fff;
 }
 header #top-profile-dropdown .notification-number{
@@ -10461,6 +10462,7 @@ header .profile-name > li button{
 header .profile-name{
 	min-width: auto;
     width: 30px;
+    float: right;
 }
 header .profile-name ul{
 	left: -117px;
