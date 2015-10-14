@@ -10456,7 +10456,7 @@ header .top-menu .logged-out-header-search{
 }
 header .profile-name > li.open button, 
 header .profile-name > li button{
-	width: auto;
+	width: 30px;
 	padding: 9px 5px 11px;
 }
 header .profile-name{
