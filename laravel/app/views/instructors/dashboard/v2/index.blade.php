@@ -12,13 +12,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                    <div class="row activity-today">
+                    <div class="row activity-today @if(!Input::has('sort')) invisible @endif">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <span class="sales-today">{{trans('analytics.sales')}} <em>{{trans('analytics.today')}}
                                     <!--<i class="wa-chevron-down"></i>--></em></span>
                         </div>
                     </div>
-                    <div class="row activity-today">
+                    <div class="row activity-today @if(!Input::has('sort')) invisible @endif">
                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 no-margin">
                             <h2 class="revenue">
                                  ¥{{ number_format( $instructor->money('revenue','today') , Config::get('custom.currency_decimals')) }}
@@ -30,7 +30,7 @@
                                 <span class="">{{trans('analytics.profit')}}</span></h2>
                         </div>
                     </div>
-                    <div class="row activity-today">
+                    <div class="row activity-today @if(!Input::has('sort')) invisible @endif">
                     	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 hide">
                         	<h2>{{trans('general.activity-today')}}<i class="wa-chevron-down"></i></h2>
                         </div>
@@ -60,8 +60,8 @@
             	<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
                 </div>
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 no-padding">
-                    <ul class="nav nav-pills left @if( Input::has('sort')) active @endif" role="tablist">
-                        <li role="presentation">
+                    <ul class="nav nav-pills left" role="tablist">
+                        <li role="presentation" @if(Input::has('sort')) class="active" @endif >
                         	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="teaching"
                                     aria-expanded="true" onclick='toggleNumbers(1); dashUrl("{{url("courses/mycourses/teaching") }}")'>                                  
                                     {{trans('general.dash.teaching')}}
@@ -94,7 +94,7 @@
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">
                     <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane fade in margin-bottom-25  @if( Input::has('sort')) active @endif" id="teaching">
+                      <div role="tabpanel" class="tab-pane fade in margin-bottom-25  @if(Input::has('sort')) active in @endif" id="teaching">
                           @if( $courses->count() == 0 )
                             <p class="text-center">{{ trans('courses/create.no-courses-yet-create-one') }}</p>
                             
@@ -424,16 +424,18 @@
         }
         
     $(function(){
-        
-        @if( !Input::has('sort'))
-            @if( Request::segment(3) !='' )
-                $('[href="#{{Request::segment(3)}}"]').click();
-            @else
-                @if($purchasedCourses->count() > 0)
-                    $('[href="#enrolled"]').click();
-                @endif
-            @endif
+        @if(count(Request::segments()) == 2)
+          @if($purchasedCourses->count() > 0)
+            $('[href="#enrolled"]').click(); //a
+          @else
+            $('[href="#teaching"]').click(); //w
+          @endif
+        @elseif(count(Request::segments()) >= 3)
+          @if( !Input::has('sort'))
+            $('[href="#{{Request::segment(3)}}"]').click(); //e
+          @endif
         @endif
+
 
         //Hide and show the positive and negative review textareas and labels
         $('body').delegate('.yes-button','click',  function(){
