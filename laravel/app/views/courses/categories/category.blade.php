@@ -405,7 +405,6 @@
             makeCategoryModalHeightFixed();
     			})
           $(document).scroll(function(){
-            alert('asdasd');
             makeCategoryModalHeightFixed();
           });
     			$(function(){
