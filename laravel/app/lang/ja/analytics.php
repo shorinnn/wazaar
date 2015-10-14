@@ -42,7 +42,10 @@ return
     'course' => 'コース',
 
 	'profit' => '販売収益',
-	'revenue' => '総売上額',
+    'revenue' => '総売上額',
+    'see_statistics' => '販売に関する分析',
+    'previewers' => 'previewers',
+    'reviews' => 'つのレビュー',
 
     'Monday' => '月曜日',
     'Tuesday' => '火曜日',

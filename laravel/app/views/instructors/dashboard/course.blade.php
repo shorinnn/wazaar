@@ -118,13 +118,13 @@
             </div>
 
 
-            <div class="row">
+            <div class="row hide">
                 <div class="top-affiliates-table table-wrapper">
                     {{-- @include('administration.dashboard.partials.user.topAffiliates') --}}
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row hide">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">{{trans('analytics.courseStats')}}</h3>
@@ -138,7 +138,7 @@
 
             </div>
 
-            <div class="row">
+            <div class="row hide">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">{{trans('analytics.topAffiliates')}}</h3>

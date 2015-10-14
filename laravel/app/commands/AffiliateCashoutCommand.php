@@ -73,18 +73,41 @@ class AffiliateCashoutCommand extends ScheduledCommand {
 	public function fire()
 	{
             //$affiliates = LTCAffiliate::where('affiliate_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
-            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+//            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+            $this->info("Cashout for purchases up until $cutoffDate");
+            $testPurchases = [7044, 4403, 14, 8];
             
             // get all affiliates that meet the threshold
-            $affiliates = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate){
+            $affiliates = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
                 $query->where('user_id','>',2)
-                        ->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+                        ->where('transaction_type','affiliate_credit')
+                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )
+                        ->where(function ($q) use ($testPurchases){
+                                $q->whereNotIn( 'purchase_id', $testPurchases )
+                                ->orWhereNull('purchase_id');                            
+                            });
             })->get();
             foreach( $affiliates as $affiliate ){
+                $this->info("Processing affiliate $affiliate->id");
                 $transactions = $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')
-                        ->where('created_at', '<=', $cutoffDate )->get();
-                if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
-                    $affiliate->debit( $transactions->sum('amount'), null, $transactions );
+                        ->where('created_at', '<=', $cutoffDate )
+                        ->where(function ($q) use ($testPurchases){
+                            $q->whereNotIn( 'purchase_id', $testPurchases )
+                            ->orWhereNull('purchase_id');                            
+                        })->get();
+                $sum = $transactions->sum('amount'); 
+                $this->info("AMT: $sum");
+                if( $sum >= Config::get('custom.cashout.threshold') ){
+                    if( !$affiliate->debit( $transactions->sum('amount'), null, $transactions ) ){
+                        $this->error('Could not debit - '.$affiliate->debit_error);
+                    }
+                    else{
+                        $this->comment('DEBITED!');
+                    }
+                }
+                else{
+                    $this->comment('Amount less than trashold. Not attempting cashout.');
                 }
             }
 	}

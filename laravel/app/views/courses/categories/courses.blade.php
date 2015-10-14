@@ -11,7 +11,7 @@
 					{{ trans('courses/general.no-search-result')}}
 				</div>
 			@else
-				@if(isset($subcategory->name) && !empty($subcategory->name))
+				@if(isset($subcategory->name) && !empty($subcategory->name) && !empty($subcategory))
 					<div class="text-center">
 						<div class="light-gray-text">{{ trans('courses/general.no-course', ['cat' => $subcategory->name] )}}</div>
 						<a class="blue-link" href="{{action('CoursesController@create')}}"> {{ trans('courses/general.teach-new-course', ['cat' => $subcategory->name] )}}</a>
@@ -38,6 +38,8 @@
 </div>
 @if(Request::ajax())
 <script>
-	makeFluid();
+	setTimeout(function(){
+		makeFluid();
+	}, 1000);
 </script>
 @endif

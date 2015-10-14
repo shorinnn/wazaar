@@ -1,6 +1,6 @@
-    @extends('layouts.default')
-    @section('content')	
-    <style>
+@extends('layouts.default')
+@section('content')	
+<style>
 	.category-heading-title,
 		.footer-search{
 			display: none;
@@ -22,6 +22,9 @@
       padding-left: 50px;
       padding-right: 30px;
     }
+    .modal-body .mobile-main-category-list{
+      padding-top: 10px;
+    }
     .mobile-main-category-list .list-group-item a,
     .mobile-sub-category-list .list-group-item a{
       display: block;
@@ -30,6 +33,9 @@
     .mobile-sub-category-list .arrow{
       line-height: 25px;
       font-size: 13px;
+    }
+    .subcat-selected .arrow{
+      margin-top: -13px;
     }
     .selected-main-category,
     .selected-sub-category{
@@ -75,11 +81,11 @@
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
               <li class="selected-main-category list-group-item">
-                <div>
+                <div @if(count(Request::segments()) == 4)class="subcat-selected"@endif>
                   @if(count(Request::segments()) == 4)
                     @foreach($categories as $cat)
                       @if(Request::segment(3)==$cat->slug)
-                        <div class="small"> {{ $cat->name }}</div>
+                        <span class="small"> {{ $cat->name }}</span><br />
                         @foreach($cat->courseSubcategories as $subcat)
                             @if(Request::segment(4)==$subcat->slug)
                               {{$subcat->name}}
@@ -100,52 +106,6 @@
                   <div class="clearfix"></div>
                 </div>
               </li>
-              <div class="other-main-category-list hide">
-                @foreach($categories as $cat)
-                  @if(Request::segment(3)==$cat->slug)
-                    @if(count(Request::segments()) == 4)
-                    <li class="other-main-category-list-item list-group-item">
-                        <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
-                            {{ $cat->name }}
-                          <i class="arrow wa-chevron-right right"></i>
-                          <div class="clearfix"></div>
-                        </a>
-                    </li>
-                    @endif
-
-                    @foreach($cat->courseSubcategories as $subcat)
-                      <li class="other-sub-category-list-item list-group-item">
-                          <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
-                            {{$subcat->name}}
-                            <i class="arrow wa-chevron-right right"></i>
-                            <div class="clearfix"></div>
-                          </a>
-                      </li>
-                    @endforeach
-                  @endif
-                @endforeach
-
-                @if(count(Request::segments()) >= 3)
-                    <li class="other-main-category-list-item list-group-item">
-                        <a href="{{ action('CoursesController@category') }}">
-                            All Categories
-                          <i class="arrow wa-chevron-right right"></i>
-                          <div class="clearfix"></div>
-                        </a>
-                    </li>
-                @endif
-                @foreach($categories as $cat)
-                  @if(Request::segment(3)!=$cat->slug)
-                      <li class="other-main-category-list-item list-group-item">
-                          <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
-                              {{ $cat->name }}
-                            <i class="arrow wa-chevron-right right"></i>
-                            <div class="clearfix"></div>
-                          </a>
-                      </li>
-                  @endif
-                @endforeach
-              </div>
             </ul>
           @endif
 
@@ -187,13 +147,6 @@
             </ul>
           @endif */?>
         </section>
-        <!-- <div class="group popular">
-            <h3>Popular</h3>
-            <ul class="main-menu">
-                <li class="popular-list"><a href="#">Featured<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
-                <li class="popular-list"><a href="#">Best sellers<i class="wa-chevron-right right hidden-md hidden-lg"></i></a></li>
-            </ul>
-        </div> -->
         <div class="hidden-xs hidden-sm visible-md visible-lg">
           <div class="group">
               <h3>Categories</h3>
@@ -279,7 +232,92 @@
     </div>
     <div class="clearfix"></div>
   </section>
+<div id="category-list-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
+        <div class="clearfix"></div>
+          @if(count(Request::segments()) >= 2)
+            <ul class="mobile-main-category-list list-group">
+              <li class="selected-main-category list-group-item">
+                <div @if(count(Request::segments()) == 4)class="subcat-selected"@endif>
+                  @if(count(Request::segments()) == 4)
+                    @foreach($categories as $cat)
+                      @if(Request::segment(3)==$cat->slug)
+                        <span class="small"> {{ $cat->name }}</span><br />
+                        @foreach($cat->courseSubcategories as $subcat)
+                            @if(Request::segment(4)==$subcat->slug)
+                              {{$subcat->name}}
+                            @endif
+                        @endforeach
+                      @endif
+                    @endforeach
+                  @elseif(count(Request::segments()) == 3)
+                    @foreach($categories as $cat)
+                      @if(Request::segment(3)==$cat->slug)
+                        {{ $cat->name }}
+                      @endif
+                    @endforeach
+                  @else
+                    Categories
+                  @endif
+                  <i class="arrow wa-chevron-down right"></i>
+                  <div class="clearfix"></div>
+                </div>
+              </li>
+              <div class="other-main-category-list">
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)==$cat->slug)
+                    @if(count(Request::segments()) == 4)
+                    <li class="other-main-category-list-item list-group-item">
+                        <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
+                            {{ $cat->name }}
+                          <i class="arrow wa-chevron-right right"></i>
+                          <div class="clearfix"></div>
+                        </a>
+                    </li>
+                    @endif
 
+                    @foreach($cat->courseSubcategories as $subcat)
+                      <li class="other-sub-category-list-item list-group-item">
+                          <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
+                            {{$subcat->name}}
+                            <i class="arrow wa-chevron-right right"></i>
+                            <div class="clearfix"></div>
+                          </a>
+                      </li>
+                    @endforeach
+                  @endif
+                @endforeach
+
+                @if(count(Request::segments()) >= 3)
+                    <li class="other-main-category-list-item list-group-item">
+                        <a href="{{ action('CoursesController@category') }}">
+                            All Categories
+                          <i class="arrow wa-chevron-right right"></i>
+                          <div class="clearfix"></div>
+                        </a>
+                    </li>
+                @endif
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)!=$cat->slug)
+                      <li class="other-main-category-list-item list-group-item">
+                          <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
+                              {{ $cat->name }}
+                            <i class="arrow wa-chevron-right right"></i>
+                            <div class="clearfix"></div>
+                          </a>
+                      </li>
+                  @endif
+                @endforeach
+              </div>
+            </ul>
+          @endif        
+      </div>
+    </div>
+  </div>
+</div>
     @stop
 
     @section('extra_js')
@@ -305,16 +343,22 @@
                   $(this).prop('checked', true).parent().addClass('active');
                 }
               })
-
-              var url = '/courses/category?';
+              var url = '/courses/category';
+              @if(isset($category->slug) && !empty($category->slug))
+                url = url + '/{{$category->slug}}';
+                @if(isset($subcategory->slug) && !empty($subcategory->slug))
+                  url = url + '/{{$subcategory->slug}}';
+                @endif
+              @endif
               var data = Array('term='+$('.header-search').val(),'sort='+$(parent_visible_container).find('.course-sort').val(),'filter='+$(parent_visible_container).find('.filter:checked').val(),'difficulty='+$(parent_visible_container).find('.difficulty:checked').val())
               // var data = Array('term='+$('.header-search').val(),'sort='+$('.course-sort').val(),'filter='+$('.filter:checked').val(),'difficulty='+$('.difficulty:checked').val())
               // console.log(data);
 
-              url = url + data.join('&');
+              url = url + '?' + data.join('&');
 
               $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
               $('.course-desc-ajax-link').click();
+              $('.category-content-container').css('height', 'auto');
           }
 
           function makeFluid()
@@ -334,8 +378,6 @@
             } else {
               var sidebar_height = $('.sidebar-menu').height();
               var category_content = $('.category-content-container').height();
-              console.log(sidebar_height)
-              console.log(category_content)
               if(Number(sidebar_height) >= Number(category_content)){
                 $('.category-content-container').height(sidebar_height);
               } else {
@@ -361,25 +403,13 @@
 
             if($('.selected-main-category').length >= 1){
               $('.selected-main-category').on('click', function(){
-                if($(this).hasClass('open')){
-                  $(this).removeClass('open').find('.arrow').removeClass('wa-chevron-up').addClass('wa-chevron-down')
-                  $(this).next('.other-main-category-list').hide();
-                } else {
-                  $(this).addClass('open').find('.arrow').removeClass('wa-chevron-down').addClass('wa-chevron-up')
-                  $(this).next('.other-main-category-list').hide().removeClass('hide').show();
-                }
+                $('#category-list-modal').modal();
               })
             }
 
             if($('.selected-sub-category').length >= 1){
               $('.selected-sub-category').on('click', function(){
-                if($(this).hasClass('open')){
-                  $(this).removeClass('open').find('.arrow').removeClass('wa-chevron-up').addClass('wa-chevron-down')
-                  $(this).next('.other-sub-category-list').hide();
-                } else {
-                  $(this).addClass('open').find('.arrow').removeClass('wa-chevron-down').addClass('wa-chevron-up')
-                  $(this).next('.other-sub-category-list').hide().removeClass('hide').show();
-                }
+                $('#category-list-modal').modal();
               })
             }
 

@@ -61,6 +61,8 @@
                                 @else
                                     {{ $request->user->commentName('instructor_agency') }}
                                 @endif
+                                <br />
+                                {{ $request->user->email }}
                             </td>
                             <td>
                                 {{ trans('administration.before-fee') }}:

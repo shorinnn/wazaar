@@ -167,8 +167,15 @@ class Instructor extends User{
     public function debit( $amount = 0, $reference = null, $transactions_to_mark = null ){
         $amount = doubleval( $amount );
         
-        if( $amount > $this->instructor_balance ) return false;
-        if( $amount < Config::get('custom.cashout.threshold') ) return false;
+        if( $amount > $this->instructor_balance ){
+            $this->debit_error = "Amount ($amount) greater than balance ($this->instructor_balance)";
+            $this->balance_error = true;
+            return false;
+        }
+        if( $amount < Config::get('custom.cashout.threshold') ){
+            $this->debit_error = "Amount ($amount) less than threshold (".Config::get('custom.cashout.threshold').")";
+            return false;
+        }
         
         return DB::transaction(function() use ($amount, $reference, $transactions_to_mark ){
               $fee = Config::get('custom.cashout.fee');
@@ -198,21 +205,29 @@ class Instructor extends User{
                             $fee_transaction->gc_fee = 0;
                             
                             if( !$fee_transaction->save() ){
+                                $this->debit_error = 'Cannot save fee transaction - '.implode(',', $fee_transaction->errors()->all() );
                                 return false;
                             }
                             // mark transactions as complete
                             $debits = [];
                             foreach($transactions_to_mark as $t){
                                 $t->cashed_out_on = date('Y-m-d H:i:s');
-                                if( !$t->updateUniques() ) return false;
+                                if( !$t->updateUniques() ) {
+                                    $this->debit_error = 'Cannot mark transactions as cashed out - '.implode(',', $t->errors()->all() );
+                                    return false;
+                                }
                                 $debits[] = $t->id;
                             }
                             $transaction->debits = json_encode($debits);
                             $transaction->updateUniques();
                       return $transaction->id;
                   }
-                  else return false;
+                  else{
+                    $this->debit_error = 'Cannot update balance - '.implode(',', $this->errors()->all() );
+                    return false;
+                  }
               }
+              $this->debit_error = 'Cannot save debit transaction - '.implode(',', $transaction->errors()->all() );
               return false;
          });
      }

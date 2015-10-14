@@ -75,18 +75,41 @@ class InstructorCashoutCommand extends ScheduledCommand {
             // get all instructors that meet the threshold
             //$instructors = Instructor::where('instructor_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
             
-            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+//            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+            $this->info("Cashout for purchases up until $cutoffDate");
+            $testPurchases = [7044, 4403, 14, 8];
             
-            $instructors = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate){
+            $instructors = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
                 $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
-                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+                        ->whereNull('cashed_out_on')
+                        ->where('created_at', '<=', $cutoffDate )->where(function ($q) use ($testPurchases){
+                            $q->whereNotIn( 'purchase_id', $testPurchases )
+                            ->orWhereNull('purchase_id');                            
+                        });
             })->get();
             
             foreach( $instructors as $instructor ){
+                $this->info("Processing instructor $instructor->id");
                 $transactions = $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
-                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )->get();
-                if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
-                    $instructor->debit( $transactions->sum('amount'), null, $transactions );
+                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )
+                        ->where(function ($q) use ($testPurchases){
+                            $q->whereNotIn( 'purchase_id', $testPurchases )
+                            ->orWhereNull('purchase_id');                            
+                        })
+                        ->get();
+                $sum = $transactions->sum('amount'); 
+                $this->info("AMT: $sum");
+                if( $sum >= Config::get('custom.cashout.threshold') ){
+                    if ( !$instructor->debit( $transactions->sum('amount'), null, $transactions ) ){
+                        $this->error('Could not debit - '.$instructor->debit_error);
+                    }
+                    else{
+                        $this->comment('DEBITED!');
+                    }
+                }
+                else{
+                    $this->comment('Amount less than trashold. Not attempting cashout.');
                 }
             }
 	}

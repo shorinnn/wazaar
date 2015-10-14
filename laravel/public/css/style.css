@@ -217,6 +217,9 @@ ul {
 .wazaar-blue-text{
 	color: #0099ff;
 }
+.wazaar-green-text{
+	color: #7EC95F;
+}
 a,
 input::-moz-focus-inner {
    outline: none !important;
@@ -242,7 +245,7 @@ header{
 	padding: 0 40px !important;
 	background: #18222b;
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 }
 /************ Top menu and logo inside the blue bar ****************/
 header .main-logo{
@@ -10198,7 +10201,11 @@ footer{
 		display: block;
 		float: right;
 	}
-	.category-content-container{
+	.category-box-container .sidebar-menu{
+		z-index: 1;
+	}
+	.category-box-container .sidebar-menu,
+	.category-box-container .category-content-container{
 		float: none !important;
 	}
 	.no-results-container{

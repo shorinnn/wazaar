@@ -173,7 +173,7 @@
                                                     </div>
                                                 	<div class="col-xs-6 col-sm-6 col-md-7 col-lg-7 text-right">
                                                     	<a href="{{ action('InstructorDashboardController@course', $course->slug)}}" class="default-button see-stat"><i class="fa fa-line-chart"></i>
-                                                            <span class="hidden-xs">{{ trans('courses/general.see_statistics') }}</span>
+                                                            <span class="hidden-xs">{{ trans('analytics.see_statistics') }}</span>
                                                         </a>
                                                             <div class="settings activate-dropdown">
                                                             <button aria-expanded="false" data-toggle="dropdown" 
@@ -224,7 +224,7 @@
                                                       {{ trans('courses/general.purchases') }} <span class="count new">
                                                           {{ $course->sales()->count() + $course->lessonSalesCount() }}--></span>
                                                   </p>
-                                                 <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.previewers') }} 
+                                                 <p><i class="fa fa-smile-o"></i>{{ trans('analytics.previewers') }} 
                                                      <span class="count new">
                                                          @if( $course->nonBuyerPreviews(true) > 0)
                                                              {{ $course->nonBuyerPreviews(true) }} NEW
@@ -232,7 +232,7 @@
                                                          <em> ({{ $course->nonBuyerPreviews() }})</em></span>
                                                  </p>
                                                  
-                                                 <p><i class="wa-like"></i>{{ trans('general.reviews') }}
+                                                 <p><i class="wa-like"></i>{{ trans('analytics.reviews') }}
                                                      <span class="count">{{ $course->total_reviews }} <em> ({{ $course->reviewsScore() }})</em></span></p>
                                             </div>
                                         </div>
@@ -260,19 +260,19 @@
                                                     </tr>
                                                     <tr>　　　　　　　 
                                                         <td> 
-                                                            ¥{{ number_format( $instructor->money('purchase_price','all-time') , Config::get('custom.currency_decimals')) }}
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('purchase_price','all-time') , Config::get('custom.currency_decimals')) }}</span>
                                                         </td>
                                                         <td>
-                                                            ¥{{ number_format( $instructor->money('affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
                                                         </td>
                                                         <td>
-                                                            ¥{{ number_format( $instructor->money('second_tier_affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('second_tier_affiliate_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
                                                         </td>
                                                         <td>
-                                                            ¥{{ number_format( $instructor->money('total_site_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('total_site_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
                                                         </td>
                                                         <td>
-                                                            ¥{{ number_format( $instructor->money('instructor_earnings','all-time') , Config::get('custom.currency_decimals')) }}
+                                                            <span class="wazaar-green-text">¥{{ number_format( $instructor->money('instructor_earnings','all-time') , Config::get('custom.currency_decimals')) }}</span>
                                                         </td>
                                                     </tr>
                                                 </table>
