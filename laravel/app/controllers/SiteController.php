@@ -9,6 +9,9 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{
+            if( !Input::has('skip-splashie')){
+                return View::make('splash2');
+            }
         $data = Request::all();
 
         $filter = (isset($data['filter']) && $data['filter'] != '')? $data['filter']: '';

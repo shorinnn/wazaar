@@ -20,7 +20,6 @@
 </head>
 <body>
     <div id="wrapper">
-        <a style='position:absolute; right:0px; color:white; padding:5px; font-size:10px' href="{{ action('SiteController@privacyPolicy') }}"> {{ trans('general.privacy-policy') }}</a>
     	<div id="container">
         	<div id="logo" class="clear">
                     <img src="splash/logo.png" alt="">
