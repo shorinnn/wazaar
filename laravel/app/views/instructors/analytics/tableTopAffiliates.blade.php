@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table">
     <thead>
     <th>{{trans('analytics.rank')}}</th>
     <th>{{trans('analytics.name')}}</th>

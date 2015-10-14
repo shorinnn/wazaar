@@ -2675,7 +2675,7 @@ h2, h3, h4, h5, h6{
 }
 .tabbed-content-header a:hover,
 .tabbed-content-header a.active{
-	color: #0099ff;
+	color: #0099ff !important;
 	border-color: #0099ff;
 }
 .course-data .scroll-to-top,
@@ -9418,7 +9418,9 @@ footer{
 .new_analytics h2{
     color: #45494d;
     margin-bottom: 13px;
-    line-height: 30px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 27px;
 }
 .new_analytics h2 i{
     color: #a7b7c4;
@@ -9484,17 +9486,173 @@ footer{
     color: #303941;
     font-size: 14px;
 }
-.new_analytics .periodic-stats{
+.periodic-stats{
     border: 1px solid #e0e1e2;
     border-radius: 4px;
     background-color: #fff;
     margin-top: 13px;
+    overflow: hidden;
 }
-.new_analytics .periodic-stats .tabbed-content-header{
+.periodic-stats .tabbed-content-header{
     background-color: #f7f9fa;
+    border-bottom: 1px solid #e0e1e2;
+    padding: 0 13px;
+}
+.periodic-stats .tabbed-content-header a{
+    color: #798794;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    border-width: 0 0 1px;
+    padding: 11px;
+}
+.periodic-stats table{
+    margin: 13px 0;
+}
+.periodic-stats .table-wrap{
+    padding: 0 12px;
+}
+.periodic-stats table thead{
+    background: none;
+}
+.periodic-stats table thead th{
+    border-bottom: none;
+    padding-left: 40px;
+    color: #45494d;
+    vertical-align: top;
+}
+.periodic-stats table thead th span{
+    display: block;
+    color: #798794;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.periodic-stats table tbody tr:hover{
+    background-color: rgba(126, 211, 33, 0.1);
+    border-radius: 4px;
+}
+.periodic-stats table tbody tr:hover .progress-bar{
+    background-color: #7ed321;
+}
+.periodic-stats .day{
+    color: #303941;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 16px;
+    line-height: 31px;
+}
+.periodic-stats .value-text{
+    color: #303941;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 31px;
+    padding-left: 32px;
+}
+.left-bordered{
+    border-left: 1px solid #e0e1e2;
+}
+.no-border-top{
+    border-top: none !important;
+}
+.periodic-stats .progress{
+    width: 100px;
+    height: 3px;
+    border-radius: 16px;
+    display: inline-block;
+    vertical-align: top;
+    background: #e8eced;
+    border-radius: 2px;
+}
+.periodic-stats .progress .progress-bar{
+    background: #09f;
+}
+.courses-table{
     border: 1px solid #e0e1e2;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-top: 13px;
+    overflow: hidden;
+}
+.courses-table table{
+    margin-bottom: 0;
+}
+.courses-table thead{
+    background-color: #f7f9fa !important;
+    border-bottom: 1px solid #e0e1e2;
+    padding: 11px 0 11px;
 }
 
+.courses-table thead th{
+    color: #798794;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 17px !important;
+    border-bottom: none !important;
+    text-transform: uppercase;
+}
+.courses-table thead th:first-of-type{
+    padding-left: 24px;
+}
+.courses-table thead th:last-of-type{
+    padding-right: 17px;
+    padding-left: 40px;
+}
+.courses-table tbody td:first-of-type{
+    padding-left: 24px;
+}
+.courses-table tbody td:last-of-type{
+    padding-right: 17px;
+}
+.courses-table tbody td{
+    color: #242b32;
+    font-size: 13px;
+    line-height: 15px !important;
+}
+.courses-table .table-pagination > div{
+    width: 250px;
+    float: right;
+    margin-right: 21px;
+    margin-top: 18px;
+    margin-bottom: 16px;
+}
+.courses-table .table-pagination {
+    border-top: 2px solid #e0e1e2;
+}
+.courses-table .table-pagination > div ul{
+    margin: 0;
+    float: right;
+}
+.courses-table .table-pagination > div ul li + li{
+    margin: 0;
+}
+.courses-table .table-pagination > div ul li a{
+    font-size: 12px;
+    padding: 0 11px;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background: none;
+    color: #09f;
+    line-height: 18px;
+    vertical-align: top;
+}
+.courses-table .table-pagination > div ul li a:hover,
+.courses-table .table-pagination > div ul li a.active{
+    border: none;
+    background: none;
+    box-shadow: none;
+    color: #242b32;
+}
+.courses-table .datepick{
+    width: 329px;
+    border: 1px solid #e0e1e2;
+    border-radius: 4px;
+}
+.courses-table .datepick .date-dropdown {
+    background-color: #f7f9fa;
+}
 /*************** Media Query fixes **************************/
 @media (max-width: 1250px) and (min-width: 991px){
 .questions-sidebar .ask-question .img-container{

@@ -443,7 +443,7 @@
                   <div class="panel-heading">
                     <h3 class="panel-title">{{trans('analytics.salesStatistics')}}</h3>
                   </div>
-                  <div class="panel-body">
+                  <div class="">
                       <div id="wrapper-table-sales">
                           <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                       </div>
@@ -456,7 +456,7 @@
               <div class="panel-heading">
                 <h3 class="panel-title">{{trans('analytics.registrationStatistics')}}</h3>
               </div>
-              <div class="panel-body">
+              <div class="">
                   <div id="wrapper-table-registrations">
                       <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                   </div>

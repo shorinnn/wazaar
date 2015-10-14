@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table">
     <thead>
         <th>{{trans('analytics.date')}}</th>
         <th>{{trans('analytics.salesCount')}}</th>
