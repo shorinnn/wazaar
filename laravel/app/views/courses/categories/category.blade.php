@@ -232,11 +232,14 @@
     </div>
     <div class="clearfix"></div>
   </section>
-<div id="category-list-modal" class="modal fade">
+<div id="category-list-modal" class="modal fade" style="border-radius:0px;">
   <div class="modal-dialog" style="margin:0px !important">
     <div class="modal-content">
-      <div class="modal-body" style="padding:0px;">
+      <div class="modal-header" style="border-bottom: 0px none; padding-bottom: 0px; z-index: 1; width: 100%; height: 50px; position: fixed; background: #fff;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-body" style="padding:0px;">
         <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
@@ -390,13 +393,22 @@
             // }
 
           }
+          function makeCategoryModalHeightFixed()
+          {
+            var window_height = $(window).height();
+            var modal_header_height = $('#category-list-modal .modal-header').height();
+            console.log(modal_header_height);
+            var modal_body_height = Number(window_height) - Number(modal_header_height);
+            $('#category-list-modal .modal-body').height(modal_body_height).css({'margin-top':modal_header_height, 'overflow':'auto'});
+          }
 
     			$(window).resize(function(){
             makeFluid();
+            makeCategoryModalHeightFixed();
     			});
-		
     			$(function(){
             makeFluid();
+            makeCategoryModalHeightFixed();
             $('.level-buttons-container a').click(function(){
                 $('.level-buttons-container a').removeClass('active');
             });
