@@ -235,7 +235,7 @@
 <div id="category-list-modal" class="modal fade">
   <div class="modal-dialog" style="margin:0px !important">
     <div class="modal-content">
-      <div class="modal-body">
+      <div class="modal-body" style="padding:0px;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
         <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
