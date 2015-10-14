@@ -404,7 +404,8 @@
           }
           function makeCategoryModalHeightFixed()
           {
-            $('html').css('overflow', 'hidden');
+            $('html, body').css('overflow', 'hidden');
+            $('body').css('position', 'relative');
             var window_height = $(window).height();
             var modal_body_height = Number(window_height) - 51;
             $('#category-list-modal .modal-backdrop').height('100%');
