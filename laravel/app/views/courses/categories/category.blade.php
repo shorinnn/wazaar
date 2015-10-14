@@ -402,7 +402,7 @@
           }
 
     			$(window).resize(function(){
-            alert('am i called '+$(window).height());
+            alert('am i called '+$(window).height()+' '+screen.height);
             makeFluid();
             makeCategoryModalHeightFixed();
     			})
