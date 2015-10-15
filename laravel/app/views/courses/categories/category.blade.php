@@ -56,9 +56,9 @@
     color: #798794;
   }
   .modal.fade .modal-dialog {
-    -webkit-transition: -webkit-transform .1s ease-out;
-         -o-transition:      -o-transform .1s ease-out;
-            transition:         transform .1s ease-out;
+    -webkit-transition: -webkit-transform .2s ease-out;
+         -o-transition:      -o-transform .2s ease-out;
+            transition:         transform .2s ease-out;
   }
   @media (max-width: 650px){
     .category-content-container{
