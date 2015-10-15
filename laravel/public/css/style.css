@@ -7180,6 +7180,11 @@ a.load-remote > *{
 	height:100%;
 	width:100%;
 }
+.step2 .lesson-container .preview-thumb img[src *="ajax-loader"]{
+    width: auto !important;
+    height: auto !important;
+}
+
 .step1 .lesson-container .use-existing > a,
 .step1 .lesson-container .upload-button,
 .step2 .lesson-container .use-existing > a,
@@ -7239,9 +7244,9 @@ a.load-remote > *{
 	color: #cfd8df;
 }
 .step2 .lesson-container .lesson-data textarea{
-	margin-bottom: 12px;
 	padding: 0 12px !important;
 	vertical-align: top;
+    line-height: 18px;
 }
 .textarea-wrap {
     position: relative;
@@ -7278,15 +7283,20 @@ a.load-remote > *{
 .step2 .lesson-container .switch-handle:before{
 	display: none;
 }
+.step2 .lesson-container .progress{
+    margin-left: auto;
+    margin-right: auto;
+}
 .step2 .lesson-container .switch-label{
 	font-size: 14px;
 }
 .step2 .lesson-container .switch-label:before{
 	top: 8px;
-	right: 13px;
+	right: 9px;
 }
 .step2 .lesson-container .switch-label:after{
 	top: 8px;
+    left: 9px;
 }
 .value-unit-two{
 	display: inline-block;
@@ -7333,7 +7343,7 @@ a.load-remote > *{
 	font-size: 24px;
 }
 .step2 .lesson-container .file-upload-row .upload-button{
-	max-width: 125px;
+	width: auto;
 	display: inline-block !important;
 }
 .step2 .lesson-container .file-upload-row p{
@@ -7392,6 +7402,13 @@ a.load-remote > *{
 .step2 .uploaded-files li .file-name{
 	font-size: 13px;
 	color: #303941;
+    display: inline-block;
+    max-width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    top: 3px;
 }
 .step2 .uploaded-files li .file-name i{
 	margin-right: 15px;
