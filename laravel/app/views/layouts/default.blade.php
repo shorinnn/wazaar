@@ -466,7 +466,11 @@
 						animate: true
 						, cloneClass: 'faketextarea'
 					};*/
-					$("textarea").autoGrow();
+					var opts = {
+                        animate: false
+                    }
+
+					$("textarea").autoGrow(opts);
 					
 					var textareaHeight = $('textarea').css('height');
 					var textareaMaxHeight = $('textarea').css('max-height');

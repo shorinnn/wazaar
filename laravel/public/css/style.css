@@ -3736,11 +3736,11 @@ h2, h3, h4, h5, h6{
 }
 
 .new-dashboard.dashboardTabs .settings{
-	padding: 7.5px 14px;
+	padding: 2px 14px;
 	display: inline-block;
 	background: #f7f9fa;
 	position: relative;
-	top: 1px;
+	top: 2px;
 	border: solid 1px #cfd1d3;
 	border-radius: 3px;
 }
@@ -3798,16 +3798,20 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs .settings .dropdown-menu a.delete{
 	border-top: solid 1px #e0e1e2;
 }
-.new-dashboard.dashboardTabs .lesson-status.unsubmitted,
-.new-dashboard.dashboardTabs .lesson-status.draft{
-	background: #cfd8df;
+.lesson-status.unsubmitted,
+.lesson-status.draft{
+	background: #a7b7c4 !important;
 }
-.new-dashboard.dashboardTabs .lesson-status.approved{
-	background: #7ec95f;
+.lesson-status.approved{
+	background: #5baf17 !important;
 }
-.new-dashboard.dashboardTabs .lesson-status.pending{
-	background: #0099ff;
+.lesson-status.pending{
+	background: #0099ff !important;
 }
+.lesson-status.rejected{
+    background: #ef4c31 !important;
+}
+
 /*Instructor Dashboard*/
 .instructor-dashboard.top-section{
 	padding-top: 45px;
@@ -3946,7 +3950,7 @@ h2, h3, h4, h5, h6{
 	margin-left: 15px;
 }
 .instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .see-stat{
-	padding: 10px 20px;
+	padding: 5px 20px;
 	font-size: 12px;
 	font-weight: 600;
 	color: #798794;
@@ -3972,16 +3976,18 @@ h2, h3, h4, h5, h6{
 	margin-bottom: 7px;
 	margin-right: 15px;
 }
-.instructor-dashboard.dashboardTabs .teaching-lesson h4 .lesson-status{
+.lesson-status{
 	display: inline-block;
 	padding: 1px 5px;
 	border-radius: 2px;
 	font-size: 11px;
-	color: #fff;
+	color: #fff !important;
 	font-weight: bold;
-	margin-right: 2px;
 	text-transform: uppercase;
 	position: relative;
+}
+.instructor-dashboard.dashboardTabs .teaching-lesson h4 .lesson-status {
+    margin-right: 2px;
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 a:hover{
 	color: #03a2ff;
@@ -6908,6 +6914,9 @@ a.load-remote > *{
     text-align: center;
     top: -37px;
 }
+.listing-video .file-processing-handler {
+    margin-top: -65px;
+}
 .step1 .listing-video label,
 .step1 .use-existing > a,
 .step1 .listing-image label{
@@ -7729,6 +7738,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	z-index: 1;
 	cursor: pointer;
 }
+.preview-thumb .preview-overlay{
+    padding-top: 10px;
+}
+
 .preview-thumb:hover .preview-overlay,
 .video-preview-thumb:hover .preview-overlay{
 	opacity: 1;
@@ -8007,21 +8020,12 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin-bottom: 60px;
     text-align: center;
 }
+.approval-box h4{
+    margin: 0 !important;
+}
 .approval-box .not-approved{
 	color: #303941;
 	margin: 0 0 12px !important;
-}
-.approval-box .approved {
-    color: #7ec95f !important;
-}
-.approval-box .pending{
-    color: #f4c50a !important;
-}
-.approval-box .rejected{
-    color: #ec4316 !important;
-}
-.approval-box .unsubmitted{
-    color: #303941 !important;
 }
 .approval-box .regular-paragraph{
 	color: #a7aaad !important;

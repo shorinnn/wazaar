@@ -7,7 +7,7 @@
     <input type='hidden' name='publish_status' value='1' />
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-content">
     <div class="approval-box">
-            <h4 class="{{ $course->publish_status }}">
+            <h4 class="lesson-status {{ $course->publish_status }}">
                 @if($course->publish_status=='pending')
                     <br />{{ trans('courses/general.wazaar-is-checking-your-product') }}
                 @else

@@ -303,7 +303,6 @@
 <script type="text/javascript">
     var $intervalId{{$lesson->id}} = 0;
 
-    $(function(){
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-lesson-{{$lesson->id}}'),
             'url': '{{UploadHelper::AWSVideosInputURL()}}',

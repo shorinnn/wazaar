@@ -106,7 +106,7 @@ $(document).ready(function(){
 });
 
 function fixModalJerk(){
-    $('.modal').on('show.bs.modal', function () {
+    $('body').delegate('.modal', 'show.bs.modal', function () {
         if ($(document).height() > $(window).height()) {
             // no-scroll
             $('body').addClass("modal-open-noscroll");
@@ -116,7 +116,7 @@ function fixModalJerk(){
         }
     });
 
-    $('.modal').on('hidden.bs.modal', function () {
+    $('body').delegate('.modal', 'hidden.bs.modal', function () {
         $('body').removeClass("modal-open-noscroll");
         console.log("Hidden");
     });
