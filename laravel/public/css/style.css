@@ -7777,13 +7777,15 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 .edit-course .header h1 span{
 	display: inline-block;
-	padding: 5px;
-	background-color: #a7b7c4;
+	padding: 1px 5px;
+    line-height: 22px;
+	background-color: #cfd8df;
 	border-radius: 1px;
 	margin-left: 20px;
 	position: relative;
-	top: -3px;
+	top: 8px;
 	font-size: 11px;
+    vertical-align: top;
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: 600;
@@ -7991,10 +7993,23 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	display: block;
 	background: #f7f9fa;
 	margin-bottom: 60px;
+    text-align: center;
 }
 .approval-box .not-approved{
 	color: #303941;
 	margin: 0 0 12px !important;
+}
+.approval-box .approved {
+    color: #7ec95f;
+}
+.approval-box .pending{
+    color: #f4c50a;
+}
+.approval-box .rejected{
+    color: #ec4316;
+}
+.approval-box .unsubmitted{
+    color: #303941;
 }
 .approval-box .regular-paragraph{
 	color: #a7aaad !important;
