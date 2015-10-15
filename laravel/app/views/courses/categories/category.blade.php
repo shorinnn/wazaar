@@ -241,6 +241,8 @@
     </div>
     <div class="clearfix"></div>
   </section>
+
+
 <div id="category-list-modal" class="modal fade" style="overflow-y:hidden;">
   <div class="modal-dialog" style="width:100%; margin:0px !important">
     <div class="modal-content" style="border-radius:0px;">
@@ -252,78 +254,56 @@
         <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
-              <li class="selected-main-category list-group-item">
-                <div @if(count(Request::segments()) == 4)class="subcat-selected"@endif>
-                  @if(count(Request::segments()) == 4)
-                    @foreach($categories as $cat)
-                      @if(Request::segment(3)==$cat->slug)
-                        <span class="small"> {{ $cat->name }}</span><br />
-                        @foreach($cat->courseSubcategories as $subcat)
-                            @if(Request::segment(4)==$subcat->slug)
-                              {{$subcat->name}}
-                            @endif
-                        @endforeach
-                      @endif
-                    @endforeach
-                  @elseif(count(Request::segments()) == 3)
-                    @foreach($categories as $cat)
-                      @if(Request::segment(3)==$cat->slug)
-                        {{ $cat->name }}
-                      @endif
-                    @endforeach
-                  @else
-                    Categories
-                  @endif
-                  <i class="arrow wa-chevron-down right"></i>
-                  <div class="clearfix"></div>
-                </div>
-              </li>
-              <div class="other-main-category-list">
-                @foreach($categories as $cat)
-                  @if(Request::segment(3)==$cat->slug)
-                    @if(count(Request::segments()) == 4)
-                    <li class="other-main-category-list-item list-group-item">
-                        <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
-                            {{ $cat->name }}
-                          <i class="arrow wa-chevron-right right"></i>
-                          <div class="clearfix"></div>
-                        </a>
-                    </li>
-                    @endif
-
-                    @foreach($cat->courseSubcategories as $subcat)
-                      <li class="other-sub-category-list-item list-group-item">
+              @foreach($categories as $cat)
+                @if(Request::segment(3)==$cat->slug)
+                  <li class="selected-main-category list-group-item active">
+                    <a href="#" class="main-category-toggler">
+                      {{ $cat->name }}
+                      <i class="arrow wa-chevron-down right"></i>
+                      <div class="clearfix"></div>
+                    </a>
+                    @if(count($cat->courseSubcategories) >= 1)
+                    <ul class="mobile-sub-category-list">
+                      <li><a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All</a></li>
+                      @foreach($cat->courseSubcategories as $subcat)
+                        <li>
                           <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
                             {{$subcat->name}}
                             <i class="arrow wa-chevron-right right"></i>
                             <div class="clearfix"></div>
                           </a>
-                      </li>
-                    @endforeach
-                  @endif
-                @endforeach
-
-                @if(count(Request::segments()) >= 3)
-                    <li class="other-main-category-list-item list-group-item">
-                        <a href="{{ action('CoursesController@category') }}">
-                            All Categories
-                          <i class="arrow wa-chevron-right right"></i>
-                          <div class="clearfix"></div>
-                        </a>
-                    </li>
+                        </li>
+                      @endforeach
+                    @endif
+                    </ul>
+                  </li>
                 @endif
-                @foreach($categories as $cat)
-                  @if(Request::segment(3)!=$cat->slug)
-                      <li class="other-main-category-list-item list-group-item">
-                          <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
-                              {{ $cat->name }}
+              @endforeach
+              @foreach($categories as $cat)
+                @if(Request::segment(3)!=$cat->slug)
+                  <li class="selected-main-category list-group-item">
+                    <a href="#" class="main-category-toggler">
+                      {{ $cat->name }}
+                      <i class="arrow wa-chevron-right right"></i>
+                      <div class="clearfix"></div>
+                    </a>
+                    @if(count($cat->courseSubcategories) >= 1)
+                    <ul class="mobile-sub-category-list hide">
+                      <li><a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All</a></li>
+                      @foreach($cat->courseSubcategories as $subcat)
+                        <li>
+                          <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
+                            {{$subcat->name}}
                             <i class="arrow wa-chevron-right right"></i>
                             <div class="clearfix"></div>
                           </a>
-                      </li>
-                  @endif
-                @endforeach
-              </div>
+                        </li>
+                      @endforeach
+                    @endif
+                    </ul>
+                  </li>
+                @endif
+              @endforeach
             </ul>
           @endif        
       </div>
@@ -400,8 +380,8 @@
             //   $('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
             //   $('.category-box-container .ajax-content > .container').css('width', '100%'); 
             // }
-
           }
+
           function makeCategoryModalHeightFixed()
           {
             if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
@@ -426,9 +406,11 @@
             makeFluid();
             makeCategoryModalHeightFixed();
     			})
+
           $(document).scroll(function(){
             makeCategoryModalHeightFixed();
           });
+
     			$(function(){
             makeFluid();
             makeCategoryModalHeightFixed();
@@ -465,6 +447,27 @@
                 });
               })
             }
+
+            $('a.main-category-toggler').each(function(){
+              $(this).on('click', function(){
+                if(!$(this).parent().hasClass('active')){
+                  $('a.main-category-toggler').each(function(){
+                    $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-right');
+                    $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
+                  })
+
+                  $(this).parent().addClass('active').children('ul.mobile-sub-category-list').hide().removeClass('hide').slideDown()
+                  $(this).children('i').removeClass('wa-chevron-right').addClass('wa-chevron-down');
+
+                } else {
+                  if(!$(this).parent().hasClass('stay-active')){
+                    $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-right');
+                    $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
+                  }
+                }
+                return false;
+              })
+            })
 
           });
           

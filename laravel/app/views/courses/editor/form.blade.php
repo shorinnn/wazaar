@@ -366,6 +366,7 @@
         
         function showVideoPreview(elem){
             url = $(elem).attr('data-video-url');
+            url = GibberishAES.dec(url, 'wzrencvid');
             video = '<video style="width:100%" preload="auto"controls=1><source src="'+url+'" type="video/mp4"></video>';
             if( isset( $(elem).attr('data-yt') ) ) video = '<center><iframe width="530" height="315" src="'+url+'" frameborder="0" allowfullscreen></iframe></center>';
             if( isset( $(elem).attr('data-v') ) ) video = '<center><iframe src="'+url+'?color=ffffff&title=0&portrait=0&badge=0" width="530" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></center>';
@@ -398,8 +399,8 @@
                 $('.course-description-video-preview').find('img').remove();
             });
         }
-        
-        
-        
+
+
+
     </script>
 @stop

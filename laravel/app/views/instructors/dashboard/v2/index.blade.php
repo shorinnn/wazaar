@@ -228,8 +228,11 @@
                                                      <span class="count new">
                                                          @if( $course->nonBuyerPreviews(true) > 0)
                                                              {{ $course->nonBuyerPreviews(true) }} NEW
+                                                             <em> ({{ $course->nonBuyerPreviews() }})</em>
+                                                         @else
+                                                             <em> {{ $course->nonBuyerPreviews() }}</em>
                                                          @endif
-                                                         <em> ({{ $course->nonBuyerPreviews() }})</em></span>
+                                                     </span>
                                                  </p>
                                                  
                                                  <p><i class="wa-like"></i>{{ trans('analytics.reviews') }}

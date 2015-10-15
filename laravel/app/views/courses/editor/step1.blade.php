@@ -76,9 +76,11 @@
                                     </div>
                                     @include('courses.video.index')
                                     
+                                    
                                 </div>
                                 <div class="clearfix"></div>
                                 <em>{{ trans('courses/create.video-on-public-course-page') }}</em>
+                                
                             @else
                                 <div class='external-video-preview preview-course'>
                                     {{ externalVideoPreview($course->external_video_url) }}
@@ -292,6 +294,8 @@
 <script src="{{url('js/videoModal.js')}}" type="text/javascript"></script>
 <script src="{{url('js/moment.js')}}" type="text/javascript"></script>
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
+<script src='{{url('js/Gibberish-AES.js')}}'></script>
+
 <script type="text/javascript">
         fixModalJerk();
 
@@ -458,6 +462,7 @@
         }).on('fileuploadprogress', function ($e, $data) {
 
             var $progress = parseInt($data.loaded / $data.total * 100, 10);
+            $('.upload-label-progress-bar-preview-img').html($progress + '%');
             $('#progress-course-video').css('width',$progress + '%');
             $('#progress-course-video-percent-complete').html($progress + '%');
 
@@ -465,7 +470,6 @@
             window.reloadConfirm = false;
             //$('.course-video-upload-button-progress').addClass('hidden');
             //$('.course-video-upload-processing').removeClass('hidden');
-
             $('#introduction-video-wrapper').find('.upload-progress-wrapper').addClass('hidden');
             $('#introduction-video-wrapper').find('.processing-wrapper').removeClass('hidden');
 
