@@ -297,6 +297,7 @@
 <script src='{{url('js/Gibberish-AES.js')}}'></script>
 
 <script type="text/javascript">
+        fixModalJerk();
 
         function cloneStep1Box(e){
            e.preventDefault();
@@ -329,7 +330,8 @@
         }
         
         $(function (){
-        
+            fixModalJerk();
+
              $(window).on('beforeunload', function() {
                 changed = '';
                 if( form1Changed && isModifiedForm('#edit-course-form') ){

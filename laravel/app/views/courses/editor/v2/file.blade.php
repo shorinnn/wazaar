@@ -1,5 +1,5 @@
 <li id="uploaded-file-{{$file->id}}">
-    <a href="#" class="file-name">
+    <span class="file-name">
         @if( strpos( $file->mime, 'image')!== false )
         <i class="fa fa-file-image-o"></i> 
         @elseif( strpos( $file->mime, 'pdf' ) !== false )
@@ -9,7 +9,7 @@
         @endif
 
         {{ $file->name }}
-    </a>  
+    </span>
     @if($file->size=='')
         <span class="file-size calculate-file-size calculate-file-size-{{$file->id}}" data-id='{{$file->id}}'>calculating...</span>
     @else

@@ -3759,10 +3759,10 @@ h2, h3, h4, h5, h6{
 	font-size: 18px;
 }
 .new-dashboard.dashboardTabs .settings .dropdown-menu{
-	min-width: 138px;
+	min-width: 155px;
 	border-radius: 3px;
 	border: solid 1px #e0e1e2;
-	left: -52px;
+	left: -74px;
 	top: 46px;
 	padding: 0;
 	margin: 0;
@@ -7244,9 +7244,10 @@ a.load-remote > *{
 	color: #cfd8df;
 }
 .step2 .lesson-container .lesson-data textarea{
-	padding: 0 12px !important;
+	padding: 0 12px 0 0 !important;
 	vertical-align: top;
     line-height: 18px;
+    margin-bottom: -10px;
 }
 .textarea-wrap {
     position: relative;
@@ -7289,6 +7290,7 @@ a.load-remote > *{
 }
 .step2 .lesson-container .switch-label{
 	font-size: 14px;
+    font-weight: normal;
 }
 .step2 .lesson-container .switch-label:before{
 	top: 8px;
@@ -7587,6 +7589,19 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .edit-course p{
 	word-wrap: break-word;
 }
+.edit-course .upload-progress-wrapper,
+.edit-course .processing-wrapper{
+    height: 35px;
+}
+.edit-course .processing-wrapper .label-progress-bar img[src *="ajax-loader"] {
+    width: 16px;
+    margin: 5px auto 0;
+    display: block;
+}
+.edit-course .upload-progress-wrapper .progress{
+    position: relative;
+    top: 13px;
+}
 .create-course-start-page-container{
 	padding-top: 70px;
 }
@@ -7702,7 +7717,8 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .edit-course .header .video-preview-thumb img{
 	max-width: 100%;
 }
-.edit-course .header .video-preview-thumb .preview-overlay{
+.preview-thumb .preview-overlay,
+.video-preview-thumb .preview-overlay{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -7713,15 +7729,26 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	z-index: 1;
 	cursor: pointer;
 }
-.edit-course .header .video-preview-thumb:hover .preview-overlay{
+.preview-thumb:hover .preview-overlay,
+.video-preview-thumb:hover .preview-overlay{
 	opacity: 1;
 }
-.edit-course .header .video-preview-thumb i{
-	font-size: 28px;
-	color: #fff;
+.preview-thumb .preview-overlay i,
+.video-preview-thumb .preview-overlay i{
+	font-size: 28px !important;
+	color: #fff !important;
 	margin: 6px 0 1px;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    transform: none !important;
 }
-.edit-course .header .video-preview-thumb span{
+.preview-thumb .preview-overlay span,
+.video-preview-thumb .preview-overlay span{
 	font-size: 11px;
 	color: #fff;
 	font-weight: bold;
@@ -7762,13 +7789,15 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 .edit-course .header h1 span{
 	display: inline-block;
-	padding: 5px;
-	background-color: #a7b7c4;
+	padding: 1px 5px;
+    line-height: 22px;
+	background-color: #cfd8df;
 	border-radius: 1px;
 	margin-left: 20px;
 	position: relative;
-	top: -3px;
+	top: 8px;
 	font-size: 11px;
+    vertical-align: top;
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: 600;
@@ -7976,10 +8005,23 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	display: block;
 	background: #f7f9fa;
 	margin-bottom: 60px;
+    text-align: center;
 }
 .approval-box .not-approved{
 	color: #303941;
 	margin: 0 0 12px !important;
+}
+.approval-box .approved {
+    color: #7ec95f !important;
+}
+.approval-box .pending{
+    color: #f4c50a !important;
+}
+.approval-box .rejected{
+    color: #ec4316 !important;
+}
+.approval-box .unsubmitted{
+    color: #303941 !important;
 }
 .approval-box .regular-paragraph{
 	color: #a7aaad !important;
@@ -11711,6 +11753,7 @@ h1.admin-page-title{
 body.modal-open-noscroll
 {
     overflow: hidden;
+    padding-right: 17px !important;
 }
 .modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom
 {

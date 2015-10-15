@@ -376,7 +376,9 @@
             });
             skinVideoControls();
         }
-        
+
+        fixModalJerk();
+
         function externalVideoPreview(e,json){
             dest = $(e.target).attr('data-target');
             $dest = $(dest);
