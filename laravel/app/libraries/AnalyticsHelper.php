@@ -35,12 +35,12 @@ class AnalyticsHelper
         return $users->paginate(Config::get('wazaar.PAGINATION'));
     }
 
-    public function getTopAffiliatesByCourse($courseId)
+    public function getTopAffiliatesByCourse($courseId, $startDate, $endDate)
     {
         if (empty($sortOrder)){
             $sortOrder = 'total_sales DESC, sales_count DESC';
         }
-        return  DB::table('purchases')
+        $result =  DB::table('purchases')
             ->select(
                 DB::raw("SUM(affiliate_earnings) as total_sales"),
                 DB::raw("COUNT(purchases.id) as sales_count"),
@@ -54,6 +54,13 @@ class AnalyticsHelper
             ->where('free_product', 'no')
             ->where('product_id',$courseId)
             ->where('product_type','Course')
+            ;
+
+        if ($startDate && $endDate){
+            $result = $result->whereRaw("DATE(purchases.created_at) BETWEEN '{$startDate}' AND '{$endDate}'");
+        }
+
+        return $result
             ->groupBy('product_affiliate_id', 'username')
             ->orderByRaw($sortOrder)
             ->get();
@@ -62,7 +69,7 @@ class AnalyticsHelper
 
 
 
-    public function getCourseStats($courseId)
+    public function getCourseStats($courseId, $startDate = null, $endDate = null)
     {
         $stats = DB::table('purchases')
             ->select(
@@ -80,6 +87,10 @@ class AnalyticsHelper
             ->where('product_id',$courseId)
            // ->groupBy(DB::raw("DATE(created_at)"))
         ;
+
+        if ($startDate && $endDate){
+            $stats = $stats->whereRaw("DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'");
+        }
 
         return $stats->paginate(Config::get('wazaar.PAGINATION'));
     }

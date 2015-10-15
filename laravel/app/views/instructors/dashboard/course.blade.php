@@ -117,14 +117,29 @@
 
             </div>
 
+            <hr/>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Tables Filter</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 50%">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span></span> <b class="caret"></b>
+                    </div>
 
-            <div class="row hide">
+                    <button class="btn btn-success" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" style="margin-left: 10px">Apply Filter</button>
+                </div>
+            </div>
+
+
+            <div class="row-fluid hide">
                 <div class="top-affiliates-table table-wrapper">
                     {{-- @include('administration.dashboard.partials.user.topAffiliates') --}}
                 </div>
             </div>
 
-            <div class="row hide">
+            <div class="row-fluid">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">{{trans('analytics.courseStats')}}</h3>
@@ -138,7 +153,7 @@
 
             </div>
 
-            <div class="row hide">
+            <div class="row-fluid">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">{{trans('analytics.topAffiliates')}}</h3>
@@ -166,7 +181,7 @@
 @section('extra_css')
     <link rel="stylesheet" href="{{url('resources/select2-dist/select2.css')}}"/>
     <link rel="stylesheet" href="{{url('resources/select2-dist/select2-bootstrap.css')}}"/>
-    <link rel="stylesheet" href="{{url('resources/datetimepicker/build/css/bootstrap-datetimepicker.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('plugins/daterangepicker/daterangepicker.css')}}"/>
 @stop
 
 @section('extra_js')
@@ -175,108 +190,15 @@
     <script type="text/javascript" src="{{url('js/admin.dashboard.js')}}"></script>
     <script src="{{url('resources/moment/min/moment.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{url('resources/datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
-    <!--<script type="text/javascript" src="{{url('plugins/datepicker/js/bootstrap-datepicker.js')}}"></script>-->
-
+    <script type="text/javascript" src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/instructor-analytics.js')}}"></script>
     <script type="text/javascript">
         $(function(){
 
-            $.get('/analytics/course/stats/{{$course->id}}', function ($table){
-                $('.table-stats-wrapper').html($table);
-            });
-
-            $.get('/analytics/course/affiliates/{{$course->id}}', function ($table){
-                $('.table-affiliates-wrapper').html($table);
-            });
-
-            $('.table-stats-wrapper').on('click','a', function ($e){
-                $e.preventDefault();
-                var $url = $(this).attr('href');
-                $.get($url, function ($table){
-                    $('.table-stats-wrapper').html($table);
-                });
-            });
-
-            $('#affiliateId').select2({
-                placeholder: "Select an Affiliate"
-            });
-
-            $('#tcyCategoryId').select2({
-                placeholder: "Select a Category"
-            });
-
-            $('#tcnCategoryId').select2({
-                placeholder: "Select a Category"
-            });
 
 
-            $('#startDate, #startDate-yes, #startDate-no').datetimepicker({format: 'MM/DD/YYYY'});
-            $('#endDate, #endDate-yes, #endDate-no').datetimepicker({format: 'MM/DD/YYYY'});
-
-            $("#startDate").on("dp.change",function (e) {
-                $('#endDate').data("DateTimePicker").minDate(e.date);
-            });
-            $("#endDate").on("dp.change",function (e) {
-                $('#startDate').data("DateTimePicker").maxDate(e.date);
-            });
-
-            $("#startDate-yes").on("dp.change",function (e) {
-                $('#endDate-yes').data("DateTimePicker").minDate(e.date);
-            });
-            $("#endDate-yes").on("dp.change",function (e) {
-                $('#startDate-yes').data("DateTimePicker").maxDate(e.date);
-            });
-
-            $("#startDate-no").on("dp.change",function (e) {
-                $('#endDate-no').data("DateTimePicker").minDate(e.date);
-            });
-            $("#endDate-no").on("dp.change",function (e) {
-                $('#startDate-no').data("DateTimePicker").maxDate(e.date);
-            });
-
-            $("#startDate-no").on("click",function (e) {
-                $('#startDate-no').data("DateTimePicker").show();
-            });
-            $("#startDate-yes").on("click",function (e) {
-                $('#startDate-yes').data("DateTimePicker").show();
-            });
-
-            $("#endDate-no").on("click",function (e) {
-                $('#endDate-no').data("DateTimePicker").show();
-            });
-            $("#endDate-yes").on("click",function (e) {
-                $('#endDate-yes').data("DateTimePicker").show();
-            });
-
-            $("#endDate").on("click",function (e) {
-                $('#endDate').data("DateTimePicker").show();
-            });
-            $("#startDate").on("click",function (e) {
-                $('#startDate').data("DateTimePicker").show();
-            });
-
-
-            $('.affiliates-table-and-pagination').on('click', '.pagination-top-affiliates ul a',function ($e){
-                $e.preventDefault();
-
-                var $loc = $(this).attr('href');
-
-                $.post($loc, function ($resp){
-                    $('.affiliates-table-and-pagination').html($resp.html);
-                },'json');
-            });
-
-            $('#btn-apply-filter-affiliates').on('click', function (){
-                var $formData = $('#form-affiliates').serialize();
-
-                var $btn = $(this);
-                $btn.button('loading');
-
-                $.post('/analytics/affiliatestable', $formData, function ($resp){
-                    $('.affiliates-table-and-pagination').html($resp.html);
-                    $btn.button('reset');
-                },'json');
-            });
+            Analytics.InitCalendarFilter();
+            Analytics.InitCoursePage();
 
             /*$('.courses-table-and-pagination-yes').on('click', '.pagination-top-courses ul a',function ($e){
                 $e.preventDefault();

@@ -57,5 +57,4 @@ class VideoFormat extends \LaravelBook\Ardent\Ardent
         $outputDomain   = 'http://'. Config::get('wazaar.AWS_WEB_DOMAIN');
         return $outputDomain . '/' . $value;
     }
-
 }

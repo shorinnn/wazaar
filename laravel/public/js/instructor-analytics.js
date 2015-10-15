@@ -167,5 +167,109 @@ var Analytics = {
                 $('#header-tracking-codes-frequency').html(_("All Time"));
             }
         });
+    },
+    'CourseId' : 0,
+    'DateFilterStart' : undefined,
+    'DateFilterEnd' : undefined,
+    'InitCalendarFilter' : function(){
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            Analytics.DateFilterStart = start.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd =end.format('YYYY-MM-DD');
+        }
+        cb(moment().subtract(29, 'days'), moment());
+        var $date = new Date();
+        var $startDate = new Date($date.getFullYear(), $date.getMonth(), 1);
+        var $endDate = new Date($date.getFullYear(), $date.getMonth() + 1, 0);
+
+        $('#reportrange').daterangepicker({
+            locale: 'jp',
+            startDate: $startDate,
+            endDate: $endDate,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+            Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+        });
+    },
+
+    'CourseStatisticsTable' : function(){
+        $('.table-stats-wrapper').html($ajaxLoader);
+        $.get('/analytics/course/stats/' + Analytics.CourseId + '/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('.table-stats-wrapper').html($table);
+        });
+    },
+
+    'CourseAffiliatesTable' : function() {
+        $('.table-affiliates-wrapper').html($ajaxLoader);
+        $.get('/analytics/course/affiliates/' + Analytics.CourseId + '/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('.table-affiliates-wrapper').html($table);
+        });
+    },
+
+    'ApplyCoursePageTableDateFilter' : function (){
+        Analytics.CourseAffiliatesTable();
+        Analytics.CourseStatisticsTable();
+    },
+
+    'InitCoursePage' : function(){
+
+        Analytics.CourseAffiliatesTable();
+        Analytics.CourseStatisticsTable();
+
+
+        $('.table-stats-wrapper').on('click','a', function ($e){
+            $e.preventDefault();
+            var $url = $(this).attr('href');
+            $.get($url, function ($table){
+                $('.table-stats-wrapper').html($table);
+            });
+        });
+
+        $('#affiliateId').select2({
+            placeholder: "Select an Affiliate"
+        });
+
+        $('#tcyCategoryId').select2({
+            placeholder: "Select a Category"
+        });
+
+        $('#tcnCategoryId').select2({
+            placeholder: "Select a Category"
+        });
+
+
+
+
+        $('.affiliates-table-and-pagination').on('click', '.pagination-top-affiliates ul a',function ($e){
+            $e.preventDefault();
+
+            var $loc = $(this).attr('href');
+
+            $.post($loc, function ($resp){
+                $('.affiliates-table-and-pagination').html($resp.html);
+            },'json');
+        });
+
+        $('#btn-apply-filter-affiliates').on('click', function (){
+            var $formData = $('#form-affiliates').serialize();
+
+            var $btn = $(this);
+            $btn.button('loading');
+
+            $.post('/analytics/affiliatestable', $formData, function ($resp){
+                $('.affiliates-table-and-pagination').html($resp.html);
+                $btn.button('reset');
+            },'json');
+        });
     }
 };

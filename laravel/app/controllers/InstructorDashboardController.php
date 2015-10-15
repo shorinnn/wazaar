@@ -264,20 +264,21 @@ class InstructorDashboardController extends BaseController
         return Redirect::to('analytics');
     }
 
-    public function courseStatsTableView($courseId)
+    public function courseStatsTableView($courseId, $startDate, $endDate)
     {
-        $stats = $this->analyticsHelper->getCourseStats($courseId);
+        $stats = $this->analyticsHelper->getCourseStats($courseId,$startDate,$endDate);
+
         return View::make('instructors.analytics.tableCourseStats',compact('stats'))->render();
     }
 
-    public function topAffiliatesTableView($courseId)
+    public function topAffiliatesTableView($courseId, $startDate, $endDate)
     {
         $page = 1;
         if (Input::has('page')){
             $page = Input::get('page');
         }
         $addThisToRank = ($page - 1) * Config::get('wazaar.PAGINATION');
-        $affiliates = $this->analyticsHelper->getTopAffiliatesByCourse($courseId);
+        $affiliates = $this->analyticsHelper->getTopAffiliatesByCourse($courseId, $startDate, $endDate);
 
         return View::make('instructors.analytics.tableTopAffiliates',compact('affiliates','addThisToRank'))->render();
     }
