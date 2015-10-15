@@ -21,7 +21,11 @@
 
             <div class="course-video-upload-button-progress" id="introduction-video-wrapper">
                 <div class="file-processing-handler">
-                    <div class="dropdown listing-video-upload">
+                    <div class="dropdown listing-video-upload
+                         @if ($course->descriptionVideo)
+                             resource-uploaded
+                         @endif
+                         ">
 
                         <div class="upload-dropdown-wrapper">
                             <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
