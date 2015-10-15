@@ -301,9 +301,7 @@
 <script src='{{url('js/Gibberish-AES.js')}}'></script>
 
 <script type="text/javascript">
-        $(document).ready(function(){
-            fixModalJerk();
-        })
+
 
         function cloneStep1Box(e){
            e.preventDefault();
@@ -336,6 +334,8 @@
         }
         
         $(function (){
+            
+            fixModalJerk();
 
              $(window).on('beforeunload', function() {
                 changed = '';
