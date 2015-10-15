@@ -648,13 +648,13 @@ function loadMoreComments(e){
  */
 function loadRemoteCache(e){
     e.preventDefault();
-    console.log(  $(e.target) ); 
     url = $(e.target).attr('data-url');
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
     var cachedCallback = $(e.target).attr('data-cached-callback');
     elem = $(e.target);
-    while(typeof(url)=='undefined'){
+    while( typeof(url)=='undefined' ){
+        console.log('NO URL!');
         elem = elem.parent();
         url = elem.attr('data-url');
         target = elem.attr('data-target');
@@ -682,10 +682,9 @@ function loadRemoteCache(e){
 	marginBottom: 0,
 	marginTop: 0
 	});
-
+    linkElem = elem;
     $(target).load(url, function(responseText, textStatus, req){
-        console.log( elem );
-        console.log('DATA-LOADED!');
+        elem = linkElem;
         elem.attr('data-loaded','1');
         elem.addClass('dataLoaded');
         if( typeof(callback)!= 'undefined'){

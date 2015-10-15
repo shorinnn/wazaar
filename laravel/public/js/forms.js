@@ -596,3 +596,8 @@ function clickOnEnter(e){
     }
 }
 
+function isModifiedForm(form){
+  var __clone = $(form).clone();
+  __clone[0].reset();
+  return $(form).serialize() != $(__clone).serialize();
+}

@@ -325,6 +325,18 @@
         }
         
         $(function (){
+        
+             $(window).on('beforeunload', function() {
+                changed = '';
+                if( form1Changed && isModifiedForm('#edit-course-form') ){
+                    changed += _('Step 1');
+                }
+                if( form3Changed && isModifiedForm('#edit-course-form-s3') ){
+                    if(changed!='') changed+= ', ';
+                    changed += _(' Step 3');
+                }
+                if(changed!='') return changed +_(" changes haven't been saved");
+             });
             
             $('.course-description-video-preview').click(function(){
                 $('#course-video-anchor').click();
