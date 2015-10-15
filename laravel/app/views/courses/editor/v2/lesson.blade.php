@@ -34,8 +34,10 @@
                     @else
                         <img src="" alt="" class="hidden video-preview"/>
                     @endif
+                </div>
 
                     <div class="uploading-wrapper margin-top-15 hidden">
+                        <p class="label-progress-bar upload-label-progress-bar-preview-img"></p>
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                 <span><span class="percent-complete"></span></span>
@@ -46,7 +48,7 @@
                         Processing
                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
                     </div>
-                </div>
+                
                 <div class="dropdown text-center lesson-control">
                   <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     {{ trans('video.course-upload-new') }}
@@ -312,6 +314,11 @@
             'fileAddedCallBack' : function($e, $data){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
                 $('#lesson-wrapper-' + $lessonId).find('.lesson-control').addClass('hidden');
+                
+                var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
+                var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
+                $lessonWrapper.find('.video-preview').attr('src', '');
+                $lessonWrapper.find('.video-preview').attr('data-video-url', '');
             },
             'progressCallBack' : function ($data, $progressPercentage, $elem){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
@@ -319,6 +326,7 @@
 
                 $lessonWrapper.find('.uploading-wrapper').removeClass('hidden');
                 $lessonWrapper.find('.progress-bar').css('width', $progressPercentage + '%');
+                $lessonWrapper.find('.label-progress-bar').html($progressPercentage + '%');
 
             },
             'failCallBack' : function ($data){
@@ -351,6 +359,8 @@
                                 $('.lesson-control').removeClass('hidden');
 
                                 clearInterval($intervalId{{$lesson->id}});
+                                
+                                decryptVideoSrc();
                             }
                         }) }, 5000);
                 }
