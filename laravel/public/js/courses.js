@@ -5,7 +5,7 @@
 $(document).ready(function(){
     activatePreviewButton();
     $('body').delegate('.add-module', 'click', addModule);    
-    $('body').delegate('.link-to-step-2, .link-to-step-3', 'click', saveStep1Form);    
+//    $('body').delegate('.link-to-step-2, .link-to-step-3', 'click', saveStep1Form);    
     
     $('body').delegate('.add-lesson', 'click', addLesson);    
     $('body').delegate('.show-reply-form', 'click', showReplyForm);    
@@ -420,11 +420,11 @@ function saveAndNextTab(e){
     $('html, body').animate({
         scrollTop: $("body").offset().top
     }, 500);
-    formSaved(e);
-    editorStepSubmit = false;
+//    formSaved(e);
+//    editorStepSubmit = false;
     $('.header-tabs.active').next('.header-tabs').click();
-    $form = $('');
-    restoreSubmitLabel( $form );
+//    $form = $('');
+//    restoreSubmitLabel( $form );
 }
 
 function saveStep1Form(){
@@ -444,10 +444,10 @@ function savedStep1(e,json){
     $('.step-1-form').removeAttr('data-old-callback');
     $('.step-1-form').removeAttr('data-save-indicator');
     console.log(json);
-    savingAnimation(0);
-    setTimeout(function(){
-        savingAnimation(1);
-    }, 1000);
+//    savingAnimation(0);
+//    setTimeout(function(){
+//        savingAnimation(1);
+//    }, 1000);
 }
 
 function submittedCourse(){

@@ -270,7 +270,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
         	<button type='button' class="blue-button large-button step-1-save-btn" onclick="saveStep1Form()">{{ trans('courses/general.saving-button') }}</button>
             
-            <button type='submit' class="blue-button large-button">{{ trans('courses/general.next-step') }}</button>
+            <button type='button' onclick="saveAndNextTab(null)" class="blue-button large-button">{{ trans('courses/general.next-step') }}</button>
         </div>
     </div>
 
