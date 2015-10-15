@@ -116,7 +116,7 @@ function fixModalJerk(){
         }
     });
 
-    $('body').delegate('.modal', 'hidden.bs.modal', function () {
+    $('.modal').on('hidden.bs.modal', function (){
         $('body').removeClass("modal-open-noscroll");
         console.log("Hidden");
     });
