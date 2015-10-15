@@ -11,76 +11,85 @@
 @section('content')	
 <style>
 	.category-heading-title,
-		.footer-search{
-			display: none;
-		}
-    .course-main-container .course-box-wrap.pull-left{
-      width:324px;
-      padding: 0px 10px;
+	.footer-search{
+		display: none;
+	}
+  .course-main-container .course-box-wrap.pull-left{
+    width:324px;
+    padding: 0px 10px;
+  }
+  .course-main-container{
+    max-width: 1050px;
+    margin: 0px auto;
+  }
+  .other-main-category-list-item,
+  .selected-main-category{
+    padding-left: 27px;
+    padding-right: 30px;
+  }
+  .other-sub-category-list-item{
+    padding-left: 50px;
+    padding-right: 30px;
+  }
+  .modal-body .mobile-main-category-list{
+    padding-top: 10px;
+  }
+  .mobile-main-category-list .list-group-item a,
+  .mobile-sub-category-list .list-group-item a{
+    display: block;
+  }
+  .mobile-main-category-list .arrow,
+  .mobile-sub-category-list .arrow{
+    line-height: 25px;
+    font-size: 13px;
+  }
+  .subcat-selected .arrow{
+    margin-top: -13px;
+  }
+  .selected-main-category,
+  .selected-sub-category{
+    cursor: pointer;
+  }
+  .selected-main-category .small,
+  .selected-sub-category .small{
+    font-size: 12px;
+    color: #798794;
+  }
+  .modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform .1s linear;
+         -o-transition:      -o-transform .1s linear;
+            transition:         transform .1s linear;
+    -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+         -o-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  @media (max-width: 650px){
+    .category-content-container{
+      width: 100%;
+      float: none;
     }
-    .course-main-container{
-      max-width: 1050px;
+    .course-main-container .course-box-wrap.pull-left{
+      float: none !important;
       margin: 0px auto;
     }
-    .other-main-category-list-item,
-    .selected-main-category{
-      padding-left: 27px;
-      padding-right: 30px;
+  }
+  @media (min-width:750px) and (max-width: 810px){
+    .course-main-container{
+      padding: 0px 50px;
     }
-    .other-sub-category-list-item{
-      padding-left: 50px;
-      padding-right: 30px;
+  }
+  @media (min-width:1014px) and (max-width: 1074px){
+    .course-main-container{
+      padding: 0px 50px;
     }
-    .modal-body .mobile-main-category-list{
-      padding-top: 10px;
+  }
+  @media (min-width:790px) and (max-width: 850px){
+    .course-main-container{
+      padding: 0px 70px;
     }
-    .mobile-main-category-list .list-group-item a,
-    .mobile-sub-category-list .list-group-item a{
-      display: block;
-    }
-    .mobile-main-category-list .arrow,
-    .mobile-sub-category-list .arrow{
-      line-height: 25px;
-      font-size: 13px;
-    }
-    .subcat-selected .arrow{
-      margin-top: -13px;
-    }
-    .selected-main-category,
-    .selected-sub-category{
-      cursor: pointer;
-    }
-    .selected-main-category .small,
-    .selected-sub-category .small{
-      font-size: 12px;
-      color: #798794;
-    }
-    @media (max-width: 650px){
-      .category-content-container{
-        width: 100%;
-        float: none;
-      }
-      .course-main-container .course-box-wrap.pull-left{
-        float: none !important;
-        margin: 0px auto;
-      }
-    }
-    @media (min-width:750px) and (max-width: 810px){
-      .course-main-container{
-        padding: 0px 50px;
-      }
-    }
-    @media (min-width:1014px) and (max-width: 1074px){
-      .course-main-container{
-        padding: 0px 50px;
-      }
-    }
-    @media (min-width:790px) and (max-width: 850px){
-      .course-main-container{
-        padding: 0px 70px;
-      }
-    }
-	</style>
+  }
+</style>
   <section class="visible-xs visible-sm hidden-md hidden-lg filter-container">
     @include('courses.categories.partials._filter_partial')
   </section>
@@ -264,7 +273,13 @@
                     </a>
                     @if(count($cat->courseSubcategories) >= 1)
                     <ul class="mobile-sub-category-list">
-                      <li><a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All</a></li>
+                      <li>
+                        <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
+                          All
+                          <i class="arrow wa-chevron-right right"></i>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
                       @foreach($cat->courseSubcategories as $subcat)
                         <li>
                           <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
@@ -289,7 +304,13 @@
                     </a>
                     @if(count($cat->courseSubcategories) >= 1)
                     <ul class="mobile-sub-category-list hide">
-                      <li><a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">All</a></li>
+                      <li>
+                        <a href="{{ action('CoursesController@category',[ 'slug' => $cat->slug ] ) }}">
+                          All
+                          <i class="arrow wa-chevron-right right"></i>
+                          <div class="clearfix"></div>
+                        </a>
+                      </li>
                       @foreach($cat->courseSubcategories as $subcat)
                         <li>
                           <a href="{{ action('CoursesController@subCategory',['slug' => $cat->slug, 'subcat' => $subcat->slug] ) }}">
