@@ -3,7 +3,7 @@
         @if( trim($lesson->name) !='' )
             {{ $lesson->name }}
         @else
-            {{trans('courses/create.enter-lesson-name')}}
+            [{{trans('courses/create.enter-lesson-name')}}]
         @endif
     </a>
 </li>
