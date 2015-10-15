@@ -34,6 +34,10 @@
                     @else
                         <img src="" alt="" class="hidden video-preview"/>
                     @endif
+                    <div class="preview-overlay">
+                        <i class="fa fa-eye"></i>
+                        <span>PREVIEW</span>
+                    </div>
                 </div>
 
                     <div class="uploading-wrapper margin-top-15 hidden">
