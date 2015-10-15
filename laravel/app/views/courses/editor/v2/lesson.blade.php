@@ -158,7 +158,7 @@
                                    'data-visible' => ($lesson->free_preview=='no') ? 'hide':'show'
                                 ] ) }}
                                 <!--<input type="checkbox" id="free-preview-{{$lesson->id}}" name="free_preview" value="yes" class="switch-input" />-->
-                                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                                <span class="switch-label" data-on="{{ trans('courses/curriculum.yes') }}" data-off="{{ trans('courses/curriculum.no') }}"></span>
                                 <span class="switch-handle"></span>
                             </label>
                         </div>
@@ -174,7 +174,7 @@
                                    'data-target' => ".depends-on-individual-$lesson->id",
                                    'data-class' => 'inactive'
                                  ] ) }}
-                                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                                <span class="switch-label" data-on="{{ trans('courses/curriculum.yes') }}" data-off="{{ trans('courses/curriculum.no') }}"></span>
                                 <span class="switch-handle"></span>
                             </label>
                         </div>
