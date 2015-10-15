@@ -23,22 +23,11 @@
     margin: 0px auto;
   }
   
-  .other-sub-category-list-item{
-    padding-left: 50px;
-    padding-right: 30px;
-  }
   .mobile-main-category-list .list-group-item a,
   .mobile-sub-category-list .list-group-item a{
     display: block;
   }
-  .mobile-main-category-list .arrow,
-  .mobile-sub-category-list .arrow{
-    line-height: 25px;
-    font-size: 13px;
-  }
-  .subcat-selected .arrow{
-    margin-top: -13px;
-  }
+
   .selected-main-category,
   .selected-sub-category{
     cursor: pointer;
@@ -73,6 +62,9 @@
     background: #ebeced;
     color: #6d7c85;
   }
+  #category-list-modal .modal-dialog .modal-content .modal-header span{
+    font-size: 14px;
+  }
   #category-list-modal .modal-dialog .modal-content .modal-body{
     padding:0px;
     overflow:auto;
@@ -84,14 +76,67 @@
   }
   #category-list-modal .modal-dialog .modal-content .modal-body .list-group-item a{
     border-bottom: #ebeced solid 1px;
-    padding: 15px 34px 15px 26px;
+    padding: 0px 32px 0px 26px;
     color: #303941;
-    font-size: 16px;
+    font-size: 13px;
+    height: 40px;
+    line-height: 40px;
+  }
+  #category-list-modal .modal-dialog .modal-content .modal-body .list-group-item a .arrow{
+    font-size: 10px;
+    line-height: 40px;
   }
   #category-list-modal .modal-dialog .modal-content .modal-body .list-group-item .mobile-sub-category-list li a{
-    padding: 15px 34px 15px 50px;
+    padding: 0px 24px 0px 50px;
     color: #798794;
-    font-size: 13px;
+    font-size: 12px;
+  }
+  #category-list-modal .modal-dialog .modal-content .modal-body .modal-list-label{
+    background: #ebeced;
+    padding-left: 26px;
+    height: 36px;
+    line-height: 36px;
+    color: #a7b7c4;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .category-modal-toggler-container{
+    padding: 0px 16px;
+  }
+  .category-modal-toggler-container .category-modal-toggler{
+    background:#fff;
+    border:#e0e1e2 solid 1px;
+    border-radius:6px;
+    padding:0px 24px;
+    cursor: pointer;
+  }
+  .category-modal-toggler-container .category-modal-toggler .single{
+    font-size: 15px;
+    height: 44px;
+    line-height: 44px;
+    font-weight: bold;
+    color: #303941;
+  }
+  .category-modal-toggler-container .category-modal-toggler .single .arrow{
+    font-size: 10px;
+    line-height: 44px;
+  }
+  .category-modal-toggler-container .category-modal-toggler .double{
+    font-size: 15px;
+    height: 62px;
+    font-weight: bold;
+    color: #303941;
+  }
+  .category-modal-toggler-container .category-modal-toggler .double .pull-left{
+    padding-top: 8px;
+  }
+  .category-modal-toggler-container .category-modal-toggler .double span{
+    font-weight: normal;
+    font-style: 11px;
+    color: #798794;
+  }
+  .category-modal-toggler-container .category-modal-toggler .double .arrow{
+    line-height: 62px;
   }
   @media (max-width: 650px){
     .category-content-container{
@@ -124,37 +169,39 @@
   </section>
   <section class="container-fluid category-box-container relative no-padding">
     <div class="sidebar-menu pull-left">
-        <section class="visible-xs visible-sm hidden-md hidden-lg filter-container">
-          @if(count(Request::segments()) >= 2)
-            <ul class="mobile-main-category-list list-group">
-              <li class="selected-main-category list-group-item">
-                <div @if(count(Request::segments()) == 4)class="subcat-selected"@endif>
-                  @if(count(Request::segments()) == 4)
-                    @foreach($categories as $cat)
-                      @if(Request::segment(3)==$cat->slug)
+        <section class="visible-xs visible-sm hidden-md hidden-lg category-modal-toggler-container">
+          
+            <div class="category-modal-toggler">
+              @if(count(Request::segments()) == 4)
+                <div>
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)==$cat->slug)
+                    <div class="double">
+                      <div class="pull-left">
                         <span class="small"> {{ $cat->name }}</span><br />
                         @foreach($cat->courseSubcategories as $subcat)
                             @if(Request::segment(4)==$subcat->slug)
                               {{$subcat->name}}
                             @endif
                         @endforeach
-                      @endif
-                    @endforeach
-                  @elseif(count(Request::segments()) == 3)
-                    @foreach($categories as $cat)
-                      @if(Request::segment(3)==$cat->slug)
-                        {{ $cat->name }}
-                      @endif
-                    @endforeach
-                  @else
-                    Categories
+                      </div>
                   @endif
-                  <i class="arrow wa-chevron-down right"></i>
-                  <div class="clearfix"></div>
-                </div>
-              </li>
-            </ul>
-          @endif
+                @endforeach
+              @elseif(count(Request::segments()) == 3)
+                @foreach($categories as $cat)
+                  @if(Request::segment(3)==$cat->slug)
+                    <div class="single">
+                      {{ $cat->name }}
+                  @endif
+                @endforeach
+              @else
+                <div class="single">
+                  Categories
+              @endif
+                <i class="arrow wa-chevron-down right"></i>
+                <div class="clearfix"></div>
+              </div>
+            </div>
 
           <?php /*@if(count(Request::segments()) == 4)
             <ul class="mobile-sub-category-list list-group">
@@ -283,18 +330,20 @@
 <div id="category-list-modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="">
+      <div class="modal-header">
+        <span>Select category</span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
         <div class="clearfix"></div>
       </div>
       <div class="modal-body">
         <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
+            <div class="modal-list-label">categories</div>
             <ul class="mobile-main-category-list list-group">
               @foreach($categories as $cat)
                 @if(Request::segment(3)==$cat->slug)
-                  <li class="selected-main-category list-group-item active">
-                    <a href="#" class="main-category-toggler">
+                  <li class="selected-main-category list-group-item active" id="{{$cat->slug}}">
+                    <a href="#" class="main-category-toggler" data-target="{{$cat->slug}}">
                       {{ $cat->name }}
                       <i class="arrow wa-chevron-up right"></i>
                       <div class="clearfix"></div>
@@ -324,8 +373,8 @@
               @endforeach
               @foreach($categories as $cat)
                 @if(Request::segment(3)!=$cat->slug)
-                  <li class="selected-main-category list-group-item">
-                    <a href="#" class="main-category-toggler">
+                  <li class="selected-main-category list-group-item" id="{{$cat->slug}}">
+                    <a href="#" class="main-category-toggler" data-target="{{$cat->slug}}">
                       {{ $cat->name }}
                       <i class="arrow wa-chevron-down right"></i>
                       <div class="clearfix"></div>
@@ -362,6 +411,7 @@
     @stop
 
     @section('extra_js')
+      <script src="/js/jquery.scrollTo.min.js"></script>
         <script type="text/javascript">
           function loadFilteredCourseCategory(el)
           {
@@ -467,23 +517,8 @@
                 $('.level-buttons-container a').removeClass('active');
             });
 
-            if($('.selected-main-category').length >= 1){
-              $('.selected-main-category').on('click', function(){
-                $('#category-list-modal').modal().on('shown.bs.modal', function () {
-                    makeCategoryModalHeightFixed()
-                }).on('hidden.bs.modal', function () {
-                  if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
-                    $('body').css({
-                        'position': 'relative'
-                    });
-                    $('body').scrollTop(localStorage.cachedScrollPos);
-                  }
-                });
-              })
-            }
-
-            if($('.selected-sub-category').length >= 1){
-              $('.selected-sub-category').on('click', function(){
+            if($('.category-modal-toggler').length >= 1){
+              $('.category-modal-toggler').on('click', function(){
                 $('#category-list-modal').modal().on('shown.bs.modal', function () {
                     makeCategoryModalHeightFixed()
                 }).on('hidden.bs.modal', function () {
@@ -502,15 +537,19 @@
                 if(!$(this).parent().hasClass('active')){
                   $('a.main-category-toggler').each(function(){
                     $(this).children('i').removeClass('wa-chevron-up').addClass('wa-chevron-down');
-                    $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
+                    $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp(300);
                   })
 
-                  $(this).parent().addClass('active').children('ul.mobile-sub-category-list').hide().removeClass('hide').slideDown()
                   $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-up');
-
+                  target = $(this).data('target');
+                  $(this).parent().addClass('active').children('ul.mobile-sub-category-list').hide().removeClass('hide').slideDown(300, function(){
+                    $('.modal-body').scrollTo($('#'+target), 300,  {offset:-15});
+                  })
+                  
+                  
                 } else {
                   $(this).children('i').removeClass('wa-chevron-up').addClass('wa-chevron-down');
-                  $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
+                  $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').hide(300);
                 }
                 return false;
               })

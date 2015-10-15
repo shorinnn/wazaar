@@ -23,14 +23,18 @@
     <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
     <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
     							<div class="file-processing-handler">
-                                    <p class="label-progress-bar label-progress-bar-preview-img"></p>
+                                    <p class="label-progress-bar label-progress-bar-preview-img-s1"></p>
                                     <div class="progress hidden">
                                         <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
-                                             data-label=".label-progress-bar-preview-img" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                             data-label=".label-progress-bar-preview-img-s1" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                             <span></span>
                                         </div>
                                     </div>
-                                    <div class="dropdown listing-image-upload">
+                                    <div class="dropdown listing-image-upload
+                                         @if($course->course_preview_image_id > 0)
+                                             resource-uploaded
+                                         @endif
+                                         ">
                                       <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         {{ trans('courses/general.upload_image') }}
                                         <i class="wa-chevron-down"></i>
