@@ -60,7 +60,7 @@
                         @endforeach
                 @else
                     <tr>
-                        <td colspan="4">{{trans('analytics.noCourses')}}</td>
+                        <td colspan="4" style="font-size: 14px; color: #7e8e9e;line-height: 20px;text-align: center;">{{trans('analytics.noCourses')}}</td>
                     </tr>
                 @endif
                 </tbody>

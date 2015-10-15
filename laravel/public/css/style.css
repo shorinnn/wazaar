@@ -3678,7 +3678,6 @@ h2, h3, h4, h5, h6{
 }
 .new-dashboard.dashboardTabs .enrolled-lesson .review{
 	color: #03a2ff;
-	text-indent: 25px;
 	margin-top: 0;
 }
 .new-dashboard.dashboardTabs .progress-column{
@@ -6954,7 +6953,6 @@ a.load-remote > *{
 	background: #fff;
 	border-radius: 4px;
 	border: solid 1px #e0e1e2;
-	overflow: hidden;
 	width: 100%;
 	margin: 0 auto !important;
 }
@@ -6963,6 +6961,7 @@ a.load-remote > *{
 	padding: 19px 24px;
 	color: #303941;
 	background: #f7f9fa;
+    border-radius: 4px 4px 0 0;
 	border-bottom: solid 1px #e0e1e2;
 }
 .content-row h6{
@@ -6981,7 +6980,7 @@ a.load-remote > *{
 	width: 223px;
 	height: 125px;
 	margin-bottom: 5px;
-	background-color: #e8eced;
+	background-color: #18222b;
 	position: relative;
 }
 /************** Editor step 1 ends ***************/
@@ -7171,7 +7170,7 @@ a.load-remote > *{
 	height: 80px;
 	position: relative;
 	border-radius: 2px;
-	background-color: #363230;
+	background-color: #18222b;
 	margin: 28px auto 10px;
 	overflow: hidden;
 	text-align: center;
@@ -11498,6 +11497,12 @@ header .profile-name ul{
     top: 15px;
     width: 140px;
     color: #fff;
+}
+.step2 .lesson-container .preview-thumb .progress {
+    width: 80%;
+}
+.lesson-wrapper .uploading-wrapper{
+    margin-top: 10px !important;
 }
 .label-progress-bar{
     font-size: 12px;
