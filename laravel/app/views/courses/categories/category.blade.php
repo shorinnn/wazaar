@@ -1,4 +1,13 @@
 @extends('layouts.default')
+@section('page_title')
+    
+    @if( Input::has('term') ) {{ Input::get('term') }} - 
+    @else
+        @if( isset($subcategory->name) ) {{ $subcategory->name }} - @endif
+        @if( isset($category->name) ) {{ $category->name }} - @endif
+    @endif
+    Wazaar
+@stop
 @section('content')	
 <style>
 	.category-heading-title,
@@ -232,11 +241,14 @@
     </div>
     <div class="clearfix"></div>
   </section>
-<div id="category-list-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
+<div id="category-list-modal" class="modal fade" style="overflow-y:hidden;">
+  <div class="modal-dialog" style="width:100%; margin:0px !important">
+    <div class="modal-content" style="border-radius:0px;">
+      <div class="modal-header" style="border-bottom: 0px none; padding-bottom: 0px; z-index: 1; width: 100%; height: 50px; position: static; background: #fff;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-body" style="padding:0px; overflow:auto;">
         <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
@@ -390,26 +402,67 @@
             // }
 
           }
+          function makeCategoryModalHeightFixed()
+          {
+            if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
+                $(window).scroll(function () {
+                    $currentScrollPos = $(document).scrollTop();
+                })
+                if ($('body').hasClass('modal-open')) {
+                    $('body').css({
+                        'position': 'fixed'
+                    });
+                    localStorage.cachedScrollPos = $currentScrollPos;
+                }
+            }
+
+            var window_height = $(window).height();
+            var modal_body_height = Number(window_height) - 51;
+            $('#category-list-modal .modal-backdrop').height('100%');
+            $('#category-list-modal .modal-body').height(modal_body_height);
+          }
 
     			$(window).resize(function(){
             makeFluid();
-    			});
-		
+            makeCategoryModalHeightFixed();
+    			})
+          $(document).scroll(function(){
+            makeCategoryModalHeightFixed();
+          });
     			$(function(){
             makeFluid();
+            makeCategoryModalHeightFixed();
             $('.level-buttons-container a').click(function(){
                 $('.level-buttons-container a').removeClass('active');
             });
 
             if($('.selected-main-category').length >= 1){
               $('.selected-main-category').on('click', function(){
-                $('#category-list-modal').modal();
+                $('#category-list-modal').modal().on('shown.bs.modal', function () {
+                    makeCategoryModalHeightFixed()
+                }).on('hidden.bs.modal', function () {
+                  if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
+                    $('body').css({
+                        'position': 'relative'
+                    });
+                    $('body').scrollTop(localStorage.cachedScrollPos);
+                  }
+                });
               })
             }
 
             if($('.selected-sub-category').length >= 1){
               $('.selected-sub-category').on('click', function(){
-                $('#category-list-modal').modal();
+                $('#category-list-modal').modal().on('shown.bs.modal', function () {
+                    makeCategoryModalHeightFixed()
+                }).on('hidden.bs.modal', function () {
+                  if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
+                    $('body').css({
+                        'position': 'relative'
+                    });
+                    $('body').scrollTop(localStorage.cachedScrollPos);
+                  }
+                });
               })
             }
 

@@ -22,7 +22,7 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />
                         <!--<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">-->
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore() }}</span>         
+                        <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore(true) }}</span>         
                         <span class="box-overlay">
                              <p>{{ trans('general.'.$course->courseDifficulty->name) }}</p>
                              <?php });?>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="highly-recommend">
                                 	<i class="wa-like"></i>
-                                        {{ $course->reviewsScore() }} 
+                                        {{ $course->reviewsScore(true) }} 
                                         @if($course->likes()> 0)
                                             {{ $course->rating() }}
                                         @endif

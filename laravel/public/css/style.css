@@ -588,6 +588,7 @@ header .profile-thumbnail{
 	margin-top: 20px;
 	border-radius: 30px;
     vertical-align: top;
+    float: left;
 	background: #fff;
 }
 header #top-profile-dropdown .notification-number{
@@ -10338,6 +10339,14 @@ header .top-menu .logged-out-header-search .catalogue-button em{
 }
 header .main-logo{
 	margin: 10px 0 0px 0;
+    float: left;
+    display: inline-block !important;
+    vertical-align: top;
+}
+header .logged-in-menu-holder{
+    display: inline-block;
+    float: right;
+    vertical-align: top;
 }
 header .top-menu .logged-out-header-search{
 	margin: 25px 0;
@@ -10447,14 +10456,16 @@ header .top-menu .logged-out-header-search{
 }
 header .profile-name > li.open button, 
 header .profile-name > li button{
-	width: auto;
+	width: 30px;
 	padding: 9px 5px 11px;
 }
 header .profile-name{
 	min-width: auto;
+    width: 30px;
+    float: right;
 }
 header .profile-name ul{
-	left: -117px;
+	margin-left: -117px;
 	min-width: 150px;
 }
 .category-heading-container .sort-options,

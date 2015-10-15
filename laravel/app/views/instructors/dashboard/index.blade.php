@@ -1,11 +1,17 @@
 @extends('layouts.default')
-@section('page_title') 販売管理 ({{ Auth::user()->instructorNameOrCompany() }}) - Wazaar @stop
+@section('page_title') 販売管理 
+@if( trim( Auth::user()->instructorNameOrCompany() ) != '')
+    ({{ Auth::user()->instructorNameOrCompany() }}) 
+@endif - Wazaar @stop
 @section('content')
     <div class="wrapper clearfix">
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
             <h1>
-                販売管理 ({{ Auth::user()->instructorNameOrCompany() }})
+                販売管理 
+                @if( trim( Auth::user()->instructorNameOrCompany() ) != '')
+                    ({{ Auth::user()->instructorNameOrCompany() }})
+                @endif
             </h1>
 
             {{-- Button Filters --}}
