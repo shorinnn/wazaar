@@ -648,6 +648,7 @@ function loadMoreComments(e){
  */
 function loadRemoteCache(e){
     e.preventDefault();
+    console.log(  $(e.target) ); 
     url = $(e.target).attr('data-url');
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
@@ -683,6 +684,8 @@ function loadRemoteCache(e){
 	});
 
     $(target).load(url, function(responseText, textStatus, req){
+        console.log( elem );
+        console.log('DATA-LOADED!');
         elem.attr('data-loaded','1');
         elem.addClass('dataLoaded');
         if( typeof(callback)!= 'undefined'){

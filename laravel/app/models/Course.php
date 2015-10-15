@@ -569,7 +569,7 @@ class Course extends Ardent{
             
             $coursePurchases = Purchase::where('product_id', $this->id)->where('product_type','Course')->sum($field);
             $lessonIds = $this->lessons();
-            if($lessonIds->count() > 0) $lessonIds = $lessonIds->lists('id');
+            if($lessonIds !=null && $lessonIds->count() > 0) $lessonIds = $lessonIds->lists('id');
             else $lessonIds = [];
             if( count($lessonIds)==0 ) $lessonIds = [0];
             $lessonPurchase = Purchase::whereIn('product_id', $lessonIds)->where('product_type','Lesson')->sum($field);
