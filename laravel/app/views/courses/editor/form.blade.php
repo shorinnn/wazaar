@@ -321,11 +321,11 @@
                     @else
                         <p class="regular-paragraph no-margin">
                         {{ trans('courses/general.complete-x-steps-to-submit', ['steps' => courseStepsRemaining($course) ] )}}
-                        <br />
-                         {{ trans('courses/general.complete') }} 
+
+                         <!--{{ trans('courses/general.complete') }}
                         <span>
                             <span>{{ courseStepsRemaining($course) }}</span>
-                            {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
+                            {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}-->
                         </p>
                     @endif
                 </div>
