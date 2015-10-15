@@ -361,6 +361,7 @@
 
     @include('videos.playerModal')
     <script>
+        
         var course_steps_remaining = {{ courseStepsRemaining($course) }};
         
         function showVideoPreview(elem){
@@ -395,7 +396,8 @@
                 $('.course-description-video-preview').find('img').remove();
             });
         }
-
-
+        
+        
+        
     </script>
 @stop

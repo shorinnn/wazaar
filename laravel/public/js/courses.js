@@ -2,8 +2,17 @@
  * Contains form related reusable functions and event listeners
  * @class Courses 
  */
+var form1Changed = form3Changed = false;
 $(document).ready(function(){
     activatePreviewButton();
+    $('body').delegate('#edit-course-form :input', 'change', function(){
+      form1Changed = true;
+    });
+    
+    $('body').delegate('#edit-course-form-s3 :input', 'change', function(){
+      form3Changed = true;
+    });
+    
     $('body').delegate('.add-module', 'click', addModule);    
 //    $('body').delegate('.link-to-step-2, .link-to-step-3', 'click', saveStep1Form);    
     
@@ -435,6 +444,7 @@ function saveStep1Form(){
             $('.step-1-form').attr('data-save-indicator', '.step-1-save-btn');
         }
         $('.step-1-form').submit();
+        form1Changed = false;
     }
     else editorStepSubmit = true;
 }
@@ -499,6 +509,7 @@ function saveStep3Form(){
     $('.step-3-form').attr('data-save-indicator', '.step-3-save-btn');//update already
     $('[name="publish_status"]').val(0);
     $('.step-3-form').submit();
+    form3Changed = false;
 }
 
 function savedStep3(e,json){
@@ -506,10 +517,10 @@ function savedStep3(e,json){
     $('.step-3-form').removeAttr('data-old-callback');
     $('.step-3-form').removeAttr('data-save-indicator');
     $('[name="publish_status"]').val(1);
-    savingAnimation(0);
-    setTimeout(function(){
-        savingAnimation(1);
-    }, 1000);
+//    savingAnimation(0);
+//    setTimeout(function(){
+//        savingAnimation(1);
+//    }, 1000);
 }
 
 function deleteCurriculumItem( event, result ){
@@ -629,6 +640,11 @@ function deleteAttachment( event, result ){
     lessonId = $(event.target).attr('data-lesson');
     count = $('.uploaded-files-'+lessonId+' > li').length;
     $('.attachment-counter-'+lessonId).html(count);
+    
+    $('.shr-lesson-'+lessonId+' .uploaded-files').hide();
+    $('.shr-lesson-'+lessonId+' .uploader-area ').removeClass('col-lg-3');
+    $('.shr-lesson-'+lessonId+' .uploader-area ').removeClass('col-md-3');
+    $('.shr-lesson-'+lessonId+' .uploader-area ').removeClass('col-sm-3');
 }
 
 function minimizeAfterSave(result, e){
