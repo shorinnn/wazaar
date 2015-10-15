@@ -397,8 +397,8 @@
                 $('.course-description-video-preview').find('img').remove();
             });
         }
-        
-        
-        
+
+
+
     </script>
 @stop

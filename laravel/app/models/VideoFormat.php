@@ -54,7 +54,22 @@ class VideoFormat extends \LaravelBook\Ardent\Ardent
 
     public function getThumbnailAttribute($value)
     {
-        $outputDomain   = 'http://'. Config::get('wazaar.AWS_WEB_DOMAIN');
-        return $outputDomain . '/' . $value;
+        //$url   = 'http://'. Config::get('wazaar.AWS_WEB_DOMAIN'). '/' . $value;
+        //return $outputDomain . '/' . $value;
+        $cloudFrontKeyPair = Config::get('wazaar.CLOUDFRONT_KEY_PAIR');
+        $cloudFront = \Aws\CloudFront\CloudFrontClient::factory(array(
+            'private_key' => base_path() . '/pk-'. $cloudFrontKeyPair .'.pem',
+            'key_pair_id' => $cloudFrontKeyPair,
+            'region' => 'ap-northeast-1'
+        ));
+
+        $videoFileName = $value;
+        $expires = time() + (60 * 30); //expires in 30 min
+        $url = $cloudFront->getSignedUrl(array(
+            'url'     => 'http://' . Config::get('wazaar.AWS_WEB_DOMAIN') . '/' . $videoFileName,
+            'expires' => $expires
+        ));
+
+        return $url;
     }
 }
