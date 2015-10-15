@@ -256,7 +256,7 @@
             <ul class="mobile-main-category-list list-group">
               @foreach($categories as $cat)
                 @if(Request::segment(3)==$cat->slug)
-                  <li class="selected-main-category list-group-item stay-active">
+                  <li class="selected-main-category list-group-item active">
                     <a href="#" class="main-category-toggler">
                       {{ $cat->name }}
                       <i class="arrow wa-chevron-down right"></i>
@@ -452,10 +452,8 @@
               $(this).on('click', function(){
                 if(!$(this).parent().hasClass('active')){
                   $('a.main-category-toggler').each(function(){
-                    if(!$(this).parent().hasClass('stay-active')){
-                      $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-right');
-                      $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
-                    }
+                    $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-right');
+                    $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
                   })
 
                   $(this).parent().addClass('active').children('ul.mobile-sub-category-list').hide().removeClass('hide').slideDown()
