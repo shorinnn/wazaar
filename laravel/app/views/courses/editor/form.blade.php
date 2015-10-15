@@ -5,9 +5,6 @@
 
 @section('content')
     <style>
-        .listing-video-upload.resource-uploaded{
-            margin-top: 94px !important;
-        }
         .resource-uploaded{
             margin-top: 100px !important;
             margin-bottom: -35px !important;
