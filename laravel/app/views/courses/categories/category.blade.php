@@ -22,17 +22,10 @@
     max-width: 1050px;
     margin: 0px auto;
   }
-  .other-main-category-list-item,
-  .selected-main-category{
-    padding-left: 27px;
-    padding-right: 30px;
-  }
+  
   .other-sub-category-list-item{
     padding-left: 50px;
     padding-right: 30px;
-  }
-  .modal-body .mobile-main-category-list{
-    padding-top: 10px;
   }
   .mobile-main-category-list .list-group-item a,
   .mobile-sub-category-list .list-group-item a{
@@ -59,6 +52,46 @@
     -webkit-transition: -webkit-transform .2s ease-out;
          -o-transition:      -o-transform .2s ease-out;
             transition:         transform .2s ease-out;
+  }
+  #category-list-modal{
+    overflow-y:hidden;
+  }
+  #category-list-modal .modal-dialog{
+    width:100%;
+    margin:0px !important;
+  }
+  #category-list-modal .modal-dialog .modal-content{
+    border-radius:0px;
+  }
+  #category-list-modal .modal-dialog .modal-content .modal-header{
+    border-bottom: 0px none;
+    padding-bottom: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    position: static;
+    background: #ebeced;
+    color: #6d7c85;
+  }
+  #category-list-modal .modal-dialog .modal-content .modal-body{
+    padding:0px;
+    overflow:auto;
+  }
+  #category-list-modal .modal-dialog .modal-content .modal-body .list-group-item{
+    border: 0px;
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+  #category-list-modal .modal-dialog .modal-content .modal-body .list-group-item a{
+    border-bottom: #ebeced solid 1px;
+    padding: 15px 34px 15px 26px;
+    color: #303941;
+    font-size: 16px;
+  }
+  #category-list-modal .modal-dialog .modal-content .modal-body .list-group-item .mobile-sub-category-list li a{
+    padding: 15px 34px 15px 50px;
+    color: #798794;
+    font-size: 13px;
   }
   @media (max-width: 650px){
     .category-content-container{
@@ -247,15 +280,14 @@
     <div class="clearfix"></div>
   </section>
 
-
-<div id="category-list-modal" class="modal fade" style="overflow-y:hidden;">
-  <div class="modal-dialog" style="width:100%; margin:0px !important">
-    <div class="modal-content" style="border-radius:0px;">
-      <div class="modal-header" style="border-bottom: 0px none; padding-bottom: 0px; z-index: 1; width: 100%; height: 50px; position: static; background: #fff;">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close fa-lg"></i></button>
+<div id="category-list-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></button>
         <div class="clearfix"></div>
       </div>
-      <div class="modal-body" style="padding:0px; overflow:auto;">
+      <div class="modal-body">
         <div class="clearfix"></div>
           @if(count(Request::segments()) >= 2)
             <ul class="mobile-main-category-list list-group">
@@ -264,7 +296,7 @@
                   <li class="selected-main-category list-group-item active">
                     <a href="#" class="main-category-toggler">
                       {{ $cat->name }}
-                      <i class="arrow wa-chevron-down right"></i>
+                      <i class="arrow wa-chevron-up right"></i>
                       <div class="clearfix"></div>
                     </a>
                     @if(count($cat->courseSubcategories) >= 1)
@@ -295,7 +327,7 @@
                   <li class="selected-main-category list-group-item">
                     <a href="#" class="main-category-toggler">
                       {{ $cat->name }}
-                      <i class="arrow wa-chevron-right right"></i>
+                      <i class="arrow wa-chevron-down right"></i>
                       <div class="clearfix"></div>
                     </a>
                     @if(count($cat->courseSubcategories) >= 1)
@@ -469,18 +501,16 @@
               $(this).on('click', function(){
                 if(!$(this).parent().hasClass('active')){
                   $('a.main-category-toggler').each(function(){
-                    $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-right');
+                    $(this).children('i').removeClass('wa-chevron-up').addClass('wa-chevron-down');
                     $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
                   })
 
                   $(this).parent().addClass('active').children('ul.mobile-sub-category-list').hide().removeClass('hide').slideDown()
-                  $(this).children('i').removeClass('wa-chevron-right').addClass('wa-chevron-down');
+                  $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-up');
 
                 } else {
-                  if(!$(this).parent().hasClass('stay-active')){
-                    $(this).children('i').removeClass('wa-chevron-down').addClass('wa-chevron-right');
-                    $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
-                  }
+                  $(this).children('i').removeClass('wa-chevron-up').addClass('wa-chevron-down');
+                  $(this).parent().removeClass('active').children('ul.mobile-sub-category-list').slideUp();
                 }
                 return false;
               })
