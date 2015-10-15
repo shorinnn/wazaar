@@ -3759,10 +3759,10 @@ h2, h3, h4, h5, h6{
 	font-size: 18px;
 }
 .new-dashboard.dashboardTabs .settings .dropdown-menu{
-	min-width: 138px;
+	min-width: 155px;
 	border-radius: 3px;
 	border: solid 1px #e0e1e2;
-	left: -52px;
+	left: -74px;
 	top: 46px;
 	padding: 0;
 	margin: 0;
@@ -7244,9 +7244,10 @@ a.load-remote > *{
 	color: #cfd8df;
 }
 .step2 .lesson-container .lesson-data textarea{
-	padding: 0 12px !important;
+	padding: 0 12px 0 0 !important;
 	vertical-align: top;
     line-height: 18px;
+    margin-bottom: -10px;
 }
 .textarea-wrap {
     position: relative;
@@ -7289,6 +7290,7 @@ a.load-remote > *{
 }
 .step2 .lesson-container .switch-label{
 	font-size: 14px;
+    font-weight: normal;
 }
 .step2 .lesson-container .switch-label:before{
 	top: 8px;
@@ -7586,6 +7588,19 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 .edit-course p{
 	word-wrap: break-word;
+}
+.edit-course .upload-progress-wrapper,
+.edit-course .processing-wrapper{
+    height: 35px;
+}
+.edit-course .processing-wrapper .label-progress-bar img[src *="ajax-loader"] {
+    width: 16px;
+    margin: 5px auto 0;
+    display: block;
+}
+.edit-course .upload-progress-wrapper .progress{
+    position: relative;
+    top: 13px;
 }
 .create-course-start-page-container{
 	padding-top: 70px;
@@ -11711,6 +11726,7 @@ h1.admin-page-title{
 body.modal-open-noscroll
 {
     overflow: hidden;
+    padding-right: 17px !important;
 }
 .modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom
 {

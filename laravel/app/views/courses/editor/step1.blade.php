@@ -293,6 +293,7 @@
 <script src="{{url('js/moment.js')}}" type="text/javascript"></script>
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
+        fixModalJerk();
 
         function cloneStep1Box(e){
            e.preventDefault();
@@ -325,7 +326,8 @@
         }
         
         $(function (){
-        
+            fixModalJerk();
+
              $(window).on('beforeunload', function() {
                 changed = '';
                 if( form1Changed && isModifiedForm('#edit-course-form') ){

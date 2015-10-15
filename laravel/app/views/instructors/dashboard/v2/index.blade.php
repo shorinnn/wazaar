@@ -114,9 +114,10 @@
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                       <div class="image-wrap">
                                                            @if($course->previewImage!=null)
-                                                            <a href="{{ $course->previewImage->url }}" target="_blank">
+                                                            <!--<a href="{{ $course->previewImage->url }}" target="_blank">-->
+                                                            <span>
                                                                 <img src="{{ $course->previewImage->url }}" class="img-responsive" />
-                                                            </a>
+                                                            </span>
                                                             @else
                                                             	<img src="http://placehold.it/360x203" class="img-responsive">
                                                                 <!--<p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>-->
