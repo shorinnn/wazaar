@@ -56,13 +56,9 @@
     color: #798794;
   }
   .modal.fade .modal-dialog {
-    -webkit-transition: -webkit-transform .1s linear;
-         -o-transition:      -o-transform .1s linear;
-            transition:         transform .1s linear;
-    -webkit-transform: translate(0, 0);
-        -ms-transform: translate(0, 0);
-         -o-transform: translate(0, 0);
-            transform: translate(0, 0);
+    -webkit-transition: -webkit-transform .1s ease-out;
+         -o-transition:      -o-transform .1s ease-out;
+            transition:         transform .1s ease-out;
   }
   @media (max-width: 650px){
     .category-content-container{
