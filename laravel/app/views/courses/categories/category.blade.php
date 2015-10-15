@@ -3,8 +3,8 @@
     
     @if( Input::has('term') ) {{ Input::get('term') }} - 
     @else
-        @if( isset($subcategory->name) ) {{ $subcategory->name }} - @endif
-        @if( isset($category->name) ) {{ $category->name }} - @endif
+        @if( isset($subcategory->name) && trim($subcategory->name) !='' ) {{ $subcategory->name }} - @endif
+        @if( isset($category->name) && trim($category->name) !='' ) {{ $category->name }} - @endif
     @endif
     Wazaar
 @stop
