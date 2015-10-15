@@ -640,6 +640,11 @@ function deleteAttachment( event, result ){
     lessonId = $(event.target).attr('data-lesson');
     count = $('.uploaded-files-'+lessonId+' > li').length;
     $('.attachment-counter-'+lessonId).html(count);
+    
+    $('.shr-lesson-'+lessonId+' .uploaded-files').hide();
+    $('.shr-lesson-'+lessonId+' .uploader-area ').removeClass('col-lg-3');
+    $('.shr-lesson-'+lessonId+' .uploader-area ').removeClass('col-md-3');
+    $('.shr-lesson-'+lessonId+' .uploader-area ').removeClass('col-sm-3');
 }
 
 function minimizeAfterSave(result, e){
