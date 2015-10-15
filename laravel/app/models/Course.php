@@ -516,7 +516,7 @@ class Course extends Ardent{
         $lessonBuyers = Purchase::whereIn( 'product_id', $lessons )->where('product_type','Lesson')->where( 'free_product','no' )->lists( 'student_id' );
         $buyers = $buyers + $lessonBuyers;
         if($new){
-            $sevenDaysAgo = date('Y-m-d H:i:s', strtotime('-7 day') );
+            $sevenDaysAgo = date('Y-m-d H:i:s', strtotime('-1 day') );
             $count = Purchase::distinct()->select('student_id')->whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )
                     ->where( 'free_product','yes' )->where('created_at','>',$sevenDaysAgo)->get();
         }
