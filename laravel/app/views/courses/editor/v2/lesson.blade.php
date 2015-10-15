@@ -24,17 +24,8 @@
               <div class="lesson-name"><span><em></em></span>{{ trans('general.lesson') }}  
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
                 <div class="preview-thumb lesson-wrapper">
-
-                    @if ($video)
-                        @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                            <img class="video-preview" id="video-preview-{{$lesson->id}}" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
-                        @else
-                            <img src="" alt="" class="hidden video-preview"/>
-                        @endif
-                    @else
-                        <img src="" alt="" class="hidden video-preview"/>
-                    @endif
-                </div>
+                    
+                    
 
                     <div class="uploading-wrapper margin-top-15 hidden">
                         <p class="label-progress-bar upload-label-progress-bar-preview-img"></p>
@@ -48,6 +39,31 @@
                         Processing
                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
                     </div>
+
+                    @if ($video)
+                        @if (@$video->transcode_status == Video::STATUS_COMPLETE)
+                            <img class="video-preview" id="video-preview-{{$lesson->id}}" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
+                            <div class="preview-overlay" style="pointer-events: none">
+                                <i class="fa fa-eye"></i>
+                                <span>PREVIEW</span>
+                            </div>
+                        @else
+                            <img src="" alt="" class="hidden video-preview"/>
+                            <div class="preview-overlay hidden" style="pointer-events: none">
+                                <i class="fa fa-eye"></i>
+                                <span>PREVIEW</span>
+                            </div>
+                        @endif
+                    @else
+                        <img src="" alt="" class="hidden video-preview"/>
+                        <div class="preview-overlay hidden" style="pointer-events: none">
+                            <i class="fa fa-eye"></i>
+                            <span>PREVIEW</span>
+                        </div>
+                    @endif
+                </div>
+
+                    
                 
                 <div class="dropdown text-center lesson-control">
                   <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -357,6 +373,8 @@
                                 $lessonWrapper.find('.video-preview').attr('data-video-url',$video.formats[0].video_url);
                                 $lessonWrapper.find('.video-preview').removeClass('hidden');
                                 $('.lesson-control').removeClass('hidden');
+                                $lessonWrapper.find('.preview-overlay').removeClass('hidden');
+                                
 
                                 clearInterval($intervalId{{$lesson->id}});
                                 

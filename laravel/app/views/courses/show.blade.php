@@ -618,7 +618,7 @@
 			}
 			
 		}
-		
+		fixModalJerk();
 		$(window).resize(function(){
 			fixStickyHeader();
 		});

@@ -395,6 +395,9 @@
 			$(document).ready(function() {
                 //$('video,audio').mediaelementplayer();
 				$('.popular-courses-carousel').show();
+
+                fixModalJerk();
+
                 jQuery(window).bind('beforeunload', function(e) {
 
                     var message =  _("If you leave this page, you'll miss uploading file, do you wanna leave now?");
@@ -406,7 +409,7 @@
 					
 					           
 			});
-								 
+
 				$('[data-toggle="popover"]').popover();
 
 				$('.showRegister').click(function(){
@@ -474,6 +477,12 @@
 					}
 				});					
 			});
+
+            $( document ).ajaxComplete(function() {
+             fixModalJerk();
+            });
+
+            fixModalJerk()
 
             function showLoading()
             {

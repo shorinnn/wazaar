@@ -12,20 +12,6 @@ var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
 
-    $('.modal').on('show.bs.modal', function () {
-        if ($(document).height() > $(window).height()) {
-            // no-scroll
-            $('body').addClass("modal-open-noscroll");
-        }
-        else {
-            $('body').removeClass("modal-open-noscroll");
-        }
-    })
-    $('.modal').on('hidden.bs.modal', function () {
-        $('body').removeClass("modal-open-noscroll");
-        console.log("Hidden");
-    });
-
     $('body').delegate('video', "contextmenu",function(){
             return false;
         });
@@ -102,7 +88,8 @@ $(document).ready(function(){
 	showMoreContent();
     dynamicLessonNameWidth()
 	toggleSideMenu();
-	
+    fixModalJerk();
+
 	//stickyFooter();
 	rescaleBckgrdOverlay();
     newHomepageToggleData();
@@ -117,6 +104,23 @@ $(document).ready(function(){
 	});
 
 });
+
+function fixModalJerk(){
+    $('.modal').on('show.bs.modal', function () {
+        if ($(document).height() > $(window).height()) {
+            // no-scroll
+            $('body').addClass("modal-open-noscroll");
+        }
+        else {
+            $('body').removeClass("modal-open-noscroll");
+        }
+    });
+
+    $('.modal').on('hidden.bs.modal', function () {
+        $('body').removeClass("modal-open-noscroll");
+        console.log("Hidden");
+    });
+}
 
 function clear_backdrop(){
     $("#menu-backdrop").remove();

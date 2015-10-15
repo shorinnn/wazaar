@@ -33,5 +33,6 @@
     sortablizeMdl();
     sortablizeLsn();
     calculateFileSizes();
+    fixModalJerk();
 </script>
     
