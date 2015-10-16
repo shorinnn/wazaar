@@ -649,8 +649,10 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
         public function strip_affs_of_other_roles(){
             $affs = User::whereHas(
                         'roles', function($q){
-                        $q->where('name', 'Instructor');
                         $q->where('name', 'Affiliate');
+                    })->whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Instructor');
                     })->get();
             $this->info($affs->count().' affiliates with Instructor roles found');
             foreach($affs as $aff){
@@ -659,8 +661,10 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
             $this->info('Roles detached');
             $affs = User::whereHas(
                         'roles', function($q){
-                        $q->where('name', 'Student');
                         $q->where('name', 'Affiliate');
+                    })->whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Student');
                     })->get();
             $this->info($affs->count().' affiliates with Student roles found');
             foreach($affs as $aff){
