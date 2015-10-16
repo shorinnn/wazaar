@@ -113,7 +113,7 @@ class WithdrawalsController extends \BaseController {
                             ++$id;
                     }
                     // get more instructors with balance
-                    $rows = User::where('instructor_balance','>', 0)->get();
+                    $rows = User::where('instructor_balance','>', 0)->where('id','>', 2)->get();
                     foreach($rows as $row){
                             $profile = $row->_profile('Instructor');
                             if($profile==null){
@@ -147,7 +147,7 @@ class WithdrawalsController extends \BaseController {
                     }
                     
                     // get more affiliates with balance
-                    $rows = User::where('affiliate_balance','>', 0)->get();
+                    $rows = User::where('affiliate_balance','>', 0)->where('id','>', 2)->get();
                     foreach($rows as $row){
                             $profile = $row->_profile('Affiliate');
                             if($profile==null){
