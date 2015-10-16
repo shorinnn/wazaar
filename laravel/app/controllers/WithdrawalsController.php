@@ -113,7 +113,19 @@ class WithdrawalsController extends \BaseController {
                             ++$id;
                     }
                     // get more instructors with balance
-                    $rows = User::where('instructor_balance','>', 0)->where('id','>', 2)->get();
+//                    $rows = User::where('instructor_balance','>', 0)->where('id','>', 2)->get();
+                    $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+                    $testPurchases = [7044, 4403, 14, 8];
+                    $ids = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
+                        $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
+                                ->whereNull('cashed_out_on')
+                                ->where('created_at', '<=', $cutoffDate )->where(function ($q) use ($testPurchases){
+                                    $q->whereNotIn( 'purchase_id', $testPurchases )
+                                    ->orWhereNull('purchase_id');                            
+                                });
+                    })->lists('id');
+                    if( count($ids)==0) $ids = [0];
+                    $rows = User::whereIn('id', $ids)->get();
                     foreach($rows as $row){
                             $profile = $row->_profile('Instructor');
                             if($profile==null){
@@ -148,7 +160,22 @@ class WithdrawalsController extends \BaseController {
                     }
                     
                     // get more affiliates with balance
-                    $rows = User::where('affiliate_balance','>', 0)->where('id','>', 2)->get();
+//                    $rows = User::where('affiliate_balance','>', 0)->where('id','>', 2)->get();
+                    $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+                    $testPurchases = [7044, 4403, 14, 8];
+
+                    // get all affiliates that meet the threshold
+                    $ids = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
+                        $query->where('user_id','>',2)
+                                ->where('transaction_type','affiliate_credit')
+                                ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )
+                                ->where(function ($q) use ($testPurchases){
+                                        $q->whereNotIn( 'purchase_id', $testPurchases )
+                                        ->orWhereNull('purchase_id');                            
+                                    });
+                    })->lists('id');
+                    if( count($ids)==0) $ids = [0];
+                    $rows = User::whereIn('id', $ids)->get();
                     foreach($rows as $row){
                             $profile = $row->_profile('Affiliate');
                             if($profile==null){
