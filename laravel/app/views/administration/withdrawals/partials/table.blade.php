@@ -77,6 +77,8 @@
                                 @endif
                                 <br />
                                 {{ $request->user->email }}
+                                <br />
+                                <a onclick="toggle('.bank-deets-{{$request->id}}')">Bank Details</a>
                             </td>
                             <td>
                                 {{ trans('administration.before-fee') }}:
@@ -93,6 +95,30 @@
                                        value="{{ $request->id }}" />
                             </td>
                             
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td colspan="6">
+                                <div class="row well bank-deets-{{$request->id}}" style="display:none">
+                                    @if( $request->transaction_type=='instructor_debit')
+                                        <?php $bank = $request->user->_profile('Instructor');?>
+                                    @elseif( $request->transaction_type=='affiliate_debit')
+                                        <?php $bank = $request->user->_profile('Affiliate');?>
+                                    @else
+                                    @endif
+                                    <div class="col-lg-6">
+                                        Bank Code: {{ $bank->bank_code or '' }}<br />
+                                        Bank Name: {{ $bank->bank_name or '' }}<br />
+                                        Branch Code: {{ $bank->branch_code or '' }}<br />
+                                        Branch Name: {{ $bank->branch_name or '' }}<br />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        Account Type: {{ $bank->account_type or '' }}<br />
+                                        Account Number: {{ $bank->account_number or '' }}<br />
+                                        Beneficiary Name: {{ $bank->beneficiary_name or '' }}<br />
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                         <tr>
