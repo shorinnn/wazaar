@@ -365,6 +365,7 @@
 
                                 $lessonWrapper.find('.processing-wrapper').addClass('hidden');
                                 $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
+                                $lessonWrapper.find('.video-preview').attr('onclick','showVideoPreview(this)');
                                 $lessonWrapper.find('.video-preview').attr('data-video-url',$video.formats[0].video_url);
                                 $lessonWrapper.find('.video-preview').removeClass('hidden');
                                 $('.lesson-control').removeClass('hidden');
