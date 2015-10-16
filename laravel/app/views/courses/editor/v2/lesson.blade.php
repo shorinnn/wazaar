@@ -54,7 +54,7 @@
                             <i class="fa fa-eye"></i>
                             <span>PREVIEW</span>
                         </div>
-                        <span class="block text-center" style="line-height: 80px; font-size: 13px;color: #fff;"> No Video </span>
+                        <span class="block text-center no-video" style="line-height: 80px; font-size: 13px;color: #fff;"> No Video </span>
                     @endif
                 </div>
 

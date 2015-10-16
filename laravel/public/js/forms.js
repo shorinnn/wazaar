@@ -399,6 +399,7 @@ function enableFileUploader($uploader){
             }).on('fileuploadprogress', function (e, data) {
                  $progressLabel = $(progressLabel);
                  $progressLabel.show();
+                $('.no-video').hide();
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
                 $(progressbar).show();
                 $(progressbar).css('width', $progress + '%');
