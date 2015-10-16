@@ -1,7 +1,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-top-20">
     <div class="top-affiliates-table table-wrapper">
         <div class="table-header clearfix">
-            <h1 class="left">{{trans('analytics.courses')}}</h1>
+            <h1 class="text-center">{{trans('analytics.your_courses')}}</h1>
 
         </div>
 

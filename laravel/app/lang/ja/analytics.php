@@ -138,5 +138,6 @@ return
     'instructorName' => 'Instructor Name',
     'instructorEmail' => 'Instructor Email',
 
-    'courses' => '販売分析'
+    'courses' => '販売分析',
+    'your_courses' => '販売分析'
 ];
