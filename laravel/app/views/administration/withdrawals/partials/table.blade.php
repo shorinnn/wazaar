@@ -54,9 +54,23 @@
                             </td>
                             <td class="hidden-xs">
                                 @if( $request->transaction_type=='instructor_debit')
+                                        @if($request->user->_profile('Instructor')==null)
+                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                        @elseif( $request->user->noFill('Instructor') )
+                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                        @else
+                                        @endif
+                                        
                                     {{ $request->user->commentName('instructor') }}
                                     
                                 @elseif( $request->transaction_type=='affiliate_debit')
+                                        @if($request->user->_profile('Affiliate')==null)
+                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                         @elseif( $request->user->noFill('Affiliate') )
+                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                        @else
+                                        @endif
+                                        
                                     {{ $request->user->commentName('affiliate') }}
                                 @else
                                     {{ $request->user->commentName('instructor_agency') }}

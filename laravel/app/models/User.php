@@ -265,5 +265,19 @@ class User extends Ardent implements ConfideUserInterface
             return $this->last_name.' '.$this->first_name;
         }
     }
+    
+    public function noFill($type='Student'){
+        $profile = $this->_profile($type);
+        if( trim($profile->bank_code)=='' ||
+            trim($profile->bank_name)=='' ||
+            trim($profile->branch_code)=='' ||
+            trim($profile->branch_name)=='' ||
+            trim($profile->account_type)=='' ||
+            trim($profile->account_number)=='' ||
+            trim($profile->beneficiary_name)==''){
+            return true;
+        }
+        return false;
+    }
 
 }
