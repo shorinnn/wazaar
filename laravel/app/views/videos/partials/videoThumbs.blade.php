@@ -29,3 +29,6 @@
         {{--$videos->appends(Input::only('filter'))->links()--}}
     </div>
 </div>
+<script>
+    $('.ajax-loader').hide()
+</script>
