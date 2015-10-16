@@ -458,6 +458,8 @@
             var uploadErrors = [];
             var acceptedFileTypes =  ['video/mp4', 'video/flv', 'video/wmv', 'video/avi', 'video/mpg', 'video/mpeg', 'video/MP4', 'video/FLV', 'video/WMV', 'video/AVI', 'video/MPG', 'video/MPEG' ,'video/mov', 'video/MOV','video/quicktime'];
             //console.log(data.originalFiles[0].type);
+            $('.no-video').hide();
+
             if(acceptedFileTypes.indexOf(data.originalFiles[0].type) < 0) {
                 uploadErrors.push(_('Not an accepted file type'));
             }
@@ -480,7 +482,7 @@
             $('.upload-label-progress-bar-preview-img').html($progress + '%');
             $('#progress-course-video').css('width',$progress + '%');
             $('#progress-course-video-percent-complete').html($progress + '%');
-            $('.no-video').hide();
+
 
         }).bind('fileuploaddone', function ($e, $data) {
             window.reloadConfirm = false;

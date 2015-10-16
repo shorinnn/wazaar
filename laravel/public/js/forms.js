@@ -391,7 +391,8 @@ function enableFileUploader($uploader){
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 $(progressbar).parent().show();
-                
+                $('.no-video').hide();
+
                 callback = $uploader.attr('data-add-callback');
                 if( typeof(callback) !='undefined' ){
                     return window[callback](e, data);
@@ -399,7 +400,7 @@ function enableFileUploader($uploader){
             }).on('fileuploadprogress', function (e, data) {
                  $progressLabel = $(progressLabel);
                  $progressLabel.show();
-                $('.no-video').hide();
+
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
                 $(progressbar).show();
                 $(progressbar).css('width', $progress + '%');
