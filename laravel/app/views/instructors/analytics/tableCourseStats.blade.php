@@ -33,7 +33,7 @@
 -->
 <div class="new_analytics">
     @foreach($stats as $stat)
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-summary-block row" style="border:0px;">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-summary-block">
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-6 column-1">
                 <div class="row">
@@ -78,7 +78,9 @@
 
             </div>
         </div>
+        <div class="clearfix"></div>
     </div>
     @endforeach    
     {{$stats->links()}}
+    <div class="clearfix"></div>
 </div>

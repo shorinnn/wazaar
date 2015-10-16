@@ -1,14 +1,19 @@
 @extends('layouts.default')
 @section('content')
 <style>
-    .stats-block{
-        padding: 10px 0px;
+    .course-stats{
+        border: 1px solid #E0E1E2;
+        border-radius: 4px;
     }
-    .stats-panel .panel-heading{
-        padding-top: 5px;
-        padding-bottom: 5px;
+    .stats-filter{
+        background: #F5F5F5;
+        padding: 5px 10px;
+        border-bottom: 1px solid #E0E1E2;
     }
-    .stats-panel .large-button{
+    .course-stats .course-summary-block{
+        border:0px;
+    }
+    .stats-filter .large-button{
         padding-top: 7px;
         padding-bottom: 7px;
     }
@@ -47,10 +52,9 @@
                     </div>
                 </div>
             </div>
-            -->
             <div class="panel panel-default stats-panel">
                 <div class="panel-heading">
-                <button type="button" class="pull-right blue-button large-button" style="margin-left: 10px" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" >Apply Filter</button>
+                    <button type="button" class="pull-right blue-button large-button" style="margin-left: 10px" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" >Apply Filter</button>
                     <div id="reportrange" class="pull-right text-center" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                         <span></span> <b class="caret"></b>
@@ -58,12 +62,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
-                    <div class="stats-block">
-                        <div class="table-stats-wrapper">
-                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
+                    
                     <div class="stats-block hide">
                         <div class="table-affiliates-wrapper">
                             <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
@@ -72,7 +71,26 @@
                     </div>
                 </div>
             </div>
+            -->
 
+            <div class="col-lg-12 course-stats no-padding">
+                <div class="stats-filter">
+                    <button type="button" class="pull-right blue-button large-button" style="margin-left: 10px" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" >Apply Filter</button>
+                    <div id="reportrange" class="pull-right text-center" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span></span> <b class="caret"></b>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="stats-block">
+                    <div class="table-stats-wrapper">
+                        <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
             <div class="filter-buttons">
                 <div class="segmented-controls analytics-filter clearfix">
                     <div class="buttons-container">
