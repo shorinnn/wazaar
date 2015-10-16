@@ -2000,7 +2000,7 @@ header .profile-name li:hover ul{
 	outline: none;
 }
 .default-button{
-	padding: 9px 12px;
+	padding: 6px 12px;
 	border-radius: 3px;
 	display: inline-block;
 	border: solid 1px #cfd1d3;
@@ -2634,13 +2634,15 @@ h2, h3, h4, h5, h6{
 }
 .enroll-button-section.fixed {
 	position: fixed;
-	width: 346px;
+	width: 314px;
 	z-index: 99;
-	padding-left: 3px;
-}	
-.enroll-button-section .enroll-button-wrap{
-	border: solid transparent;
-	border-width: 0 1px 1px;
+	padding-left: 0px;
+}
+.enroll-button-section .enroll-button-wrap {
+    border: solid transparent;
+    border-width: 0 1px 1px;
+    border-radius: 4px;
+    padding: 0 32px;
 }
 .enroll-button-section.fixed .enroll-button-wrap{
 	background: #fff;
@@ -2649,7 +2651,7 @@ h2, h3, h4, h5, h6{
 	border-width: 0 1px 1px;
 	padding: 0 32px;
 }
-.enroll-button-section.fixed .add-to-wishlist-container{
+.enroll-button-section .add-to-wishlist-container{
 	border: solid 1px transparent;
 }
 .enroll-button-section.fixed .add-to-wishlist-container{
@@ -2803,6 +2805,7 @@ h2, h3, h4, h5, h6{
 .add-to-wishlist-container{
 	margin-top: 13px;
 	margin-bottom: 25px;
+    padding: 0 32px;
 }
 .add-to-wishlist-container .share-lesson,
 .add-to-wishlist-container input{
@@ -2857,7 +2860,8 @@ h2, h3, h4, h5, h6{
 	display: inline-block !important;
 }
 .enroll-button-section{
-	padding-left: 35px;
+	padding-left: 0;
+    width: 314px;
 }
 .enroll-button-section .discount-box .text-warning{
 	color: #F05339;
@@ -2904,8 +2908,8 @@ h2, h3, h4, h5, h6{
     box-shadow: 0px 1px 0px #e7e8e9;
     padding-top: 7px;
     padding-bottom: 7px;
-	padding-left: 70px;
-	padding-right: 70px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .enroll-button-section .default-button{
 	padding: 0 12px;
@@ -6890,17 +6894,12 @@ a.load-remote > *{
   margin: 0;
   left: 63px;
 }
-.step1 .listing-image-upload{
-    position: relative;
-    top: 0;
-    left: 0;
-	margin: 10px 0;
-}
+.step1 .listing-image-upload,
 .step1 .listing-video-upload{
     position: relative;
     top: 0;
     left: 0;
-	margin: 10px 0;
+	margin: 7px 0 5px;
 }
 .step1 #upload-new i {
     font-size: 11px;
@@ -6908,13 +6907,11 @@ a.load-remote > *{
     top: 1px;
 }
 .file-processing-handler {
-    margin-top: -60px;
+    margin-top: 0;
     position: relative;
     text-align: center;
-    top: -37px;
-}
-.listing-video .file-processing-handler {
-    margin-top: -65px;
+    top: 0;
+    width: 223px;
 }
 .step1 .listing-video label,
 .step1 .use-existing > a,
@@ -6983,6 +6980,12 @@ a.load-remote > *{
 	background-color: #18222b;
 	position: relative;
 }
+.listing-image #upload-new,
+.listing-video  #upload-new{
+    display: block;
+    width: 100%;
+}
+
 /************** Editor step 1 ends ***************/
 
 /************** Editor step 2 ***************/
@@ -7171,7 +7174,7 @@ a.load-remote > *{
 	position: relative;
 	border-radius: 2px;
 	background-color: #18222b;
-	margin: 28px auto 10px;
+	margin: 28px auto 12px;
 	overflow: hidden;
 	text-align: center;
 }
@@ -7565,6 +7568,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 /************** Create a Course***********/
 .add-new-course{
 	color: #fff !important;
+    padding: 10px 15px;
 }
 .create-course h1{
 	color: #0099ff;
@@ -7871,6 +7875,12 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .edit-course .main{
 	border-radius: 4px;
 	overflow: hidden;
+}
+.edit-course img[src *="ajax-loader-3"]{
+    margin: 30px 0 100px;
+}
+.edit-course .step2 img[src *="ajax-loader-3"]{
+    margin-top: 59px !important;
 }
 .edit-course .left-content{
 	background: #fff;
