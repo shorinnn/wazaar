@@ -1,11 +1,36 @@
 @extends('layouts.default')
 @section('content')
+<style>
+    .stats-block{
+        padding: 10px 0px;
+    }
+    .stats-panel .panel-heading{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .stats-panel .large-button{
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+    .filter-buttons .analytics-filter{
+        float: none;
+        text-align: center;
+    }
+
+    .filter-buttons .analytics-filter .buttons-container{
+        float: none;
+        margin: 0px auto;
+        left: 50%;
+        display: inline-block;
+    }
+</style>
+
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
 
-            <h2 class="margin-top-10">{{trans('analytics.course')}}: {{$course->name}}</h2>
-            <div class="row-fluid">
+            <h2 class="margin-top-10" style="padding-bottom:8px">{{trans('analytics.course')}}: {{$course->name}}</h2>
+            <!-- <div class="row-fluid hide">
                 <div class="panel panel-default clearfix">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{trans('analytics.filters')}}</h3>
@@ -13,7 +38,7 @@
 
                     <div class="segmented-controls analytics-filter clearfix">
                         <div class="panel-body buttons-container clearfix">
-                            <!--<a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>-->
+                            <!--<a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>->
                             <a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', {{$course->id}},this); return false;">{{trans('analytics.daily')}}</a>
                             <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', {{$course->id}},this); return false;">{{trans('analytics.weekly')}}</a>
                             <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', {{$course->id}},this); return false;">{{trans('analytics.monthly')}}</a>
@@ -21,6 +46,44 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            -->
+            <div class="panel panel-default stats-panel">
+                <div class="panel-heading">
+                <button type="button" class="pull-right blue-button large-button" style="margin-left: 10px" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" >Apply Filter</button>
+                    <div id="reportrange" class="pull-right text-center" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span></span> <b class="caret"></b>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="stats-block">
+                        <div class="table-stats-wrapper">
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="stats-block hide">
+                        <div class="table-affiliates-wrapper">
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-buttons">
+                <div class="segmented-controls analytics-filter clearfix">
+                    <div class="buttons-container">
+                        <!--<a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>-->
+                        <a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', {{$course->id}},this); return false;">{{trans('analytics.daily')}}</a>
+                        <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', {{$course->id}},this); return false;">{{trans('analytics.weekly')}}</a>
+                        <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', {{$course->id}},this); return false;">{{trans('analytics.monthly')}}</a>
+                        <a class="segmented-buttons button-filter button-filter-alltime" href="#" onclick="Analytics.SalesCount('alltime', {{$course->id}},this); return false;">{{trans('analytics.allTime')}}</a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
             </div>
             <div class="top-activities">
 
@@ -118,44 +181,7 @@
             </div>
 
             
-            <hr/>
-<style>
-    .stats-block{
-        padding: 10px 0px;
-    }
-    .stats-panel .panel-heading{
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    .stats-panel .large-button{
-        padding-top: 7px;
-        padding-bottom: 7px;
-    }
-</style>
-            <div class="panel panel-default stats-panel">
-                <div class="panel-heading">
-                <button type="button" class="pull-right blue-button large-button" style="margin-left: 10px" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" >Apply Filter</button>
-                    <div id="reportrange" class="pull-right text-center" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
-                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                        <span></span> <b class="caret"></b>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="panel-body">
-                    <div class="stats-block">
-                        <div class="table-stats-wrapper">
-                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="stats-block hide">
-                        <div class="table-affiliates-wrapper">
-                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
+            <!-- <hr /> -->
 
 
             <div class="row-fluid hide">
