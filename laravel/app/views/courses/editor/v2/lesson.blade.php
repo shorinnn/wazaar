@@ -54,7 +54,7 @@
                             <i class="fa fa-eye"></i>
                             <span>PREVIEW</span>
                         </div>
-                        <span class="block text-center" style="line-height: 80px; font-size: 13px;color: #fff;"> No Video </span>
+                        <span class="block text-center no-video" style="line-height: 80px; font-size: 13px;color: #fff;"> No Video </span>
                     @endif
                 </div>
 
@@ -329,6 +329,7 @@
                 var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
                 $lessonWrapper.find('.video-preview').attr('src', '');
                 $lessonWrapper.find('.video-preview').attr('data-video-url', '');
+                $('.no-video').hide();
             },
             'progressCallBack' : function ($data, $progressPercentage, $elem){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
