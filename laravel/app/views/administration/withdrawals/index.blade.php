@@ -23,8 +23,14 @@
         border:1px solid red;
     }
 </style>
-
+<form method="post" class="csvForm">
+    <input type="submit" class="btn btn-primary" value="Download Bank Details CSV" />
+</form>
 {{ View::make('administration.withdrawals.partials.table')->with( compact('requests') ) }}
+
+<form method="post" class="csvForm">
+    <input type="submit" class="btn btn-primary" value="Download Bank Details CSV" />
+</form>
 
 @stop
 
@@ -56,5 +62,16 @@
         
         $('#withdrawForm').submit();
     }
+    
+    function toggle(elem){
+        $(elem).slideToggle();
+    }
+    
+    $('body').delegate('.csvForm', 'submit', function(){
+        setTimeout(function(){
+           $('input').removeAttr('disabled');
+           console.log('re-enabled');
+        }, 1000);
+    });
 </script>
 @stop
