@@ -145,7 +145,8 @@ return
     'instructorName' => 'Instructor Name',
     'instructorEmail' => 'Instructor Email',
 
-    'courses' => 'Courses'
+    'courses' => 'Courses',
+    'your_courses' => 'Your Courses'
 
 
 ];
