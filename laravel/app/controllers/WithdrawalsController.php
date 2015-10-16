@@ -42,10 +42,11 @@ class WithdrawalsController extends \BaseController {
                                 $status = $request->user->noFill('Instructor') ? 'No Fill' : 'Filled in';
                             }
                             else{
-                                $request->user->_profile('Affiliate');
+                                $profile = $request->user->_profile('Affiliate');
                                 $status = $request->user->noFill('Affiliate') ? 'No Fill' : 'Filled in';
                             }
                             $row_data = array();
+                            $row_data[] = $id;
                             $row_data[] = $profile->last_name or '';
                             $row_data[] = $profile->first_name or '';
                             $row_data[] = $profile->email or '';
