@@ -29,5 +29,8 @@ var js_translation_map_en = {
     'min-price-500' : 'Minimum value: 500',
     'Are you sure?' : 'Are you sure?',
     'You found this helpful' : 'You found this helpful',
-    'Helpful' : 'helpful'
+    'Helpful' : 'helpful',
+    'hours' : 'H',
+    'minutes' : 'M',
+    'seconds' : 'S',
 };
