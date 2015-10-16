@@ -118,7 +118,6 @@
             </div>
 
             
-            <!--
             <hr/>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -171,7 +170,6 @@
             <div id="ajax-loader-wrapper" class="hidden">
                 <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
             </div>
--->
 
 
         </div>
@@ -198,7 +196,7 @@
         $(function(){
 
 
-
+            Analytics.CourseId = '{{$course->id}}';
             Analytics.InitCalendarFilter();
             Analytics.InitCoursePage();
 
