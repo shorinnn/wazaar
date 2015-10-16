@@ -115,7 +115,7 @@ class WithdrawalsController extends \BaseController {
                     // get more instructors with balance
 //                    $rows = User::where('instructor_balance','>', 0)->where('id','>', 2)->get();
                     $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
-                    $testPurchases = [7044, 4403, 14, 8];
+                    $testPurchases = [7044, 4403, 14, 8, 1];
                     $ids = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
                         $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
                                 ->whereNull('cashed_out_on')
@@ -172,7 +172,7 @@ class WithdrawalsController extends \BaseController {
                     // get more affiliates with balance
 //                    $rows = User::where('affiliate_balance','>', 0)->where('id','>', 2)->get();
                     $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
-                    $testPurchases = [7044, 4403, 14, 8];
+                    $testPurchases = [7044, 4403, 14, 8, 1];
 
                     // get all affiliates that meet the threshold
                     $ids = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
