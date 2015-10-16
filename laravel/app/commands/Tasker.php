@@ -647,6 +647,11 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
         }
         
         public function strip_affs_of_other_roles(){
+            $total = User::whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Affiliate');
+                    })->count();
+            $this->info("$total affiliates found.");
             $affs = User::whereHas(
                         'roles', function($q){
                         $q->where('name', 'Affiliate');
