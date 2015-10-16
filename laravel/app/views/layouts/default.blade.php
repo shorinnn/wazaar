@@ -13,11 +13,14 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon" />
     
-    @yield('extra_top_css')
-
     @if( App::environment() == 'PPproduction' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
+    <style>
+      .category-box-container{
+        background: #EBECED url(/images/category-sidebar.png) left top repeat-y !important;
+      }
+    </style>
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
         <!--<link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">

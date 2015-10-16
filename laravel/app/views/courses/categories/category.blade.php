@@ -9,14 +9,6 @@
     Wazaar
 @stop
 
-@section('extra_top_css')
-<style>
-  .category-box-container{
-    background: #EBECED url(/images/category-sidebar.png) left top repeat-y !important;
-  }
-</style>
-@stop
-
 @section('content')	
 <style>
 	.category-heading-title,
