@@ -8,6 +8,7 @@
     @endif
     Wazaar
 @stop
+
 @section('content')	
 <style>
 	.category-heading-title,

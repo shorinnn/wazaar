@@ -16,6 +16,11 @@
     @if( App::environment() == 'PPproduction' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
+    <style>
+      .category-box-container{
+        background: #EBECED url(/images/category-sidebar.png) left top repeat-y !important;
+      }
+    </style>
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
         <!--<link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
