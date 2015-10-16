@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row top-activities">
+            <div class="top-activities">
 
 
                 {{-- Total Sales in Yen --}}
@@ -113,23 +113,47 @@
                     </div>
                 </div> --}}
                 {{-- // Top Tracking Codes --}}
-
+                <div class="clearfix"></div>
 
             </div>
 
             
             <hr/>
-            <div class="panel panel-default">
+<style>
+    .stats-block{
+        padding: 10px 0px;
+    }
+    .stats-panel .panel-heading{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .stats-panel .large-button{
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+</style>
+            <div class="panel panel-default stats-panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Tables Filter</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 50%">
+                <button type="button" class="pull-right blue-button large-button" style="margin-left: 10px" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" >Apply Filter</button>
+                    <div id="reportrange" class="pull-right text-center" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                         <span></span> <b class="caret"></b>
                     </div>
-
-                    <button class="btn btn-success" onclick="Analytics.ApplyCoursePageTableDateFilter(); return false;" style="margin-left: 10px">Apply Filter</button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="stats-block">
+                        <div class="table-stats-wrapper">
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="stats-block hide">
+                        <div class="table-affiliates-wrapper">
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
             </div>
 
@@ -140,6 +164,7 @@
                 </div>
             </div>
 
+            <!--
             <div class="row-fluid">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -167,6 +192,7 @@
                 </div>
 
             </div>
+            -->
             <div id="ajax-loader-wrapper" class="hidden">
                 <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
             </div>
