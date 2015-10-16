@@ -9,14 +9,17 @@
     <div class="approval-box">
             <h4 class="lesson-status {{ $course->publish_status }}">
                 @if($course->publish_status=='pending')
-                    <br />{{ trans('courses/general.wazaar-is-checking-your-product') }}
+                   {{ trans('courses/general.wazaar-is-checking-your-product') }}
                 @else
                     {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
                 @endif
             </h4>
+        <p class="regular-paragraph">{{ ucfirst( trans( 'courses/statuses.'.$course->publish_status.'-message' ) ) }}</p>
+        
         @if($course->publish_status=='rejected')
             <p class='alert alert-danger'>{{ $course->reject_reason }}</p>
         @endif
+        
         @if($course->publish_status == 'unsubmitted')
             <p class="regular-paragraph">
                 {{ trans('courses/create.wazaar_must_review') }}

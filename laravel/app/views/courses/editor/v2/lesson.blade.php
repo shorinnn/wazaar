@@ -13,13 +13,7 @@
      
     <div class="row lesson-data no-margin toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
-            
-            @if(App::environment()!='production')
-            <a href='{{ action('ClassroomController@lesson', 
-                                            [ $lesson->module->course->slug,
-                                            $lesson->module->slug,
-                                            $lesson->slug] )}}'>[View Lesson maxxy]</a>
-            @endif
+           
             @if($lesson->module->course->free=='no')
               <div class="lesson-name"><span><em></em></span>{{ trans('general.lesson') }}  
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
