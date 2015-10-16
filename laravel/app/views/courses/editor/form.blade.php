@@ -5,10 +5,10 @@
 
 @section('content')
     <style>
-        .resource-uploaded{
+        /*.resource-uploaded{
             margin-top: 100px !important;
             margin-bottom: -35px !important;
-        }
+        }*/
         
         #save-indicator{
             border:1px solid black;

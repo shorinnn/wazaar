@@ -17,6 +17,8 @@
                                 <div class="course-listing-image-preview">
                                     @if($course->course_preview_image_id > 0)
                                     <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
+                                    @else
+                                    <span class="block text-center" style="line-height: 125px; font-size: 14px;color: #fff;"> No Image </span>
                                     @endif
                                 </div>
 
@@ -75,6 +77,8 @@
                                     <div class="course-description-video-preview">
                                         @if (isset($course->descriptionVideo->formats[0]))
                                             <img data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                        @else
+                                        <span class="block text-center" style="line-height: 125px; font-size: 14px;color: #fff;"> No video </span>
                                         @endif
 
                                     </div>
