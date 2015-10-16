@@ -118,6 +118,7 @@ class WithdrawalsController extends \BaseController {
                             $profile = $row->_profile('Instructor');
                             if($profile==null){
                                 $profile = new stdClass;
+                                $profile->email = $row->email;
                                 $profile->last_name = $profile->first_name = $profile->email = $profile->bank_code= $profile->bank_name =
                                 $profile->branch_code  = $profile->branch_name= $profile->account_type= $profile->account_number= $profile->beneficiary_name
                                 = '';
@@ -152,6 +153,7 @@ class WithdrawalsController extends \BaseController {
                             $profile = $row->_profile('Affiliate');
                             if($profile==null){
                                 $profile = new stdClass;
+                                $profile->email = $row->email;
                                 $profile->last_name = $profile->first_name = $profile->email = $profile->bank_code= $profile->bank_name =
                                 $profile->branch_code  = $profile->branch_name= $profile->account_type= $profile->account_number= $profile->beneficiary_name
                                 = '';
@@ -162,7 +164,7 @@ class WithdrawalsController extends \BaseController {
                             }
                             $status = $row->noFill('Affiliate') ? 'No Fill' : 'Filled in';
                            
-                            $amount = $row->instructor_balance;
+                            $amount = $row->affiliate_balance;
                             $row_data = array();
                             $row_data[] = $id;
                             $row_data[] = $profile->last_name or '';
