@@ -81,6 +81,6 @@
         <div class="clearfix"></div>
     </div>
     @endforeach    
-    {{$stats->links()}}
+    {{-- $stats->links() --}}
     <div class="clearfix"></div>
 </div>

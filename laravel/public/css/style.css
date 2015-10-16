@@ -9745,6 +9745,9 @@ footer{
 .courses-table .datepick .date-dropdown {
     background-color: #f7f9fa;
 }
+.category-box-container{
+	background: #EBECED url(../images/category-sidebar.png) left top repeat-y;
+}
 /*************** Media Query fixes **************************/
 @media (max-width: 1250px) and (min-width: 991px){
 .questions-sidebar .ask-question .img-container{
@@ -9837,9 +9840,6 @@ footer{
 		width: calc(100% - 270px);
 		width: -moz-calc(100% - 270px);
 		width: -webkit-calc(100% - 270px);
-	}
-	.category-box-container{
-		background: #EBECED url(../images/category-sidebar.png) left top repeat-y;
 	}
 	/*.sidebar-menu ~ .category-content-container{
 		-webkit-flex: 1;
@@ -10305,6 +10305,9 @@ footer{
 	}
 }
 @media (max-width:900px){
+	.category-box-container{
+		background: #EBECED;
+	}
 	.course-detail-top-section .centered-contents{
 		padding: 0 0 0 20px;
 	}	
