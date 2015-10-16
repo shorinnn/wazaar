@@ -9745,9 +9745,6 @@ footer{
 .courses-table .datepick .date-dropdown {
     background-color: #f7f9fa;
 }
-.category-box-container{
-	background: #EBECED url(../images/category-sidebar.png) left top repeat-y;
-}
 /*************** Media Query fixes **************************/
 @media (max-width: 1250px) and (min-width: 991px){
 .questions-sidebar .ask-question .img-container{

@@ -13,6 +13,8 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon" />
     
+    @yield('extra_top_css')
+
     @if( App::environment() == 'PPproduction' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
