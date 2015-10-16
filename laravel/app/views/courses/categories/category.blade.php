@@ -464,17 +464,17 @@
               });
             }
 
-            if($(document).width() <= 1000){
-              $('.category-content-container, .sidebar-menu').css('height', 'auto');
-            } else {
-              var sidebar_height = $('.sidebar-menu').height();
-              var category_content = $('.category-content-container').height();
-              if(Number(sidebar_height) >= Number(category_content)){
-                $('.category-content-container').height(sidebar_height);
-              } else {
-                $('.sidebar-menu').height(category_content);
-              }
-            }
+            // if($(document).width() <= 1000){
+            //   $('.category-content-container, .sidebar-menu').css('height', 'auto');
+            // } else {
+            //   var sidebar_height = $('.sidebar-menu').height();
+            //   var category_content = $('.category-content-container').height();
+            //   if(Number(sidebar_height) >= Number(category_content)){
+            //     $('.category-content-container').height(sidebar_height);
+            //   } else {
+            //     $('.sidebar-menu').height(category_content);
+            //   }
+            // }
             // if($(window).width() <= 1200 && $(window).width() >= 991){
             //   $('.category-box-container .course-box-wrap').removeClass('col-md-4').addClass('col-md-6');
             //   $('.category-box-container .ajax-content > .container').css('width', '100%'); 
