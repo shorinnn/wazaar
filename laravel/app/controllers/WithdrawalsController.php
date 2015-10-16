@@ -45,12 +45,13 @@ class WithdrawalsController extends \BaseController {
                                 $profile = $request->user->_profile('Affiliate');
                                 $status = $request->user->noFill('Affiliate') ? 'No Fill' : 'Filled in';
                             }
+                            $amount = $request->amount + Config::get('custom.cashout.fee');
                             $row_data = array();
                             $row_data[] = $id;
                             $row_data[] = $profile->last_name or '';
                             $row_data[] = $profile->first_name or '';
                             $row_data[] = $profile->email or '';
-                            $row_data[] = $request->amount;
+                            $row_data[] = $amount;
                             $row_data[] = $status;
                             $row_data[] = $profile->bank_code;
                             $row_data[] = $profile->bank_name;
