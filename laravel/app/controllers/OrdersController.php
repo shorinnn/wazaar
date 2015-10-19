@@ -76,8 +76,8 @@ class OrdersController extends \BaseController {
 										}
 
 										if($email){
-											$query->orWhere('buyer.email', 'like', "%$email%");
-											$query->orWhere('courses.slug', 'like', "%$course_name%");
+											$query->where('buyer.email', 'like', "%$email%");
+											$query->orWhere('owner.email', 'like', "%$email%");
 										}
 
 										if($sale_amount_low && $sale_amount_high){
@@ -153,8 +153,8 @@ class OrdersController extends \BaseController {
 										}
 
 										if($email){
-											$query->orWhere('buyer.email', 'like', "%$email%");
-											$query->orWhere('courses.slug', 'like', "%$course_name%");
+											$query->where('buyer.email', 'like', "%$email%");
+											$query->orWhere('owner.email', 'like', "%$email%");
 										}
 
 										if($sale_amount_low && $sale_amount_high){
@@ -278,7 +278,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($email){
-											$query->orWhere('buyer.email', 'like', "%$email%");
+											$query->where('buyer.email', 'like', "%$email%");
 											$query->orWhere('owner.email', 'like', "%$email%");
 										}
 
