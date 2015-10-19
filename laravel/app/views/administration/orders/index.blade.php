@@ -124,17 +124,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.transaction-id' )}}</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="transaction_id" name="transaction_id" value="{{$transaction_id}}">
+                            </div>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                     <hr style="margin-top:0px;" />
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    {{-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{ trans('administration.orders.label.course-id' )}}</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="course_id" name="course_id" value="{{$course_id}}">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-xs-12 text-center">
                         <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
                     </div>
