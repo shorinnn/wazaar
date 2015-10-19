@@ -108,6 +108,7 @@ return array(
             'product-price' => 'Product Price',
             'date' => 'Date',
             'course-id' => 'Course ID',
+            'transaction-id' => 'Transaction ID',
         ],
         'tax' => 'Tax'
     ],

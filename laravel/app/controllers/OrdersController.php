@@ -34,7 +34,7 @@ class OrdersController extends \BaseController {
 		$product_price_high = (isset($data['product_price_high']))?$data['product_price_high']:'';
 		$purchase_date_low = (isset($data['purchase_date_low']))?$data['purchase_date_low']:'';
 		$purchase_date_high = (isset($data['purchase_date_high']))?$data['purchase_date_high']:'';
-		$course_id = (isset($data['course_id']))?$data['course_id']:'';
+		$transaction_id = (isset($data['transaction_id']))?$data['transaction_id']:'';
 		$total = (isset($data['total']))?$data['total']:'';
 		$download = (isset($data['download']))?$data['download']:'';
 
@@ -45,16 +45,20 @@ class OrdersController extends \BaseController {
 									->leftJoin('users as owner', 'owner.id', '=', 'courses.instructor_id')
 									->leftJoin('users as buyer', 'buyer.id', '=', 'purchases.student_id')
 									->where('purchases.product_type', '=', 'Course')
-									->where(function ($query) use ($course_name, $course_category, $filter, $email, $sale_amount_low, $sale_amount_high, $product_price_low, $product_price_high, $purchase_date_low, $purchase_date_high, $course_id){
+									->where(function ($query) use ($course_name, $course_category, $filter, $email, $sale_amount_low, $sale_amount_high, $product_price_low, $product_price_high, $purchase_date_low, $purchase_date_high, $transaction_id){
 
 										if($course_name){
-											$query->where('courses.name', 'like', "%$search%");
+											$query->where('courses.name', 'like', "%$course_name%");
+											$query->orWhere('courses.slug', 'like', "%$course_name%");
 										}
 
 										if($course_category){
 											$query->where('courses.course_category_id', '=', $course_category);
 										}
 
+										if($transaction_id){
+											$query->where('purchases.payment_ref', '=', $transaction_id);	
+										}
 										if($filter){
 											switch($filter){
 												case 'all':
@@ -73,6 +77,7 @@ class OrdersController extends \BaseController {
 
 										if($email){
 											$query->orWhere('buyer.email', 'like', "%$email%");
+											$query->orWhere('courses.slug', 'like', "%$course_name%");
 										}
 
 										if($sale_amount_low && $sale_amount_high){
@@ -117,16 +122,20 @@ class OrdersController extends \BaseController {
 									->leftJoin('users as buyer', 'buyer.id', '=', 'purchases.student_id')
 									->select('purchases.*', 'courses.slug as course_alias', 'courses.name as course_name', 'owner.email as owner_email', 'buyer.email as buyer_email', DB::raw("CONCAT(buyer.last_name, ', ', buyer.first_name) as buyer_name"), DB::raw("CONCAT(owner.last_name, ', ', owner.first_name) as owner_name"))
 									->where('purchases.product_type', '=', 'Course')
-									->where(function ($query) use ($course_name, $course_category, $filter, $email, $sale_amount_low, $sale_amount_high, $product_price_low, $product_price_high, $purchase_date_low, $purchase_date_high, $course_id){
+									->where(function ($query) use ($course_name, $course_category, $filter, $email, $sale_amount_low, $sale_amount_high, $product_price_low, $product_price_high, $purchase_date_low, $purchase_date_high, $transaction_id){
 
 										if($course_name){
-											$query->where('courses.name', 'like', "%$search%");
+											$query->where('courses.name', 'like', "%$course_name%");
+											$query->orWhere('courses.slug', 'like', "%$course_name%");
 										}
 
 										if($course_category){
 											$query->where('courses.course_category_id', '=', $course_category);
 										}
 
+										if($transaction_id){
+											$query->where('purchases.payment_ref', '=', $transaction_id);	
+										}
 										if($filter){
 											switch($filter){
 												case 'all':
@@ -145,6 +154,7 @@ class OrdersController extends \BaseController {
 
 										if($email){
 											$query->orWhere('buyer.email', 'like', "%$email%");
+											$query->orWhere('courses.slug', 'like', "%$course_name%");
 										}
 
 										if($sale_amount_low && $sale_amount_high){
@@ -237,16 +247,20 @@ class OrdersController extends \BaseController {
 									->leftJoin('users as buyer', 'buyer.id', '=', 'purchases.student_id')
 									->select('purchases.*', 'courses.slug as course_alias', 'courses.name as course_name', 'owner.email as owner_email', 'buyer.email as buyer_email', DB::raw("CONCAT(buyer.last_name, ', ', buyer.first_name) as buyer_name"), DB::raw("CONCAT(owner.last_name, ', ', owner.first_name) as owner_name"))
 									->where('purchases.product_type', '=', 'Course')
-									->where(function ($query) use ($course_name, $course_category, $filter, $email, $sale_amount_low, $sale_amount_high, $product_price_low, $product_price_high, $purchase_date_low, $purchase_date_high, $course_id){
+									->where(function ($query) use ($course_name, $course_category, $filter, $email, $sale_amount_low, $sale_amount_high, $product_price_low, $product_price_high, $purchase_date_low, $purchase_date_high, $transaction_id){
 
 										if($course_name){
-											$query->where('courses.name', 'like', "%$search%");
+											$query->where('courses.name', 'like', "%$course_name%");
+											$query->orWhere('courses.slug', 'like', "%$course_name%");
 										}
 
 										if($course_category){
 											$query->where('courses.course_category_id', '=', $course_category);
 										}
 
+										if($transaction_id){
+											$query->where('purchases.payment_ref', '=', $transaction_id);	
+										}
 										if($filter){
 											switch($filter){
 												case 'all':
@@ -265,6 +279,7 @@ class OrdersController extends \BaseController {
 
 										if($email){
 											$query->orWhere('buyer.email', 'like', "%$email%");
+											$query->orWhere('owner.email', 'like', "%$email%");
 										}
 
 										if($sale_amount_low && $sale_amount_high){
@@ -303,11 +318,11 @@ class OrdersController extends \BaseController {
 				// dd(DB::getQueryLog());
 				$start = $start + $limit;
 
-				return View::make('administration.orders.listing', compact('orders', 'start', 'limit', 'page', 'sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'course_id'));
+				return View::make('administration.orders.listing', compact('orders', 'start', 'limit', 'page', 'sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'transaction_id'));
 			}
 		}
 
-		return View::make('administration.orders.index', compact('sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'course_id'));
+		return View::make('administration.orders.index', compact('sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'transaction_id'));
 	}
 
 }

@@ -108,6 +108,7 @@ return array(
             'product-price' => 'コース価格別',
             'date' => '日付別',
             'course-id' => 'コースID別',
+            'transaction-id' => 'Transaction ID',
         ],
         'tax' => '月Taxせ'
     ],
