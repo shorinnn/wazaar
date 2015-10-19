@@ -655,6 +655,7 @@ function loadRemoteCache(e){
     url = $(e.target).attr('data-url');
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
+    var precallback = $(e.target).attr('data-precallback');
     var cachedCallback = $(e.target).attr('data-cached-callback');
     elem = $(e.target);
     while( typeof(url)=='undefined' ){
@@ -663,6 +664,7 @@ function loadRemoteCache(e){
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  
+        precallback = elem.attr('data-precallback');
         cachedCallback = elem.attr('data-cached-callback');  
     }
     // load content from the parent container
@@ -687,6 +689,11 @@ function loadRemoteCache(e){
 	marginTop: 0
 	});
     linkElem = elem;
+
+    if( typeof(precallback)!= 'undefined'){
+        window[precallback](e);
+    }
+
     $(target).load(url, function(responseText, textStatus, req){
         elem = linkElem;
         elem.attr('data-loaded','1');

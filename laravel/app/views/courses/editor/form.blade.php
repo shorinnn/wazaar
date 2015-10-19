@@ -308,13 +308,13 @@
         </div>
         <div class="row header-tabs-container">
         	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-            	<a href="#" class="header-tabs active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+            	<a href="#" class="header-tabs active load-remote-cache" data-precallback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
                    data-loaded='1' data-gif='ajax-loader-3.gif' ><em>1</em>{{ trans('courses/general.description') }}</a>
-            	<a href="#" class="header-tabs load-remote-cache link-to-step-2" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+            	<a href="#" class="header-tabs load-remote-cache link-to-step-2" data-precallback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
                    data-gif='ajax-loader-3.gif' ><em>2</em>{{ trans('courses/general.curriculum') }}</a>
-            	<a href="#" class="header-tabs load-remote-cache link-to-step-3" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+            	<a href="#" class="header-tabs load-remote-cache link-to-step-3" data-precallback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder ._step3'  data-steps-remaining='0'
                    data-gif='ajax-loader-3.gif' ><em>3</em>{{ trans('courses/general.settings') }}</a>
 
