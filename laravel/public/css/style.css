@@ -10698,6 +10698,11 @@ header .profile-name ul{
         border-left: 0;
         border-top: 1px solid #ebebeb;
     }
+    .homepage-header .extra-large-heading {
+        margin-top: 0;
+        padding-top: 20px;
+    }
+
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -11251,10 +11256,6 @@ header .profile-name ul{
 	.lesson-topics li .lesson-name{
 		width: 13%;
 	}
-	.homepage-header .extra-large-heading {
-		margin-top: 0;
-		padding-top: 10px;
-	}
 	.affiliate-top-header .add-gift, .affiliate-top-header .add-tracking-id{
 		font-size: 13px !important;
 	}
@@ -11315,11 +11316,6 @@ header .profile-name ul{
 	header{
 		padding: 0 15px 0px !important;
 	}
-    .homepage-header-wrapper{
-        margin-top: 0;
-        padding-top: 0;
-    }
-
 }
 @media (max-width:356px){
 	header .top-menu .logged-out-header-search form div input{
@@ -11356,6 +11352,9 @@ header .profile-name ul{
 	}*/
 	.course-data .column-1 div{
 		padding: 0 0 0 7px !important;
+	}
+	.homepage-header-wrapper{
+        padding-top: 0;
 	}
 	.top-activities .stat-block{
 		width: 100% !important;
