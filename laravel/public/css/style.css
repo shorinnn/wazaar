@@ -10441,7 +10441,6 @@ header .logged-in-menu-holder{
     display: inline-block;
     float: right;
     vertical-align: top;
-    width: 75px;
 }
 header .top-menu .logged-out-header-search{
 	margin: 25px 0;
