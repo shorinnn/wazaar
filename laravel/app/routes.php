@@ -203,6 +203,7 @@ $wwwRoutes = function(){
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('manage-orders', 'OrdersController@index');
         Route::get('manage-users', 'UsersController@adminManageUsers');
+        Route::get('old-manage-courses', 'CoursesController@oldAdminIndex');
         Route::get('manage-courses', 'CoursesController@adminIndex');
     });
 //});

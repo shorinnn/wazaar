@@ -1230,10 +1230,41 @@ class CoursesController extends \BaseController {
                 return Redirect::back()->withError( 'Could not disapprove Course ' );
         }
 
+    public function oldAdminIndex()
+    {
+
+        $courses = Course::oldGetAdminList();
+        return View::make('administration.courses.oldindex', compact('courses'));
+    }
+
     public function adminIndex()
     {
-        $courses = Course::getAdminList();
 
-        return View::make('administration.courses.index', compact('courses'));
+        $data = Request::all();
+
+        $course_categories = [''=>'Select Category'];
+        $course_categories_lists = CourseCategory::lists('name', 'id');
+        foreach($course_categories_lists as $key => $val){
+            $course_categories = array_add($course_categories, $key, $val);
+        }
+        $course_category = (isset($data['course_category']))?$data['course_category']:'';
+
+
+        $course_sub_categories = [''=>'Select Sub Category'];
+        $course_sub_categories_lists = CourseSubcategory::lists('name', 'id');
+        foreach($course_sub_categories_lists as $key => $val){
+            $course_sub_categories = array_add($course_sub_categories, $key, $val);
+        }
+        $course_sub_category = (isset($data['course_sub_category']))?$data['course_sub_category']:'';
+        
+        $sale_amount_low = (isset($data['sale_amount_low']))?$data['sale_amount_low']:'';
+        $sale_amount_high = (isset($data['sale_amount_high']))?$data['sale_amount_high']:'';
+
+        $courses = Course::getAdminList($data);
+
+        if(Request::ajax()){
+            return View::make('administration.courses.listing', compact('courses'));
+        }
+        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high'));
     }
 }
