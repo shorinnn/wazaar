@@ -323,7 +323,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <!-- <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script> -->
-        <script src="{{url("js/autogrow.min.js")}}"></script>
+        <script src="{{url("js/autogrow.js")}}"></script>
         <script src="{{url("js/jquery.autogrowtextarea.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
@@ -424,35 +424,32 @@
 				
 				$(".pagination-container").rPage();
 
-				$('body').on('click','textarea',function(){
+                $('body').on('click', 'body', function(){
 					/*var opts = {
 						animate: true
 						, cloneClass: 'faketextarea'
 					};*/
-					var opts = {
-                        animate: false
-                    }
+					$("textarea").autoGrow({animate: false, onInitialize: true});
 
-					$("textarea").autoGrow(opts);
-					
 					var textareaHeight = $('textarea').css('height');
 					var textareaMaxHeight = $('textarea').css('max-height');
+
 					if(textareaHeight >= textareaMaxHeight){
 					  $('textarea').css({
 						overflow: 'auto'
 					  });
 					}
-				});					
+
+                });
 			});
 
             $( document ).ajaxComplete(function() {
-             fixModalJerk();
+            fixModalJerk();
             });
 
-            fixModalJerk()
+            fixModalJerk();
 
-            function showLoading()
-            {
+            function showLoading(){
                 $('#pluswrap').css('display','flex');
             }
 
