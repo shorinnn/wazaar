@@ -330,7 +330,7 @@
                 var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
                 $lessonWrapper.find('.video-preview').attr('src', '');
                 $lessonWrapper.find('.video-preview').attr('data-video-url', '');
-                $('.no-video').hide();
+                $lessonWrapper.find('.no-video').hide();
             },
             'progressCallBack' : function ($data, $progressPercentage, $elem){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
@@ -366,6 +366,7 @@
 
                                 $lessonWrapper.find('.processing-wrapper').addClass('hidden');
                                 $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
+                                $lessonWrapper.find('.video-preview').attr('onclick','showVideoPreview(this)');
                                 $lessonWrapper.find('.video-preview').attr('data-video-url',$video.formats[0].video_url);
                                 $lessonWrapper.find('.video-preview').removeClass('hidden');
                                 $('.lesson-control').removeClass('hidden');

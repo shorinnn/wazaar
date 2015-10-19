@@ -45,6 +45,21 @@ var videoLookup = {
                 $('.video-list-container').html($html);
             });
         });
+
+        var timer = null;
+        $('#videos-archive-modal').on('keyup','#videoFilter',function(){
+            if(timer) {
+                clearTimeout(timer);
+            }
+            $('.ajax-loader').show()
+            $('.video-list-container').html('');
+            timer = setTimeout(function(){
+                $.post('/video/user/archive', {filter: $('#videoFilter').val()}, function ($html){
+                    $('.video-list-container').html($html);
+                });
+            }, 1000);
+            
+        });
     },
     'initialize' : function ($callback){
 
@@ -56,8 +71,11 @@ var videoLookup = {
                 $e.preventDefault();
                 videoLookup.lessonId = $(this).attr('data-lesson-id');
                 $('#videoFilter').val('');
-                $('#videos-archive-modal').modal('show');
-
+                $('#videos-archive-modal').modal('show').on('show.bs.modal', function(){
+                    $('.ajax-loader').show()
+                    $('.video-list-container').html('');
+                });
+                
                 $.get('/video/user/archive', function ($html) {
                     $('.video-list-container').html($html);
                 });

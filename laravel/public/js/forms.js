@@ -391,7 +391,7 @@ function enableFileUploader($uploader){
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 $(progressbar).parent().show();
-                $('.no-video').hide();
+//                $(progressbar).parent().find('.no-video').hide();
 
                 callback = $uploader.attr('data-add-callback');
                 if( typeof(callback) !='undefined' ){

@@ -4,6 +4,19 @@
     ({{ Auth::user()->instructorNameOrCompany() }}) 
 @endif - Wazaar @stop
 @section('content')
+<style>
+    .filter-buttons .analytics-filter{
+        float: none;
+        text-align: center;
+    }
+
+    .filter-buttons .analytics-filter .buttons-container{
+        float: none;
+        margin: 0px auto;
+        left: 50%;
+        display: inline-block;
+    }
+</style>
     <div class="wrapper clearfix">
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
@@ -16,14 +29,14 @@
 
             {{-- Button Filters --}}
             <div class="row-fluid">
-                <div class="panel panel-default clearfix">
+                <!-- <div class="panel panel-default clearfix">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{trans('analytics.filters')}}</h3>
                     </div>
 
                     <div class="segmented-controls analytics-filter clearfix">
                         <div class="panel-body buttons-container clearfix">
-                            <!--<a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>-->
+                            <!--<a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>->
                             <a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('today', '',this); return false;">{{trans('analytics.daily')}}</a>
                             <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', '',this); return false;">{{trans('analytics.weekly')}}</a>
                             <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', '',this); return false;">{{trans('analytics.monthly')}}</a>
@@ -35,11 +48,23 @@
                             <a class="btn btn-default button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', '',this); return false;">{{trans('analytics.weekly')}}</a>
                             <a class="btn btn-default button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', '',this); return false;">{{trans('analytics.monthly')}}</a>
                             <a class="btn btn-default button-filter button-filter-alltime" href="#" onclick="Analytics.SalesCount('alltime', '',this); return false;">{{trans('analytics.allTime')}}</a>
-                        </div>-->
+                        </div>->
                     </div>
                 </div>
+                -->
 
-                <div class="row top-activities">
+                <div class="filter-buttons">
+                    <div class="segmented-controls analytics-filter clearfix">
+                        <div class="buttons-container">
+                            <a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('today', '',this); return false;">{{trans('analytics.daily')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', '',this); return false;">{{trans('analytics.weekly')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', '',this); return false;">{{trans('analytics.monthly')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-alltime" href="#" onclick="Analytics.SalesCount('alltime', '',this); return false;">{{trans('analytics.allTime')}}</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="top-activities">
                     {{-- Total Sales in Yen --}}
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="stat-block">
@@ -131,12 +156,12 @@
                     @endif
 
 
-
+                    <div class="clearfix"></div>
                 </div>
 
 
                 <div class="row">
-                    <div class="course-statistics-table table-wrapper">
+                    <div class="course-statistics-table table-wrapper" style="border:0px;">
                         @include('instructors.dashboard.partials.coursesTable')
                     </div>
                 </div>

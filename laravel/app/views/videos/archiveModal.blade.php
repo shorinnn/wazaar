@@ -20,9 +20,9 @@
             <div class="modal-body no-padding clearfix">
 
                 <div id="modal-body-videos">
-
+                    <div align="center" class="margin-top-15 ajax-loader"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                     <div class="video-list-container">
-                        <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        
                     </div>
 
                 </div>

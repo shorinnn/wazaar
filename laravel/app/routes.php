@@ -136,6 +136,8 @@ $wwwRoutes = function(){
         Route::get('emails', 'EmailsController@index');
         Route::put('emails', 'EmailsController@update');
         
+        Route::post('withdrawals/all-cashout-list', 'WithdrawalsController@allCashoutList');
+        Route::get('withdrawals/all-cashout-list', 'WithdrawalsController@allCashoutList');
         Route::post('withdrawals/update', 'WithdrawalsController@update');
         Route::get('withdrawals/bank-file/{time}', 'WithdrawalsController@bankFile');
         Route::get('withdrawals/bank-file/', 'WithdrawalsController@bankFile');
