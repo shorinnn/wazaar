@@ -235,8 +235,7 @@ Route::filter('logCourseView', function($request){
 
 
 Route::filter('restrictBrowsing', function($request){
-    // todo: change local to production
-    $env = ['local', 'staging', 'production'];
+    $env = [ 'staging', 'production'];
     if( in_array( App::environment(), $env ) && 
            ( (Config::get('custom.restrict-browsing')==true && Auth::check() && !Auth::user()->hasRole('Admin') ) || Auth::guest() ) ){
         return Redirect::action('SiteController@index');
