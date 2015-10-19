@@ -74,7 +74,7 @@
                             </div>
                         </div> <!-- //upload-progress-wrapper -->
 
-                        <div class="processing-wrapper hidden">
+                        <div class="processing-wrapper hidden" style="position: absolute;top: -94px;color: white;width: 100%;">
                             <p class="label-progress-bar label-progress-bar-preview-img">{{trans('video.videoCurrentlyProcessing')}} <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif"></p>
                         </div>
 
