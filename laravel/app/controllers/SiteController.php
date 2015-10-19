@@ -10,7 +10,7 @@ class SiteController extends \BaseController {
 	public function index()
 	{
         // while maintenance mode, redirect to my courses if logged in
-        if( Auth::check() && !Auth::user()->hasRole('Admin') ){
+        if( !Session::has('quick-peek-m8') && Auth::check() && !Auth::user()->hasRole('Admin') ){
             return Redirect::action( 'StudentController@mycourses' );
         }
         

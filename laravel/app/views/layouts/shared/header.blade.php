@@ -47,7 +47,7 @@
                 
                 @if(Auth::check() && Auth::user()->hasRole('Instructor'))
                     <li>
-                        <a href="{{ action('CoursesController@myCourses') }}">{{trans('site/homepage.teach')}}</a>
+                        <a href="{{ action('StudentController@mycourses') }}">{{trans('site/homepage.teach')}}</a>
                     </li>
                 @endif
             </ul>
@@ -94,7 +94,7 @@
                             @endif
                             @if( !Auth::user()->hasRole('Affiliate') &&  Auth::user()->hasRole('Instructor') )
                                 <li>
-                                    <a class="courses-button" href="{{ action('CoursesController@myCourses')}}">{{trans('site/menus.courses')}}</a>
+                                    <a class="courses-button" href="{{ action('StudentController@mycourses')}}">{{trans('site/menus.courses')}}</a>
                                 </li>
                             @endif
                             
