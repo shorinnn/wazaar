@@ -10,6 +10,8 @@
 class UsersController extends Controller
 {
     public function __construct(UserRepository $users){
+        $this->beforeFilter('restrictBrowsing', ['only' => 'create'] );
+        
         $this->users = $users;
         $this->beforeFilter('guest', array('only' => array('create', 'secondTierPublisherCreate', 'login' )));
 //        $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
@@ -130,7 +132,7 @@ class UsersController extends Controller
      * @return  Illuminate\Http\Response
      */
     public function login()
-    {        
+    {       
             return View::make(Config::get('confide::login_form'));
     }
 

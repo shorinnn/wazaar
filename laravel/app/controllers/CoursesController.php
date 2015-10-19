@@ -5,18 +5,19 @@ class CoursesController extends \BaseController {
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'viewDiscussions',
                 'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
-            $this->beforeFilter('admin', ['only' => 'disapprove' ] );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+            $this->beforeFilter( 'admin', ['only' => 'disapprove' ] );
+            $this->beforeFilter( 'csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ] ] );
             $this->beforeFilter( 'logCourseView', [ 'only' => ['show'] ] );
-
+            
+            $this->beforeFilter('restrictBrowsing');
             
         }
 
-    public function index()
-    {
-            $categories = CourseCategory::all();
-            Return View::make('courses.index')->with(compact('categories'));
-    }
+        public function index()
+        {
+                $categories = CourseCategory::all();
+                Return View::make('courses.index')->with(compact('categories'));
+        }
         
         public function create(){
             $course = new Course;

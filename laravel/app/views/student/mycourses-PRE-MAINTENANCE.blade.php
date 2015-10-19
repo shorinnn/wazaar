@@ -100,6 +100,11 @@
                                     onclick='dashUrl("{{url("student/mycourses/finished") }}")'>
                                 {{trans('general.dash.finished')}}</a>
                         </li>
+                        <li role="presentation" class="dropdown">
+                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist"
+                              onclick='dashUrl("{{url("student/mycourses/wishlist") }}")'>
+                             {{trans('general.dash.wishlist')}}</a>
+                        </li>
                     </ul>               
                 </div>
             </div>
@@ -216,6 +221,7 @@
                         </div>
                         <div href="#" class="name">
                             <h4>{{ Auth::user()->commentName('student') }}</h4>
+                            <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>{{ trans('general.edit-profile') }}</a>
                         </div>
                     </div>
                 </div>
