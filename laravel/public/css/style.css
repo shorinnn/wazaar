@@ -11253,7 +11253,7 @@ header .profile-name ul{
 	}
 	.homepage-header .extra-large-heading {
 		margin-top: 0;
-		padding-top: 20px;
+		padding-top: 10px;
 	}
 	.affiliate-top-header .add-gift, .affiliate-top-header .add-tracking-id{
 		font-size: 13px !important;
@@ -11313,7 +11313,7 @@ header .profile-name ul{
 		width: 73%;
 	}	
 	header{
-		padding: 0 15px 18px !important;
+		padding: 0 15px 0px !important;
 	}
 }
 @media (max-width:356px){
