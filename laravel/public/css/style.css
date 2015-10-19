@@ -11315,6 +11315,11 @@ header .profile-name ul{
 	header{
 		padding: 0 15px 0px !important;
 	}
+    .homepage-header-wrapper{
+        margin-top: 0;
+        padding-top: 0;
+    }
+
 }
 @media (max-width:356px){
 	header .top-menu .logged-out-header-search form div input{
@@ -11346,14 +11351,11 @@ header .profile-name ul{
 	.step2 .module-container .footer-buttons .default-button{
 		padding: 5px 10px;
 	}	
-	.homepage-header-wrapper.logged-in{
+	/*.homepage-header-wrapper.logged-in{
 		margin-top: -208px;
-	}	
+	}*/
 	.course-data .column-1 div{
 		padding: 0 0 0 7px !important;
-	}
-	.homepage-header-wrapper{
-		margin-top: -170px;
 	}
 	.top-activities .stat-block{
 		width: 100% !important;
