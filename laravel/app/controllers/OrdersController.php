@@ -57,7 +57,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($transaction_id){
-											$query->where('purchases.payment_ref', '=', $transaction_id);	
+											$query->where('purchases.payment_ref', 'like', "%$transaction_id%");
 										}
 										if($filter){
 											switch($filter){
@@ -134,7 +134,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($transaction_id){
-											$query->where('purchases.payment_ref', '=', $transaction_id);	
+											$query->where('purchases.payment_ref', 'like', "%$transaction_id%");
 										}
 										if($filter){
 											switch($filter){
@@ -259,7 +259,7 @@ class OrdersController extends \BaseController {
 										}
 
 										if($transaction_id){
-											$query->where('purchases.payment_ref', '=', $transaction_id);	
+											$query->where('purchases.payment_ref', 'like', "%$transaction_id%");
 										}
 										if($filter){
 											switch($filter){
