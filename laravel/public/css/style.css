@@ -2634,7 +2634,6 @@ h2, h3, h4, h5, h6{
 }
 .enroll-button-section.fixed {
 	position: fixed;
-	width: 314px;
 	z-index: 99;
 	padding-left: 0px;
 }
@@ -2861,7 +2860,8 @@ h2, h3, h4, h5, h6{
 }
 .enroll-button-section{
 	padding-left: 0;
-    width: 314px;
+    width: 100%;
+    max-width: 344px;
 }
 .enroll-button-section .discount-box .text-warning{
 	color: #F05339;
@@ -6901,6 +6901,11 @@ a.load-remote > *{
     left: 0;
 	margin: 7px 0 5px;
 }
+.step1 .listing-image-upload .dropdown-menu,
+.step1 .listing-video-upload .dropdown-menu{
+    margin-left: 0 !important;
+    width: 100%;
+}
 .step1 .upload-progress-wrapper{
     height: 35px;
     position: absolute;
@@ -7102,7 +7107,7 @@ a.load-remote > *{
 }
 .step2 .lesson-container .lesson-data textarea,
 .step2 .module-container .module-data textarea{
-	margin: 17px 0 0;
+	margin: 0;
 	color: #798794;
 	line-height: 20px;
 	clear: both;
@@ -7266,12 +7271,12 @@ a.load-remote > *{
 	padding: 0 12px 0 0 !important;
 	vertical-align: top;
     line-height: 18px;
-    margin-bottom: -10px;
 }
 .textarea-wrap {
     position: relative;
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
+    margin-top: 17px;
 }
 .step2 .lesson-container .switch-label{
 	background: #a7b7c4;

@@ -218,6 +218,7 @@
             </ul>
             @endif
         </div>
+        <div class="clearfix"></div>
         @else
             
             @if( Route::currentRouteAction()!='UsersController@login' && Route::currentRouteAction()!='UsersController@create')

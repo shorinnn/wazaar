@@ -365,7 +365,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <!-- <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script> -->
-        <script src="{{url("js/autogrow.js")}}"></script>
+        <!--<script src="{{url("js/autogrow.js")}}"></script>-->
         <script src="{{url("js/jquery.autogrowtextarea.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
@@ -471,7 +471,9 @@
 						animate: true
 						, cloneClass: 'faketextarea'
 					};*/
-					$("textarea").autoGrow({animate: false, onInitialize: true});
+					//$("textarea").autogrow({animate: false, onInitialize: true});
+					$("textarea").autoGrow();
+					console.log("body clicked");
 
 					var textareaHeight = $('textarea').css('height');
 					var textareaMaxHeight = $('textarea').css('max-height');

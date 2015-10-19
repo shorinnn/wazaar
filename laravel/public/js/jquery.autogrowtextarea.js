@@ -18,7 +18,7 @@
 jQuery.fn.autoGrow = function(options) {
 	return this.each(function() {
 		var settings = jQuery.extend({
-			extraLine: true,
+			extraLine: true
 		}, options);
 
 		var createMirror = function(textarea) {
@@ -39,7 +39,7 @@ jQuery.fn.autoGrow = function(options) {
 			;
 
 			if (jQuery(textarea).height() != jQuery(mirror).height())
-				jQuery(textarea).height(jQuery(mirror).height());
+                jQuery(textarea).height(jQuery(mirror).height());
 		}
 
 		var growTextarea = function () {
@@ -65,6 +65,7 @@ jQuery.fn.autoGrow = function(options) {
 
 		// Bind the textarea's event
 		this.onkeyup = growTextarea;
+        this.onkeydown = growTextarea;
 
 		// Fire the event for text already present
 		sendContentToMirror(this);

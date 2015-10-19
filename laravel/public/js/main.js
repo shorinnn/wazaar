@@ -180,7 +180,7 @@ function addGiftLabel(){
 }
 
 function makeBoxesExpandable(){
-    $('body').delegate('textarea', 'keyup', function(){
+    $('body').delegate('textarea', 'keyup keydown keypress', function(){
 		/*var opts = {
 			animate: false,
 			cloneClass: 'faketextarea'

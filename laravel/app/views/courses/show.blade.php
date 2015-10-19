@@ -253,7 +253,7 @@
                         }
                         ?>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
             	<div class="enroll-button-section">
                 <div class="enroll-button-wrap clearfix paid-content">
                 @if( $course->cost() > 0 && !Input::has('preview') )
