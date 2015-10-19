@@ -9,6 +9,7 @@ class ProfileController extends Controller
     protected $userHelper;
 
     public function __construct(UserRepository $users, UserHelper $userHelper, UploadHelper $uploadHelper){
+        $this->beforeFilter('restrictBrowsing', ['only' => 'index'] );
         $this->beforeFilter( 'verifiedLogin' );
         $this->users = $users;
         $this->userHelper = $userHelper;

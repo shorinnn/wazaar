@@ -33,5 +33,6 @@ return [
     'cloudsearch-search-endpoint' => 'search-wazaar-isiopucantw3jmfljy5ayyfrda.ap-northeast-1.cloudsearch.amazonaws.com',
     'emails' => [
         'contact-form-admin' => 'wazaar@mailinator.com'
-    ]
+    ],
+    'restrict-browsing' => true,
 ];

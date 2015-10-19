@@ -24,9 +24,10 @@
 
     <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
     <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
-    							<div class="file-processing-handler">
-                                    <p class="label-progress-bar label-progress-bar-preview-img-s1"></p>
-                                    <div class="progress hidden">
+                                    <div class="file-processing-handler">
+                                    <p class="label-progress-bar label-progress-bar-preview-img-s1"
+                                       style="position: absolute;top: -94px;color: white;width: 100%;"></p>
+                                    <div class="progress" style="display:none; position: absolute;top: -74px;color: white;width: 100%; left: 10px;">
                                         <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
                                              data-label=".label-progress-bar-preview-img-s1" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                             <span></span>
