@@ -25,7 +25,7 @@
         <div class="clearfix left hidden-xs">
             
         </div>
-        <div class="clearfix right logged-in-menu-holder" style="background: red;">
+        <div class="clearfix right logged-in-menu-holder">
             @if( isset($headerShowTopLinks) )
                 <ul class="logged-in-top-menu">
                 
