@@ -94,7 +94,44 @@
                       <p>&copy; Wazaar {{ date('Y') }}</p>
                     </div>-->
                     <!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">-->
-                    
+					<?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
+                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                            <h5>{{ trans('general.courses') }}</h5>
+                            <ul>
+                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
+                                    <li>
+                                            <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
+                                    </li>
+                                @endforeach
+                                
+                            </ul>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                                <h5>&nbsp;</h5>
+                            <ul>
+                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
+                                    <li>
+                                            <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>                    
+                        </div>
+                    <?php });?>
+                
+                    <!--</div>-->
+                    <!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">-->
+                    <!--<h5>{{ trans('footer.about') }}</h5>
+                    <ul>-->
+ 						<!--<li>
+                            <a href="#">{{ trans('footer.company') }}</a>
+                        </li>-->
+                        <!--<li>
+                            <a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
+                        </li>
+                        <li>
+                            <a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
+                        </li>
+                    </ul>-->                     
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
                         <h5>&nbsp;</h5>
                         <a href="//wazaar.co.jp/contact/">メールでのお問い合わせ</a>
@@ -112,7 +149,12 @@
                                 </a>
                             </div>                      
                     </div>
-                    
+                    <!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 margin-bottom-20 text-center-mobile">
+                            <h5>アフィリエイター向け</h5>
+                            <a href="{{action('AffiliateController@create')}}">新規登録</a>
+                            <a href="{{ action('AffiliateController@login') }}">ログイン</a>  
+                    </div>-->
+        
               </div>
             </div>
             <div class="container-fluid footer-privacy-bar">

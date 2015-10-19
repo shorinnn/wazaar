@@ -23,11 +23,7 @@ App::before(function($request)
         Cookie::queue('force-desktop', 1, 60*24*30);
         Cookie::queue("force-mobile", null, -1);
     }
-    /** /temporary mobile-desktop switcher **/
-    // record second tier instructor
-//    if(Auth::guest() && Input::has('st')){
-//        Cookie::queue('st', Input::get('st'), 60*24*30);
-//    }
+    
     if(Auth::guest() && Input::has('stpi')){
         Cookie::queue('stpi', Input::get('stpi'), 60*24*30);
     }
@@ -235,4 +231,14 @@ Route::filter('logCourseView', function($request){
         CourseLog::create($viewed_course_data);
     }
 
+});
+
+
+Route::filter('restrictBrowsing', function($request){
+    // todo: change local to production
+    $env = ['local', 'staging', 'production'];
+    if( in_array( App::environment(), $env ) && 
+           ( (Config::get('custom.restrict-browsing')==true && Auth::check() && !Auth::user()->hasRole('Admin') ) || Auth::guest() ) ){
+        return Redirect::action('SiteController@index');
+    }
 });
