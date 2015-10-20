@@ -1285,7 +1285,12 @@ class CoursesController extends \BaseController {
             'courses.created_at,desc' => trans('administration.courses.label.submitted_oldest'),
         ];
 
+        $total = (isset($data['total']))?$data['total']:'';
+
         if(Request::ajax()){
+            if($total){
+                return $courses.' '.trans('administration.courses.label.courses' );
+            }
             return View::make('administration.courses.listing', compact('courses', 'page'));
         }
 

@@ -640,6 +640,7 @@ class Course extends Ardent{
         $sort = $sort_data[1];
 
         $limit = (isset($data['limit']))?$data['limit']:15;
+        $total = (isset($data['total']))?$data['total']:'';
 
         $query = self::select(
             'courses.*',
@@ -690,7 +691,11 @@ class Course extends Ardent{
             }
         }
 
-        $result = $query->orderBy($sort_by, $sort)->paginate($limit);
+        if($total){
+            $result = $query->count();
+        } else {
+            $result = $query->orderBy($sort_by, $sort)->paginate($limit);
+        }
         return $result;
     }
 

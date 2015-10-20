@@ -22,7 +22,7 @@
 <div class="col-lg-10 col-lg-offset-1 course-categories">
 	<div class="row">
     	<div class="col-md-12">
-            <h1 class='icon'>Courses</h1>
+            <h1 class='icon'>{{trans('administration.courses.label.courses' )}}</h1>
         </div>
     </div>
     <div class="row">
@@ -116,7 +116,10 @@
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
+                            <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder(true);">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
+                        </div>
+                        <div class="form-group">
+                            <h2 class="courses-listings-total-container text-center"></h2>
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-sm-8 col-xs-12">
@@ -139,7 +142,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;', 'onchange'=>'searchOrder()'])}}
+                                {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;', 'onchange'=>'searchOrder(false)'])}}
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -149,7 +152,6 @@
                 </form>
             </div>
             <div class="clearfix"></div>                
-            <div class="courses-totals-container row"></div>
             <div class="courses-listings-container ajax-content row"></div>
             <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
         </div>
@@ -172,12 +174,14 @@
             }
         });
     }
+
     function selectThisPrice(el)
     {
         $('.price-group label').each(function(){
             $(this).removeClass('active');
         });
     }
+
     function selectThisFilter(el)
     {
         $('.filter-group label').each(function(){
@@ -185,7 +189,8 @@
         });
         $('.search-btn').click();
     }
-    function searchOrder()
+
+    function searchOrder(update_total)
     {
         var url = '/administration/manage-courses?';
         var data = $('#search_form').serialize()
@@ -194,6 +199,11 @@
 
         $('.courses-listings-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".courses-listings-container" data-url="'+url+'" class="load-remote courses-listings-ajax-link">loading</a>' );
 
+        if(update_total){
+            url = url + '&total=true';
+            $('.courses-listings-total-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".courses-listings-total-container" data-url="'+url+'" class="load-remote courses-listings-total-ajax-link">loading</a>' );
+            $('.courses-listings-total-ajax-link').click();
+        }        
         $('.courses-listings-ajax-link').click();
     }
     function loadCourses()
@@ -213,6 +223,15 @@
                 // triggerSorter();
                 ajaxifyPagination( null );
                 // addSorterIndicator();
+            }
+        });
+
+        url = url + '&total=true';
+        $.ajax({
+            url: url,
+            cache: false,
+            success: function(result){
+                $('.courses-listings-total-container').html(result);
             }
         });
     }
