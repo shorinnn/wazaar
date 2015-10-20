@@ -1,7 +1,7 @@
 <div class="container-fluid new-dashboard student-messages">
     	<div class="container">
         	<div class="row">
-            	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 message-preview-wrap">
+            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 message-preview-wrap">
                 	<div class="row message-header">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                             <h3>Messages</h3>
@@ -16,8 +16,8 @@
                         </div>
                     </div>
                     @foreach($discussions as $discussion)
-                    <a href="#" data-no-prevent-default='1' data-no-push-state="1" class="load-remote"  data-loading-container=".full-messages"
-                       data-url="{{ action('CoursesController@viewDiscussion', $discussion->id)}}" data-target=".full-messages"> 
+                    <a href="#" data-no-prevent-default='1' data-no-push-state="1" class="load-remote toggle-student-message right-bar-toggler"  data-loading-container=".full-messages"
+                       data-url="{{ action('CoursesController@viewDiscussion', $discussion->id)}}" data-elem=".full-messages"  data-close=".close-tab" >
                         <div class="row message-preview">
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <div class="avatar">
@@ -42,7 +42,7 @@
                     @endforeach
                     {{ $discussions->links() }}
                 </div>
-            	<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 full-messages">
+            	<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 full-messages right-slide-menu">
 
                 </div>
             </div>
