@@ -23,11 +23,15 @@ $(document).ready(function(){
         // Get the close button
         $closeButton = $(this).attr('data-close');
 
+        //check if bar is already displayed, then don't hide it when the button is clicked.
         if($($elem).hasClass('in')){
             return;
         }
+
+        // If the bar is not already displayed, then display it on button click
         $($elem).addClass('in');
 
+        // When the close button is clicked, hide the bar
         $($closeButton).click(function () {
             $($elem).removeClass('in');
         });
@@ -515,6 +519,7 @@ function linkToRemoteConfirm(e){
  * @method loadRemote
  */
 function loadRemote(e){
+
     var noPreventDefault = $(e.target).attr('data-no-prevent-default');
     console.log(noPreventDefault);
     if( isset(noPreventDefault) && noPreventDefault == 1 ){}
@@ -544,6 +549,7 @@ function loadRemote(e){
         indicatorStyle = elem.attr('data-indicator-style');
         if(failSafe > 50) return;
         failSave++;
+
     }
 
     $(e.target).attr('data-loading', 1);
@@ -555,11 +561,13 @@ function loadRemote(e){
     if( url.indexOf('?')== -1 ) url+='?ajax=true';
     else url+='&ajax=true';
     console.log( url );
-    if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
+    if(typeof(loadMethod)=='undefined' || loadMethod=='load') {
 
-        if( typeof(indicatorStyle)=='undefined')
-            $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
+        if (typeof(indicatorStyle) == 'undefined'){
+            $(target).html('<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
+        }
         else{
+
             $(target).children('*').css('opacity', 0.1);
             $(target).append('<div class="small-overlay"><center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center></div>');
         }
@@ -568,6 +576,7 @@ function loadRemote(e){
             window[callback2](e);
         }
 
+        console.log(url);
         $(target).load(url, function(){
             $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){
@@ -586,6 +595,7 @@ function loadRemote(e){
                 window[callback](e);
             }
         });
+
     }
     else if(loadMethod=='fade'){
         $(target).addClass('disabled-item');
@@ -601,7 +611,9 @@ function loadRemote(e){
                 window[callback](e);
             }
         });
+
     }
+
     else{}
 }
 
