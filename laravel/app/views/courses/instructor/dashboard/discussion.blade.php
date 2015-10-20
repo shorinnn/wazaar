@@ -1,3 +1,4 @@
+<span onclick="toggleRightBar_two('.student-messages .full-messages', '.toggle-student-message')" class="close-tab"><i class="fa fa-times"></i></span>
 <div class="row conversing-with">
                     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="avatar">
@@ -12,6 +13,7 @@
                             @if( $discussion->student->commentTitle("Student") !='' )
                             , {{ $discussion->student->commentTitle("Student") }}</p>      
                             @endif
+                            <span class="close-tab"><i class="fa fa-times"></i></span>
                         </div>
                     </div>
                     

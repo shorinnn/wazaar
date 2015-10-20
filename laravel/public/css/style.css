@@ -4544,6 +4544,24 @@ h2, h3, h4, h5, h6{
 	border: solid #e0e1e2;
 	border-width: 0 0 0 1px;
 	margin-top: 0;
+    position: fixed;
+    right: -600px;
+    height: 100%;
+    top:  0;
+    width: 100%;
+    max-width: 500px;
+    z-index: 88;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.student-messages .full-messages.in{
+    right: 0;
+}
+.student-messages .full-messages .close-tab{
+    right: 20px;
+    top: 0;
 }
 .student-messages .full-messages .conversing-with{
 	padding: 12px 0;
@@ -5809,7 +5827,7 @@ h2, h3, h4, h5, h6{
 	border-bottom: solid 1px #e0e1e2;
 	position: relative;
 }
-.discussion-sidebar-header .close-tab{
+.close-tab{
 	position: absolute;
 	top: 22px;
 	right: 30px;
@@ -7678,6 +7696,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin: 0 !important;
 	width: auto !important;
 	padding: 0 !important;
+    overflow:  hidden;
 }
 .value-unit input{
 	padding: 0 10px !important;
