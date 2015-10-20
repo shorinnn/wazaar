@@ -17,6 +17,7 @@ $(document).ready(function(){
     });
 
     $('body').delegate('.right-bar-toggler', 'click', function() {
+        
         // get the to be toggled element
         $elem = $(this).attr('data-elem');
 
