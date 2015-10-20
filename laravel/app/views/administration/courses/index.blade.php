@@ -14,6 +14,9 @@
     #search_form #search{
         margin-bottom: 0px;
     }
+    .course-container h2{
+        margin: 0px;
+    }
 </style>
 
 <div class="col-lg-10 col-lg-offset-1 course-categories">
@@ -24,17 +27,22 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center">
-            <div class="col-xs-12 col-sm-4 col-md-4 text-success">
-                <h4>202</h4>
-                <small>Approved</small>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 text-warning">
-                <h4>18</h4>
-                <small>Pending</small>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 text-danger">
-                <h4>18</h4>
-                <small>Disapproved</small>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-xs-12 col-sm-4 col-md-4 text-success">
+                        <h2>{{$totals['approved']}}</h2>
+                        <small>Approved</small>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 text-warning">
+                        <h2>{{$totals['pending']}}</h2>
+                        <small>Pending</small>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 text-danger">
+                        <h2>{{$totals['rejected']}}</h2>
+                        <small>Disapproved</small>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -56,23 +64,23 @@
                     </div>
                     <div class="col-md-6 col-md-offset-3">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.name' )}}</label>
+                            <label class="col-sm-3 control-label">Price</label>
                             <div class="col-sm-9">
-                                <div class="btn-group buttons-container filter-group" data-toggle="buttons">
-                                    <label class="btn btn-default segmented-buttons @if(empty(Input::get('filter')) || Input::get('filter') == 'all' ) active @endif">
-                                        <input type="radio" name="filter" value="all" class="filter" autocomplete="off" 
-                                        @if(empty(Input::get('filter')) || Input::get('filter') == 'all' ) checked='checked' @endif
-                                        onchange="selectThisFilter(this);"> {{ trans('courses/general.filter.all') }}
+                                <div class="btn-group buttons-container price-group" data-toggle="buttons">
+                                    <label class="btn btn-default segmented-buttons @if(empty(Input::get('price')) || Input::get('price') == 'all' ) active @endif">
+                                        <input type="radio" name="price" value="all" class="price" autocomplete="off" 
+                                        @if(empty(Input::get('price')) || Input::get('price') == 'all' ) checked='checked' @endif
+                                        onchange="selectThisPrice(this);"> {{ trans('courses/general.filter.all') }}
                                     </label>
-                                    <label class="btn btn-default segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'paid' ) active @endif">
-                                        <input type="radio" name="filter" value="paid" class="filter" autocomplete="off" 
-                                        @if(!empty(Input::get('filter')) && Input::get('filter') == 'paid' ) checked='checked' @endif
-                                        onchange="selectThisFilter(this);"> {{ trans('courses/general.filter.paid') }}
+                                    <label class="btn btn-default segmented-buttons @if(!empty(Input::get('price')) && Input::get('price') == 'paid' ) active @endif">
+                                        <input type="radio" name="price" value="paid" class="price" autocomplete="off" 
+                                        @if(!empty(Input::get('price')) && Input::get('price') == 'paid' ) checked='checked' @endif
+                                        onchange="selectThisPrice(this);"> {{ trans('courses/general.filter.paid') }}
                                     </label>
-                                    <label class="btn btn-default segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'free' ) active @endif">
-                                        <input type="radio" name="filter" value="free" class="filter" autocomplete="off" 
-                                        @if(!empty(Input::get('filter')) && Input::get('filter') == 'free' ) checked='checked' @endif
-                                        onchange="selectThisFilter(this);"> {{ trans('courses/general.filter.free') }}
+                                    <label class="btn btn-default segmented-buttons @if(!empty(Input::get('price')) && Input::get('price') == 'free' ) active @endif">
+                                        <input type="radio" name="price" value="free" class="price" autocomplete="off" 
+                                        @if(!empty(Input::get('price')) && Input::get('price') == 'free' ) checked='checked' @endif
+                                        onchange="selectThisPrice(this);"> {{ trans('courses/general.filter.free') }}
                                     </label>
                                 </div>
                             </div>
@@ -84,7 +92,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.category' )}}</label>
+                            <label class="col-sm-3 control-label">Subcategory</label>
                             <div class="col-sm-9">
                                 {{Form::select('course_sub_category', $course_sub_categories, $course_sub_category, ['id'=>'course_sub_category', 'class'=>'form-control'])}}
                             </div>
@@ -109,10 +117,35 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="btn-group btn-group-justified buttons-container filter-group" data-toggle="buttons">
+                                    <label class="btn btn-success segmented-buttons @if(empty(Input::get('filter')) || Input::get('filter') == 'approved' ) active @endif">
+                                        <input type="radio" name="filter" value="approved" class="filter" autocomplete="off" 
+                                        @if(empty(Input::get('filter')) || Input::get('filter') == 'approved' ) checked='checked' @endif
+                                        onchange="selectThisFilter(this);"> Approved
+                                    </label>
+                                    <label class="btn btn-info segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'pending' ) active @endif">
+                                        <input type="radio" name="filter" value="pending" class="filter" autocomplete="off" 
+                                        @if(!empty(Input::get('filter')) && Input::get('filter') == 'pending' ) checked='checked' @endif
+                                        onchange="selectThisFilter(this);"> Pending
+                                    </label>
+                                    <label class="btn btn-danger segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'rejected' ) active @endif">
+                                        <input type="radio" name="filter" value="rejected" class="filter" autocomplete="off" 
+                                        @if(!empty(Input::get('filter')) && Input::get('filter') == 'rejected' ) checked='checked' @endif
+                                        onchange="selectThisFilter(this);"> Disapproved
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;'])}}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                     
                     <div class="col-xs-12 text-center">
-                        <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
+                        <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
                     </div>
                     <div class="clearfix"></div>
                 </form>
@@ -130,11 +163,18 @@
 
 @section('extra_extra_js')
 <script>
+    function selectThisPrice(el)
+    {
+        $('.price-group label').each(function(){
+            $(this).removeClass('active');
+        });
+    }
     function selectThisFilter(el)
     {
         $('.filter-group label').each(function(){
             $(this).removeClass('active');
         });
+        $('.search-btn').click();
     }
     function searchOrder()
     {
