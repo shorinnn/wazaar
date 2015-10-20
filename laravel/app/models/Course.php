@@ -651,8 +651,8 @@ class Course extends Ardent{
             'course_subcategories.name as course_subcategory',
             'instructor.email as instructor_email',
             DB::raw('CONCAT(instructor.last_name, instructor.first_name) AS instructor_name'),
-            DB::raw('SELECT sum(purchases.purchase_price) AS course_sales FROM courses, purchases WHERE purchases.product_id = courses.id AND purchases.product_type = "Course"'),
-            DB::raw('SELECT courses.id, SUM(purchases.purchase_price) AS lesson_sales FROM courses, purchases WHERE  purchases.product_type = "Lesson" AND product_id IN ( SELECT lessons.id FROM lessons WHERE lessons.module_id IN ( SELECT modules.id FROM modules WHERE modules.course_id = courses.id ) ) '),
+            DB::raw("(SELECT sum(purchases.purchase_price) FROM purchases WHERE purchases.product_id = courses.id AND purchases.product_type = 'Course') AS course_sales"),
+            DB::raw('(SELECT SUM(purchases.purchase_price) FROM purchases WHERE  purchases.product_type = "Lesson" AND product_id IN ( SELECT lessons.id FROM lessons WHERE lessons.module_id IN ( SELECT modules.id FROM modules WHERE modules.course_id = courses.id ) ) ) AS lesson_sales'),
             DB::raw('(SELECT course_sales + lesson_sales) as total_revenue')
             )
                     ->leftJoin('course_categories', 'course_categories.id', '=', 'courses.course_category_id')
