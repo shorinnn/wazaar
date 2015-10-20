@@ -609,9 +609,6 @@ class Course extends Ardent{
     public static function getAdminList($data)
     {
 
-        $sort_by = (isset($data['sort_by']))?$data['sort_by']:'created_at';
-        $sort = (isset($data['sort']))?$data['sort']:'desc';
-
         $search = (isset($data['search']))?$data['search']:'';
 
         $course_categories = [''=>'Select Category'];
@@ -621,22 +618,43 @@ class Course extends Ardent{
         }
         $course_category = (isset($data['course_category']))?$data['course_category']:'';
 
-        $filters = ['all'=>'All', 'paid'=>'Paid', 'free'=>'Free'];
-        $filter = (isset($data['filter']))?$data['filter']:'paid';
+        $price = (isset($data['price']))?$data['price']:'';
+        switch($price){
+            case 'paid':
+                $price = 'no';
+            break;
+
+            case 'free':
+                $price = 'yes';
+            break;
+
+            case 'all':
+                $price = '';
+            break;
+        }
+        $filter = (isset($data['filter']))?$data['filter']:'approved';
 
         $email = (isset($data['email']))?$data['email']:'';
         $sale_amount_low = (isset($data['sale_amount_low']))?$data['sale_amount_low']:'';
         $sale_amount_high = (isset($data['sale_amount_high']))?$data['sale_amount_high']:'';
-        $product_price_low = (isset($data['product_price_low']))?$data['product_price_low']:'';
-        $product_price_high = (isset($data['product_price_high']))?$data['product_price_high']:'';
-        $purchase_date_low = (isset($data['purchase_date_low']))?$data['purchase_date_low']:'';
-        $purchase_date_high = (isset($data['purchase_date_high']))?$data['purchase_date_high']:'';
-        $transaction_id = (isset($data['transaction_id']))?$data['transaction_id']:'';
-        $total = (isset($data['total']))?$data['total']:'';
-        $download = (isset($data['download']))?$data['download']:'';
+
+        $sort_data = (isset($data['sort_data']))?$data['sort_data']:'courses.created_at,desc';
+        $sort_data = explode(',', $sort_data);
+        $sort_by = $sort_data[0];
+        $sort = $sort_data[1];
+
         $limit = (isset($data['limit']))?$data['limit']:15;
 
-        $query = self::select('courses.*', 'course_categories.name as course_category', 'course_subcategories.name as course_subcategory', DB::raw('CONCAT(instructor.first_name, instructor.last_name) as instructor_name'), 'instructor.email as instructor_email')
+        $query = self::select(
+            'courses.*',
+            'course_categories.name as course_category',
+            'course_subcategories.name as course_subcategory',
+            'instructor.email as instructor_email',
+            DB::raw('CONCAT(instructor.last_name, instructor.first_name) AS instructor_name'),
+            DB::raw("(SELECT sum(purchases.purchase_price) FROM purchases WHERE purchases.product_id = courses.id AND purchases.product_type = 'Course') AS course_sales"),
+            DB::raw('(SELECT SUM(purchases.purchase_price) FROM purchases WHERE  purchases.product_type = "Lesson" AND product_id IN ( SELECT lessons.id FROM lessons WHERE lessons.module_id IN ( SELECT modules.id FROM modules WHERE modules.course_id = courses.id ) ) ) AS lesson_sales'),
+            DB::raw('(SELECT course_sales + lesson_sales) as total_revenue')
+            )
                     ->leftJoin('course_categories', 'course_categories.id', '=', 'courses.course_category_id')
                     ->leftJoin('course_subcategories', 'course_subcategories.id', '=', 'courses.course_subcategory_id')
                     ->join('users as instructor', 'instructor.id', '=', 'courses.instructor_id')
@@ -650,7 +668,24 @@ class Course extends Ardent{
                     ->orWhere('instructor.email', 'like', "%$search%");
         }
 
-        $result = $query->orderBy('course_category', 'asc')->paginate($limit);
+        if($price){
+            $query->where('courses.free', '=', $price);
+        }
+
+        if($filter){
+            $query->where('courses.publish_status', '=', $filter);
+        }
+        if($sale_amount_low || $sale_amount_high){
+            if($sale_amount_low && empty($sale_amount_high)){
+                $query->where('total_revenue', '>=', $sale_amount_low);
+            } else if(empty($sale_amount_low) && $sale_amount_high) {
+                $query->where('total_revenue', '<=', $sale_amount_high);
+            } else if($sale_amount_low && $sale_amount_high) {
+                $query->whereBetween('total_revenue', array($sale_amount_low, $sale_amount_high));
+            }
+        }
+
+        $result = $query->orderBy($sort_by, $sort)->paginate($limit);
         return $result;
     }
 

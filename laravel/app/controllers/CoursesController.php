@@ -1260,11 +1260,30 @@ class CoursesController extends \BaseController {
         $sale_amount_low = (isset($data['sale_amount_low']))?$data['sale_amount_low']:'';
         $sale_amount_high = (isset($data['sale_amount_high']))?$data['sale_amount_high']:'';
 
+        $sort_data = (isset($data['sort_data']))?$data['sort_data']:'courses.created_at,desc';
+
+        $page = (isset($data['page']))?$data['page']:'1';
+
         $courses = Course::getAdminList($data);
 
+        $totals = array();
+        $totals['approved'] = Course::where('publish_status', '=', 'approved')->count();
+        $totals['pending'] = Course::where('publish_status', '=', 'pending')->count();
+        $totals['rejected'] = Course::where('publish_status', '=', 'rejected')->count();
+
+        $sort_list = [
+            'courses.name,asc' => 'Name (a-z)',
+            'courses.name,desc' => 'Name (z-a)',
+            'total_revenue,asc' => 'Revenue Low to High',
+            'total_revenue,desc' => 'Revenue High to Low',
+            'courses.created_at,asc' => 'Submitted Recent Last',
+            'courses.created_at,desc' => 'Submitted Recent First',
+        ];
+
         if(Request::ajax()){
-            return View::make('administration.courses.listing', compact('courses'));
+            return View::make('administration.courses.listing', compact('courses', 'page'));
         }
-        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high'));
+
+        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data'));
     }
 }
