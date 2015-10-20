@@ -7116,6 +7116,12 @@ a.load-remote > *{
 	min-height: inherit;
 	border-radius: 0;
 }
+.step2 .module-container .module-data textarea{
+    padding: 0 12px 0 0 !important;
+    vertical-align: top;
+    line-height: 18px;
+    margin-bottom: 7px;
+}
 .step2 h2 .edit-icon,
 .step2 .description-text .edit-icon{
 	position: absolute;
@@ -7271,6 +7277,7 @@ a.load-remote > *{
 	padding: 0 12px 0 0 !important;
 	vertical-align: top;
     line-height: 18px;
+    margin-bottom: 7px;
 }
 .textarea-wrap {
     position: relative;
@@ -9867,7 +9874,14 @@ footer{
 @media (min-width: 1200px){
 	.container{
 	  width: 1032px;
-	}	
+	}
+    .container-two{
+        width: 1115px;
+    }
+    .no-padding-lg{
+        padding: 0;
+    }
+
 }
 @media (max-width: 1200px) and (min-width: 991px){
 	.course-data .column-1 div{
@@ -10554,7 +10568,7 @@ header .profile-name > li button{
 	padding: 9px 5px 11px;
 }
 header .profile-name{
-	min-width: 40px;
+	min-width: inherit;
     width: 30px;
     float: right;
 }

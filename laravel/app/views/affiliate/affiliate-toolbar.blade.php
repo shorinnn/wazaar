@@ -1,8 +1,8 @@
 <div class="container-fluid affiliate-top-header">
-	<div class="container">
+	<div class="container container-two">
         <div class="row">
             @if( Auth::user()->accepted_affiliate_terms == 'yes' ) 
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
                     <!--<div class="col-xs-12 col-sm-4 col-md-3">
                         <select id='linkWithDD' onchange='linkWith()'>
                             <option value='0'>{{ trans('affiliates.link-without-gift') }}</option>
@@ -11,18 +11,18 @@
                     </div>-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<div class="row">
-                        	<div class="col-xs-12 col-sm-3 col-md-6 col-lg-6 no-padding">
+                        	<div class="col-xs-12 col-sm-3 col-md-6 col-lg-5 no-padding">
                             	<label class="affiliate-link-label">{{ trans('affiliates.your_affiliate_link') }}</label>
                                 <input type="text" class="visible-xs-inline hidden-sm hidden-md hidden-lg" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
                             </div>
-                            <div class="col-xs-12 col-sm-9 col-md-6 col-lg-6 no-padding">
+                            <div class="col-xs-12 col-sm-9 col-md-6 col-lg-7 no-padding">
                             	<input type="text" class="hidden-xs" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
                             </div>
                         </div>
                     </div>
                 </div>
     
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 no-padding-lg">
                             <div class="col-xs-7 col-sm-6 col-md-7 col-lg-6 no-padding">
                                 <i class="fa fa-plus"></i>
                                 <input class="add-tracking-id" type='text' id='affiliate-toolbar-tracking' placeholder="{{trans('affiliates.add-tracking-id')}}" style='width:91%; background-color:white' onkeyup='addAffiliateTracking() '/>

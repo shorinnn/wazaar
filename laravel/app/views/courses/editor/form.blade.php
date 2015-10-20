@@ -156,10 +156,14 @@
     .lesson-minimized .lesson-control{
         display: none !important;
     }
-    .lesson-minimized .maximized-elem,.lesson-minimized .lesson-data input, .lesson-minimized .lesson-data textarea,  .lesson-minimized .lesson-data button{
-        display:none !important;
+    .lesson-minimized .maximized-elem,.lesson-minimized .lesson-data input,
+    .lesson-minimized .lesson-data textarea,
+    .lesson-minimized .lesson-data button{
+        display: none !important;
     }
-    
+    .module-minimized .module-zone .textarea-wrap{
+        visibility: hidden;
+    }
     .lesson-data .edit-icon{
         display:none;
     }
