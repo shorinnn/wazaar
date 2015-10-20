@@ -645,7 +645,16 @@ class Course extends Ardent{
 
         $limit = (isset($data['limit']))?$data['limit']:15;
 
-        $query = self::select('courses.*', 'course_categories.name as course_category', 'course_subcategories.name as course_subcategory', DB::raw('CONCAT(instructor.first_name, instructor.last_name) as instructor_name'), 'instructor.email as instructor_email', DB::raw('(select sum(purchases.purchase_price) from purchases where purchases.product_id = courses.id and purchases.product_type = \'Course\') as total_revenue'))
+        $query = self::select(
+            'courses.*',
+            'course_categories.name as course_category',
+            'course_subcategories.name as course_subcategory',
+            'instructor.email as instructor_email',
+            DB::raw('CONCAT(instructor.last_name, instructor.first_name) AS instructor_name'),
+            DB::raw('SELECT sum(purchases.purchase_price) AS course_sales FROM courses, purchases WHERE purchases.product_id = courses.id AND purchases.product_type = "Course"'),
+            DB::raw('SELECT courses.id, SUM(purchases.purchase_price) AS lesson_sales FROM courses, purchases WHERE  purchases.product_type = "Lesson" AND product_id IN ( SELECT lessons.id FROM lessons WHERE lessons.module_id IN ( SELECT modules.id FROM modules WHERE modules.course_id = courses.id ) ) '),
+            DB::raw('(SELECT course_sales + lesson_sales) as total_revenue')
+            )
                     ->leftJoin('course_categories', 'course_categories.id', '=', 'courses.course_category_id')
                     ->leftJoin('course_subcategories', 'course_subcategories.id', '=', 'courses.course_subcategory_id')
                     ->join('users as instructor', 'instructor.id', '=', 'courses.instructor_id')
