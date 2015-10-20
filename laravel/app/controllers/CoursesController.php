@@ -1279,8 +1279,8 @@ class CoursesController extends \BaseController {
         $sort_list = [
             // 'courses.name,asc' => 'Name (a-z)',
             // 'courses.name,desc' => 'Name (z-a)',
-            // 'total_revenue,asc' => trans('administration.courses.label.revenue_low_high'),
-            // 'total_revenue,desc' => trans('administration.courses.label.revenue_high_low'),
+            'total_revenue,asc' => trans('administration.courses.label.revenue_low_high'),
+            'total_revenue,desc' => trans('administration.courses.label.revenue_high_low'),
             'courses.created_at,asc' => trans('administration.courses.label.submitted_latest'),
             'courses.created_at,desc' => trans('administration.courses.label.submitted_oldest'),
         ];

@@ -115,6 +115,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group text-center">
+                            <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <div class="btn-group btn-group-justified buttons-container filter-group" data-toggle="buttons">
@@ -136,15 +139,12 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;'])}}
+                                {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;', 'onchange'=>'searchOrder()'])}}
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     
-                    <div class="col-xs-12 text-center">
-                        <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
-                    </div>
                     <div class="clearfix"></div>
                 </form>
             </div>
