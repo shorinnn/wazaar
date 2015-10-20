@@ -88,12 +88,12 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{ trans('administration.orders.label.category' )}}</label>
                             <div class="col-sm-9">
-                                {{Form::select('course_category', $course_categories, $course_category, ['id'=>'course_category', 'class'=>'form-control'])}}
+                                {{Form::select('course_category', $course_categories, $course_category, ['id'=>'course_category', 'class'=>'form-control', 'onchange'=>'populateSubCat(this);'])}}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Subcategory</label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9 sub-cat-container">
                                 {{Form::select('course_sub_category', $course_sub_categories, $course_sub_category, ['id'=>'course_sub_category', 'class'=>'form-control'])}}
                             </div>
                         </div>
@@ -163,6 +163,17 @@
 
 @section('extra_extra_js')
 <script>
+    function populateSubCat(el)
+    {
+        var url = '/administration/manage-courses/get-subcats?cat_id='+$(el).val();
+        $.ajax({
+            url: url,
+            cache: false,
+            success: function(result){
+                $('.sub-cat-container').html(result);
+            }
+        });
+    }
     function selectThisPrice(el)
     {
         $('.price-group label').each(function(){
