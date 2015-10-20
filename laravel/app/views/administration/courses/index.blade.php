@@ -4,7 +4,7 @@
 <style>
     .course-container{
         margin-bottom: 10px;
-        border: #EEEEEE solid 1px;
+        border: #CCC solid 1px;
         border-radius: 5px;
         padding-top: 10px;
     }
@@ -31,15 +31,15 @@
                 <div class="panel-body">
                     <div class="col-xs-12 col-sm-4 col-md-4 text-success">
                         <h2>{{$totals['approved']}}</h2>
-                        <small>Approved</small>
+                        <small>{{ trans('administration.courses.label.approved' )}}</small>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4 text-warning">
                         <h2>{{$totals['pending']}}</h2>
-                        <small>Pending</small>
+                        <small>{{ trans('administration.courses.label.pending' )}}</small>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4 text-danger">
                         <h2>{{$totals['rejected']}}</h2>
-                        <small>Disapproved</small>
+                        <small>{{ trans('administration.courses.label.disapproved' )}}</small>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -48,17 +48,15 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h2 class="text-center">{{ trans('administration.orders.search-course' )}}</h2>
+            <h2 class="text-center">{{ trans('administration.courses.label.courses' )}}</h2>
             <div class="row">
                 <form id="search_form" class="form-horizontal" style="padding-bottom:20px;">
-                    <input type="hidden" name="sort_by" id="sort_by" value="{{-- $sort_by --}}">
-                    <input type="hidden" name="sort" id="sort" value="{{-- $sort --}}">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.name' )}}</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.courses.label.search' )}}</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="search" name="search" value="{{-- $search --}}">
-                                <span id="helpBlock" class="help-block">Enter Course Name, Instructor Email, Course Slug</span>
+                                <input type="text" class="form-control" id="search" name="search" value="{{$search}}">
+                                <span id="helpBlock" class="help-block">{{ trans('administration.courses.label.note' )}}</span>
                             </div>
                         </div>
                     </div>
@@ -70,34 +68,34 @@
                                     <label class="btn btn-default segmented-buttons @if(empty(Input::get('price')) || Input::get('price') == 'all' ) active @endif">
                                         <input type="radio" name="price" value="all" class="price" autocomplete="off" 
                                         @if(empty(Input::get('price')) || Input::get('price') == 'all' ) checked='checked' @endif
-                                        onchange="selectThisPrice(this);"> {{ trans('courses/general.filter.all') }}
+                                        onchange="selectThisPrice(this);"> {{ trans('administration.courses.label.all' )}}
                                     </label>
                                     <label class="btn btn-default segmented-buttons @if(!empty(Input::get('price')) && Input::get('price') == 'paid' ) active @endif">
                                         <input type="radio" name="price" value="paid" class="price" autocomplete="off" 
                                         @if(!empty(Input::get('price')) && Input::get('price') == 'paid' ) checked='checked' @endif
-                                        onchange="selectThisPrice(this);"> {{ trans('courses/general.filter.paid') }}
+                                        onchange="selectThisPrice(this);"> {{ trans('administration.courses.label.paid' )}}
                                     </label>
                                     <label class="btn btn-default segmented-buttons @if(!empty(Input::get('price')) && Input::get('price') == 'free' ) active @endif">
                                         <input type="radio" name="price" value="free" class="price" autocomplete="off" 
                                         @if(!empty(Input::get('price')) && Input::get('price') == 'free' ) checked='checked' @endif
-                                        onchange="selectThisPrice(this);"> {{ trans('courses/general.filter.free') }}
+                                        onchange="selectThisPrice(this);"> {{ trans('administration.courses.label.free' )}}
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.category' )}}</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.courses.label.category' )}}</label>
                             <div class="col-sm-9">
                                 {{Form::select('course_category', $course_categories, $course_category, ['id'=>'course_category', 'class'=>'form-control', 'onchange'=>'populateSubCat(this);'])}}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Subcategory</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.courses.label.subcategory' )}}</label>
                             <div class="col-sm-9 sub-cat-container">
                                 {{Form::select('course_sub_category', $course_sub_categories, $course_sub_category, ['id'=>'course_sub_category', 'class'=>'form-control'])}}
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group hide">
                             <label class="col-sm-3 control-label">{{ trans('administration.orders.label.sales-amount' )}}</label>
                             <div class="col-sm-9">
                                 <div class="row">
@@ -123,17 +121,17 @@
                                     <label class="btn btn-success segmented-buttons @if(empty(Input::get('filter')) || Input::get('filter') == 'approved' ) active @endif">
                                         <input type="radio" name="filter" value="approved" class="filter" autocomplete="off" 
                                         @if(empty(Input::get('filter')) || Input::get('filter') == 'approved' ) checked='checked' @endif
-                                        onchange="selectThisFilter(this);"> Approved
+                                        onchange="selectThisFilter(this);"> {{ trans('administration.courses.label.approved' )}}
                                     </label>
                                     <label class="btn btn-info segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'pending' ) active @endif">
                                         <input type="radio" name="filter" value="pending" class="filter" autocomplete="off" 
                                         @if(!empty(Input::get('filter')) && Input::get('filter') == 'pending' ) checked='checked' @endif
-                                        onchange="selectThisFilter(this);"> Pending
+                                        onchange="selectThisFilter(this);"> {{ trans('administration.courses.label.pending' )}}
                                     </label>
                                     <label class="btn btn-danger segmented-buttons @if(!empty(Input::get('filter')) && Input::get('filter') == 'rejected' ) active @endif">
                                         <input type="radio" name="filter" value="rejected" class="filter" autocomplete="off" 
                                         @if(!empty(Input::get('filter')) && Input::get('filter') == 'rejected' ) checked='checked' @endif
-                                        onchange="selectThisFilter(this);"> Disapproved
+                                        onchange="selectThisFilter(this);"> {{ trans('administration.courses.label.disapproved' )}}
                                     </label>
                                 </div>
                             </div>
@@ -145,7 +143,7 @@
                     </div>
                     
                     <div class="col-xs-12 text-center">
-                        <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
+                        <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
                     </div>
                     <div class="clearfix"></div>
                 </form>
