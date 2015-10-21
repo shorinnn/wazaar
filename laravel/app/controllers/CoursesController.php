@@ -1294,7 +1294,7 @@ class CoursesController extends \BaseController {
             return View::make('administration.courses.listing', compact('courses', 'page'));
         }
 
-        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data', 'search'));
+        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data', 'search', 'page'));
     }
 
     public function getSubcats()
