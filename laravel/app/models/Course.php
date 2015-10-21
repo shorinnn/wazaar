@@ -611,12 +611,8 @@ class Course extends Ardent{
 
         $search = (isset($data['search']))?$data['search']:'';
 
-        $course_categories = [''=>'Select Category'];
-        $course_categories_lists = CourseCategory::lists('name', 'id');
-        foreach($course_categories_lists as $key => $val){
-            $course_categories = array_add($course_categories, $key, $val);
-        }
         $course_category = (isset($data['course_category']))?$data['course_category']:'';
+        $course_sub_category = (isset($data['course_sub_category']))?$data['course_sub_category']:'';
 
         $price = (isset($data['price']))?$data['price']:'';
         switch($price){
@@ -644,6 +640,7 @@ class Course extends Ardent{
         $sort = $sort_data[1];
 
         $limit = (isset($data['limit']))?$data['limit']:15;
+        $total = (isset($data['total']))?$data['total']:'';
 
         $query = self::select(
             'courses.*',
@@ -659,7 +656,7 @@ class Course extends Ardent{
                     ->leftJoin('course_subcategories', 'course_subcategories.id', '=', 'courses.course_subcategory_id')
                     ->join('users as instructor', 'instructor.id', '=', 'courses.instructor_id')
                     ->where('publish_status', '!=', 'unsubmitted');
-        
+
         if($search){
             $query->where('courses.name', 'like', "%$search%")
                     ->orWhere('courses.slug', 'like', "%$search%")
@@ -675,6 +672,15 @@ class Course extends Ardent{
         if($filter){
             $query->where('courses.publish_status', '=', $filter);
         }
+
+        if($course_category){
+            $query->where('courses.course_category_id', '=', $course_category);
+        }
+
+        if($course_sub_category){
+            $query->where('courses.course_subcategory_id', '=', $course_sub_category);
+        }
+
         if($sale_amount_low || $sale_amount_high){
             if($sale_amount_low && empty($sale_amount_high)){
                 $query->where('total_revenue', '>=', $sale_amount_low);
@@ -685,7 +691,11 @@ class Course extends Ardent{
             }
         }
 
-        $result = $query->orderBy($sort_by, $sort)->paginate($limit);
+        if($total){
+            $result = $query->count();
+        } else {
+            $result = $query->orderBy($sort_by, $sort)->paginate($limit);
+        }
         return $result;
     }
 

@@ -205,6 +205,7 @@ $wwwRoutes = function(){
         Route::get('manage-users', 'UsersController@adminManageUsers');
         Route::get('old-manage-courses', 'CoursesController@oldAdminIndex');
         Route::get('manage-courses', 'CoursesController@adminIndex');
+        Route::get('manage-courses/get-subcats', 'CoursesController@getSubcats');
     });
 //});
 };

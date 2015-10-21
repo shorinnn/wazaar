@@ -1242,19 +1242,23 @@ class CoursesController extends \BaseController {
 
         $data = Request::all();
 
-        $course_categories = [''=>'Select Category'];
+        $course_categories = [''=>trans('administration.courses.label.select_category') ];
         $course_categories_lists = CourseCategory::lists('name', 'id');
         foreach($course_categories_lists as $key => $val){
             $course_categories = array_add($course_categories, $key, $val);
         }
         $course_category = (isset($data['course_category']))?$data['course_category']:'';
 
+        $course_sub_categories = [''=>trans('administration.courses.label.select_sub_category')];
 
-        $course_sub_categories = [''=>'Select Sub Category'];
-        $course_sub_categories_lists = CourseSubcategory::lists('name', 'id');
-        foreach($course_sub_categories_lists as $key => $val){
-            $course_sub_categories = array_add($course_sub_categories, $key, $val);
+        if(!empty($course_category)){
+            $course_sub_categories_lists = CourseSubcategory::where('course_category_id', $course_category)->orderBy('name', 'asc')->lists('name', 'id');
+            foreach($course_sub_categories_lists as $key => $val){
+                $course_sub_categories = array_add($course_sub_categories, $key, $val);
+            }    
         }
+
+
         $course_sub_category = (isset($data['course_sub_category']))?$data['course_sub_category']:'';
         
         $sale_amount_low = (isset($data['sale_amount_low']))?$data['sale_amount_low']:'';
@@ -1263,6 +1267,7 @@ class CoursesController extends \BaseController {
         $sort_data = (isset($data['sort_data']))?$data['sort_data']:'courses.created_at,desc';
 
         $page = (isset($data['page']))?$data['page']:'1';
+        $search = (isset($data['search']))?$data['search']:'';
 
         $courses = Course::getAdminList($data);
 
@@ -1272,18 +1277,43 @@ class CoursesController extends \BaseController {
         $totals['rejected'] = Course::where('publish_status', '=', 'rejected')->count();
 
         $sort_list = [
-            'courses.name,asc' => 'Name (a-z)',
-            'courses.name,desc' => 'Name (z-a)',
-            'total_revenue,asc' => 'Revenue Low to High',
-            'total_revenue,desc' => 'Revenue High to Low',
-            'courses.created_at,asc' => 'Submitted Recent Last',
-            'courses.created_at,desc' => 'Submitted Recent First',
+            // 'courses.name,asc' => 'Name (a-z)',
+            // 'courses.name,desc' => 'Name (z-a)',
+            'total_revenue,asc' => trans('administration.courses.label.revenue_low_high'),
+            'total_revenue,desc' => trans('administration.courses.label.revenue_high_low'),
+            'courses.created_at,asc' => trans('administration.courses.label.submitted_latest'),
+            'courses.created_at,desc' => trans('administration.courses.label.submitted_oldest'),
         ];
 
+        $total = (isset($data['total']))?$data['total']:'';
+
         if(Request::ajax()){
+            if($total){
+                return $courses.' '.trans('administration.courses.label.courses' );
+            }
             return View::make('administration.courses.listing', compact('courses', 'page'));
         }
 
-        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data'));
+        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data', 'search'));
+    }
+
+    public function getSubcats()
+    {
+        $data = Request::all();
+
+        $course_sub_categories = [''=>trans('administration.courses.label.select_sub_category')];
+
+        $cat_id = (isset($data['cat_id']))?$data['cat_id']:'';
+
+        if(!empty($cat_id)){
+            $course_sub_categories_lists = CourseSubcategory::where('course_category_id', $cat_id)->orderBy('name', 'asc')->lists('name', 'id');
+            foreach($course_sub_categories_lists as $key => $val){
+                $course_sub_categories = array_add($course_sub_categories, $key, $val);
+            }    
+        }
+        
+
+        return Form::select('course_sub_category', $course_sub_categories, null, ['id'=>'course_sub_category', 'class'=>'form-control']);
+
     }
 }
