@@ -10,6 +10,7 @@
 				@endif
 			</div>
 			<div class="col-md-7 col-sm-12 col-xs-12">
+				<div class="pull-right"><a href="{{action('CoursesController@adminShowCourse', [$course->slug])}}" class="btn btn-default">View Course</a></div>
 				<h2>{{$course->name}}</h2>
 				<label>{{ trans('administration.courses.label.category' )}}</label>: {{$course->course_category}}<br />
 				<label>{{ trans('administration.courses.label.subcategory' )}}</label>: {{$course->course_subcategory}}<br />
@@ -23,6 +24,7 @@
 				<label>{{ trans('administration.courses.label.instructor_email' )}}</label>: {{$course->instructor_email}}<br />
 				<label>{{ trans('administration.courses.label.date_submitted' )}}</label>: {{$course->created_at->format('M d, Y h:i A \\(l\\)')}}<br />
 				<label>{{ trans('administration.courses.label.revenue' )}}</label>: ¥ {{number_format($course->total_revenue)}}<br />
+				<div class="clearfix"></div>
 			</div>
 			<div class="col-md-3 col-sm-12 col-xs-12">
 				<div class="col-md-12 col-sm-4 col-xs-4 action-btn-container">
