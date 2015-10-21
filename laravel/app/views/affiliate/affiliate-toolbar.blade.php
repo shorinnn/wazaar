@@ -1,5 +1,5 @@
 <div class="container-fluid affiliate-top-header">
-	<div class="container container-two">
+	<div class="container">
         <div class="row">
             @if( Auth::user()->accepted_affiliate_terms == 'yes' ) 
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
@@ -11,12 +11,9 @@
                     </div>-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<div class="row">
-                        	<div class="col-xs-12 col-sm-3 col-md-6 col-lg-5 no-padding">
+                        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                             	<label class="affiliate-link-label">{{ trans('affiliates.your_affiliate_link') }}</label>
-                                <input type="text" class="visible-xs-inline hidden-sm hidden-md hidden-lg" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
-                            </div>
-                            <div class="col-xs-12 col-sm-9 col-md-6 col-lg-7 no-padding">
-                            	<input type="text" class="hidden-xs" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
+                                <input type="text" class="" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
                             </div>
                         </div>
                     </div>
@@ -47,6 +44,7 @@
 
 
 <script>
+
     function clearAffiliateTracking(){
         $('#affiliate-toolbar-tracking').val('');
         link = $('#affiliate-toolbar-link').val();

@@ -92,6 +92,7 @@ body {
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
 	font: 16px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     overflow:auto;/** added because gulp version is messed **/
+    background-color: #ebeced;
 }
 html{
   min-height: 100%;
@@ -4523,6 +4524,7 @@ h2, h3, h4, h5, h6{
 .student-messages .message-preview .col-lg-2{
 	padding: 0;
 }
+.student-messages .avatar img,
 .student-messages .avatar {
 	float: left;
     height: 40px;
@@ -4579,6 +4581,10 @@ h2, h3, h4, h5, h6{
 	color: #303941;
 	font-weight: bold;
 }
+.student-messages .full-messages .conversation{
+    max-height: 545px;
+    overflow: auto;
+}
 .student-messages .full-messages .conversation .date{
     display: block;
     font-size: 12px;
@@ -4611,7 +4617,7 @@ h2, h3, h4, h5, h6{
 	display: block;
 }
 .student-messages .replies-box{
-	width: 88%;
+	width: 85%;
 	padding: 13px 13px 18px;
 	position: relative;
 }
@@ -4675,6 +4681,9 @@ h2, h3, h4, h5, h6{
 }
 .student-messages .discussion-sidebar-footer-wrap{
 	border-top: solid 1px #e0e1e2;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
 }
 /********** New Dashboard UI Ends***************/
 /********** Affiliates Gift UI***************/
@@ -4709,14 +4718,18 @@ h2, h3, h4, h5, h6{
 	display: inline-block;
 }
 .affiliate-top-header .affiliate-link-label{
-    float: right;
+    float: left;
     font-size: 14px;
-    margin-right: 5%;
     color: #798794;
     margin-top: 4px;
 	font-weight: normal;
+    width: 190px;
 }
 .affiliate-top-header #affiliate-toolbar-link{
+    width: -webkit-calc(100% - 190px);
+    width: -moz-calc(100% - 190px);
+    width: -ms-calc(100% - 190px);
+    width: calc(100% - 190px);
 }
 .affiliate-top-header select{
     height: 28px;
@@ -9262,6 +9275,11 @@ input[type='number'] {
 	float: left;
     font-weight: 100;
 }
+.stick-to-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 footer{
 	clear:both;
 }
@@ -10706,18 +10724,6 @@ header .profile-name ul{
 	.affiliate-top-header .activate-dropdown{
 		float: right;
 	}
-	.affiliate-top-header .affiliate-link-label{
-		float: left;
-		width: 150px;
-	}
-	.affiliate-top-header label ~ input[type="text"]{
-		left: 150px;
-		position: absolute;
-		top: 0;
-		width: calc(100% - 150px);
-		width: -moz-calc(100% - 150px);
-		width: -webkit-calc(100% - 150px);
-	}
 	.contact-us.main label{
 		float: left;
 		margin-top: 0;
@@ -10735,7 +10741,9 @@ header .profile-name ul{
         margin-top: 0;
         padding-top: 20px;
     }
-
+    .student-messages .full-messages .conversation{
+        max-height: 400px;
+    }
 }
 @media (max-width:752px){
 .navbar-nav{ 

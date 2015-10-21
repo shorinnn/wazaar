@@ -17,11 +17,10 @@ $(document).ready(function(){
     });
 
     $('body').delegate('.right-bar-toggler', 'click', function() {
-        // get the to be toggled element
+
+        // get the element to be toggled
         $elem = $(this).attr('data-elem');
 
-        // Get the close button
-        $closeButton = $(this).attr('data-close');
 
         //check if bar is already displayed, then don't hide it when the button is clicked.
         if($($elem).hasClass('in')){
@@ -31,10 +30,14 @@ $(document).ready(function(){
         // If the bar is not already displayed, then display it on button click
         $($elem).addClass('in');
 
-        // When the close button is clicked, hide the bar
-        $($closeButton).click(function () {
-            $($elem).removeClass('in');
-        });
+    });
+
+    // When the close button is clicked, hide the bar
+    $('body').delegate('.right-bar-close', 'click', function() {
+        // Get the close button
+        $elemToClose = $(this).attr('data-target');
+
+        $($elemToClose).removeClass('in');
     });
 
 //    var canPopState = false;
@@ -110,6 +113,8 @@ $(document).ready(function(){
     dynamicLessonNameWidth()
     toggleSideMenu();
     fixModalJerk();
+    stickFooterToBottom();
+
 
     //stickyFooter();
     rescaleBckgrdOverlay();
@@ -118,6 +123,8 @@ $(document).ready(function(){
         rescaleBckgrdOverlay();
         dynamicLessonNameWidth();
         skinVideoControls();
+        stickFooterToBottom();
+
     });
 
     $(".classroom-view #myVideo").resize(function() {
@@ -126,6 +133,18 @@ $(document).ready(function(){
 
 });
 
+function stickFooterToBottom() {
+
+    // Check if body height is higher than window height :)
+    if ($("body").height() >= $(window).height()) {
+        $("footer").removeClass("stick-to-bottom");
+    }
+    else{
+        $("footer").addClass("stick-to-bottom");
+    }
+
+
+}
 function fixModalJerk(){
     $('body').delegate('.modal', 'show.bs.modal', function () {
         if ($(document).height() > $(window).height()) {
