@@ -120,9 +120,6 @@
                             <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder(true, true);">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
                         </div>
                         <div class="form-group">
-                            <h2 class="courses-listings-total-container text-center"></h2>
-                        </div>
-                        <div class="form-group">
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <div class="btn-group btn-group-justified buttons-container filter-group" data-toggle="buttons">
                                     <label class="btn btn-success segmented-buttons @if(empty(Input::get('filter')) || Input::get('filter') == 'approved' ) active @endif">
@@ -146,6 +143,9 @@
                                 {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;', 'onchange'=>'searchOrder(false, false)'])}}
                             </div>
                             <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <h2 class="courses-listings-total-container text-center"></h2>
                         </div>
                     </div>
                     
