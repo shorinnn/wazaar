@@ -9,7 +9,8 @@
 				<img src="{{ url('splash/logo.png') }}" class="img-responsive" />
 				@endif
 			</div>
-			<div class="col-md-8 col-sm-12 col-xs-12">
+			<div class="col-md-7 col-sm-12 col-xs-12">
+				<div class="pull-right"><a href="{{action('CoursesController@adminShowCourse', [$course->slug])}}" class="btn btn-default">View Course</a></div>
 				<h2>{{$course->name}}</h2>
 				<label>{{ trans('administration.courses.label.category' )}}</label>: {{$course->course_category}}<br />
 				<label>{{ trans('administration.courses.label.subcategory' )}}</label>: {{$course->course_subcategory}}<br />
@@ -23,19 +24,45 @@
 				<label>{{ trans('administration.courses.label.instructor_email' )}}</label>: {{$course->instructor_email}}<br />
 				<label>{{ trans('administration.courses.label.date_submitted' )}}</label>: {{$course->created_at->format('M d, Y h:i A \\(l\\)')}}<br />
 				<label>{{ trans('administration.courses.label.revenue' )}}</label>: ¥ {{number_format($course->total_revenue)}}<br />
+				<div class="clearfix"></div>
 			</div>
-			<div class="col-md-2 col-sm-12 col-xs-12">
+			<div class="col-md-3 col-sm-12 col-xs-12">
 				<div class="col-md-12 col-sm-4 col-xs-4 action-btn-container">
 					<a href="{{action('CoursesController@edit', [$course->slug, ''])}}" class="btn btn-block btn-info">{{ trans('administration.courses.label.edit' )}}</a>
 				</div>
 				<div class="col-md-12 col-sm-4 col-xs-4 action-btn-container">
 					@if($course->publish_status != 'approved')
-					<button class="btn btn-block btn-success">{{ trans('administration.courses.label.approve' )}}</button>
+						{{ Form::open( ['action' => array('SubmissionsController@update', $course->id), 
+                                    'method' => 'PUT', 'id'=>'approve-form-'.$course->id, 'class' => 'ajax-form',
+                                'data-callback' => 'updateSearchOrder'] ) }}
+                            <input type="hidden" name="value" value="approved" />
+                            <button type="submit" name='approve-course' data-message="{{ trans('administration.sure-approve') }}?" class="btn btn-block btn-success delete-button">{{ trans('administration.courses.label.approve' )}}</button>
+                        {{ Form::close() }}
 					@endif
 				</div>
 				<div class="col-md-12 col-sm-4 col-xs-4 action-btn-container">
 					@if($course->publish_status != 'rejected')
-					<button class="btn btn-block btn-danger">{{ trans('administration.courses.label.disapprove' )}}</button>
+						{{ Form::open( ['action' => array('SubmissionsController@update', $course->id), 
+	                                'method' => 'PUT', 'id'=>'reject-form-'.$course->id, 'class' => 'ajax-form',
+	                            'data-callback' => 'updateSearchOrder'] ) }}
+	                        <input type="hidden" name="value" value="rejected" />	                        
+	                        <div class="form-group">
+	                        	<button class='btn btn-default btn-block slide-toggler' data-target='#reason-box-{{$course->id}}'>[Reason]</button>
+	                        </div>
+
+	                        <div id='reason-box-{{$course->id}}' style='display:none;'>
+	                            @if($course->instructor != null)
+	                                @if( $course->instructor->profile!=null)
+	                                    <h3 class="text-center">{{ $course->instructor->profile->email }}</h3>
+	                                @else
+	                                    <h3 class="text-center">{{ $course->instructor->email }}</h3>
+	                                @endif
+	                            @endif
+	                            <textarea id='reason-{{$course->id}}' name='reject_reason' style='background:white; height:100px'></textarea>
+	                        </div>
+	                        <button type="submit" name='reject_course' class="btn btn-block btn-danger delete-button" data-message="{{ trans('administration.sure-reject') }}?">{{ trans('administration.courses.label.disapprove' )}}</button>
+	                    {{ Form::close() }}
+					
 					@endif
 				</div>
 			</div>

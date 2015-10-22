@@ -149,9 +149,22 @@
                 </form>
             </div>
             <div class="clearfix"></div>                
-            <div class="orders-totals-container row"></div>
-            <div class="orders-listings-container ajax-content row"></div>
-            <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
+            
+            <div class="container">
+                <div class="panel panel-default no-padding">
+                    <div class="orders-totals-container">
+                        <div class="table-stats-wrapper">
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="panel panel-default no-padding">
+                    <div class="orders-listings-container ajax-content"></div>
+                    <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
+                </div>
+            </div>
+
 		</div>
 	</div>
 </div>

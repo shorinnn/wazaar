@@ -40,7 +40,18 @@ class OrdersController extends \BaseController {
 
 		if(Request::ajax() || !empty($download)){
 			if($total){
-				$totals = Purchase::select(DB::raw("sum(purchases.original_price) as original_price_total"), DB::raw("sum(purchases.purchase_price) as discounted_price_total"), DB::raw("sum(purchases.tax) as tax"), DB::raw("sum(purchases.site_earnings) as site_earnings_total"), DB::raw("sum(purchases.instructor_earnings) as instructor_earnings_total"), DB::raw("sum(purchases.second_tier_instructor_earnings) as second_tier_instructor_earnings_total"), DB::raw("sum(purchases.affiliate_earnings) as affiliate_earnings_total"), DB::raw("sum(purchases.second_tier_affiliate_earnings) as second_tier_affiliate_earnings_total"), DB::raw("sum(purchases.ltc_affiliate_earnings) as ltc_affiliate_earnings_total"))
+				$totals = Purchase::select(
+										DB::raw("count(*) as sales_count"),
+										DB::raw("sum(purchases.original_price) as original_price_total"),
+										DB::raw("sum(purchases.purchase_price) as sales_total"),
+										DB::raw("sum(purchases.tax) as tax"),
+										DB::raw("sum(purchases.site_earnings) as site_earnings"),
+										DB::raw("sum(purchases.instructor_earnings) as instructor_earnings"),
+										DB::raw("sum(purchases.second_tier_instructor_earnings) as second_tier_instructor_earnings_total"),
+										DB::raw("sum(purchases.affiliate_earnings) as affiliate_earnings"),
+										DB::raw("sum(purchases.second_tier_affiliate_earnings) as second_tier_affiliate_earnings"),
+										DB::raw("sum(purchases.ltc_affiliate_earnings) as ltc_affiliate_earnings")
+									)
 									->leftJoin('courses', 'courses.id', '=', 'purchases.product_id')
 									->leftJoin('users as owner', 'owner.id', '=', 'courses.instructor_id')
 									->leftJoin('users as buyer', 'buyer.id', '=', 'purchases.student_id')
@@ -114,7 +125,8 @@ class OrdersController extends \BaseController {
 									})
 									->get();
 				// dd(DB::getQueryLog());
-
+				$stats = $totals;
+		        return View::make('instructors.analytics.tableCourseStats',compact('stats'))->render();
 				return View::make('administration.orders.totals_table', compact('totals'));
 			} else if($download){
 				$orders = Purchase::leftJoin('courses', 'courses.id', '=', 'purchases.product_id')

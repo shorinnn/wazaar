@@ -613,6 +613,7 @@ class Course extends Ardent{
 
         $course_category = (isset($data['course_category']))?$data['course_category']:'';
         $course_sub_category = (isset($data['course_sub_category']))?$data['course_sub_category']:'';
+        $page = (isset($data['page']))?$data['page']:'1';
 
         $price = (isset($data['price']))?$data['price']:'';
         switch($price){
@@ -695,7 +696,7 @@ class Course extends Ardent{
             $result = $query->count();
         } else {
             $result = $query->orderBy($sort_by, $sort)->paginate($limit);
-        }
+       }
         return $result;
     }
 

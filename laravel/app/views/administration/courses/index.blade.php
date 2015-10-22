@@ -51,6 +51,7 @@
             <h2 class="text-center">{{ trans('administration.courses.label.courses' )}}</h2>
             <div class="row">
                 <form id="search_form" class="form-horizontal" style="padding-bottom:20px;">
+                    <input type="hidden" id="page" name="page" value="{{$page}}">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{ trans('administration.courses.label.search' )}}</label>
@@ -116,10 +117,7 @@
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder(true);">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
-                        </div>
-                        <div class="form-group">
-                            <h2 class="courses-listings-total-container text-center"></h2>
+                            <button type="button" class="search-btn btn btn-primary btn-lg" onclick="searchOrder(true, true);">{{ trans('administration.courses.label.search' )}} <i class="fa fa-search"></i></button>
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-sm-8 col-xs-12">
@@ -142,9 +140,12 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;', 'onchange'=>'searchOrder(false)'])}}
+                                {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;', 'onchange'=>'searchOrder(false, false)'])}}
                             </div>
                             <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <h2 class="courses-listings-total-container text-center"></h2>
                         </div>
                     </div>
                     
@@ -190,8 +191,11 @@
         $('.search-btn').click();
     }
 
-    function searchOrder(update_total)
+    function searchOrder(update_total, reset_page)
     {
+        if(reset_page){
+            $('#page').val('1');
+        }
         var url = '/administration/manage-courses?';
         var data = $('#search_form').serialize()
 
@@ -206,6 +210,12 @@
         }        
         $('.courses-listings-ajax-link').click();
     }
+    
+    function updateSearchOrder()
+    {
+        searchOrder(true, true);
+    }
+
     function loadCourses()
     {
         var url = '/administration/manage-courses?';

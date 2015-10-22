@@ -171,6 +171,8 @@ var Analytics = {
     'CourseId' : 0,
     'DateFilterStart' : undefined,
     'DateFilterEnd' : undefined,
+    'StatisticsUrl' : undefined,
+    'AffiliateUrl' : undefined,
     'InitCalendarFilter' : function(){
         function cb(start, end) {
             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
@@ -204,14 +206,20 @@ var Analytics = {
 
     'CourseStatisticsTable' : function(){
         $('.table-stats-wrapper').html($ajaxLoader);
-        $.get('/analytics/course/stats/' + Analytics.CourseId + '/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+        if(Analytics.StatisticsUrl == undefined){
+            Analytics.StatisticsUrl = '/analytics/course/stats/';
+        }
+        $.get(Analytics.StatisticsUrl + Analytics.CourseId + '/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
             $('.table-stats-wrapper').html($table);
         });
     },
 
     'CourseAffiliatesTable' : function() {
         $('.table-affiliates-wrapper').html($ajaxLoader);
-        $.get('/analytics/course/affiliates/' + Analytics.CourseId + '/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+        if(Analytics.AffiliateUrl == undefined){
+            Analytics.AffiliateUrl = '/analytics/course/affiliates/';
+        }
+        $.get(Analytics.AffiliateUrl + Analytics.CourseId + '/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
             $('.table-affiliates-wrapper').html($table);
         });
     },

@@ -18,13 +18,13 @@
 			<tr>
 				<td>{{ trans('administration.orders.total' )}}</td>
 				<td>¥ {{number_format($totals[0]->original_price_total)}}</td>
-				<td>¥ {{number_format($totals[0]->discounted_price_total)}}</td>
+				<td>¥ {{number_format($totals[0]->sales_total)}}</td>
 				<td>¥ {{number_format($totals[0]->tax)}}</td>
-				<td>¥ {{number_format($totals[0]->site_earnings_total)}}</td>
-				<td>¥ {{number_format($totals[0]->instructor_earnings_total)}}</td>
-				<td>¥ {{number_format($totals[0]->affiliate_earnings_total)}}</td>
-				<td>¥ {{number_format($totals[0]->ltc_affiliate_earnings_total)}}</td>
-				<td>¥ {{number_format($totals[0]->second_tier_affiliate_earnings_total)}}</td>
+				<td>¥ {{number_format($totals[0]->site_earnings)}}</td>
+				<td>¥ {{number_format($totals[0]->instructor_earnings)}}</td>
+				<td>¥ {{number_format($totals[0]->affiliate_earnings)}}</td>
+				<td>¥ {{number_format($totals[0]->ltc_affiliate_earnings)}}</td>
+				<td>¥ {{number_format($totals[0]->second_tier_affiliate_earnings)}}</td>
 				<td>¥ {{number_format($totals[0]->second_tier_instructor_earnings_total)}}</td>
 			</tr>
 		</tbody>

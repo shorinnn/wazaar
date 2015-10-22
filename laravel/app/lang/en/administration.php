@@ -99,6 +99,7 @@ return array(
         'transaction-date' => 'Transaction Date',
         'total' => 'Total',
         'refund' => 'REFUND',
+        'order-id' => 'Order ID',
         'label' => [
             'name' => 'Name',
             'email' => 'Email',

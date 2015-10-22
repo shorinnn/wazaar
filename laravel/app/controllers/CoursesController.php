@@ -11,6 +11,7 @@ class CoursesController extends \BaseController {
             
             $this->beforeFilter('restrictBrowsing');
             
+            $this->analyticsHelper = new AnalyticsHelper(false, Auth::id(), 'instructor');
         }
 
         public function index()
@@ -1294,7 +1295,7 @@ class CoursesController extends \BaseController {
             return View::make('administration.courses.listing', compact('courses', 'page'));
         }
 
-        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data', 'search'));
+        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data', 'search', 'page'));
     }
 
     public function getSubcats()
@@ -1315,5 +1316,95 @@ class CoursesController extends \BaseController {
 
         return Form::select('course_sub_category', $course_sub_categories, null, ['id'=>'course_sub_category', 'class'=>'form-control']);
 
+    }
+
+    public function adminShowCourse($slug)
+    {
+        $course = Course::where('slug', $slug)->first();
+
+        // $course = Course::where('instructor_id', Auth::id())->where('slug', $courseSlug)->first();
+
+        return View::make('administration.courses.show', compact('course'));
+    }
+
+    public function salesView($frequency = '', $courseId = '', $trackingCode = '')
+    {
+        $sales = null;
+        switch ($frequency) {
+            case 'alltime' :
+                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId, $trackingCode);
+                break;
+            case 'week' :
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7, $courseId, $trackingCode);
+                break;
+            case 'month' :
+                $sales = $this->analyticsHelper->salesLastFewMonths(7, $courseId, $trackingCode);
+                break;
+            default:
+                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId, $trackingCode);
+                break;
+        }
+
+
+        if (is_array($sales)) {
+            $urlIdentifier = 'sales';
+            $group = 'instructor';
+            if ($frequency == 'week') {
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            } elseif ($frequency == 'month') {
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            } elseif ($frequency == 'alltime') {
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            } else {
+                $frequency = 'daily';
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            }
+        }
+    }
+
+    public function salesCountView($frequency = '', $courseId = '', $trackingCode = '')
+    {
+        $frequencyOverride = $frequency;
+        $sales = null;
+        switch ($frequency) {
+            case 'alltime' :
+                $frequencyOverride = 'year';
+                $sales             = $this->analyticsHelper->salesLastFewYears(7, $courseId);
+                break;
+            case 'week' :
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7, $courseId);
+                break;
+            case 'month' :
+                $sales = $this->analyticsHelper->salesLastFewMonths(7, $courseId);
+                break;
+            default:
+                $frequencyOverride = 'day';
+                $sales             = $this->analyticsHelper->salesLastFewDays(7, $courseId);
+                break;
+        }
+
+        return View::make('administration.dashboard.partials.sales.count',
+            compact('frequencyOverride', 'sales'))->render();
+
+
+    }
+
+    public function courseStatsTableView($courseId, $startDate, $endDate)
+    {
+        $stats = $this->analyticsHelper->getCourseStats($courseId,$startDate,$endDate);
+
+        return View::make('instructors.analytics.tableCourseStats',compact('stats'))->render();
+    }
+
+    public function topAffiliatesTableView($courseId, $startDate, $endDate)
+    {
+        $page = 1;
+        if (Input::has('page')){
+            $page = Input::get('page');
+        }
+        $addThisToRank = ($page - 1) * Config::get('wazaar.PAGINATION');
+        $affiliates = $this->analyticsHelper->getTopAffiliatesByCourse($courseId, $startDate, $endDate);
+
+        return View::make('instructors.analytics.tableTopAffiliates',compact('affiliates','addThisToRank'))->render();
     }
 }
