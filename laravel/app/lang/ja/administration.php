@@ -170,6 +170,7 @@ return array(
         'page-title' => '受注管理',
     ],
     'courses' => [
+        'what-reason-for-disapproval' => 'Whats the reason for disapproval?',
         'label' => [
             'courses' => 'Courses',
             'approved' => 'Approved',

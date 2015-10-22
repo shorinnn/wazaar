@@ -171,6 +171,7 @@ return array(
         'page-title' => 'Analytics',
     ],
     'courses' => [
+        'what-reason-for-disapproval' => 'Whats the reason for disapproval?',
         'label' => [
             'courses' => 'Courses',
             'approved' => 'Approved',
