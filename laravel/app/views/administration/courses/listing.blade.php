@@ -10,8 +10,7 @@
 				@endif
 			</div>
 			<div class="col-md-7 col-sm-12 col-xs-12">
-				<div class="pull-right"><a href="{{action('CoursesController@adminShowCourse', [$course->slug])}}" class="btn btn-default">View Course</a></div>
-				<h2>{{$course->name}}</h2>
+				<h2><a href="{{action('CoursesController@adminShowCourse', [$course->slug])}}" class="wazaar-blue-text">{{$course->name}}</a></h2>
 				<label>{{ trans('administration.courses.label.category' )}}</label>: {{$course->course_category}}<br />
 				<label>{{ trans('administration.courses.label.subcategory' )}}</label>: {{$course->course_subcategory}}<br />
 				@if($course->free == 'no')
