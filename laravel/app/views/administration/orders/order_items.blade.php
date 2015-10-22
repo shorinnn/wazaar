@@ -19,7 +19,7 @@
 		<td>{{$order->buyer_email}}</td>
 		<td>{{$order->created_at->format('M d, Y h:i A \\(l\\)')}}</td> -->
 		<td>
-			<a href="#" class="btn btn-default btn-block">View More</a>
+			<a href="#" class="btn btn-default btn-block" data-id="{{$order->id}}" onclick="viewModalDetails(this); return false;">View More</a>
 			<!-- @if(!empty($order->payment_ref))
 				<button type="button" class="btn btn-danger btn-sm">{{ trans('administration.orders.refund' )}}</button>
 			@else

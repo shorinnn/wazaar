@@ -1,6 +1,86 @@
     @extends('layouts.default')
     @section('content')	
     <div class="crud-wrapper">
+        <br />
+        <br />
+        <br />
+        <a href="#" class="btn btn-primary btn-primary-small">Small primary small</a>
+        <a href="#" class="btn btn-primary">Primary small</a>
+        <a href="#" class="btn btn-primary btn-primary-large">Large primary small</a>
+        <br />
+        <br />
+        <br />
+        <a href="#" class="btn btn-default btn-default-small">Small default small</a>
+        <a href="#" class="btn btn-default">Default small</a>
+        <a href="#" class="btn btn-default btn-default-large">Large default small</a>
+        <br />
+        <br />
+        <br />
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="row">
+                        <div class="checkbox">
+                            <input id="checkbox-0" autocomplete="off" type="checkbox">
+                            <label for="checkbox-0" class="small-checkbox"></label>
+                        </div>
+                        <span>ID</span></th>
+                    <th><span>COURSE TITLE</span></th>
+                    <th class="text-right"><span>PRICE<i class="fa fa-angle-down"></i></span></th>
+                    <th class="text-right"><span>DATE</span></th>
+                    <th><span>STATUS</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="success">
+                    <th scope="row">
+                        <div class="checkbox">
+                            <input id="checkbox-1" autocomplete="off" type="checkbox">
+                            <label for="checkbox-1" class="small-checkbox"></label>
+                        </div>
+                        000119</th>
+                    <td class="course-title">利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
+                    <td class="text-right">Y23,497</td>
+                    <td class="text-right">9/10/2015</td>
+                    <td class="status">SUCCESS</td>
+                </tr>
+                <tr class="pending">
+                    <th scope="row">
+                        <div class="checkbox">
+                            <input id="checkbox-2" autocomplete="off" type="checkbox">
+                            <label for="checkbox-2" class="small-checkbox"></label>
+                        </div>
+                        000119</th>
+                    <td class="course-title">利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
+                    <td class="text-right">Y23,497</td>
+                    <td class="text-right">9/10/2015</td>
+                    <td class="status">SUCCESS</td>
+                </tr>
+                <tr class="refunded">
+                    <th scope="row">
+                        <div class="checkbox">
+                            <input id="checkbox-3" autocomplete="off" type="checkbox">
+                            <label for="checkbox-3" class="small-checkbox"></label>
+                        </div>
+                        000119</th>
+                    <td class="course-title">利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
+                    <td class="text-right">Y23,497</td>
+                    <td class="text-right">9/10/2015</td>
+                    <td class="status">SUCCESS</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="result-pagination right">
+            <p>Showing 1-10 of 144 results</p>
+            <div class="nav">
+                <a href="#" class="left-nav"><i class="wa-chevron-left"></i></a>
+                <a href="#" class="right-nav"><i class="wa-chevron-right"></i></a>
+            </div>
+        </div>
+
     	<div class="crud-components clearfix">
         	<div class="table-wrapper table-responsive">
             	<span class="table-title">SALES

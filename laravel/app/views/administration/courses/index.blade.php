@@ -157,13 +157,52 @@
             <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
         </div>
     </div>
-
+    <div id="disapprove-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        <img src="" id="modal-img" class="pull-left" style="width:200px;">
+                        <span id="modal-title" class="pull-right" style="width: calc(100% - 220px);"></span>
+                        <div class="clearfix"></div>
+                    </h4>
+                </div>
+                <div class="modal-body"><img src="{{url('images/ajax-loader.gif')}}" class="img-responsive" style="margin:10px auto;" /></div>
+            </div>
+        </div>
+    </div>
 </div>
 @stop
 
 
 @section('extra_extra_js')
 <script>
+    function activateRejectButton()
+    {
+        $('.reject-btn').on('click', function(e){
+            var $modal = $('#disapprove-modal').modal();
+            var id = $(this).data('id');
+            var img = $('#'+id+' .course-img').attr('src');
+            var title = $('#'+id+' .course-title a').text();
+            var url = '/administration/manage-courses/get-disapprove-form?course_id='+id;
+
+            $modal.find('#modal-img').attr('src', img);
+            $modal.find('#modal-title').text(title);
+            $.ajax({
+                url: url,
+                cache: false,
+                success: function(result){
+                    $modal.find('.modal-body').html(result);
+                }
+            });
+            $modal.on('hidden.bs.modal', function(){
+                $modal.find('#modal-img').attr('src', '');
+                $modal.find('#modal-title').text('');
+                $modal.find('.modal-body').html('<img src="{{url('images/ajax-loader.gif')}}" class="img-responsive" style="margin:10px auto;" />');
+            });
+        })
+    }
     function populateSubCat(el)
     {
         var url = '/administration/manage-courses/get-subcats?cat_id='+$(el).val();
@@ -211,6 +250,12 @@
         $('.courses-listings-ajax-link').click();
     }
     
+    function closeModalAndUpdateSearchOrder()
+    {
+        $('#disapprove-modal').modal('hide');
+        updateSearchOrder();
+    }
+
     function updateSearchOrder()
     {
         searchOrder(true, true);

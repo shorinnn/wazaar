@@ -102,9 +102,6 @@
 	margin: 0;
 }
 
-.table > thead{
-	background: #40b3ff;
-}
 
 .table.table-bordered > thead > tr > th{
 	font-weight: normal;

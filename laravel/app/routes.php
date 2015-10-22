@@ -206,13 +206,15 @@ $wwwRoutes = function(){
         Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('manage-orders', 'OrdersController@index');
+        Route::get('manage-orders/{id}', 'OrdersController@show');
         Route::get('manage-users', 'UsersController@adminManageUsers');
         Route::get('old-manage-courses', 'CoursesController@oldAdminIndex');
         Route::get('manage-courses', 'CoursesController@adminIndex');
         Route::get('manage-courses/get-subcats', 'CoursesController@getSubcats');
-        Route::get('manage-courses/{slug}', 'CoursesController@adminShowCourse');
         Route::get('manage-courses/analytics/course/stats/{courseId}/{startDate}/{endDate}', 'CoursesController@courseStatsTableView');
         Route::any('manage-courses/analytics/course/affiliates/{courseId}/{startDate}/{endDate}','CoursesController@topAffiliatesTableView');
+        Route::get('manage-courses/get-disapprove-form', 'CoursesController@getDisapproveForm');
+        Route::get('manage-courses/{slug}', 'CoursesController@adminShowCourse');
     });
 //});
 };

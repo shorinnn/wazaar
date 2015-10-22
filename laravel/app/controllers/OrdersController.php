@@ -337,4 +337,14 @@ class OrdersController extends \BaseController {
 		return View::make('administration.orders.index', compact('sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'transaction_id'));
 	}
 
+	public function show($id)
+	{
+		$order = Purchase::where('id', $id)->first();
+		if($order->second_tier_instructor_id){
+			$order->second_tier_instructor = User::where('id', $order->second_tier_instructor_id)->first();
+		} else {
+			$order->second_tier_instructor = null;
+		}
+        return View::make('administration.orders.show',compact('order'));
+	}
 }
