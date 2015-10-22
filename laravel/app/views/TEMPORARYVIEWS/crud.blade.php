@@ -1,13 +1,21 @@
     @extends('layouts.default')
     @section('content')	
     <div class="crud-wrapper">
+        <br />
+        <br />
+        <br />
         <a href="#" class="btn btn-primary btn-primary-small">Small primary small</a>
         <a href="#" class="btn btn-primary">Primary small</a>
         <a href="#" class="btn btn-primary btn-primary-large">Large primary small</a>
         <br />
+        <br />
+        <br />
         <a href="#" class="btn btn-default btn-default-small">Small default small</a>
         <a href="#" class="btn btn-default">Default small</a>
         <a href="#" class="btn btn-default btn-default-large">Large default small</a>
+        <br />
+        <br />
+        <br />
 
         <div class="table-responsive">
             <table class="table">
@@ -20,7 +28,7 @@
                         </div>
                         <span>ID</span></th>
                     <th><span>COURSE TITLE</span></th>
-                    <th class="text-right"><span>PRICE</span></th>
+                    <th class="text-right"><span>PRICE<i class="fa fa-angle-down"></i></span></th>
                     <th class="text-right"><span>DATE</span></th>
                     <th><span>STATUS</span></th>
                 </tr>
@@ -33,7 +41,7 @@
                             <label for="checkbox-1" class="small-checkbox"></label>
                         </div>
                         000119</th>
-                    <td>利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
+                    <td class="course-title">利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
                     <td class="text-right">Y23,497</td>
                     <td class="text-right">9/10/2015</td>
                     <td class="status">SUCCESS</td>
@@ -45,7 +53,7 @@
                             <label for="checkbox-2" class="small-checkbox"></label>
                         </div>
                         000119</th>
-                    <td>利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
+                    <td class="course-title">利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
                     <td class="text-right">Y23,497</td>
                     <td class="text-right">9/10/2015</td>
                     <td class="status">SUCCESS</td>
@@ -57,7 +65,7 @@
                             <label for="checkbox-3" class="small-checkbox"></label>
                         </div>
                         000119</th>
-                    <td>利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
+                    <td class="course-title">利益２０００万円 現役日本人プロカジノプレーヤーが教える負けない実</td>
                     <td class="text-right">Y23,497</td>
                     <td class="text-right">9/10/2015</td>
                     <td class="status">SUCCESS</td>

@@ -7756,6 +7756,13 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block !important;
 }
 
+.center-vertically, tbody tr .course-title:before, tbody tr .status:before {
+  top: 50%;
+  -ms-transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
 /***** Buttons *****/
 .btn {
   font-size: 12px;
@@ -7829,11 +7836,21 @@ thead th:last-of-type {
   border-right: solid 1px #DCE0E6 !important;
   border-radius: 0 2px 2px 0;
 }
+thead th i {
+  margin-left: 2px;
+}
 thead th + th span {
   border-left: solid 1px #DCE0E6;
   display: block;
 }
 
+tbody tr .course-title:before {
+  font-family: FontAwesome;
+  font-size: 16px;
+  position: relative;
+  left: 0;
+  margin-right: 13px;
+}
 tbody tr .status {
   position: relative;
   padding-left: 31px !important;
@@ -7844,14 +7861,14 @@ tbody tr .status:before {
   border-radius: 6px;
   position: absolute;
   left: 12px;
-  top: 50%;
-  -ms-transform: translate(0, -50%);
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
   content: '';
 }
 tbody tr.success .status:before {
   background-color: #7ed321;
+}
+tbody tr.success .course-title:before {
+  content: "\f058";
+  color: #7ed321;
 }
 tbody tr.success th, tbody tr.success td {
   background-color: transparent !important;
@@ -7859,11 +7876,19 @@ tbody tr.success th, tbody tr.success td {
 tbody tr.pending .status:before {
   background-color: #a0acc7;
 }
+tbody tr.pending .course-title:before {
+  content: "\f058";
+  color: #a0acc7;
+}
 tbody tr.refunded .status:before {
   background-color: #3d85f2;
 }
+tbody tr.refunded .course-title:before {
+  content: "\f0a8";
+  color: #3d85f2;
+}
 
-.table-striped > tbody > tr:nth-of-type(odd) {
+.table-striped > tbody > tr:nth-of-type(odd), .table-striped > tbody > tr:nth-child(odd) > th, .table-striped > tbody > tr:nth-child(odd) > td {
   background-color: #fff;
 }
 .table-striped > tbody > tr:nth-of-type(even) {
