@@ -1,0 +1,284 @@
+/****** Headings ******/
+h1, h2, h3, h4, h5, h6{
+  color: $bg-light;
+  font-weight: 400;
+}
+
+/************ Extends *******/
+.side-padding-level-1{
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}
+.side-padding-level-2{
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+.side-padding-level-3{
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+.side-padding-level-4{
+  padding-left: 36px !important;
+  padding-right: 36px !important;
+}
+.no-side-padding{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.normal-table-column-vert-pad{
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+.condensed-table-column-vert-pad{
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+.table-body-style{
+  font-size: $font-size-body;
+  line-height: $line-height-normal;
+  color: $main-text;
+  font-weight: 400;
+
+}
+.label-font-style{
+  font-size: $font-size-label;
+  font-weight: 400;
+  line-height: $line-height-normal;
+}
+.success-text{
+  color: $success-color;
+}
+.pending-text{
+  color: $pending-color;
+}
+.refunded-text{
+  color: $refunded-color;
+}
+.checkbox{
+  display: inline-block;
+  margin: 0;
+}
+.radio-and-checkbox{
+  opacity: 0;
+  display: none;
+  cursor: pointer;
+  &+label{
+    background-color: $white-bg;
+    box-shadow: none;
+    vertical-align: top;
+    border-radius: 2px;
+    display: inline-block !important;
+    //border: 1px solid $border-light;
+  }
+}
+.center-vertically{
+  top: 50%;
+  -ms-transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+
+}
+/***** Buttons *****/
+.btn{
+  font-size: 12px;
+  line-height: $line-height-normal;
+  border-radius: 3px;
+}
+.btn-primary{
+  background-color: $primary-blue;
+  font-weight: 600;
+  color: white;
+  border: none;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), inset 0 -2px 0 #3370cc;
+  padding: $btn-normal-padding;
+  &.btn-primary-small{
+    padding: $btn-small-padding;
+  }
+  &.btn-primary-large{
+    padding: $btn-large-padding;
+  }
+}
+.btn-default{
+  font-weight: 400;
+  color: #607594;
+  background-color: #f7f9fa;
+  border: 1px solid #dce0e6;
+  padding: $btn-normal-padding;
+  &.btn-default-small{
+    padding: $btn-small-padding;
+  }
+  &.btn-default-large{
+    padding: $btn-large-padding;
+  }
+}
+
+/********* Radio buttons and checkbox **********/
+input[type="checkbox"]{
+  @extend .radio-and-checkbox;
+}
+label.small-checkbox {
+  height: 18px;
+  width: 18px;
+  background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -54px -239px;
+}
+input[type='checkbox']:checked + label.small-checkbox {
+  background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -24px -239px;
+}
+
+/******* Tables **********/
+.table{
+  border-bottom: solid 2px $border-light;
+  .checkbox{
+    @extend .side-padding-level-3;
+  }
+}
+
+// Table head
+thead{
+  background-color: $bg-dark;
+  th{
+    border-top: solid 1px $border-light !important;
+    border-bottom: solid 1px $border-light !important;
+    color: $body-text;
+    padding: 7px 0 !important;
+    line-height: $line-height-normal;
+    font-size: $font-size-label;
+    text-transform: uppercase;
+    font-weight: 400;
+    &:first-of-type{
+      border-left: solid 1px $border-light !important;
+      border-radius: 2px 0 0 2px;
+    }
+    &:last-of-type{
+      border-right: solid 1px $border-light !important;
+      border-radius: 0 2px 2px 0;
+    }
+    i{
+      margin-left: 2px;
+    }
+  }
+  th + th span{
+    border-left: solid 1px $border-light;
+    @extend .side-padding-level-2;
+    display: block;
+  }
+}
+
+// Table body
+tbody{
+  td, th{
+    @extend .table-body-style;
+    @extend .side-padding-level-2;
+    @extend .normal-table-column-vert-pad;
+  }
+  th{
+    @extend .no-side-padding;
+  }
+  tr{
+    .course-title:before{
+      font-family: FontAwesome;
+      font-size: 16px;
+      position: relative;
+      left: 0;
+      @extend .center-vertically;
+      margin-right: 13px;
+
+    }
+    .status{
+      position: relative;
+      padding-left: 31px !important;
+      &:before{
+        height: 6px;
+        width: 6px;
+        border-radius: 6px;
+        position: absolute;
+        left: 12px;
+        content: '';
+        @extend .center-vertically;
+      }
+    }
+    &.success{
+      .status{
+        @extend .success-text;
+        &:before{
+          background-color: $success-color;
+        }
+      }
+      .course-title:before{
+        content: "\f058";
+        color: $success-color;
+      }
+      th, td{
+        background-color: transparent !important;
+      }
+    }
+    &.pending{
+      .status{
+        @extend .pending-text;
+        &:before{
+          background-color: $pending-color;
+        }
+      }
+      .course-title:before{
+        content: "\f058";
+        color: $pending-color;
+      }
+    }
+    &.refunded{
+      .status{
+        @extend .refunded-text;
+        &:before{
+          background-color: $refunded-color;
+        }
+      }
+      .course-title:before{
+        content: "\f0a8";
+        color: $refunded-color;
+      }
+    }
+  }
+}
+.table-striped > tbody > tr{
+  &:nth-of-type(odd),
+  &:nth-child(odd)>th,
+  &:nth-child(odd)>td{
+    background-color: $white-bg;
+  }
+  &:nth-of-type(even){
+    background-color: $bg-dark;
+  }
+  td, th{
+    border: none !important;
+  }
+}
+.table-condensed > tbody{
+  th, td{
+    @extend .condensed-table-column-vert-pad;
+  }
+}
+
+// Results Pagination
+.result-pagination{
+  p{
+    display: inline-block;
+    @extend .label-font-style;
+    color: $light-body-text;
+  }
+  a{
+    display: inline-block;
+    padding: 7px 15px 4px;
+    border-radius: 3px;
+    background-color: $bg-dark;
+    border: solid 1px $border-light;
+    color: $light-body-text;
+    @extend .label-font-style;
+    &+a{
+      margin-left: 12px;
+    }
+  }
+  .nav{
+    padding-left: 24px;
+    display: inline-block;
+  }
+}

@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
         <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
         <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
+        <link rel="stylesheet" href="{{url('css/styles.css')}}">
     @endif
 
     @yield('extra_css')
