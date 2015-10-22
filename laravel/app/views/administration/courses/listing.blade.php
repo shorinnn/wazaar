@@ -1,16 +1,16 @@
 <div>
 	@if(count($courses) >= 1)
 		@foreach($courses as $course)
-		<div class="course-container">
+		<div class="course-container" id="{{$course->id}}">
 			<div class="col-md-2 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-12">
 				@if(isset($course->previewImage->url) && !empty($course->previewImage->url))
-				<img src="{{$course->previewImage->url}}" class="img-responsive" />
+				<img src="{{$course->previewImage->url}}" class="course-img img-responsive" />
 				@else
-				<img src="{{ url('splash/logo.png') }}" class="img-responsive" />
+				<img src="{{ url('splash/logo.png') }}" class="course-img img-responsive" />
 				@endif
 			</div>
 			<div class="col-md-7 col-sm-12 col-xs-12">
-				<h2><a href="{{action('CoursesController@adminShowCourse', [$course->slug])}}" class="wazaar-blue-text">{{$course->name}}</a></h2>
+				<h2 class="course-title"><a href="{{action('CoursesController@adminShowCourse', [$course->slug])}}" class="wazaar-blue-text">{{$course->name}}</a></h2>
 				<label>{{ trans('administration.courses.label.category' )}}</label>: {{$course->course_category}}<br />
 				<label>{{ trans('administration.courses.label.subcategory' )}}</label>: {{$course->course_subcategory}}<br />
 				@if($course->free == 'no')
@@ -41,26 +41,7 @@
 				</div>
 				<div class="col-md-12 col-sm-4 col-xs-4 action-btn-container">
 					@if($course->publish_status != 'rejected')
-						{{ Form::open( ['action' => array('SubmissionsController@update', $course->id), 
-	                                'method' => 'PUT', 'id'=>'reject-form-'.$course->id, 'class' => 'ajax-form',
-	                            'data-callback' => 'updateSearchOrder'] ) }}
-	                        <input type="hidden" name="value" value="rejected" />	                        
-	                        <div class="form-group">
-	                        	<button class='btn btn-default btn-block slide-toggler' data-target='#reason-box-{{$course->id}}'>[Reason]</button>
-	                        </div>
-
-	                        <div id='reason-box-{{$course->id}}' style='display:none;'>
-	                            @if($course->instructor != null)
-	                                @if( $course->instructor->profile!=null)
-	                                    <h3 class="text-center">{{ $course->instructor->profile->email }}</h3>
-	                                @else
-	                                    <h3 class="text-center">{{ $course->instructor->email }}</h3>
-	                                @endif
-	                            @endif
-	                            <textarea id='reason-{{$course->id}}' name='reject_reason' style='background:white; height:100px'></textarea>
-	                        </div>
-	                        <button type="submit" name='reject_course' class="btn btn-block btn-danger delete-button" data-message="{{ trans('administration.sure-reject') }}?">{{ trans('administration.courses.label.disapprove' )}}</button>
-	                    {{ Form::close() }}
+                        <button type="button" id="reject-btn-{{$course->id}}" data-id="{{$course->id}}" class="reject-btn btn btn-block btn-danger">{{ trans('administration.courses.label.disapprove' )}}</button>
 					
 					@endif
 				</div>
@@ -75,3 +56,6 @@
 <div class="container no-padding">
 {{ $courses->appends(Input::only('search','price','course_category','course_sub_category','sale_amount_low','sale_amount_high','filter', 'sort_data'))->links() }}
 </div>
+<script>
+	activateRejectButton();
+</script>

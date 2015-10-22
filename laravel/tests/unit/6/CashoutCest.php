@@ -46,8 +46,70 @@ class CashoutCest{
         foreach($credits as $credit){
             $I->assertNotNull($credit->cashed_out_on);
         }
-       
     }
+    
+    public function instructorCashoutCustomFee(UnitTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        Transaction::truncate();
+        Transaction::unguard();
+        $t = date('Y-m-01', strtotime('-1 day') );
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        $instructor->instructor_balance = 100;
+        $instructor->updateUniques();
+        $I->assertEquals( 100, $instructor->instructor_balance );
+        $bankFee = Setting::firstOrCreate( [ 'name' => 'cashout-bank-fee' ] );
+        $bankFee->value = 22;
+        $bankFee->updateUniques();
+            
+        $amount = $instructor->instructor_balance - 22;
+        
+        Artisan::call( 'cocorium:instructor-cashout' );
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->assertEquals( 0, $instructor->instructor_balance );
+
+        
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 
+            'amount' => $amount, 'status' => 'pending'] );
+        $debits = '["1","2"]';
+        $credit = Transaction::find(3);
+        $I->assertEquals( $debits, $credit->debits );
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'cashout_fee', 
+            'amount' => 22, 'status' => 'pending'] );
+        
+        $credits = $instructor->allTransactions()->where('transaction_type','instructor_credit')->get();
+        foreach($credits as $credit){
+            $I->assertNotNull($credit->cashed_out_on);
+        }
+    }
+    
+    public function instructorCashoutCustomThreshold(UnitTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        Transaction::truncate();
+        Transaction::unguard();
+        $I->dontSeeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 'status' => 'pending'] );
+        
+        $t = date('Y-m-01', strtotime('-1 day') );
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        $instructor->instructor_balance = 100;
+        $instructor->updateUniques();
+        $I->assertEquals( 100, $instructor->instructor_balance );
+            
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $instructor->profile->payment_threshold = 500;
+        $I->assertTrue( $instructor->profile->updateUniques() );
+        
+        Artisan::call( 'cocorium:instructor-cashout' );
+        $I->assertEquals( 100, $instructor->instructor_balance );
+
+        $I->dontSeeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 'status' => 'pending'] );
+    }
+    
     public function instructorWithSecondTierCashout(UnitTester $I){
         $instructor = Instructor::where('username', 'instructor')->first();
         Transaction::truncate();
@@ -319,6 +381,79 @@ class CashoutCest{
 //        $I->assertEquals(3 , $agency->allTransactions()->where('transaction_type','instructor_agency_credit')->whereNull('cashed_out_on')->count() );
 //    }
 
+    public function affiliateCashoutCustomFee(UnitTester $I){
+        $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
+        Transaction::truncate();
+        Transaction::unguard();
+        $t = date('Y-m-01', strtotime('-1 day') );
+        Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        $affiliate->affiliate_balance = 100;
+        $affiliate->updateUniques();
+        $I->assertEquals( 100, $affiliate->affiliate_balance );
+        
+        $bankFee = Setting::firstOrCreate( [ 'name' => 'cashout-bank-fee' ] );
+        $bankFee->value = 11;
+        $bankFee->updateUniques();
+        
+        $amount = $affiliate->affiliate_balance - 11;
+        
+        Artisan::call( 'cocorium:affiliate-cashout' );
+        $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
+        $I->assertEquals( 0, $affiliate->affiliate_balance );
+        
+        $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 'amount' => $amount, 
+            'status' => 'pending' ] );
+        $debits = '["1","2"]';
+        $credit = Transaction::find(3);
+        $I->assertEquals( $debits, $credit->debits );
+        $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'cashout_fee', 'amount' => 11, 'status' => 'pending'] );
+        
+        $credits = $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->get();
+        foreach($credits as $credit){
+            $I->assertNotNull($credit->cashed_out_on);
+        }
+       
+    }
+    
+    public function affiliateCashoutCustomThreshold(UnitTester $I){
+        $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
+        $profile = new Profile;
+        $profile->owner_id = $affiliate->id;
+        $profile->owner_type = 'Affiliate';
+        $profile->payment_threshold = 500;
+        $I->assertTrue( $profile->save() );
+            
+        Transaction::truncate();
+        Transaction::unguard();
+        $t = date('Y-m-01', strtotime('-1 day') );
+        Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        $affiliate->affiliate_balance = 200;
+        $I->assertTrue( $affiliate->updateUniques() );
+        
+        
+        $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
+        
+        $I->assertNotNull( $affiliate->profile );
+        $affiliate->profile->payment_threshold = 500;
+        
+        $I->assertTrue( $affiliate->profile->updateUniques() );
+        
+        $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
+        $I->assertEquals( 200, $affiliate->affiliate_balance );
+//        Artisan::call( 'cocorium:affiliate-cashout' );
+        $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
+        $I->assertEquals( 200, $affiliate->affiliate_balance );
+        
+        $I->dontSeeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 'status' => 'pending' ] );
+        
+    }
+    
     public function affiliateCashout(UnitTester $I){
         $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
         Transaction::truncate();

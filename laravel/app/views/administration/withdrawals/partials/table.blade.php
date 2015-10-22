@@ -1,6 +1,15 @@
-<div class="container members-area  ajax-content">
+<div class="container members-area  ajax-content ajax-content-{{$type}}">
     <div class="row">
     	<div class="col-md-12">
+            @if(Request::segment('3')=='')
+                <div class='label label-success'>
+                    <span id='{{$type}}-ready-for-payment'></span> ready for payments
+                </div>
+
+                <div class='label label-danger'>
+                    <span id='{{$type}}-not-ready-for-payment'></span> without bank details
+                </div>
+            @endif
             <div class="table-wrapper table-responsive clear">
                <form method='post' id='withdrawForm' action='{{action('WithdrawalsController@update')}}'>
                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
@@ -27,6 +36,9 @@
                                 {{ trans('administration.amount') }}
                             </th>
                             <th>
+                                {{ trans('administration.period') }}
+                            </th>
+                            <th>
                                 {{ trans('administration.timestamp') }}
                             </th>
                             <th>
@@ -36,7 +48,7 @@
                     </thead>
                     <tbody>
                         @foreach($requests as $request)
-                        <tr>
+                        <tr class='transaction-row'>
                             <td class="hidden-xs">
                                 <div class='checkbox-buttons'>
                                     <div class="checkbox-item"> 
@@ -55,9 +67,9 @@
                             <td class="hidden-xs">
                                 @if( $request->transaction_type=='instructor_debit')
                                         @if($request->user->_profile('Instructor')==null)
-                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
                                         @elseif( $request->user->noFill('Instructor') )
-                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
                                         @else
                                         @endif
                                         
@@ -65,9 +77,9 @@
                                     
                                 @elseif( $request->transaction_type=='affiliate_debit')
                                         @if($request->user->_profile('Affiliate')==null)
-                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
                                          @elseif( $request->user->noFill('Affiliate') )
-                                            <p style='color:red; font-weight: bold'>NO FILL</p>
+                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
                                         @else
                                         @endif
                                         
@@ -87,18 +99,21 @@
                                     ¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}
                                 
                             </td>
+                            <td>{{ $request->period() }}</td>
                             <td>
                                 {{ $request->created_at->diffForHumans() }}
                             </td>
                             <td>
-                                <input type="text" name="reference[{{$request->id}}]" placeholder="{{ trans('administration.reference') }}" 
-                                       value="{{ $request->id }}" />
+                                @if( isset($request) && $request->status=='pending') 
+                                    <input type="text" name="reference[{{$request->id}}]" placeholder="{{ trans('administration.reference') }}" 
+                                           value="{{ $request->id }}" />
+                                @endif
                             </td>
                             
                         </tr>
                         <tr></tr>
                         <tr>
-                            <td colspan="6">
+                            <td colspan="7">
                                 <div class="row well bank-deets-{{$request->id}}" style="display:none">
                                     @if( $request->transaction_type=='instructor_debit')
                                         <?php $bank = $request->user->_profile('Instructor');?>
@@ -122,13 +137,20 @@
                         </tr>
                         @endforeach
                         <tr>
-                            <td colspan="6">
-                                <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
-                                        data-mode='complete'
-                                        data-message='{{ trans('administration.mark-transaction-complete') }}?'>{{ trans('administration.complete-selected') }}</button>
-                                <button type='button' class='btn btn-danger' onclick="processWithdrawal(this)"
-                                        data-mode='reject'
-                                        data-message='{{ trans('administration.mark-transaction-failed') }}?'>{{ trans('administration.reject-selected') }}</button>
+                            <td colspan="7">
+                                @if( isset($request) && $request->status=='pending') 
+                                    <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
+                                            data-mode='complete'
+                                            data-message='{{ trans('administration.mark-transaction-complete') }}?'>{{ trans('administration.mark-approved') }}</button>
+                                    <button type='button' class='btn btn-danger' onclick="processWithdrawal(this)"
+                                            data-mode='reject'
+                                            data-message='{{ trans('administration.mark-transaction-failed') }}?'>{{ trans('administration.reject-selected') }}</button>
+                                @else
+                                    <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
+                                        data-mode='paid'
+                                        data-message='{{ trans('administration.mark-transaction-paid') }}?'>{{ trans('administration.mark-paid') }}</button>
+                               
+                                @endif
                             </td>
                         </tr>
                     </tbody>
@@ -139,8 +161,8 @@
         </div>
     </div>
     <div class="row">
-    	<div class="col-md-12 load-remote" data-target='.ajax-content' data-load-method="fade">
-    		{{ $requests->links() }}
+    	<div class="col-md-12 load-remote" data-target='.ajax-content-{{$type}}' data-load-method="fade" data-callback='calculateReadiness'>
+    		{{ $requests->appends( ['tab' => $type] )->links() }}
     	</div>
 	</div>
 </div>

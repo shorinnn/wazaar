@@ -11,7 +11,21 @@ class WithdrawalsController extends \BaseController {
 	public function index()
 	{
                 $types = [ 'instructor_agency_debit', 'instructor_debit', 'affiliate_debit' ];
-		$requests = Transaction::whereIn('transaction_type',$types)->where('status','pending')->paginate( 20 );
+		$instructorRequests = Transaction::where('transaction_type','instructor_debit')->where('status','pending')->paginate( 2 );
+		$affiliateRequests = Transaction::where('transaction_type','affiliate_debit')->where('status','pending')->paginate( 2 );
+                if( Request::ajax() ){
+                    if( Input::get('tab') == 'instructor' )
+                        return View::make('administration.withdrawals.partials.table')->withRequests( $instructorRequests )->withType('instructor'); 
+                    else
+                        return View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate');
+                }
+                return View::make('administration.withdrawals.index')->with( compact('instructorRequests', 'affiliateRequests') );
+	}
+        
+	public function notPaid()
+	{
+                $types = [ 'instructor_agency_debit', 'instructor_debit', 'affiliate_debit' ];
+		$requests = Transaction::whereIn('transaction_type',$types)->where('status','complete')->paginate( 20 );
                 if( Request::ajax() ){
                     return View::make('administration.withdrawals.partials.table')->with( compact('requests') );
                 }
@@ -237,6 +251,9 @@ class WithdrawalsController extends \BaseController {
             if( Input::get('action')=='complete'){
                 WithdrawalsHelper::complete( Input::get('request'), Input::get('reference') );
             }
+            if( Input::get('action')=='paid'){
+                WithdrawalsHelper::paid( Input::get('request') );
+            }
             if( Input::get('action')=='reject'){
                 WithdrawalsHelper::reject( Input::get('request') );
             }
@@ -259,7 +276,11 @@ class WithdrawalsController extends \BaseController {
             exit($content);
         }
         
-        public function processDate(){
+        public function settings(){
+            $refund = Setting::firstOrCreate( [ 'name' => 'refund-window' ] );
+            $bankFee = Setting::firstOrCreate( [ 'name' => 'cashout-bank-fee' ] );
+            if($bankFee->value=='') $bankFee->value = Config::get('custom.cashout.fee');
+            
             $hour = Setting::firstOrCreate( [ 'name' => 'cashout-cron-hour' ] );
             $setting = Setting::firstOrCreate( [ 'name' => 'cashout-cron-date' ] );
             $options = [];
@@ -283,10 +304,31 @@ class WithdrawalsController extends \BaseController {
                 $hourOptions[$i] = date('ga', $time);
             }
             
-            return View::make('administration.withdrawals.settings')->with( compact('setting', 'options','hourOptions', 'hour') );
+            $mailContent = Setting::firstOrCreate( [ 'name' => 'bank-no-details-email-content' ] );
+            $mailSubject = Setting::firstOrCreate( [ 'name' => 'bank-no-details-email-subject' ] );
+            
+            return View::make('administration.withdrawals.settings')->with( compact('setting', 'options','hourOptions', 'hour', 'refund', 'bankFee', 
+                    'mailContent', 'mailSubject' ) );
         }
         
-        public function doProcessDate(){
+        public function doSettings(){
+            $mailContent = Setting::firstOrCreate( [ 'name' => 'bank-no-details-email-content' ] );
+            $mailContent->value = Input::get('email_content');
+            $mailContent->updateUniques();
+            
+            $mailSubject = Setting::firstOrCreate( [ 'name' => 'bank-no-details-email-subject' ] );
+            $mailSubject->value = Input::get('email_subject');
+            $mailSubject->updateUniques();
+          
+            
+            $refund = Setting::firstOrCreate( [ 'name' => 'refund-window' ] );
+            $refund->value = Input::get('refund_window');
+            $refund->updateUniques();
+            
+            $bankFee = Setting::firstOrCreate( [ 'name' => 'cashout-bank-fee' ] );
+            $bankFee->value = Input::get('bank_fee');
+            $bankFee->updateUniques();
+            
             $hour = Setting::firstOrCreate( [ 'name' => 'cashout-cron-hour' ] );
             $setting = Setting::firstOrCreate( [ 'name' => 'cashout-cron-date' ] );
             $hour->value = Input::get('hour');
@@ -316,7 +358,60 @@ class WithdrawalsController extends \BaseController {
                 $hourOptions[$i] = date('ga', $time);
             }
             
-            return View::make('administration.withdrawals.settings')->with( compact('setting', 'options','hourOptions', 'hour') );
+            return View::make('administration.withdrawals.settings')->with( compact('setting', 'options','hourOptions', 'hour', 'refund',
+                    'bankFee', 'mailContent', 'mailSubject' ) );
+        }
+        
+        public function sendBankEmail(){
+            $mailContent = Setting::where( [ 'name' => 'bank-no-details-email-content' ] )->first()->value;
+            $subject = Setting::where( [ 'name' => 'bank-no-details-email-subject' ] )->first()->value;
+            
+            $instructorIDS = Transaction::where('transaction_type','instructor_debit')->where('status','pending')->limit(1)->lists('user_id');
+            if(count($instructorIDS)==0) $instructorIDS = [0];
+            $instructors = User::whereIn('id', $instructorIDS)->get();
+            $sent = 0;
+            foreach( $instructors as $instructor ){
+                if( $instructor->noFill('Instructor') ){
+                    ++$sent;
+                    $firstName = ($instructor->profile==null) ? '' : $instructor->profile->first_name;
+                    $lastName = ($instructor->profile==null) ? '' : $instructor->profile->last_name;
+                    $content = str_replace('@first-name@', $firstName, $mailContent);
+                    $content = str_replace('@last-name@', $lastName, $content);
+                    Mail::send(
+                        'emails.simple',
+                        compact( 'content' ),
+                        function ($message) use ($instructor, $subject) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($instructor->email, $instructor->email)
+                                ->subject( $subject );
+                        }
+                    );
+                }
+            }
+            $affiliateIDS = Transaction::where('transaction_type','affiliate_debit')->where('status','pending')->limit(1)->lists('user_id');
+            if(count($affiliateIDS)==0) $affiliateIDS = [0];
+            $affiliates = User::whereIn('id', $affiliateIDS)->get();
+            foreach( $affiliates as $affiliate ){
+                if( $affiliate->noFill('Affiliate') ){
+                    ++$sent;
+                    $firstName = ($affiliate->profile==null) ? '' : $affiliate->profile->first_name;
+                    $lastName = ($affiliate->profile==null) ? '' : $affiliate->profile->last_name;
+                    $content = str_replace('@first-name@', $firstName, $mailContent);
+                    $content = str_replace('@last-name@', $lastName, $content);
+                    Mail::send(
+                        'emails.simple',
+                        compact( 'content' ),
+                        function ($message) use ($affiliate, $subject) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($affiliate->email, $affiliate->email)
+                                ->subject( $subject );
+                        }
+                    );
+                }
+            }
+            return json_encode( [ 'status' => 'success', 'sent' => $sent ] );
         }
 
 }

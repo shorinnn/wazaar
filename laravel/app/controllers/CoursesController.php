@@ -1407,4 +1407,13 @@ class CoursesController extends \BaseController {
 
         return View::make('instructors.analytics.tableTopAffiliates',compact('affiliates','addThisToRank'))->render();
     }
+
+    public function getDisapproveForm()
+    {
+        if(Request::has('course_id')){
+            $data = Request::all();
+            $course_id = $data['course_id'];
+            return View::make('administration.courses.partials.disapproveForm',compact('course_id'));
+        }
+    }
 }

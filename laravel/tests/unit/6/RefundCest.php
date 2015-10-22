@@ -28,6 +28,51 @@ class RefundCest{
     }
     
     
+    public function noRefundPastWindow(UnitTester $I){
+        $refund = Setting::firstOrCreate( [ 'name' => 'refund-window' ] );
+        $refund->value = 1;
+        $refund->updateUniques();
+        
+        $student = Student::where('username','sorin')->first();
+        $student->student_balance = 10;
+        $student->ltc_affiliate_id = 2;
+        $student->created_at = date('Y-m-d');
+        $student->updateUniques();
+        $I->assertEquals(10, $student->student_balance);
+                
+        $course = Course::first();
+        $course->price = 1050;
+        $course->affiliate_percentage = 10;
+        $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
+        
+        $course->instructor->instructor_agency_id = null;
+        $course->instructor->updateUniques();
+            
+        $balance = $student->balanceDebit( 10, $course );
+        $I->assertNotEquals( false, $balance );
+        
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '8.4';
+        
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = $balance;
+        
+        
+        $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $purchase->created_at = date('Y-m-d H:i:s', strtotime('-2 day'));
+        $purchase->updateUniques();
+        
+        $I->assertEquals(false, $purchase->refund() );
+        
+    }
+    
     public function purchaseThenRefundWithBalance(UnitTester $I){
         
         $student = Student::where('username','sorin')->first();

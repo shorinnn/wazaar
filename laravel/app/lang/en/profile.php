@@ -32,6 +32,7 @@ return
         'allowedPictureFormat' => 'Note: Allowed formats are only jpg, png or gif',
         'form'                 =>
             [
+                'paymentThreshold'            => 'Payment Threshold',
                 'email'            => 'Email',
                 'name'             => 'Name',
                 'name-tooltip'     => 'Name Tooltip',
