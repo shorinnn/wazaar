@@ -113,7 +113,7 @@ $(document).ready(function(){
     dynamicLessonNameWidth()
     toggleSideMenu();
     fixModalJerk();
-    stickFooterToBottom();
+    //stickFooterToBottom();
 
 
     //stickyFooter();
@@ -123,7 +123,7 @@ $(document).ready(function(){
         rescaleBckgrdOverlay();
         dynamicLessonNameWidth();
         skinVideoControls();
-        stickFooterToBottom();
+        //stickFooterToBottom();
 
     });
 

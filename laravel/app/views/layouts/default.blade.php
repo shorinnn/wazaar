@@ -39,7 +39,7 @@
         <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
         <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
         <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
-        <link rel="stylesheet" href="{{url('css/styles.css')}}">
+        <!--<link rel="stylesheet" href="{{url('css/styles.css')}}">-->
     @endif
 
     @yield('extra_css')
@@ -85,7 +85,9 @@
            
         		{{ View::make('layouts.shared.header') }}
         </header>
-        @yield('content')
+        <div class="overall-content-wrap">
+            @yield('content')
+        </div>
         <footer>
           <section class="footer-container">
             <div class="container">
@@ -96,13 +98,13 @@
                     </div>-->
                     <!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">-->
                     
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
                         <h5>&nbsp;</h5>
                         <a href="//wazaar.co.jp/contact/">メールでのお問い合わせ</a>
                         <p>Tel 03-6206-8396</p>
                                     
                     </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
                             <h5>{{ trans('general.support') }}</h5>
                             <div class="social-icons">
                                 <a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
@@ -119,7 +121,7 @@
             <div class="container-fluid footer-privacy-bar">
             	<div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-xs">
                             <span>&copy; Wazaar {{ date('Y') }}</span>
                             <span>運営会社</span>
                             <!--<a href="{{ action('SiteController@about') }}">運営会社</a>-->
