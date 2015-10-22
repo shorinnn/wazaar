@@ -202,6 +202,7 @@ $wwwRoutes = function(){
         Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('manage-orders', 'OrdersController@index');
+        Route::get('manage-orders/{id}', 'OrdersController@show');
         Route::get('manage-users', 'UsersController@adminManageUsers');
         Route::get('old-manage-courses', 'CoursesController@oldAdminIndex');
         Route::get('manage-courses', 'CoursesController@adminIndex');
