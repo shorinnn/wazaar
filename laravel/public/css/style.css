@@ -4739,7 +4739,7 @@ h2, h3, h4, h5, h6{
 }
 .affiliate-top-header .add-gift,
 .affiliate-top-header .add-tracking-id{
-	margin: 6px 0;
+    height: 28px;
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 14px !important;
@@ -4777,7 +4777,7 @@ h2, h3, h4, h5, h6{
 .affiliate-top-header .add-gift i.fa-gift{
 	font-size: 15px;
 	position: relative;
-	top: 1px;
+	top: 0;
 }
 .affiliate-top-header .add-gift i.wa-chevron-down{
 	font-size: 10px;
