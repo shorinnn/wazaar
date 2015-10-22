@@ -1,6 +1,9 @@
 <?php
 
 return array(
+    'mark-paid' => 'Mark Paid',
+    'mark-approved' => 'Mark Approved',
+    'period' => 'Period',
     'students' => 'Students',
     'teachers' => 'Teachers',
     'affiliates' => 'Affiliates',
@@ -42,6 +45,7 @@ return array(
     'reject-selected' => 'Reject Selected',
     'before-fee' => 'Before Fee',
     'after-fee' => 'After Fee',
+    'mark-transaction-paid' => 'Mark transaction paid',
     'mark-transaction-complete' => 'Mark transaction complete',
     'mark-transaction-failed' => 'Mark transaction as failed and refund balance',
     'approve' => 'Approve',

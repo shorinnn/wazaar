@@ -98,7 +98,14 @@ class AffiliateCashoutCommand extends ScheduledCommand {
                         })->get();
                 $sum = $transactions->sum('amount'); 
                 $this->info("AMT: $sum");
-                if( $sum >= Config::get('custom.cashout.threshold') ){
+                
+                
+                $threshold = Config::get('custom.cashout.threshold');
+                if( $affiliate->profile !=null && $affiliate->profile->payment_threshold > $threshold ){
+                    $threshold = $affiliate->profile->payment_threshold;
+                }
+                
+                if( $sum >= $threshold ){
                     if( !$affiliate->debit( $transactions->sum('amount'), null, $transactions ) ){
                         $this->error('Could not debit - '.$affiliate->debit_error);
                     }

@@ -16,6 +16,15 @@ class WithdrawalsHelper{
         }
     }
     
+    public static function paid( $requests ){
+        foreach($requests as $key=>$val){
+            // complete the request
+            $transaction = Transaction::find( $val );
+            $transaction->status = 'paid';
+            $transaction->updateUniques();
+        }
+    }
+    
     public static function reject( $requests ){
         foreach($requests as $key=>$val){
             // complete the request

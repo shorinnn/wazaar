@@ -142,8 +142,12 @@ $wwwRoutes = function(){
         Route::get('withdrawals/bank-file/{time}', 'WithdrawalsController@bankFile');
         Route::get('withdrawals/bank-file/', 'WithdrawalsController@bankFile');
         Route::post('withdrawals/bank-file/', 'WithdrawalsController@downloadBankFile');
-        Route::get('withdrawals/process-date', 'WithdrawalsController@processDate');
-        Route::post('withdrawals/process-date', 'WithdrawalsController@doProcessDate');
+        
+        Route::get('withdrawals/settings', 'WithdrawalsController@settings');
+        Route::post('withdrawals/settings', 'WithdrawalsController@doSettings');
+        
+        Route::get('withdrawals/not-paid', 'WithdrawalsController@notPaid');
+        Route::post('withdrawals/send-bank-email', 'WithdrawalsController@sendBankEmail');
         
         Route::resource('withdrawals', 'WithdrawalsController');
         

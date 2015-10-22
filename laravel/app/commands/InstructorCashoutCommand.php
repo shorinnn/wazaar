@@ -100,7 +100,11 @@ class InstructorCashoutCommand extends ScheduledCommand {
                         ->get();
                 $sum = $transactions->sum('amount'); 
                 $this->info("AMT: $sum");
-                if( $sum >= Config::get('custom.cashout.threshold') ){
+                $threshold = Config::get('custom.cashout.threshold');
+                if( $instructor->profile !=null && $instructor->profile->payment_threshold > $threshold ){
+                    $threshold = $instructor->profile->payment_threshold;
+                }
+                if( $sum >= $threshold){
                     if ( !$instructor->debit( $transactions->sum('amount'), null, $transactions ) ){
                         $this->error('Could not debit - '.$instructor->debit_error);
                     }

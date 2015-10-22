@@ -125,13 +125,24 @@ class LTCAffiliate extends User{
             $this->balance_error = true;
             return false;
         }
-        if( $amount < Config::get('custom.cashout.threshold') ){
-            $this->debit_error = "Amount ($amount) less than threshold (".Config::get('custom.cashout.threshold').")";
+        
+        $threshold = Config::get('custom.cashout.threshold');
+        if( $this->profile !=null && $this->profile->payment_threshold > $threshold ){
+            $threshold = $this->profile->payment_threshold;
+        }
+        
+        if( $amount < $threshold ){
+            $this->debit_error = "Amount ($amount) less than threshold (". $threshold .")";
             return false;
         }
         
         return DB::transaction(function() use ($amount, $reference, $transactions_to_mark){
-              $fee = Config::get('custom.cashout.fee');
+              $cashoutFee = Setting::where( [ 'name' => 'cashout-bank-fee' ] )->first();
+              if($cashoutFee==null || $cashoutFee->value==='')
+                $fee = Config::get('custom.cashout.fee');
+              else
+                $fee = $cashoutFee->value;
+              
               $cashout = $amount - $fee;
               
             // create the transaction
