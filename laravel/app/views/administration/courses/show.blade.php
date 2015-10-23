@@ -93,7 +93,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.price' )}}</div>
                 <div class="col-md-6 col-sm-6 col-xs-6 text-left list">
                     @if($course->free == 'no')
-                        <span class="success-color">¥{{number_format($course->price)}}</span>
+                        <span class="text-success">¥{{number_format($course->price)}}</span>
                     @else
                         {{ trans('administration.courses.label.free' )}}
                     @endif
