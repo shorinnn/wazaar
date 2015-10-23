@@ -45,7 +45,7 @@
 				<img src="{{ url('splash/logo.png') }}" class="img-responsive" />
 				@endif
 			</h1>
-			<h1 class="text-center">{{$course->name}}</h1>
+			<h1 class="text-center course-name">{{$course->name}}</h1>
         </div>
     </div>
     <div class="container">
@@ -128,27 +128,51 @@
         </div>
         <div class="buttons-container">
             <div class="text-center col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
-                <a href="#" class="btn btn-default btn-block">View Description Page</a>
+                <a href="{{action('CoursesController@show', [$course->slug, ''])}}" class="btn btn-default btn-block">View Description Page</a>
             </div>
             <div class="text-center col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
-                <a href="#" class="btn btn-default btn-block">Preview Course</a>
+                <a href="{{action('ClassroomController@dashboard', [$course->slug, ''])}}" class="btn btn-default btn-block">Preview Course</a>
             </div>
             <div class="text-center col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
-                <a href="#" class="btn btn-default btn-block">View Individual Sales</a>
+                <a href="{{action('CoursesController@adminIndex')}}?course_name={{$course->slug}}" class="btn btn-default btn-block">View Individual Sales</a>
             </div>
             <div class="clearfix"></div>
         </div>
         <div class="actions-buttons-container">
             <div class="text-center col-md-4 col-sm-4 col-xs-12">
-                <a href="#" class="btn btn-primary btn-block">Edit</a>
+                <a href="{{action('CoursesController@edit', [$course->slug, ''])}}" class="btn btn-primary btn-block">Edit</a>
             </div>
             <div class="text-center col-md-4 col-sm-4 col-xs-12">
-                <a href="#" class="btn btn-success btn-block">Approve</a>
+                @if($course->publish_status != 'approved')
+                    {{ Form::open( ['action' => array('SubmissionsController@update', $course->id), 
+                                'method' => 'PUT', 'id'=>'approve-form-'.$course->id, 'class' => 'ajax-form',
+                            'data-callback' => 'reloadPage'] ) }}
+                        <input type="hidden" name="value" value="approved" />
+                        <button type="submit" name='approve-course' data-message="{{ trans('administration.sure-approve') }}?" class="btn btn-block btn-success delete-button">{{ trans('administration.courses.label.approve' )}}</button>
+                    {{ Form::close() }}
+                @endif
             </div>
             <div class="text-center col-md-4 col-sm-4 col-xs-12">
-                <a href="#" class="btn btn-danger btn-block">Disapprove</a>
+                @if($course->publish_status != 'rejected')
+                    <button type="button" id="reject-btn-{{$course->id}}" data-id="{{$course->id}}" onclick="rejectCourse(this); return false;" class="reject-btn btn btn-block btn-danger">{{ trans('administration.courses.label.disapprove' )}}</button>
+                @endif
             </div>
             <div class="clearfix"></div>
+        </div>
+    </div>
+    <div id="disapprove-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        <img src="" id="modal-img" class="pull-left" style="width:200px;">
+                        <span id="modal-title" class="pull-right" style="width: calc(100% - 220px);"></span>
+                        <div class="clearfix"></div>
+                    </h4>
+                </div>
+                <div class="modal-body"><img src="{{url('images/ajax-loader.gif')}}" class="img-responsive" style="margin:10px auto;" /></div>
+            </div>
         </div>
     </div>
 </div>
@@ -170,6 +194,39 @@
     <script type="text/javascript" src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
     <script type="text/javascript" src="{{url('js/instructor-analytics.js')}}"></script>
     <script type="text/javascript">
+        function rejectCourse(el)
+        {
+            var $modal = $('#disapprove-modal').modal();
+            var id = $(el).data('id');
+            var img = $('h1.img-container img').attr('src');
+            var title = $('.course-name').text();
+            var url = '/administration/manage-courses/get-disapprove-form?course_id='+id;
+
+            $modal.find('#modal-img').attr('src', img);
+            $modal.find('#modal-title').text(title);
+            $.ajax({
+                url: url,
+                cache: false,
+                success: function(result){
+                    $modal.find('.modal-body').html(result);
+                }
+            });
+            $modal.on('hidden.bs.modal', function(){
+                $modal.find('#modal-img').attr('src', '');
+                $modal.find('#modal-title').text('');
+                $modal.find('.modal-body').html('<img src="{{url('images/ajax-loader.gif')}}" class="img-responsive" style="margin:10px auto;" />');
+            });
+        }
+        function reloadPage()
+        {
+            location.reload();
+        }
+        function closeModalAndUpdateSearchOrder()
+        {
+            $('#disapprove-modal').modal('hide');
+            reloadPage();
+        }
+
         $(function(){
             Analytics.CourseId = '{{$course->id}}';
             Analytics.StatisticsUrl = 'analytics/course/stats/';
