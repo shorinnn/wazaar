@@ -425,6 +425,11 @@ function courseChangedTabs(e){
     $('.by-the-end-ul').html(str);
 }
 
+function preCourseChangedTabs(e){
+    $('.header-tabs').removeClass('active');
+    $(e.target).addClass('active');
+}
+
 var editorStepSubmit = true;
 function saveAndNextTab(e){
     $('html, body').animate({
