@@ -26,11 +26,13 @@
     }
 	.search-order{
 		margin-right:15px;
+		vertical-align: top;
 	}
 	.download-csv{
 		padding: 11px 24px;
 		position: relative;
 		top: 1px;
+		vertical-align: top
 	}
 </style>
 <div class="col-lg-10 col-lg-offset-1 course-categories">
