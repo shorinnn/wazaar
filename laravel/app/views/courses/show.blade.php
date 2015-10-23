@@ -57,11 +57,11 @@
                                 <i class="wa-chevron-left"></i> {{$course->courseCategory->name }}
                             </a>
                         </li>
- 
+
                     </ul>
                 </div>
                 <h1> {{ $course->name }}</h1>
- 
+
             </div>
         </div>
         <div class="row">
@@ -85,7 +85,7 @@
                                 <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
                                 <em class="name">
                                     @if($course->details_name=='person')
-                                        {{$instructor->profile->last_name}} {{$instructor->profile->first_name}} 
+                                        {{$instructor->profile->last_name}} {{$instructor->profile->first_name}}
                                     @else
                                         {{$instructor->profile->corporation_name}}
                                     @endif
@@ -103,7 +103,7 @@
                                     {{ $instructor->profile->bio }}
                                 @endif
                             </p>
-                            <span class="show-full-description transparent-button transparent-button-primary instructor-bio-btn" data-toggle="modal" 
+                            <span class="show-full-description transparent-button transparent-button-primary instructor-bio-btn" data-toggle="modal"
                                   style='display:none' data-target="#instructor-bio">
                                 {{ trans( 'general.read-more' ) }}
                             </span>
@@ -112,7 +112,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 
