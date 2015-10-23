@@ -15,40 +15,40 @@
 	Order Amount
 </p>
 <h2 class="text-center text-success" style="margin-top:0px;">
-	¥ {{number_format($order->purchase_price)}}
+	¥{{number_format($order->purchase_price)}}
 </h2>
 <div>
 	<div class="col-md-6">
 		<div>
 			<div class="col-md-8 list">Affiliate Revenue</div>
-			<div class="col-md-4 list">¥ {{number_format($order->affiliate_earnings)}}</div>
+			<div class="col-md-4 list text-success">¥{{number_format($order->affiliate_earnings)}}</div>
 			<div class="clearfix"></div>
 		</div>
 		<div>
 			<div class="col-md-8 list">Instructor Comissions</div>
-			<div class="col-md-4 list">¥ {{number_format($order->instructor_earnings)}}</div>
+			<div class="col-md-4 list text-success">¥{{number_format($order->instructor_earnings)}}</div>
 			<div class="clearfix"></div>
 		</div>
 		<div>
 			<div class="col-md-8 list">Affiliate 2nd Tier Fee</div>
-			<div class="col-md-4 list">¥ {{number_format($order->second_tier_affiliate_earnings)}}</div>
+			<div class="col-md-4 list text-success">¥{{number_format($order->second_tier_affiliate_earnings)}}</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div>
 			<div class="col-md-8 list">LTC Comissions</div>
-			<div class="col-md-4 list">¥ {{number_format($order->ltc_affiliate_earnings)}}</div>
+			<div class="col-md-4 list text-success">¥{{number_format($order->ltc_affiliate_earnings)}}</div>
 			<div class="clearfix"></div>
 		</div>
 		<div>
 			<div class="col-md-8 list">TAX</div>
-			<div class="col-md-4 list">¥ {{number_format($order->tax)}}</div>
+			<div class="col-md-4 list text-success">¥{{number_format($order->tax)}}</div>
 			<div class="clearfix"></div>
 		</div>
 		<div>
 			<div class="col-md-8 list">Wazaar System Fee</div>
-			<div class="col-md-4 list">¥ {{number_format($order->site_earnings)}}</div>
+			<div class="col-md-4 list text-success">¥{{number_format($order->site_earnings)}}</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
