@@ -21,10 +21,14 @@
 
             <div class="course-video-upload-button-progress" id="introduction-video-wrapper">
                 <div class="file-processing-handler">
-                    <div class="dropdown listing-video-upload">
+                    <div class="dropdown listing-video-upload
+                         @if ($course->descriptionVideo)
+                             resource-uploaded
+                         @endif
+                         ">
 
                         <div class="upload-dropdown-wrapper">
-                            <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 {{ trans('courses/general.upload_video') }}
                                 <i class="wa-chevron-down"></i>
                             </a>
@@ -70,7 +74,7 @@
                             </div>
                         </div> <!-- //upload-progress-wrapper -->
 
-                        <div class="processing-wrapper hidden">
+                        <div class="processing-wrapper hidden" style="position: absolute;top: -94px;color: white;width: 100%;">
                             <p class="label-progress-bar label-progress-bar-preview-img">{{trans('video.videoCurrentlyProcessing')}} <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif"></p>
                         </div>
 

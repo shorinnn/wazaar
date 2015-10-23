@@ -23,52 +23,7 @@
             @endif
             @if(Auth::check())
         <div class="clearfix left hidden-xs">
-            <div class="logged-out-header-search text-center hidden-xs">
-                <?php if('dont-show' == 'dont-show'):?>
-                <div class="clearfix inline-block">
-                    <div class="activate-dropdown left relative">
-                        <!--<button aria-expanded="false" data-toggle="dropdown"
-                                class="catalogue-button dropdown-toggle" type="button" id="btnGroupDrop2">
-                            <i class="wa-tiny-list"></i>
-                            <em>{{trans('general.catalogue')}}</em>
-                        </button>-->
-                        <a href="{{ action('CoursesController@category') }}" class="catalogue-button">{{trans('general.browse-courses')}}</a>
-                        <!--<div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
-                            <ul>
-                                <?php 
-                                echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::has('allCourses')->get();
-                                    $categories->load( 'courseSubcategories' );?>
-                                
-                                    @foreach( $categories as $category)
-
-                                            @if($category->courseSubcategories)
-                                                <li  class="dropdown-list"><a href="{{Config::get('app.url') .'/courses/category/' . $category->slug}}">{{$category->name}} <i class="wa-chevron-right"></i></a>
-                                                    <ul>
-                                                        @foreach($category->courseSubcategories as $subCategory)
-                                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug . '/' . $subCategory->slug}}">{{$subCategory->name}}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            @else
-                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug}}">{{$category->name}}</a></li>
-                                            @endif
-
-                                    @endforeach
-                                    
-                                    <?php }); ?>
-                            </ul>
-                        </div>-->
-                    </div>
-                    <form action='{{ action('CoursesController@search') }}'>
-                        <div>
-                            <button><i class="wa-search"></i></button>
-                            <input type="search" name="term" class="header-search" value='{{Input::get('term')}}' placeholder="{{ trans('general.search') }}">
-                        </div>
-                    </form>
-                </div>
-                <?php endif;?>
-            </div>
+            
         </div>
         <div class="clearfix right logged-in-menu-holder">
             @if( isset($headerShowTopLinks) )
@@ -92,7 +47,7 @@
                 
                 @if(Auth::check() && Auth::user()->hasRole('Instructor'))
                     <li>
-                        <a href="{{ action('CoursesController@myCourses') }}">{{trans('site/homepage.teach')}}</a>
+                        <a href="{{ action('StudentController@mycourses') }}">{{trans('site/homepage.teach')}}</a>
                     </li>
                 @endif
             </ul>
@@ -125,15 +80,6 @@
                             <span class="greeting hidden-xs">{{trans('site/menus.hi')}}, </span> <span class="hidden-xs">{{ Auth::user()->fullName() }}</span> <i class="wa-chevron-down"></i>
                         </button>
                         <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
-                            <?php /*-- <li>
-                                <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
-                            </li> 
-           @if( !Auth::user()->hasRole('Affiliate') &&  !Auth::user()->hasRole('Instructor') )
-                            <li>
-                                <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
-                            </li>
-                            @endif
-                             *                              */?>
 
                             @if( Auth::user()->hasRole('Affiliate'))
                                 <li>
@@ -148,7 +94,7 @@
                             @endif
                             @if( !Auth::user()->hasRole('Affiliate') &&  Auth::user()->hasRole('Instructor') )
                                 <li>
-                                    <a class="courses-button" href="{{ action('CoursesController@myCourses')}}">{{trans('site/menus.courses')}}</a>
+                                    <a class="courses-button" href="{{ action('StudentController@mycourses')}}">{{trans('site/menus.courses')}}</a>
                                 </li>
                             @endif
                             
@@ -160,10 +106,6 @@
                                 <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}
     
                                 </a>
-                                <?php
-//                                    $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
-//                                    @if( $received->count() > 0)
-                                ?>
                                 @if( 1 == 2)
                                 <style>
                                     .notification-number:hover div {
@@ -184,17 +126,6 @@
                                     </span>
                                 @endif
                             </li>
-                            @if(Auth::check() && Auth::user()->hasRole('Instructor'))
-                                <li>
-                                    <a a href="{{action('InstructorDashboardController@index')}}">{{trans('site/menus.analytics')}}</a>
-                                </li>
-                            @endif
-                            <li>
-                                <a class="settings-button" href="{{ action('ProfileController@index')}}">{{trans('site/menus.profile')}}</a>
-                            </li>
-<!--                        <li>
-                                <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
-                            </li>-->
                             <li>
                                 <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
                             </li>
@@ -203,21 +134,9 @@
                 </ul>
                 
             </div>
-            @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
-            <ul class="logged-out clearfix" style="margin-right: 15px;">
-                <li>
-                    <a href="{{ action('CoursesController@category') }}"> <span class="hidden-xs hidden-sm hidden-md hidden-lg">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
-                </li>
-            </ul>
-            @endif
-            @if(Auth::check() && Auth::user()->hasRole('Instructor'))
-            <ul class="logged-out clearfix" style="margin-right: 15px;">
-                <li>
-                    <a href="{{ action('CoursesController@category') }}"><span class="hidden-xs hidden-sm hidden-md hidden-lg">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a>
-                </li>
-            </ul>
-            @endif
+            
         </div>
+        <div class="clearfix"></div>
         @else
             
             @if( Route::currentRouteAction()!='UsersController@login' && Route::currentRouteAction()!='UsersController@create')
@@ -271,52 +190,6 @@
                 </li>
             </ul>
             <div class="logged-out-header-search text-center hidden-xs">
-                 <?php if('dont-show' == 'dont-show'):?>
-            	<div class="clearfix inline-block">
-                    <div class="activate-dropdown left relative">
-                        <!--<button aria-expanded="false" data-toggle="dropdown"
-                                class="catalogue-button dropdown-toggle" type="button" id="btnGroupDrop2">
-                            <i class="wa-tiny-list"></i>
-                            <em>{{trans('general.catalogue')}}</em>
-                        </button>-->
-                        <a href="{{ action('CoursesController@category') }}" class="catalogue-button">{{trans('general.browse-courses')}}</a>
-                        <!--<div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
-                            <ul>
-                                
-                               <?php echo Flatten::section('header-categories-catalog', 10, function (){
-                                    $categories = CourseCategory::has('allCourses')->get();
-                                    $categories->load( 'courseSubcategories' );?>
-                               
-                                
-                                    @foreach( $categories as $category)
-
-                                            @if($category->courseSubcategories)
-                                                <li  class="dropdown-list"><a href="{{Config::get('app.url') . '/courses/category/' . $category->slug}}">{{$category->name}}<i class="wa-chevron-right"></i></a>
-                                                    <ul>
-                                                        @foreach($category->courseSubcategories as $subCategory)
-                                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug . '/' . $subCategory->slug }}">{{$subCategory->name}}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            @else
-                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug}}">{{$category->name}}</a></li>
-                                            @endif
-
-                                    @endforeach
-                                    
-                                    <?php }); ?>
-
-                            </ul>
-                        </div>-->
-                    </div>
-                    <form action='{{ action('CoursesController@search') }}'>
-                        <div>
-                            <button><i class="wa-search"></i></button>
-                            <input type="search" name="term" class="header-search" value='{{Input::get('term')}}' placeholder="{{ trans('general.search') }}">
-                        </div>
-                    </form>
-                </div>
-                <?php endif;?>
             </div>
             <ul class="logged-out hidden-xs hide clearfix">
                 <li>

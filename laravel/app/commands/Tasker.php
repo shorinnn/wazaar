@@ -39,7 +39,8 @@ class TaskerCommand extends Command {
        {
            return array(
                array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub, 
-                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney, fix_student_count, cloud_search_index_all'),
+                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney, fix_student_count, cloud_search_index_all',
+                   'strip_affs_of_other_roles'),
                array('sale', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney sale ID'),
                array('price', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney new price value'),
            );
@@ -643,6 +644,38 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
             }
             
             $this->info('INDEXING COMPLETE');
+        }
+        
+        public function strip_affs_of_other_roles(){
+            $total = User::whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Affiliate');
+                    })->count();
+            $this->info("$total affiliates found.");
+            $affs = User::whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Affiliate');
+                    })->whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Instructor');
+                    })->get();
+            $this->info($affs->count().' affiliates with Instructor roles found');
+            foreach($affs as $aff){
+                $aff->detachRoles([1,2,3,5]);
+            }
+            $this->info('Roles detached');
+            $affs = User::whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Affiliate');
+                    })->whereHas(
+                        'roles', function($q){
+                        $q->where('name', 'Student');
+                    })->get();
+            $this->info($affs->count().' affiliates with Student roles found');
+            foreach($affs as $aff){
+                $aff->detachRoles([1,2,3,5]);
+            }
+            $this->info('Roles detached');
         }
 
 }

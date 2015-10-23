@@ -9,6 +9,7 @@ class ProfileController extends Controller
     protected $userHelper;
 
     public function __construct(UserRepository $users, UserHelper $userHelper, UploadHelper $uploadHelper){
+        $this->beforeFilter('restrictBrowsing', ['only' => 'index'] );
         $this->beforeFilter( 'verifiedLogin' );
         $this->users = $users;
         $this->userHelper = $userHelper;
@@ -144,6 +145,7 @@ class ProfileController extends Controller
         $profile = $this->userHelper->getProfileByType($type)->profile;
 
         //$profile->bank_number = Input::get('bank_number');
+        $profile->payment_threshold = Input::get('payment_threshold');
         $profile->bank_code = Input::get('bank_code');
         $profile->bank_name = Input::get('bank_name');
         $profile->branch_name = Input::get('branch_name');

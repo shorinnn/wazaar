@@ -391,14 +391,18 @@ function enableFileUploader($uploader){
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 $(progressbar).parent().show();
-                
+//                $(progressbar).parent().find('.no-video').hide();
+
                 callback = $uploader.attr('data-add-callback');
                 if( typeof(callback) !='undefined' ){
                     return window[callback](e, data);
                 }
             }).on('fileuploadprogress', function (e, data) {
                  $progressLabel = $(progressLabel);
+                 $progressLabel.show();
+
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
+                $(progressbar).show();
                 $(progressbar).css('width', $progress + '%');
                 if( $progressLabel.length > 0 ) $progressLabel.html($progress);
                 else $(progressbar).find('span').html($progress);

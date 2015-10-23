@@ -27,6 +27,15 @@
             <p style='max-width: 100%'>ただいまメンテナンス中です。</p>
             <p style='max-width: 100%'>メンテナンス作業が完了次第、すべてのサービスを再開させていただきます。</p>
             <p style='max-width: 100%'>ご利用の皆様には、大変ご迷惑をおかけいたしますが、ご理解とご協力のほどどうぞよろしくお願いいたします。</p>
+            
+            <p>
+                <br />
+                @if(Auth::guest())
+                    <a href="{{ action('UsersController@login') }}">{{ trans('site/register.login') }}</a>
+                @else
+                    <a href="{{ action('StudentController@mycourses') }}">{{ trans('site/homepage.my-courses') }}</a>
+                @endif
+            </p>
         </div>         	
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

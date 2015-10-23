@@ -3,7 +3,7 @@
         @if(trim($module->name)!='') 
             {{ $module->name }}
         @else
-            {{trans('courses/create.enter-module-name')}}
+            [{{trans('courses/create.enter-module-name')}}]
         @endif
     </a>
     <ol class='drag-lesson' data-module-id='{{$module->id}}'>

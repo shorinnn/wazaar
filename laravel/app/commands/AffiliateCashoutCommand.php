@@ -76,7 +76,7 @@ class AffiliateCashoutCommand extends ScheduledCommand {
 //            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
             $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
             $this->info("Cashout for purchases up until $cutoffDate");
-            $testPurchases = [7044, 4403, 14, 8];
+            $testPurchases = [7044, 4403, 14, 8, 1];
             
             // get all affiliates that meet the threshold
             $affiliates = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
@@ -98,7 +98,14 @@ class AffiliateCashoutCommand extends ScheduledCommand {
                         })->get();
                 $sum = $transactions->sum('amount'); 
                 $this->info("AMT: $sum");
-                if( $sum >= Config::get('custom.cashout.threshold') ){
+                
+                
+                $threshold = Config::get('custom.cashout.threshold');
+                if( $affiliate->profile !=null && $affiliate->profile->payment_threshold > $threshold ){
+                    $threshold = $affiliate->profile->payment_threshold;
+                }
+                
+                if( $sum >= $threshold ){
                     if( !$affiliate->debit( $transactions->sum('amount'), null, $transactions ) ){
                         $this->error('Could not debit - '.$affiliate->debit_error);
                     }

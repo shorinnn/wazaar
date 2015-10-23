@@ -5,18 +5,20 @@ class CoursesController extends \BaseController {
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'viewDiscussions',
                 'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
-            $this->beforeFilter('admin', ['only' => 'disapprove' ] );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+            $this->beforeFilter( 'admin', ['only' => 'disapprove' ] );
+            $this->beforeFilter( 'csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ] ] );
             $this->beforeFilter( 'logCourseView', [ 'only' => ['show'] ] );
-
             
+            $this->beforeFilter('restrictBrowsing');
+            
+            $this->analyticsHelper = new AnalyticsHelper(false, Auth::id(), 'instructor');
         }
 
-    public function index()
-    {
-            $categories = CourseCategory::all();
-            Return View::make('courses.index')->with(compact('categories'));
-    }
+        public function index()
+        {
+                $categories = CourseCategory::all();
+                Return View::make('courses.index')->with(compact('categories'));
+        }
         
         public function create(){
             $course = new Course;
@@ -1229,10 +1231,189 @@ class CoursesController extends \BaseController {
                 return Redirect::back()->withError( 'Could not disapprove Course ' );
         }
 
+    public function oldAdminIndex()
+    {
+
+        $courses = Course::oldGetAdminList();
+        return View::make('administration.courses.oldindex', compact('courses'));
+    }
+
     public function adminIndex()
     {
-        $courses = Course::getAdminList();
 
-        return View::make('administration.courses.index', compact('courses'));
+        $data = Request::all();
+
+        $course_categories = [''=>trans('administration.courses.label.select_category') ];
+        $course_categories_lists = CourseCategory::lists('name', 'id');
+        foreach($course_categories_lists as $key => $val){
+            $course_categories = array_add($course_categories, $key, $val);
+        }
+        $course_category = (isset($data['course_category']))?$data['course_category']:'';
+
+        $course_sub_categories = [''=>trans('administration.courses.label.select_sub_category')];
+
+        if(!empty($course_category)){
+            $course_sub_categories_lists = CourseSubcategory::where('course_category_id', $course_category)->orderBy('name', 'asc')->lists('name', 'id');
+            foreach($course_sub_categories_lists as $key => $val){
+                $course_sub_categories = array_add($course_sub_categories, $key, $val);
+            }    
+        }
+
+
+        $course_sub_category = (isset($data['course_sub_category']))?$data['course_sub_category']:'';
+        
+        $sale_amount_low = (isset($data['sale_amount_low']))?$data['sale_amount_low']:'';
+        $sale_amount_high = (isset($data['sale_amount_high']))?$data['sale_amount_high']:'';
+
+        $sort_data = (isset($data['sort_data']))?$data['sort_data']:'courses.created_at,desc';
+
+        $page = (isset($data['page']))?$data['page']:'1';
+        $search = (isset($data['search']))?$data['search']:'';
+
+        $courses = Course::getAdminList($data);
+
+        $totals = array();
+        $totals['approved'] = Course::where('publish_status', '=', 'approved')->count();
+        $totals['pending'] = Course::where('publish_status', '=', 'pending')->count();
+        $totals['rejected'] = Course::where('publish_status', '=', 'rejected')->count();
+
+        $sort_list = [
+            // 'courses.name,asc' => 'Name (a-z)',
+            // 'courses.name,desc' => 'Name (z-a)',
+            'total_revenue,asc' => trans('administration.courses.label.revenue_low_high'),
+            'total_revenue,desc' => trans('administration.courses.label.revenue_high_low'),
+            'courses.created_at,asc' => trans('administration.courses.label.submitted_latest'),
+            'courses.created_at,desc' => trans('administration.courses.label.submitted_oldest'),
+        ];
+
+        $total = (isset($data['total']))?$data['total']:'';
+
+        if(Request::ajax()){
+            if($total){
+                return $courses.' '.trans('administration.courses.label.courses' );
+            }
+            return View::make('administration.courses.listing', compact('courses', 'page'));
+        }
+
+        return View::make('administration.courses.index', compact('course_categories', 'course_category', 'course_sub_categories', 'course_sub_category', 'sale_amount_low', 'sale_amount_high', 'totals', 'sort_list', 'sort_data', 'search', 'page'));
+    }
+
+    public function getSubcats()
+    {
+        $data = Request::all();
+
+        $course_sub_categories = [''=>trans('administration.courses.label.select_sub_category')];
+
+        $cat_id = (isset($data['cat_id']))?$data['cat_id']:'';
+
+        if(!empty($cat_id)){
+            $course_sub_categories_lists = CourseSubcategory::where('course_category_id', $cat_id)->orderBy('name', 'asc')->lists('name', 'id');
+            foreach($course_sub_categories_lists as $key => $val){
+                $course_sub_categories = array_add($course_sub_categories, $key, $val);
+            }    
+        }
+        
+
+        return Form::select('course_sub_category', $course_sub_categories, null, ['id'=>'course_sub_category', 'class'=>'form-control']);
+
+    }
+
+    public function adminShowCourse($slug)
+    {
+        $course = Course::where('slug', $slug)->first();
+
+        // $course = Course::where('instructor_id', Auth::id())->where('slug', $courseSlug)->first();
+
+        return View::make('administration.courses.show', compact('course'));
+    }
+
+    public function salesView($frequency = '', $courseId = '', $trackingCode = '')
+    {
+        $sales = null;
+        switch ($frequency) {
+            case 'alltime' :
+                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId, $trackingCode);
+                break;
+            case 'week' :
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7, $courseId, $trackingCode);
+                break;
+            case 'month' :
+                $sales = $this->analyticsHelper->salesLastFewMonths(7, $courseId, $trackingCode);
+                break;
+            default:
+                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId, $trackingCode);
+                break;
+        }
+
+
+        if (is_array($sales)) {
+            $urlIdentifier = 'sales';
+            $group = 'instructor';
+            if ($frequency == 'week') {
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            } elseif ($frequency == 'month') {
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            } elseif ($frequency == 'alltime') {
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            } else {
+                $frequency = 'daily';
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','group','urlIdentifier'))->render();
+            }
+        }
+    }
+
+    public function salesCountView($frequency = '', $courseId = '', $trackingCode = '')
+    {
+        $frequencyOverride = $frequency;
+        $sales = null;
+        switch ($frequency) {
+            case 'alltime' :
+                $frequencyOverride = 'year';
+                $sales             = $this->analyticsHelper->salesLastFewYears(7, $courseId);
+                break;
+            case 'week' :
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7, $courseId);
+                break;
+            case 'month' :
+                $sales = $this->analyticsHelper->salesLastFewMonths(7, $courseId);
+                break;
+            default:
+                $frequencyOverride = 'day';
+                $sales             = $this->analyticsHelper->salesLastFewDays(7, $courseId);
+                break;
+        }
+
+        return View::make('administration.dashboard.partials.sales.count',
+            compact('frequencyOverride', 'sales'))->render();
+
+
+    }
+
+    public function courseStatsTableView($courseId, $startDate, $endDate)
+    {
+        $stats = $this->analyticsHelper->getCourseStats($courseId,$startDate,$endDate);
+
+        return View::make('instructors.analytics.tableCourseStats',compact('stats'))->render();
+    }
+
+    public function topAffiliatesTableView($courseId, $startDate, $endDate)
+    {
+        $page = 1;
+        if (Input::has('page')){
+            $page = Input::get('page');
+        }
+        $addThisToRank = ($page - 1) * Config::get('wazaar.PAGINATION');
+        $affiliates = $this->analyticsHelper->getTopAffiliatesByCourse($courseId, $startDate, $endDate);
+
+        return View::make('instructors.analytics.tableTopAffiliates',compact('affiliates','addThisToRank'))->render();
+    }
+
+    public function getDisapproveForm()
+    {
+        if(Request::has('course_id')){
+            $data = Request::all();
+            $course_id = $data['course_id'];
+            return View::make('administration.courses.partials.disapproveForm',compact('course_id'));
+        }
     }
 }

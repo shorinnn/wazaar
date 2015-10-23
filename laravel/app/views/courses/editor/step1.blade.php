@@ -17,21 +17,28 @@
                                 <div class="course-listing-image-preview">
                                     @if($course->course_preview_image_id > 0)
                                     <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
+                                    @else
+                                    <span class="block text-center no-video" style="line-height: 125px; font-size: 14px;color: #fff;"> No Image </span>
                                     @endif
                                 </div>
 
     <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
     <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
-    							<div class="file-processing-handler">
-                                    <p class="label-progress-bar label-progress-bar-preview-img"></p>
-                                    <div class="progress hidden">
+                                    <div class="file-processing-handler">
+                                    <p class="label-progress-bar label-progress-bar-preview-img-s1"
+                                       style="position: absolute;top: -94px;color: white;width: 100%;"></p>
+                                    <div class="progress" style="display:none; position: absolute;top: -74px;color: white;width: 100%; left: 10px;">
                                         <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
-                                             data-label=".label-progress-bar-preview-img" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                             data-label=".label-progress-bar-preview-img-s1" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                             <span></span>
                                         </div>
                                     </div>
-                                    <div class="dropdown listing-image-upload">
-                                      <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="dropdown listing-image-upload
+                                         @if($course->course_preview_image_id > 0)
+                                             resource-uploaded
+                                         @endif
+                                         ">
+                                      <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         {{ trans('courses/general.upload_image') }}
                                         <i class="wa-chevron-down"></i>
                                       </a>
@@ -70,7 +77,15 @@
                                 <div class="file-details relative">
                                     <div class="course-description-video-preview">
                                         @if (isset($course->descriptionVideo->formats[0]))
-                                            <img data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                            <img data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}'
+                                                onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                            <div class="preview-overlay" style="pointer-events: none">
+                                                <i class="fa fa-eye"></i>
+                                                <span>PREVIEW</span>
+                                            </div>
+
+                                        @else
+                                        <span class="block text-center no-video" style="line-height: 125px; font-size: 14px;color: #fff;"> No video </span>
                                         @endif
 
                                     </div>
@@ -298,6 +313,7 @@
 
 <script type="text/javascript">
 
+
         function cloneStep1Box(e){
            e.preventDefault();
            link = $(e.target).attr('data-click');
@@ -329,7 +345,9 @@
         }
         
         $(function (){
-        
+            
+            fixModalJerk();
+
              $(window).on('beforeunload', function() {
                 changed = '';
                 if( form1Changed && isModifiedForm('#edit-course-form') ){
@@ -441,6 +459,8 @@
             var uploadErrors = [];
             var acceptedFileTypes =  ['video/mp4', 'video/flv', 'video/wmv', 'video/avi', 'video/mpg', 'video/mpeg', 'video/MP4', 'video/FLV', 'video/WMV', 'video/AVI', 'video/MPG', 'video/MPEG' ,'video/mov', 'video/MOV','video/quicktime'];
             //console.log(data.originalFiles[0].type);
+            $('.no-video').hide();
+
             if(acceptedFileTypes.indexOf(data.originalFiles[0].type) < 0) {
                 uploadErrors.push(_('Not an accepted file type'));
             }
@@ -463,6 +483,7 @@
             $('.upload-label-progress-bar-preview-img').html($progress + '%');
             $('#progress-course-video').css('width',$progress + '%');
             $('#progress-course-video-percent-complete').html($progress + '%');
+
 
         }).bind('fileuploaddone', function ($e, $data) {
             window.reloadConfirm = false;

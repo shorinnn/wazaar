@@ -22,6 +22,7 @@ return
         'allowedPictureFormat' => '*対応可能なファイルはjpg, png, gifです',
         'form' =>
         [
+            'paymentThreshold'            => 'Payment Threshold',
             'email' => 'メールアドレス',
             'name'      => '氏名',
             'name-tooltip' => '法人の場合は担当者名',

@@ -6,7 +6,6 @@
 	<style>
     	.student-dash .tab-content{
 			border: none !important;
-			min-height: 200px;
 		}
 		.student-dash .tab-content .tab-pane{
 			border: 1px solid #e0e1e2;
@@ -99,11 +98,6 @@
                         	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished"
                                     onclick='dashUrl("{{url("student/mycourses/finished") }}")'>
                                 {{trans('general.dash.finished')}}</a>
-                        </li>
-                        <li role="presentation" class="dropdown">
-                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist"
-                              onclick='dashUrl("{{url("student/mycourses/wishlist") }}")'>
-                             {{trans('general.dash.wishlist')}}</a>
                         </li>
                     </ul>               
                 </div>
@@ -221,7 +215,6 @@
                         </div>
                         <div href="#" class="name">
                             <h4>{{ Auth::user()->commentName('student') }}</h4>
-                            <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>{{ trans('general.edit-profile') }}</a>
                         </div>
                     </div>
                 </div>

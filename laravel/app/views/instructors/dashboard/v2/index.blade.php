@@ -1,11 +1,6 @@
 @extends('layouts.default')
 @section('page_title') 売上管理 - Wazaar @stop
 @section('content')
-	<style>
-            .instructor-dashboard .tab-content{
-                min-height: 300px;
-            }			
-    </style>
 	<div class="container-fluid new-dashboard instructor-dashboard top-section">
     	<div class="container">
             <div class="row">
@@ -114,9 +109,10 @@
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                       <div class="image-wrap">
                                                            @if($course->previewImage!=null)
-                                                            <a href="{{ $course->previewImage->url }}" target="_blank">
+                                                            <!--<a href="{{ $course->previewImage->url }}" target="_blank">-->
+                                                            <span>
                                                                 <img src="{{ $course->previewImage->url }}" class="img-responsive" />
-                                                            </a>
+                                                            </span>
                                                             @else
                                                             	<img src="http://placehold.it/360x203" class="img-responsive">
                                                                 <!--<p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>-->
@@ -227,8 +223,11 @@
                                                      <span class="count new">
                                                          @if( $course->nonBuyerPreviews(true) > 0)
                                                              {{ $course->nonBuyerPreviews(true) }} NEW
+                                                             <em> ({{ $course->nonBuyerPreviews() }})</em>
+                                                         @else
+                                                             <em> {{ $course->nonBuyerPreviews() }}</em>
                                                          @endif
-                                                         <em> ({{ $course->nonBuyerPreviews() }})</em></span>
+                                                     </span>
                                                  </p>
                                                  
                                                  <p><i class="wa-like"></i>{{ trans('analytics.reviews') }}

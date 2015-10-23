@@ -9,6 +9,8 @@
 	@endforeach
 @else
 	<tr>
-		<td colspan="4" class="text-center">{{ trans('administration.picks.no-course' )}}</td>
+		<td colspan="4" class="text-center" style="font-size: 14px; color: #7e8e9e;line-height: 20px;text-align: center;">
+        {{ trans('administration.picks.no-course' )}}
+        </td>
 	</tr>
 @endif

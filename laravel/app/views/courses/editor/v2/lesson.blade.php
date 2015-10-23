@@ -13,28 +13,13 @@
      
     <div class="row lesson-data no-margin toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
-            
-            @if(App::environment()!='production')
-            <a href='{{ action('ClassroomController@lesson', 
-                                            [ $lesson->module->course->slug,
-                                            $lesson->module->slug,
-                                            $lesson->slug] )}}'>[View Lesson maxxy]</a>
-            @endif
+           
             @if($lesson->module->course->free=='no')
               <div class="lesson-name"><span><em></em></span>{{ trans('general.lesson') }}  
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
                 <div class="preview-thumb lesson-wrapper">
-
-                    @if ($video)
-                        @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                            <img class="video-preview" id="video-preview-{{$lesson->id}}" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
-                        @else
-                            <img src="" alt="" class="hidden video-preview"/>
-                        @endif
-                    @else
-                        <img src="" alt="" class="hidden video-preview"/>
-                    @endif
-                </div>
+                    
+                    
 
                     <div class="uploading-wrapper margin-top-15 hidden">
                         <p class="label-progress-bar upload-label-progress-bar-preview-img"></p>
@@ -48,6 +33,32 @@
                         Processing
                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
                     </div>
+
+                    @if ($video)
+                        @if (@$video->transcode_status == Video::STATUS_COMPLETE)
+                            <img class="video-preview" id="video-preview-{{$lesson->id}}" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
+                            <div class="preview-overlay" style="pointer-events: none">
+                                <i class="fa fa-eye"></i>
+                                <span>PREVIEW</span>
+                            </div>
+                        @else
+                            <img src="" alt="" class="hidden video-preview"/>
+                            <div class="preview-overlay hidden" style="pointer-events: none">
+                                <i class="fa fa-eye"></i>
+                                <span>PREVIEW</span>
+                            </div>
+                        @endif
+                    @else
+                        <img src="" alt="" class="hidden video-preview"/>
+                        <div class="preview-overlay hidden" style="pointer-events: none">
+                            <i class="fa fa-eye"></i>
+                            <span>PREVIEW</span>
+                        </div>
+                        <span class="block text-center no-video" style="line-height: 80px; font-size: 13px;color: #fff;"> No Video </span>
+                    @endif
+                </div>
+
+                    
                 
                 <div class="dropdown text-center lesson-control">
                   <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -299,7 +310,6 @@
 <script type="text/javascript">
     var $intervalId{{$lesson->id}} = 0;
 
-    $(function(){
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-lesson-{{$lesson->id}}'),
             'url': '{{UploadHelper::AWSVideosInputURL()}}',
@@ -319,6 +329,7 @@
                 var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
                 $lessonWrapper.find('.video-preview').attr('src', '');
                 $lessonWrapper.find('.video-preview').attr('data-video-url', '');
+                $lessonWrapper.find('.no-video').hide();
             },
             'progressCallBack' : function ($data, $progressPercentage, $elem){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
@@ -354,9 +365,12 @@
 
                                 $lessonWrapper.find('.processing-wrapper').addClass('hidden');
                                 $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
+                                $lessonWrapper.find('.video-preview').attr('onclick','showVideoPreview(this)');
                                 $lessonWrapper.find('.video-preview').attr('data-video-url',$video.formats[0].video_url);
                                 $lessonWrapper.find('.video-preview').removeClass('hidden');
                                 $('.lesson-control').removeClass('hidden');
+                                $lessonWrapper.find('.preview-overlay').removeClass('hidden');
+                                
 
                                 clearInterval($intervalId{{$lesson->id}});
                                 
@@ -367,5 +381,4 @@
             }
         });
 
-    });
 </script>

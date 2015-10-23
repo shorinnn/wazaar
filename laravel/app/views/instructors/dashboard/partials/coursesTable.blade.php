@@ -1,7 +1,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-top-20">
     <div class="top-affiliates-table table-wrapper">
         <div class="table-header clearfix">
-            <h1 class="left">{{trans('analytics.courses')}}</h1>
+            <h1 class="text-center">{{trans('analytics.your_courses')}}</h1>
 
         </div>
 
@@ -60,7 +60,7 @@
                         @endforeach
                 @else
                     <tr>
-                        <td colspan="4">{{trans('analytics.noCourses')}}</td>
+                        <td colspan="4" style="font-size: 14px; color: #7e8e9e;line-height: 20px;text-align: center;">{{trans('analytics.noCourses')}}</td>
                     </tr>
                 @endif
                 </tbody>

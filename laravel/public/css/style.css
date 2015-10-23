@@ -92,12 +92,13 @@ body {
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
 	font: 16px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     overflow:auto;/** added because gulp version is messed **/
+    background-color: #ebeced;
 }
 html{
-  min-height: 100%;
+  height: 100%;
 }
 body{
-  min-height: 100%;
+  height: 100%;
 }
 a {
 	text-decoration: none !important;
@@ -236,8 +237,12 @@ a:hover{
 }
 /************** Page contents styles *****************/
 #wrapper{
-	height: 100%;
 	width: 100%;
+    min-height: 100%;
+    position: relative;
+}
+.overall-content-wrap{
+    padding-bottom: 284px;
 }
 /************** Header Section *******************/
 header{
@@ -1545,7 +1550,7 @@ header .profile-name li:hover ul{
 	margin-bottom: 30px 
 }
 .sidebar-menu{
-	max-width: 260px;
+	width: 270px;
 	height: auto;
 	background: #fff;
 	padding: 15px 24px;
@@ -2000,7 +2005,7 @@ header .profile-name li:hover ul{
 	outline: none;
 }
 .default-button{
-	padding: 9px 12px;
+	padding: 6px 12px;
 	border-radius: 3px;
 	display: inline-block;
 	border: solid 1px #cfd1d3;
@@ -2634,13 +2639,14 @@ h2, h3, h4, h5, h6{
 }
 .enroll-button-section.fixed {
 	position: fixed;
-	width: 346px;
 	z-index: 99;
-	padding-left: 3px;
-}	
-.enroll-button-section .enroll-button-wrap{
-	border: solid transparent;
-	border-width: 0 1px 1px;
+	padding-left: 0px;
+}
+.enroll-button-section .enroll-button-wrap {
+    border: solid transparent;
+    border-width: 0 1px 1px;
+    border-radius: 4px;
+    padding: 0 32px;
 }
 .enroll-button-section.fixed .enroll-button-wrap{
 	background: #fff;
@@ -2649,7 +2655,7 @@ h2, h3, h4, h5, h6{
 	border-width: 0 1px 1px;
 	padding: 0 32px;
 }
-.enroll-button-section.fixed .add-to-wishlist-container{
+.enroll-button-section .add-to-wishlist-container{
 	border: solid 1px transparent;
 }
 .enroll-button-section.fixed .add-to-wishlist-container{
@@ -2803,6 +2809,7 @@ h2, h3, h4, h5, h6{
 .add-to-wishlist-container{
 	margin-top: 13px;
 	margin-bottom: 25px;
+    padding: 0 32px;
 }
 .add-to-wishlist-container .share-lesson,
 .add-to-wishlist-container input{
@@ -2857,7 +2864,9 @@ h2, h3, h4, h5, h6{
 	display: inline-block !important;
 }
 .enroll-button-section{
-	padding-left: 35px;
+	padding-left: 0;
+    width: 100%;
+    max-width: 344px;
 }
 .enroll-button-section .discount-box .text-warning{
 	color: #F05339;
@@ -2904,8 +2913,8 @@ h2, h3, h4, h5, h6{
     box-shadow: 0px 1px 0px #e7e8e9;
     padding-top: 7px;
     padding-bottom: 7px;
-	padding-left: 70px;
-	padding-right: 70px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 .enroll-button-section .default-button{
 	padding: 0 12px;
@@ -3476,7 +3485,7 @@ h2, h3, h4, h5, h6{
 }
 .new-dashboard .profile-picture-holder{
 	border-radius: 4px 4px 0 0;
-	width: 238px;
+	/*width: 238px;*/
 	height: 216px;
 	max-width: 100%;
 	overflow: hidden;
@@ -3678,7 +3687,6 @@ h2, h3, h4, h5, h6{
 }
 .new-dashboard.dashboardTabs .enrolled-lesson .review{
 	color: #03a2ff;
-	text-indent: 25px;
 	margin-top: 0;
 }
 .new-dashboard.dashboardTabs .progress-column{
@@ -3736,11 +3744,11 @@ h2, h3, h4, h5, h6{
 }
 
 .new-dashboard.dashboardTabs .settings{
-	padding: 7.5px 14px;
+	padding: 2px 14px;
 	display: inline-block;
 	background: #f7f9fa;
 	position: relative;
-	top: 1px;
+	top: 2px;
 	border: solid 1px #cfd1d3;
 	border-radius: 3px;
 }
@@ -3759,10 +3767,10 @@ h2, h3, h4, h5, h6{
 	font-size: 18px;
 }
 .new-dashboard.dashboardTabs .settings .dropdown-menu{
-	min-width: 138px;
+	min-width: 155px;
 	border-radius: 3px;
 	border: solid 1px #e0e1e2;
-	left: -52px;
+	left: -74px;
 	top: 46px;
 	padding: 0;
 	margin: 0;
@@ -3798,16 +3806,20 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs .settings .dropdown-menu a.delete{
 	border-top: solid 1px #e0e1e2;
 }
-.new-dashboard.dashboardTabs .lesson-status.unsubmitted,
-.new-dashboard.dashboardTabs .lesson-status.draft{
-	background: #cfd8df;
+.lesson-status.unsubmitted,
+.lesson-status.draft{
+	background: #a7b7c4 !important;
 }
-.new-dashboard.dashboardTabs .lesson-status.approved{
-	background: #7ec95f;
+.lesson-status.approved{
+	background: #5baf17 !important;
 }
-.new-dashboard.dashboardTabs .lesson-status.pending{
-	background: #0099ff;
+.lesson-status.pending{
+	background: #0099ff !important;
 }
+.lesson-status.rejected{
+    background: #ef4c31 !important;
+}
+
 /*Instructor Dashboard*/
 .instructor-dashboard.top-section{
 	padding-top: 45px;
@@ -3946,7 +3958,7 @@ h2, h3, h4, h5, h6{
 	margin-left: 15px;
 }
 .instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .see-stat{
-	padding: 10px 20px;
+	padding: 5px 20px;
 	font-size: 12px;
 	font-weight: 600;
 	color: #798794;
@@ -3972,16 +3984,18 @@ h2, h3, h4, h5, h6{
 	margin-bottom: 7px;
 	margin-right: 15px;
 }
-.instructor-dashboard.dashboardTabs .teaching-lesson h4 .lesson-status{
+.lesson-status{
 	display: inline-block;
 	padding: 1px 5px;
 	border-radius: 2px;
 	font-size: 11px;
-	color: #fff;
+	color: #fff !important;
 	font-weight: bold;
-	margin-right: 2px;
 	text-transform: uppercase;
 	position: relative;
+}
+.instructor-dashboard.dashboardTabs .teaching-lesson h4 .lesson-status {
+    margin-right: 2px;
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 a:hover{
 	color: #03a2ff;
@@ -4120,13 +4134,12 @@ h2, h3, h4, h5, h6{
 	padding: 20px 15px !important;
 }
 .instructor-course .message-preview-wrap .message-preview h3 a{
-	font-size: 14px;
-	font-weight: 600;
-	color: #0099ff;
-	position: relative;
 }
 .instructor-course .message-preview-wrap .message-preview h3{
 	margin: 0 0 9px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0099ff;
 }
 .instructor-course .message-preview-wrap .message-preview p{
 	font-size: 13px;
@@ -4165,14 +4178,14 @@ h2, h3, h4, h5, h6{
 .instructor-course .message-preview-wrap .message-preview.active::before{
     background: #0099ff;
 }
-.new-dashboard .message-preview-wrap .message-preview.unread h3 a::before{
+.new-dashboard .message-preview-wrap .message-preview.unread h3::before{
     height: 5px;
     width: 5px;
     border-radius: 5px;
     content: " ";
     position: absolute;
-    left: -15px;
-    top: 6px;
+    left: 0;
+    top: 8px;
     background: #0099ff;
 }
 /*Dashboard Tab Header*/
@@ -4386,6 +4399,10 @@ h2, h3, h4, h5, h6{
 	max-width: 90%;
 	border: solid 1px #e0e1e2;
 }
+.instructor-course .replies-box{
+    width: 89%;
+}
+
 .student-messages .replies-box .name,
 .instructor-course .replies-box .name,
 .student-course .replies-box .name{
@@ -4481,11 +4498,16 @@ h2, h3, h4, h5, h6{
 .new-dashboard .message-preview-wrap .message-preview{
 	border-top: solid 1px #e0e1e2;
 	padding: 20px 0;
+    display: block;
 }
 .new-dashboard .message-preview-wrap .message-preview.active,
 .new-dashboard .message-preview-wrap .message-preview:hover{
 	background-color: #fff;
 	cursor: pointer;
+}
+.new-dashboard .message-preview-wrap .message-preview.active h3,
+.new-dashboard .message-preview-wrap .message-preview:hover h3{
+    color: #303941;
 }
 .new-dashboard .message-preview-wrap .message-preview .avatar{
 	float: none;
@@ -4514,6 +4536,7 @@ h2, h3, h4, h5, h6{
 .student-messages .message-preview .col-lg-2{
 	padding: 0;
 }
+.student-messages .avatar img,
 .student-messages .avatar {
 	float: left;
     height: 40px;
@@ -4535,6 +4558,23 @@ h2, h3, h4, h5, h6{
 	border: solid #e0e1e2;
 	border-width: 0 0 0 1px;
 	margin-top: 0;
+    /*position: fixed;
+    right: -600px;*/
+    height: 100%;
+    top:  0;
+    /*max-width: 500px;*/
+    z-index: 88;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+.student-messages .full-messages.in{
+    right: 0;
+}
+.student-messages .full-messages .close-tab{
+    right: 20px;
+    top: 0;
 }
 .student-messages .full-messages .conversing-with{
 	padding: 12px 0;
@@ -4551,6 +4591,10 @@ h2, h3, h4, h5, h6{
 .student-messages .full-messages .conversing-with .name{
 	color: #303941;
 	font-weight: bold;
+}
+.student-messages .full-messages .conversation{
+    max-height: 545px;
+    overflow: auto;
 }
 .student-messages .full-messages .conversation .date{
     display: block;
@@ -4584,7 +4628,7 @@ h2, h3, h4, h5, h6{
 	display: block;
 }
 .student-messages .replies-box{
-	width: 88%;
+	width: 85%;
 	padding: 13px 13px 18px;
 	position: relative;
 }
@@ -4648,6 +4692,9 @@ h2, h3, h4, h5, h6{
 }
 .student-messages .discussion-sidebar-footer-wrap{
 	border-top: solid 1px #e0e1e2;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
 }
 /********** New Dashboard UI Ends***************/
 /********** Affiliates Gift UI***************/
@@ -4682,14 +4729,18 @@ h2, h3, h4, h5, h6{
 	display: inline-block;
 }
 .affiliate-top-header .affiliate-link-label{
-    float: right;
+    float: left;
     font-size: 14px;
-    margin-right: 5%;
     color: #798794;
     margin-top: 4px;
 	font-weight: normal;
+    width: 190px;
 }
 .affiliate-top-header #affiliate-toolbar-link{
+    width: -webkit-calc(100% - 190px);
+    width: -moz-calc(100% - 190px);
+    width: -ms-calc(100% - 190px);
+    width: calc(100% - 190px);
 }
 .affiliate-top-header select{
     height: 28px;
@@ -4699,7 +4750,7 @@ h2, h3, h4, h5, h6{
 }
 .affiliate-top-header .add-gift,
 .affiliate-top-header .add-tracking-id{
-	margin: 6px 0;
+    height: 28px;
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 14px !important;
@@ -4737,7 +4788,7 @@ h2, h3, h4, h5, h6{
 .affiliate-top-header .add-gift i.fa-gift{
 	font-size: 15px;
 	position: relative;
-	top: 1px;
+	top: 0;
 }
 .affiliate-top-header .add-gift i.wa-chevron-down{
 	font-size: 10px;
@@ -5800,7 +5851,7 @@ h2, h3, h4, h5, h6{
 	border-bottom: solid 1px #e0e1e2;
 	position: relative;
 }
-.discussion-sidebar-header .close-tab{
+.close-tab{
 	position: absolute;
 	top: 22px;
 	right: 30px;
@@ -6885,17 +6936,24 @@ a.load-remote > *{
   margin: 0;
   left: 63px;
 }
-.step1 .listing-image-upload{
-    position: relative;
-    top: 0;
-    left: 0;
-	margin: 10px 0;
-}
+.step1 .listing-image-upload,
 .step1 .listing-video-upload{
     position: relative;
     top: 0;
     left: 0;
-	margin: 10px 0;
+	margin: 7px 0 5px;
+}
+.step1 .listing-image-upload .dropdown-menu,
+.step1 .listing-video-upload .dropdown-menu{
+    margin-left: 0 !important;
+    width: 100%;
+}
+.step1 .upload-progress-wrapper{
+    height: 35px;
+    position: absolute;
+    top: -94px;
+    width: 100%;
+    color: #fff;
 }
 .step1 #upload-new i {
     font-size: 11px;
@@ -6903,10 +6961,11 @@ a.load-remote > *{
     top: 1px;
 }
 .file-processing-handler {
-    margin-top: -60px;
+    margin-top: 0;
     position: relative;
     text-align: center;
-    top: -37px;
+    top: 0;
+    width: 223px;
 }
 .step1 .listing-video label,
 .step1 .use-existing > a,
@@ -6945,7 +7004,6 @@ a.load-remote > *{
 	background: #fff;
 	border-radius: 4px;
 	border: solid 1px #e0e1e2;
-	overflow: hidden;
 	width: 100%;
 	margin: 0 auto !important;
 }
@@ -6954,6 +7012,7 @@ a.load-remote > *{
 	padding: 19px 24px;
 	color: #303941;
 	background: #f7f9fa;
+    border-radius: 4px 4px 0 0;
 	border-bottom: solid 1px #e0e1e2;
 }
 .content-row h6{
@@ -6972,9 +7031,16 @@ a.load-remote > *{
 	width: 223px;
 	height: 125px;
 	margin-bottom: 5px;
-	background-color: #e8eced;
+	background-color: #18222b;
 	position: relative;
+    text-align: center;
 }
+.listing-image #upload-new,
+.listing-video  #upload-new{
+    display: block;
+    width: 100%;
+}
+
 /************** Editor step 1 ends ***************/
 
 /************** Editor step 2 ***************/
@@ -7083,7 +7149,7 @@ a.load-remote > *{
 }
 .step2 .lesson-container .lesson-data textarea,
 .step2 .module-container .module-data textarea{
-	margin: 17px 0 0;
+	margin: 0;
 	color: #798794;
 	line-height: 20px;
 	clear: both;
@@ -7091,6 +7157,12 @@ a.load-remote > *{
 	border: none;
 	min-height: inherit;
 	border-radius: 0;
+}
+.step2 .module-container .module-data textarea{
+    padding: 0 12px 0 0 !important;
+    vertical-align: top;
+    line-height: 18px;
+    margin-bottom: 7px;
 }
 .step2 h2 .edit-icon,
 .step2 .description-text .edit-icon{
@@ -7162,8 +7234,8 @@ a.load-remote > *{
 	height: 80px;
 	position: relative;
 	border-radius: 2px;
-	background-color: #363230;
-	margin: 28px auto 10px;
+	background-color: #18222b;
+	margin: 28px auto 12px;
 	overflow: hidden;
 	text-align: center;
 }
@@ -7244,14 +7316,16 @@ a.load-remote > *{
 	color: #cfd8df;
 }
 .step2 .lesson-container .lesson-data textarea{
-	padding: 0 12px !important;
+	padding: 0 12px 0 0 !important;
 	vertical-align: top;
     line-height: 18px;
+    margin-bottom: 7px;
 }
 .textarea-wrap {
     position: relative;
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
+    margin-top: 17px;
 }
 .step2 .lesson-container .switch-label{
 	background: #a7b7c4;
@@ -7289,6 +7363,7 @@ a.load-remote > *{
 }
 .step2 .lesson-container .switch-label{
 	font-size: 14px;
+    font-weight: normal;
 }
 .step2 .lesson-container .switch-label:before{
 	top: 8px;
@@ -7555,6 +7630,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 /************** Create a Course***********/
 .add-new-course{
 	color: #fff !important;
+    padding: 10px 15px;
 }
 .create-course h1{
 	color: #0099ff;
@@ -7586,6 +7662,19 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 .edit-course p{
 	word-wrap: break-word;
+}
+.edit-course .upload-progress-wrapper,
+.edit-course .processing-wrapper{
+    height: 35px;
+}
+.edit-course .processing-wrapper .label-progress-bar img[src *="ajax-loader"] {
+    width: 16px;
+    margin: 5px auto 0;
+    display: block;
+}
+.edit-course .upload-progress-wrapper .progress{
+    position: relative;
+    top: 13px;
 }
 .create-course-start-page-container{
 	padding-top: 70px;
@@ -7631,6 +7720,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin: 0 !important;
 	width: auto !important;
 	padding: 0 !important;
+    overflow:  hidden;
 }
 .value-unit input{
 	padding: 0 10px !important;
@@ -7702,7 +7792,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .edit-course .header .video-preview-thumb img{
 	max-width: 100%;
 }
-.edit-course .header .video-preview-thumb .preview-overlay{
+.course-description-video-preview .preview-overlay,
+.preview-thumb .preview-overlay,
+.video-preview-thumb .preview-overlay{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -7713,15 +7805,35 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	z-index: 1;
 	cursor: pointer;
 }
-.edit-course .header .video-preview-thumb:hover .preview-overlay{
+.course-description-video-preview .preview-overlay{
+    padding-top: 33px;
+}
+.preview-thumb .preview-overlay{
+    padding-top: 10px;
+}
+.course-description-video-preview:hover .preview-overlay,
+.preview-thumb:hover .preview-overlay,
+.video-preview-thumb:hover .preview-overlay{
 	opacity: 1;
 }
-.edit-course .header .video-preview-thumb i{
-	font-size: 28px;
-	color: #fff;
+.course-description-video-preview .preview-overlay i,
+.preview-thumb .preview-overlay i,
+.video-preview-thumb .preview-overlay i{
+	font-size: 28px !important;
+	color: #fff !important;
 	margin: 6px 0 1px;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    transform: none !important;
 }
-.edit-course .header .video-preview-thumb span{
+.course-description-video-preview .preview-overlay span,
+.preview-thumb .preview-overlay span,
+.video-preview-thumb .preview-overlay span{
 	font-size: 11px;
 	color: #fff;
 	font-weight: bold;
@@ -7762,13 +7874,15 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 .edit-course .header h1 span{
 	display: inline-block;
-	padding: 5px;
-	background-color: #a7b7c4;
+	padding: 1px 5px;
+    line-height: 22px;
+	background-color: #cfd8df;
 	border-radius: 1px;
 	margin-left: 20px;
 	position: relative;
-	top: -3px;
+	top: 8px;
 	font-size: 11px;
+    vertical-align: top;
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: 600;
@@ -7830,6 +7944,12 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .edit-course .main{
 	border-radius: 4px;
 	overflow: hidden;
+}
+.edit-course img[src *="ajax-loader-3"]{
+    margin: 30px 0 100px;
+}
+.edit-course .step2 img[src *="ajax-loader-3"]{
+    margin-top: 59px !important;
 }
 .edit-course .left-content{
 	background: #fff;
@@ -7976,6 +8096,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	display: block;
 	background: #f7f9fa;
 	margin-bottom: 60px;
+    text-align: center;
+}
+.approval-box h4{
+    margin: 0 !important;
 }
 .approval-box .not-approved{
 	color: #303941;
@@ -9162,8 +9286,17 @@ input[type='number'] {
 	float: left;
     font-weight: 100;
 }
+.stick-to-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 footer{
-	clear:both;
+    width: 100%;
+    height: 284px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 .footer-container{ 
 	background-color: #18222b;
@@ -9199,7 +9332,6 @@ footer{
 	background: #18222b;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	margin-top: 20px;
 }
 .footer-privacy-bar a,
 .footer-privacy-bar span{
@@ -9765,9 +9897,9 @@ footer{
 	}*/
 
 	.category-content-container{
-		width: calc(100% - 250px);
-		width: -moz-calc(100% - 250px);
-		width: -webkit-calc(100% - 250px);
+		width: calc(100% - 270px);
+		width: -moz-calc(100% - 270px);
+		width: -webkit-calc(100% - 270px);
 	}
 	/*.sidebar-menu ~ .category-content-container{
 		-webkit-flex: 1;
@@ -9786,14 +9918,18 @@ footer{
 		padding: 0;
 		display: flex;
 	}*/
-	footer{
-		position: relative;
-	}
 }
 @media (min-width: 1200px){
 	.container{
 	  width: 1032px;
-	}	
+	}
+    .container-two{
+        width: 1115px;
+    }
+    .no-padding-lg{
+        padding: 0;
+    }
+
 }
 @media (max-width: 1200px) and (min-width: 991px){
 	.course-data .column-1 div{
@@ -10233,6 +10369,9 @@ footer{
 	}
 }
 @media (max-width:900px){
+	.category-box-container{
+		background: #EBECED;
+	}
 	.course-detail-top-section .centered-contents{
 		padding: 0 0 0 20px;
 	}	
@@ -10477,7 +10616,7 @@ header .profile-name > li button{
 	padding: 9px 5px 11px;
 }
 header .profile-name{
-	min-width: auto;
+	min-width: inherit;
     width: 30px;
     float: right;
 }
@@ -10596,18 +10735,6 @@ header .profile-name ul{
 	.affiliate-top-header .activate-dropdown{
 		float: right;
 	}
-	.affiliate-top-header .affiliate-link-label{
-		float: left;
-		width: 150px;
-	}
-	.affiliate-top-header label ~ input[type="text"]{
-		left: 150px;
-		position: absolute;
-		top: 0;
-		width: calc(100% - 150px);
-		width: -moz-calc(100% - 150px);
-		width: -webkit-calc(100% - 150px);
-	}
 	.contact-us.main label{
 		float: left;
 		margin-top: 0;
@@ -10620,6 +10747,21 @@ header .profile-name ul{
         margin: 0;
         border-left: 0;
         border-top: 1px solid #ebebeb;
+    }
+    .homepage-header .extra-large-heading {
+        margin-top: 0;
+        padding-top: 20px;
+    }
+    .student-messages .full-messages .conversation{
+        max-height: 400px;
+    }
+    .footer-privacy-bar a, .footer-privacy-bar span{
+        padding: 0 10px;
+        line-height: 36px;
+    }
+    .footer-logo{
+        float: left;
+        margin-top: 15px;
     }
 }
 @media (max-width:752px){
@@ -11174,10 +11316,6 @@ header .profile-name ul{
 	.lesson-topics li .lesson-name{
 		width: 13%;
 	}
-	.homepage-header .extra-large-heading {
-		margin-top: 0;
-		padding-top: 20px;
-	}
 	.affiliate-top-header .add-gift, .affiliate-top-header .add-tracking-id{
 		font-size: 13px !important;
 	}
@@ -11236,7 +11374,7 @@ header .profile-name ul{
 		width: 73%;
 	}	
 	header{
-		padding: 0 15px 18px !important;
+		padding: 0 15px 0px !important;
 	}
 }
 @media (max-width:356px){
@@ -11269,14 +11407,14 @@ header .profile-name ul{
 	.step2 .module-container .footer-buttons .default-button{
 		padding: 5px 10px;
 	}	
-	.homepage-header-wrapper.logged-in{
+	/*.homepage-header-wrapper.logged-in{
 		margin-top: -208px;
-	}	
+	}*/
 	.course-data .column-1 div{
 		padding: 0 0 0 7px !important;
 	}
 	.homepage-header-wrapper{
-		margin-top: -170px;
+        padding-top: 0;
 	}
 	.top-activities .stat-block{
 		width: 100% !important;
@@ -11452,6 +11590,12 @@ header .profile-name ul{
     top: 15px;
     width: 140px;
     color: #fff;
+}
+.step2 .lesson-container .preview-thumb .progress {
+    width: 80%;
+}
+.lesson-wrapper .uploading-wrapper{
+    margin-top: 10px !important;
 }
 .label-progress-bar{
     font-size: 12px;
@@ -11711,6 +11855,7 @@ h1.admin-page-title{
 body.modal-open-noscroll
 {
     overflow: hidden;
+    padding-right: 17px !important;
 }
 .modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom
 {

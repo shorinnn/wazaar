@@ -16,6 +16,11 @@
     @if( App::environment() == 'PPproduction' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
+    <style>
+      .category-box-container{
+        background: #EBECED url(/images/category-sidebar.png) left top repeat-y !important;
+      }
+    </style>
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
         <!--<link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
@@ -34,6 +39,7 @@
         <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
         <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
         <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
+        <!--<link rel="stylesheet" href="{{url('css/styles.css')}}">-->
     @endif
 
     @yield('extra_css')
@@ -79,7 +85,9 @@
            
         		{{ View::make('layouts.shared.header') }}
         </header>
-        @yield('content')
+        <div class="overall-content-wrap">
+            @yield('content')
+        </div>
         <footer>
           <section class="footer-container">
             <div class="container">
@@ -89,51 +97,14 @@
                       <p>&copy; Wazaar {{ date('Y') }}</p>
                     </div>-->
                     <!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">-->
-					<?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
-                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                            <h5>{{ trans('general.courses') }}</h5>
-                            <ul>
-                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
-                                    <li>
-                                            <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
-                                    </li>
-                                @endforeach
-                                
-                            </ul>
-                        </div>
-                        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                                <h5>&nbsp;</h5>
-                            <ul>
-                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
-                                    <li>
-                                            <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>                    
-                        </div>
-                    <?php });?>
-                
-                    <!--</div>-->
-                    <!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">-->
-                    <!--<h5>{{ trans('footer.about') }}</h5>
-                    <ul>-->
- 						<!--<li>
-                            <a href="#">{{ trans('footer.company') }}</a>
-                        </li>-->
-                        <!--<li>
-                            <a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
-                        </li>
-                        <li>
-                            <a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
-                        </li>
-                    </ul>-->                     
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                    
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
                         <h5>&nbsp;</h5>
                         <a href="//wazaar.co.jp/contact/">メールでのお問い合わせ</a>
                         <p>Tel 03-6206-8396</p>
                                     
                     </div>
-                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
                             <h5>{{ trans('general.support') }}</h5>
                             <div class="social-icons">
                                 <a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
@@ -144,18 +115,13 @@
                                 </a>
                             </div>                      
                     </div>
-                    <!--<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 margin-bottom-20 text-center-mobile">
-                            <h5>アフィリエイター向け</h5>
-                            <a href="{{action('AffiliateController@create')}}">新規登録</a>
-                            <a href="{{ action('AffiliateController@login') }}">ログイン</a>  
-                    </div>-->
-        
+                    
               </div>
             </div>
             <div class="container-fluid footer-privacy-bar">
             	<div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-xs">
                             <span>&copy; Wazaar {{ date('Y') }}</span>
                             <span>運営会社</span>
                             <!--<a href="{{ action('SiteController@about') }}">運営会社</a>-->
@@ -360,7 +326,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <!-- <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script> -->
-        <script src="{{url("js/autogrow.min.js")}}"></script>
+        <!--<script src="{{url("js/autogrow.js")}}"></script>-->
         <script src="{{url("js/jquery.autogrowtextarea.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
@@ -395,6 +361,9 @@
 			$(document).ready(function() {
                 //$('video,audio').mediaelementplayer();
 				$('.popular-courses-carousel').show();
+
+                fixModalJerk();
+
                 jQuery(window).bind('beforeunload', function(e) {
 
                     var message =  _("If you leave this page, you'll miss uploading file, do you wanna leave now?");
@@ -406,7 +375,7 @@
 					
 					           
 			});
-								 
+
 				$('[data-toggle="popover"]').popover();
 
 				$('.showRegister').click(function(){
@@ -458,25 +427,34 @@
 				
 				$(".pagination-container").rPage();
 
-				$('body').on('click','textarea',function(){
+                $('body').on('click', 'body', function(){
 					/*var opts = {
 						animate: true
 						, cloneClass: 'faketextarea'
 					};*/
+					//$("textarea").autogrow({animate: false, onInitialize: true});
 					$("textarea").autoGrow();
-					
+					console.log("body clicked");
+
 					var textareaHeight = $('textarea').css('height');
 					var textareaMaxHeight = $('textarea').css('max-height');
+
 					if(textareaHeight >= textareaMaxHeight){
 					  $('textarea').css({
 						overflow: 'auto'
 					  });
 					}
-				});					
+
+                });
 			});
 
-            function showLoading()
-            {
+            $( document ).ajaxComplete(function() {
+            fixModalJerk();
+            });
+
+            fixModalJerk();
+
+            function showLoading(){
                 $('#pluswrap').css('display','flex');
             }
 

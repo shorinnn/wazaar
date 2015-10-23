@@ -51,8 +51,6 @@
                     </div>
                 </div>
                 <div class="user-data-modal-footer text-center">
-                    <span class="margin-right-15">{{ trans('site/login.dont-have-an-account') }}</span>
-                    <a href="register" class='showRegister'>{{ trans('site/login.register') }}</a>
                 </div>
             </div>
         </div>

@@ -47,4 +47,18 @@ class Transaction extends Ardent {
             });
             
         }
+        
+        public function period(){
+            $debits = json_decode($this->debits);
+
+            $first = Transaction::find( $debits[0] );
+            if(count($debits)>1) $last = Transaction::find( $debits[count($debits)-1] );
+            else $last = $first;
+            $first = date('M 1\s\t Y', strtotime($first->created_at) );
+            $last = date('Y-m-01', strtotime($last->created_at) );
+            $last = date('Y-m-d', strtotime("$last +1 month"));
+            $last = date('M dS Y', strtotime("$last -1 day"));
+            if($first==$last) return $first;
+            else return "$first - $last";
+        }
 }

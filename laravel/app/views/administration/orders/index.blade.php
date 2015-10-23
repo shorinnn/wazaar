@@ -9,6 +9,9 @@
     .form-horizontal .input-group-btn button{
         height: 38px;
     }
+    .course-details{
+        padding: 20px 0px;
+    }
 </style>
 <div class="col-lg-10 col-lg-offset-1 course-categories">
 	<div class="row">
@@ -124,17 +127,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.transaction-id' )}}</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="transaction_id" name="transaction_id" value="{{$transaction_id}}">
+                            </div>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                     <hr style="margin-top:0px;" />
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    {{-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{ trans('administration.orders.label.course-id' )}}</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="course_id" name="course_id" value="{{$course_id}}">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-xs-12 text-center">
                         <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
                     </div>
@@ -143,17 +152,61 @@
                 </form>
             </div>
             <div class="clearfix"></div>                
-            <div class="orders-totals-container row"></div>
-            <div class="orders-listings-container ajax-content row"></div>
-            <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
+            
+            <div class="container">
+                <div class="panel panel-default no-padding">
+                    <div class="orders-totals-container">
+                        <div class="table-stats-wrapper">
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="no-padding">
+                    <div class="orders-listings-container ajax-content"></div>
+                    <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
+                </div>
+            </div>
 		</div>
 	</div>
+    <div id="order-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="details-container">
+                        <img src="{{url('images/ajax-loader.gif')}}" class="img-responsive" style="margin:10px auto;" />
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" aria-label="Close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @stop
 
 @section('extra_extra_js')
 <script>
+    function viewModalDetails(el)
+    {
+        var $modal = $('#order-modal').modal();
+        var id = $(el).data('id');
+        var url = '/administration/manage-orders/'+id;
+
+        $.ajax({
+            url: url,
+            cache: false,
+            success: function(result){
+                $modal.find('.details-container').html(result);
+            }
+        });
+        $modal.on('hidden.bs.modal', function(){
+            $modal.find('.details-container').html('<img src="{{url('images/ajax-loader.gif')}}" class="img-responsive" style="margin:10px auto;" />');
+        });
+    }
+
     function downloadCsv()
     {
         var url = '/administration/manage-orders?';

@@ -33,5 +33,8 @@
     sortablizeMdl();
     sortablizeLsn();
     calculateFileSizes();
+    $('body').delegate('.modal', 'show.bs.modal', function () {
+        fixModalJerk();
+    });
 </script>
     

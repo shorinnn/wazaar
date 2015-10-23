@@ -184,6 +184,15 @@
                                     </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <label>{{trans('profile.form.paymentThreshold')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
+                                               {{Form::text('payment_threshold', 
+                                                           $profile->payment_threshold < Config::get('custom.cashout.threshold') ? Config::get('custom.cashout.threshold') : $profile->payment_threshold )}}
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                                 <label>{{trans('profile.form.bankName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">

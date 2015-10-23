@@ -516,7 +516,7 @@ class Course extends Ardent{
         $lessonBuyers = Purchase::whereIn( 'product_id', $lessons )->where('product_type','Lesson')->where( 'free_product','no' )->lists( 'student_id' );
         $buyers = $buyers + $lessonBuyers;
         if($new){
-            $sevenDaysAgo = date('Y-m-d H:i:s', strtotime('-7 day') );
+            $sevenDaysAgo = date('Y-m-d H:i:s', strtotime('-1 day') );
             $count = Purchase::distinct()->select('student_id')->whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )
                     ->where( 'free_product','yes' )->where('created_at','>',$sevenDaysAgo)->get();
         }
@@ -600,9 +600,104 @@ class Course extends Ardent{
         ));
     }
 
-    public static function getAdminList()
+    public static function oldGetAdminList()
     {
+
         return self::select('courses.*', DB::raw('course_categories.name as course_category'))->leftJoin('course_categories', 'course_categories.id', '=', 'courses.course_category_id')->where('publish_status', 'approved')->orderBy('course_category', 'asc')->get();
+    }
+
+    public static function getAdminList($data)
+    {
+
+        $search = (isset($data['search']))?$data['search']:'';
+
+        $course_category = (isset($data['course_category']))?$data['course_category']:'';
+        $course_sub_category = (isset($data['course_sub_category']))?$data['course_sub_category']:'';
+        $page = (isset($data['page']))?$data['page']:'1';
+
+        $price = (isset($data['price']))?$data['price']:'';
+        switch($price){
+            case 'paid':
+                $price = 'no';
+            break;
+
+            case 'free':
+                $price = 'yes';
+            break;
+
+            case 'all':
+                $price = '';
+            break;
+        }
+        $filter = (isset($data['filter']))?$data['filter']:'approved';
+
+        $email = (isset($data['email']))?$data['email']:'';
+        $sale_amount_low = (isset($data['sale_amount_low']))?$data['sale_amount_low']:'';
+        $sale_amount_high = (isset($data['sale_amount_high']))?$data['sale_amount_high']:'';
+
+        $sort_data = (isset($data['sort_data']))?$data['sort_data']:'courses.created_at,desc';
+        $sort_data = explode(',', $sort_data);
+        $sort_by = $sort_data[0];
+        $sort = $sort_data[1];
+
+        $limit = (isset($data['limit']))?$data['limit']:15;
+        $total = (isset($data['total']))?$data['total']:'';
+
+        $query = self::select(
+            'courses.*',
+            'course_categories.name as course_category',
+            'course_subcategories.name as course_subcategory',
+            'instructor.email as instructor_email',
+            DB::raw('CONCAT(instructor.last_name, instructor.first_name) AS instructor_name'),
+            DB::raw("(SELECT sum(purchases.purchase_price) FROM purchases WHERE purchases.product_id = courses.id AND purchases.product_type = 'Course') AS course_sales"),
+            DB::raw('(SELECT SUM(purchases.purchase_price) FROM purchases WHERE  purchases.product_type = "Lesson" AND product_id IN ( SELECT lessons.id FROM lessons WHERE lessons.module_id IN ( SELECT modules.id FROM modules WHERE modules.course_id = courses.id ) ) ) AS lesson_sales'),
+            DB::raw('(SELECT course_sales + lesson_sales) as total_revenue')
+            )
+                    ->leftJoin('course_categories', 'course_categories.id', '=', 'courses.course_category_id')
+                    ->leftJoin('course_subcategories', 'course_subcategories.id', '=', 'courses.course_subcategory_id')
+                    ->join('users as instructor', 'instructor.id', '=', 'courses.instructor_id')
+                    ->where('publish_status', '!=', 'unsubmitted');
+
+        if($search){
+            $query->where('courses.name', 'like', "%$search%")
+                    ->orWhere('courses.slug', 'like', "%$search%")
+                    ->orWhere('instructor.first_name', 'like', "%$search%")
+                    ->orWhere('instructor.last_name', 'like', "%$search%")
+                    ->orWhere('instructor.email', 'like', "%$search%");
+        }
+
+        if($price){
+            $query->where('courses.free', '=', $price);
+        }
+
+        if($filter){
+            $query->where('courses.publish_status', '=', $filter);
+        }
+
+        if($course_category){
+            $query->where('courses.course_category_id', '=', $course_category);
+        }
+
+        if($course_sub_category){
+            $query->where('courses.course_subcategory_id', '=', $course_sub_category);
+        }
+
+        if($sale_amount_low || $sale_amount_high){
+            if($sale_amount_low && empty($sale_amount_high)){
+                $query->where('total_revenue', '>=', $sale_amount_low);
+            } else if(empty($sale_amount_low) && $sale_amount_high) {
+                $query->where('total_revenue', '<=', $sale_amount_high);
+            } else if($sale_amount_low && $sale_amount_high) {
+                $query->whereBetween('total_revenue', array($sale_amount_low, $sale_amount_high));
+            }
+        }
+
+        if($total){
+            $result = $query->count();
+        } else {
+            $result = $query->orderBy($sort_by, $sort)->paginate($limit);
+       }
+        return $result;
     }
 
 }

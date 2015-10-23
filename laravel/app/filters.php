@@ -16,6 +16,10 @@ App::before(function($request)
     if( Input::has('set-locale' )){
         Session::put('locale', Input::get('set-locale') );
     }
+    if( Input::has('quick-peek-m8' )){
+        Session::put('quick-peek-m8', 1 );
+    }
+    
     App::setLocale( Session::get('locale', Config::get('app.locale') ) );
     /** temporary mobile-desktop switcher **/
     if(Input::has('force-mobile')) Cookie::queue('force-mobile', 1, 60*24*30);
@@ -23,11 +27,7 @@ App::before(function($request)
         Cookie::queue('force-desktop', 1, 60*24*30);
         Cookie::queue("force-mobile", null, -1);
     }
-    /** /temporary mobile-desktop switcher **/
-    // record second tier instructor
-//    if(Auth::guest() && Input::has('st')){
-//        Cookie::queue('st', Input::get('st'), 60*24*30);
-//    }
+    
     if(Auth::guest() && Input::has('stpi')){
         Cookie::queue('stpi', Input::get('stpi'), 60*24*30);
     }
@@ -235,4 +235,15 @@ Route::filter('logCourseView', function($request){
         CourseLog::create($viewed_course_data);
     }
 
+});
+
+
+Route::filter('restrictBrowsing', function($request){
+    if( !Session::has('quick-peek-m8') ){
+        $env = [ 'staging', 'production'];
+        if( in_array( App::environment(), $env ) && 
+               ( (Config::get('custom.restrict-browsing')==true && Auth::check() && !Auth::user()->hasRole('Admin') ) || Auth::guest() ) ){
+            return Redirect::action('SiteController@index');
+        }
+    }
 });

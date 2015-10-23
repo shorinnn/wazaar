@@ -1,6 +1,9 @@
 <?php
 
 return array(
+    'mark-paid' => 'Mark Paid',
+    'mark-approved' => 'Mark Approved',
+    'period' => 'Period',
     'students' => '生徒',
     'teachers' => '講師',
     'affiliates' => 'アフィリエイト',
@@ -42,6 +45,7 @@ return array(
     'reject-selected' => 'Reject Selected',
     'before-fee' => 'Before Fee',
     'after-fee' => 'After Fee',
+    'mark-transaction-paid' => 'Mark transaction paid',
     'mark-transaction-complete' => 'Mark transaction complete',
     'mark-transaction-failed' => 'Mark transaction as failed and refund balance',
     'approve' => '承認',
@@ -108,6 +112,7 @@ return array(
             'product-price' => 'コース価格別',
             'date' => '日付別',
             'course-id' => 'コースID別',
+            'transaction-id' => 'Transaction ID',
         ],
         'tax' => '月Taxせ'
     ],
@@ -167,5 +172,37 @@ return array(
     ],
     'analytics' =>[
         'page-title' => '受注管理',
+    ],
+    'courses' => [
+        'what-reason-for-disapproval' => 'Whats the reason for disapproval?',
+        'label' => [
+            'courses' => 'Courses',
+            'approved' => 'Approved',
+            'pending' => 'Pending',
+            'disapproved' => 'Disapproved',
+            'search' => 'Search',
+            'all' => 'All',
+            'paid' => 'Paid',
+            'free' => 'Free',
+            'select_category' => '- Select a Category -',
+            'select_sub_category' => '- Select a Subcategory -',
+            'category' => 'Category',
+            'subcategory' => 'Subcategory',
+            'revenue_low_high' => 'Revenue Low to High',
+            'revenue_high_low' => 'Revenue High to Low',
+            'submitted_latest' => 'Submitted Recent Last',
+            'submitted_oldest' => 'Submitted Recent First',
+            'search' => 'Search',
+            'price' => 'Price',
+            'lesson_duration' => 'Lesson Duration',
+            'instructor' => 'Instructor',
+            'instructor_email' => 'Instructor Email',
+            'date_submitted' => 'Date Submitted',
+            'revenue' => 'Revenue',
+            'approve' => 'Approve',
+            'edit' => 'Edit',
+            'disapprove' => 'Disapprove',
+            'note' => 'Enter Course Name, Instructor Email, Course Slug',
+        ]
     ]
 );
