@@ -13,13 +13,22 @@ class WithdrawalsController extends \BaseController {
                 $types = [ 'instructor_agency_debit', 'instructor_debit', 'affiliate_debit' ];
 		$instructorRequests = Transaction::where('transaction_type','instructor_debit')->where('status','pending')->paginate( 2 );
 		$affiliateRequests = Transaction::where('transaction_type','affiliate_debit')->where('status','pending')->paginate( 2 );
+                $stats = WithdrawalsHelper::bankDetailsStats();
+                $instructorsReady = $stats['instructor_ready'];
+                $instructorsNotReady = $stats['instructor_not_ready'];
+                $affiliatesReady = $stats['affiliates_ready'];
+                $affiliatesNotReady = $stats['affiliates_not_ready'];
                 if( Request::ajax() ){
                     if( Input::get('tab') == 'instructor' )
-                        return View::make('administration.withdrawals.partials.table')->withRequests( $instructorRequests )->withType('instructor'); 
+                        return View::make('administration.withdrawals.partials.table')->withRequests( $instructorRequests )
+                        ->withType('instructor')->withReady($instructorsReady)->withNot($instructorsNotReady); 
                     else
-                        return View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate');
+                        return View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate')
+                        ->withReady($affiliatesReady)->withNot($affiliatesNotReady); 
                 }
-                return View::make('administration.withdrawals.index')->with( compact('instructorRequests', 'affiliateRequests') );
+                return View::make('administration.withdrawals.index')
+                        ->with( compact('instructorRequests', 'affiliateRequests', 'instructorsReady', 'instructorsNotReady',
+                                'affiliatesReady', 'affiliatesNotReady') );
 	}
         
 	public function notPaid()

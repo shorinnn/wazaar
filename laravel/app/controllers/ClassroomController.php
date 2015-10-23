@@ -10,6 +10,7 @@ class ClassroomController extends \BaseController {
                 $url = action( 'UsersController@registrationConfirmationResend' );
                 return Redirect::to($url)->send();
             }
+            $this->beforeFilter('restrictBrowsing');
         }
         
         public function dashboard($slug){

@@ -45,10 +45,12 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="instructors">
-        {{ View::make('administration.withdrawals.partials.table')->withRequests( $instructorRequests )->withType('instructor') }}
+        {{ View::make('administration.withdrawals.partials.table')->withRequests( $instructorRequests )->withType('instructor')
+                    ->withReady( $instructorsReady )->withNot( $instructorsNotReady ) }}
     </div>
     <div role="tabpanel" class="tab-pane" id="affiliates">
-        {{ View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate') }}
+        {{ View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate')
+                    ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) }}
     </div>
   </div>
 
@@ -70,15 +72,15 @@
     });
     
     function calculateReadiness(){
-        total = $('.ajax-content-instructor .transaction-row').length;
-        noFill = $('.ajax-content-instructor .no-fill').length;
-        $('#instructor-not-ready-for-payment').html(noFill);
-        $('#instructor-ready-for-payment').html( total*1 - noFill*1 );
-        
-        total = $('.ajax-content-affiliate .transaction-row').length;
-        noFill = $('.ajax-content-affiliate .no-fill').length;
-        $('#affiliate-not-ready-for-payment').html(noFill);
-        $('#affiliate-ready-for-payment').html( total*1 - noFill*1 );
+//        total = $('.ajax-content-instructor .transaction-row').length;
+//        noFill = $('.ajax-content-instructor .no-fill').length;
+//        $('#instructor-not-ready-for-payment').html(noFill);
+//        $('#instructor-ready-for-payment').html( total*1 - noFill*1 );
+//        
+//        total = $('.ajax-content-affiliate .transaction-row').length;
+//        noFill = $('.ajax-content-affiliate .no-fill').length;
+//        $('#affiliate-not-ready-for-payment').html(noFill);
+//        $('#affiliate-ready-for-payment').html( total*1 - noFill*1 );
     }
     
     function processWithdrawal(target){
