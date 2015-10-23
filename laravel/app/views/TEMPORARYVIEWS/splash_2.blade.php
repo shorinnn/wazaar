@@ -17,6 +17,9 @@
 
 
     <style>
+        body{
+            background-color: #ffbe15;
+        }
         .splash_2_header{
             width: 100%;
             padding: 12px;
