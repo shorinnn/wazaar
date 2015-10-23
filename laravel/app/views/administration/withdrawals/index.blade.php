@@ -23,17 +23,16 @@
         border:1px solid red;
     }
 </style>
-<form method="post" class="csvForm">
-    <input type="submit" class="btn btn-primary" value="Download Bank Details CSV" />
-</form>
-<form method="post" class="csvForm" action="withdrawals/all-cashout-list">
-    <input type="submit" class="btn btn-primary" value="All Cashout List" />
-</form>
+<a href='{{action('WithdrawalsController@settings')}}'><i class='fa fa-cogs'></i> Settings</a>
+<br /><br />
+
 <p class='text-center'>
     <a href="{{action('WithdrawalsController@index')}}">Pending payments</a> | 
     <a href="{{action('WithdrawalsController@notPaid')}}">Approved But Not Paid</a>
 </p>
-
+<h1>
+    Calculating transactions up to {{ $cutoff }}
+</h1>
 <div>
 
   <!-- Nav tabs -->
@@ -49,19 +48,12 @@
                     ->withReady( $instructorsReady )->withNot( $instructorsNotReady ) }}
     </div>
     <div role="tabpanel" class="tab-pane" id="affiliates">
-        {{-- View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate')
-                    ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) --}}
+        {{ View::make('administration.withdrawals.partials.affiliates-table')->withRequests( $affiliateRequests )->withType('affiliate')
+                    ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) }}
     </div>
   </div>
 
 </div>
-
-<form method="post" class="csvForm">
-    <input type="submit" class="btn btn-primary" value="Download Bank Details CSV" />
-</form>
-<form method="post" class="csvForm" action="withdrawals/all-cashout-list">
-    <input type="submit" class="btn btn-primary" value="All Cashout List" />
-</form>
 
 @stop
 

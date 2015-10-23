@@ -1,6 +1,7 @@
 <?php
 
-return array(
+return array(   
+    'notes' => 'Notes',
     'mark-paid' => 'Mark Paid',
     'mark-approved' => 'Mark Approved',
     'period' => 'Period',

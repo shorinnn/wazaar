@@ -74,7 +74,15 @@ class AffiliateCashoutCommand extends ScheduledCommand {
 	{
             //$affiliates = LTCAffiliate::where('affiliate_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
 //            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
-            $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+            
+            // reject any unprocessed transactions
+            $affiliateRequests = Transaction::where('transaction_type','affiliate_debit')->where('status','pending')->lists('id');
+            WithdrawalsHelper::reject( $affiliateRequests );
+            
+//            $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+            $d = date('Y-m-01');
+            $cutoffDate = date( 'Y-m-d', strtotime($d.'-1 day') );
+            
             $this->info("Cashout for purchases up until $cutoffDate");
             $testPurchases = [7044, 4403, 14, 8, 1];
             

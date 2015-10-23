@@ -41,10 +41,13 @@ $fee = $cashoutFee->value;
                                 {{ trans('administration.orders.total') }}
                             </th>
                             <th>
-                                {{ trans('analytics.instructor_commission') }}
+                                {{ trans('analytics.affiliate_commission') }}
                             </th>
                             <th>
-                                {{ trans('analytics.publisher_two_tier_commission') }}
+                                {{ trans('analytics.second_tier_commission') }}
+                            </th>
+                            <th>
+                                {{ trans('analytics.ltc_commission') }}
                             </th>
                             <th>
                                 {{ trans('profile.tabBankDetails') }}
@@ -96,14 +99,17 @@ $fee = $cashoutFee->value;
                                 
                             </td>
                             <td> 
-                                <?php $com = $request->instructorCommissions() ;?>
-                                ¥{{ number_format( $com['instructor'], Config::get('custom.currency_decimals')) }}
+                                <?php $com = $request->affiliateCommissions() ;?>
+                                ¥{{ number_format( $com['affiliate'], Config::get('custom.currency_decimals')) }}
                             </td>
                             <td>
                                 ¥{{ number_format( $com['second'], Config::get('custom.currency_decimals')) }}
                             </td>
                             <td>
-                                @if( $request->user->noFill('Instructor') )
+                                ¥{{ number_format( $com['ltc'], Config::get('custom.currency_decimals')) }}
+                            </td>
+                            <td>
+                                @if( $request->user->noFill('Affiliate') )
                                     {{ trans('courses/general.no')}}
                                 @else
                                     {{ trans('courses/general.yes')}}
@@ -131,7 +137,7 @@ $fee = $cashoutFee->value;
                         @endforeach
                         <tr>
                                 @if( isset($request) && $request->status=='pending') 
-                                <td colspan="9">
+                                <td colspan="10">
                                     <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
                                             data-mode='complete'
                                             data-message='{{ trans('administration.mark-transaction-complete') }}?'>{{ trans('administration.mark-approved') }}</button>
@@ -139,7 +145,7 @@ $fee = $cashoutFee->value;
                                             data-mode='reject'
                                             data-message='{{ trans('administration.mark-transaction-failed') }}?'>{{ trans('administration.reject-selected') }}</button>
                                 @else
-                                <td colspan="8">
+                                <td colspan="9">
                                     <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
                                         data-mode='paid'
                                         data-message='{{ trans('administration.mark-transaction-paid') }}?'>{{ trans('administration.mark-paid') }}</button>
