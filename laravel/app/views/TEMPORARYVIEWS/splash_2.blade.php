@@ -55,5 +55,11 @@
         </div>
     </section>
 </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(window).load(function() {
+            window.setTimeout(function () {window.location.href = "http://wazaar.co.jp/"}, 10000);
+        });
+    </script>
 </body>
 </html>
