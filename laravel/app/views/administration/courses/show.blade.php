@@ -117,7 +117,13 @@
             </div>
             <div>
                 <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.subcategory' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">{{$course->courseSubcategory->name}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">
+                @if($course->courseSubcategory)
+                    {{$course->courseSubcategory->name}}
+                @else
+                    N/A
+                @endif
+                </div>
                 <div class="clearfix"></div>
             </div>
             <div>
@@ -134,7 +140,7 @@
                 <a href="{{action('ClassroomController@dashboard', [$course->slug, ''])}}" class="btn btn-default btn-block">Preview Course</a>
             </div>
             <div class="text-center col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
-                <a href="{{action('CoursesController@adminIndex')}}?course_name={{$course->slug}}" class="btn btn-default btn-block">View Individual Sales</a>
+                <a href="{{action('OrdersController@index')}}?course_name={{$course->slug}}" class="btn btn-default btn-block">View Individual Sales</a>
             </div>
             <div class="clearfix"></div>
         </div>
