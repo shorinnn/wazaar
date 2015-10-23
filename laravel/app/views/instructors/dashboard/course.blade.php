@@ -196,7 +196,7 @@
         $(function(){
 
 
-
+            Analytics.CourseId = '{{$course->id}}';
             Analytics.InitCalendarFilter();
             Analytics.InitCoursePage();
 
