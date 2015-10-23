@@ -92,7 +92,6 @@ body {
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
 	font: 16px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     overflow:auto;/** added because gulp version is messed **/
-    background-color: #ebeced;
 }
 html{
   height: 100%;
