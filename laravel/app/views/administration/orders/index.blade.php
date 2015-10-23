@@ -24,6 +24,14 @@
         color: #fff;
 		margin: 30px 0 10px;
     }
+	.search-order{
+		margin-right:15px;
+	}
+	.download-csv{
+		padding: 11px 24px;
+		position: relative;
+		top: 1px;
+	}
 </style>
 <div class="col-lg-10 col-lg-offset-1 course-categories">
 	<div class="row">
@@ -157,9 +165,9 @@
                         </div>
                     </div> --}}
                     <div class="col-xs-12 text-center">
-                        <button type="button" class="blue-button large-button" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
+                        <button type="button" class="blue-button large-button search-order" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
+                    	<button type="button" class="green-button large-button clearfix download-csv" onclick="downloadCsv();"><i class="fa fa-download"></i> {{ trans('administration.orders.download-csv' )}}</button>
                     </div>
-                    <button type="button" class="pull-right btn btn-sm btn-info clearfix" onclick="downloadCsv();"><i class="fa fa-download"></i> {{ trans('administration.orders.download-csv' )}}</button>
                     <div class="clearfix"></div>
                 </form>
             </div>
