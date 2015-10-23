@@ -15,7 +15,7 @@ class SiteController extends \BaseController {
         }
         
         if( !Input::has('skip-splashie')){
-            return View::make('splash2');
+            return View::make('TEMPORARYVIEWS.splash_2');
         }
         $data = Request::all();
 

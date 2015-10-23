@@ -3,11 +3,15 @@
     	<div class="col-md-12">
             @if(Request::segment('3')=='')
                 <div class='label label-success'>
-                    <span id='{{$type}}-ready-for-payment'></span> ready for payments
+                    <span id='{{$type}}-ready-for-payment'>
+                        {{ $ready }}
+                    </span> ready for payments
                 </div>
 
                 <div class='label label-danger'>
-                    <span id='{{$type}}-not-ready-for-payment'></span> without bank details
+                    <span id='{{$type}}-not-ready-for-payment'>
+                        {{ $not }}
+                    </span> without bank details
                 </div>
             @endif
             <div class="table-wrapper table-responsive clear">
