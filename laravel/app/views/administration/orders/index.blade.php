@@ -46,8 +46,6 @@
             <h2 class="text-center">{{ trans('administration.orders.search-course' )}}</h2>
             <div class="row">
                 <form id="search_form" class="form-horizontal" style="padding-bottom:20px;">
-                    <input type="hidden" name="sort_by" id="sort_by" value="{{$sort_by}}">
-                    <input type="hidden" name="sort" id="sort" value="{{$sort}}">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{ trans('administration.orders.label.name' )}}</label>
@@ -167,8 +165,15 @@
                         </div>
                     </div> --}}
                     <div class="col-xs-12 text-center">
-                        <button type="button" class="blue-button large-button search-order" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
-                    	<button type="button" class="green-button large-button clearfix download-csv" onclick="downloadCsv();"><i class="fa fa-download"></i> {{ trans('administration.orders.download-csv' )}}</button>
+                        <div class="form-group">
+                            <button type="button" class="blue-button large-button search-order" onclick="searchOrder(true);">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
+                            <button type="button" class="green-button large-button clearfix download-csv" onclick="downloadCsv();"><i class="fa fa-download"></i> {{ trans('administration.orders.download-csv' )}}</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12 text-center">
+                        <div class="form-group">
+                            {{Form::select('sort_data', $sort_list, $sort_data, ['id'=>'sort_data', 'class'=>'form-control', 'style'=>'margin:0px auto;', 'onchange'=>'searchOrder(false)'])}}
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                 </form>
@@ -211,6 +216,12 @@
 
 @section('extra_extra_js')
 <script>
+    function closeModalAndRefreshList()
+    {
+        var $modal = $('#order-modal').modal();
+        $modal.modal('hide');
+        searchOrder(true);
+    }
     function viewModalDetails(el)
     {
         var $modal = $('#order-modal').modal();
@@ -256,7 +267,7 @@
         triggerSorter();
     }
 
-    function searchOrder()
+    function searchOrder(refresh_total)
     {
         var url = '/administration/manage-orders?';
         var data = $('#search_form').serialize()
@@ -266,9 +277,13 @@
         $('.orders-listings-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-listings-container" data-url="'+url+'" class="load-remote orders-listings-ajax-link">loading</a>' );
 
         url = url + '&total=true';
-        $('.orders-totals-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-totals-container" data-url="'+url+'" class="load-remote orders-totals-ajax-link">loading</a>' );
-        
-        $('.orders-totals-ajax-link').click();
+
+        if(refresh_total)
+        {
+            $('.orders-totals-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-totals-container" data-url="'+url+'" class="load-remote orders-totals-ajax-link">loading</a>' );
+            $('.orders-totals-ajax-link').click();
+        }
+
         $('.orders-listings-ajax-link').click();
     }
     function triggerSorter()
@@ -311,9 +326,9 @@
             success: function(result){
                 $('.alax-loader').hide();
                 $('.orders-listings-container').html(result);
-                triggerSorter();
+                // triggerSorter();
                 ajaxifyPagination( null );
-                addSorterIndicator();
+                // addSorterIndicator();
             }
         });
 

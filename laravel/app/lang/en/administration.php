@@ -106,6 +106,8 @@ return array(
         'refund' => 'REFUND',
         'order-id' => 'Order ID',
         'label' => [
+            'created_latest' => 'Order Date Recent Last',
+            'created_oldest' => 'Order Date Recent First',
             'name' => 'Name',
             'email' => 'Email',
             'category' => 'Category',

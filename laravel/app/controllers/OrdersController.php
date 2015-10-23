@@ -12,9 +12,6 @@ class OrdersController extends \BaseController {
 
 		$data = Request::all();
 
-		$sort_by = (isset($data['sort_by']))?$data['sort_by']:'created_at';
-		$sort = (isset($data['sort']))?$data['sort']:'desc';
-
 		$course_name = (isset($data['course_name']))?$data['course_name']:'';
 
 		$course_categories = [''=>'Select Category'];
@@ -37,6 +34,16 @@ class OrdersController extends \BaseController {
 		$transaction_id = (isset($data['transaction_id']))?$data['transaction_id']:'';
 		$total = (isset($data['total']))?$data['total']:'';
 		$download = (isset($data['download']))?$data['download']:'';
+
+        $sort_list = [
+            'purchases.created_at,asc' => trans('administration.orders.label.created_latest'),
+            'purchases.created_at,desc' => trans('administration.orders.label.created_oldest'),
+        ];
+
+        $sort_data = (isset($data['sort_data']))?$data['sort_data']:'purchases.created_at,desc';
+        $sort_data_array = explode(',', $sort_data);
+        $sort_by = $sort_data_array[0];
+        $sort = $sort_data_array[1];
 
 		if(Request::ajax() || !empty($download)){
 			if($total){
@@ -330,11 +337,11 @@ class OrdersController extends \BaseController {
 				// dd(DB::getQueryLog());
 				$start = $start + $limit;
 
-				return View::make('administration.orders.listing', compact('orders', 'start', 'limit', 'page', 'sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'transaction_id'));
+				return View::make('administration.orders.listing', compact('orders', 'start', 'limit', 'page', 'sort_data', 'sort_list', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'transaction_id'));
 			}
 		}
 
-		return View::make('administration.orders.index', compact('sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'transaction_id'));
+		return View::make('administration.orders.index', compact('sort_data', 'sort_list', 'course_name', 'course_categories', 'course_category', 'filters', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'transaction_id'));
 	}
 
 	public function show($id)

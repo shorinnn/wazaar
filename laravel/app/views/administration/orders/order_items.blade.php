@@ -4,12 +4,13 @@
 		<td>{{$order->id}}</td>
 		<td>{{$order->payment_ref}}</td>
 		<td>{{$order->course_name}}</td>
+		<td>¥{{number_format($order->site_earnings)}}</td>
+		<td>{{$order->created_at->format('M d, Y h:i A \\(l\\)')}}</td>
 		<!-- <td>{{$order->owner_name}}</td> -->
 		<!-- <td>{{$order->owner_email}}</td> -->
 		<!-- <td>¥ {{number_format($order->original_price)}}</td> -->
 		<!-- <td>¥ {{number_format($order->purchase_price)}}</td> -->
 		<!-- <td>¥ {{number_format($order->tax)}}</td> -->
-		<td>¥ {{number_format($order->site_earnings)}}</td>
 		<!-- <td>¥ {{number_format($order->instructor_earnings)}}</td>
 		<td>¥ {{number_format($order->affiliate_earnings)}}</td>
 		<td>¥ {{number_format($order->ltc_affiliate_earnings)}}</td>
