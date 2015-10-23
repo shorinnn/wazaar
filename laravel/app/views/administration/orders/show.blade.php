@@ -125,4 +125,7 @@
 		</div>
 	</div>
 	<div class="clearfix"></div>
+	<div class="text-center big-red-circle-btn-container">
+		<button type="button" class="big-red-circle">Refund</button>
+	</div>
 </div>

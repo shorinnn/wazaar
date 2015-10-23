@@ -12,6 +12,17 @@
     .course-details{
         padding: 20px 0px;
     }
+    .big-red-circle-btn-container{
+
+    }
+    .big-red-circle{
+        background: #D90000;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 0px;
+        color: #fff;
+    }
 </style>
 <div class="col-lg-10 col-lg-offset-1 course-categories">
 	<div class="row">
