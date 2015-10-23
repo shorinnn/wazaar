@@ -216,6 +216,12 @@
 
 @section('extra_extra_js')
 <script>
+    function closeModalAndRefreshList()
+    {
+        var $modal = $('#order-modal').modal();
+        $modal.modal('hide');
+        searchOrder(true);
+    }
     function viewModalDetails(el)
     {
         var $modal = $('#order-modal').modal();
@@ -271,7 +277,7 @@
         $('.orders-listings-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-listings-container" data-url="'+url+'" class="load-remote orders-listings-ajax-link">loading</a>' );
 
         url = url + '&total=true';
-        
+
         if(refresh_total)
         {
             $('.orders-totals-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-totals-container" data-url="'+url+'" class="load-remote orders-totals-ajax-link">loading</a>' );

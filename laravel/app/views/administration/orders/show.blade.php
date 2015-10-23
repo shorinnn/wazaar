@@ -133,6 +133,11 @@
 	</div>
 	<div class="clearfix"></div>
 	<div class="text-center big-red-circle-btn-container">
-		<button type="button" class="big-red-circle">Refund</button>
+		{{ Form::open( ['action' => array('MembersController@refund'), 
+                'method' => 'POST', 'id'=>'refund-form-'.$order->id, 'class' => 'ajax-form',
+            'data-callback' => 'closeModalAndRefreshList'] ) }}
+        <input type="hidden" name="purchase" value="{{ $order->id }}" />
+		<button type="submit" name='refund-purchase' class="big-red-circle delete-button refund-purchase-{{$order->id}}" data-message="{{ trans('administration.sure-refund') }}?">{{ trans('administration.refund') }}</button>
+        {{ Form::close() }}
 	</div>
 </div>
