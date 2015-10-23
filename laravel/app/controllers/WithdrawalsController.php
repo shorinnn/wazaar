@@ -43,9 +43,9 @@ class WithdrawalsController extends \BaseController {
 	            
 	            $csv_headers = [
 	            	'#', trans('profile.form.lastName'),  trans('profile.form.firstName'), trans('profile.form.email'),
-                        trans('administration.amount'), 'Bank Details Status',  trans('profile.form.bank-code'),  trans('profile.form.bank-name'),
-                        trans('profile.form.branch-code'), trans('profile.form.branch-name'), trans('profile.form.account-type'),
-                        trans('profile.form.account-number'), trans('profile.form.beneficiary-name')
+                        trans('administration.amount'), 'Bank Details Status',  trans('profile.form.bankCode'),  trans('profile.form.bankName'),
+                        trans('profile.form.branchCode'), trans('profile.form.branchName'), trans('profile.form.accountType'),
+                        trans('profile.form.accountNumber'), trans('profile.form.beneficiaryName')
                         
 	            ];
 	            $csv->insertOne($csv_headers);
@@ -92,13 +92,14 @@ class WithdrawalsController extends \BaseController {
 	            
 	            $csv_headers = [
 	            	'#', trans('profile.form.lastName'),  trans('profile.form.firstName'), trans('profile.form.email'),
-                        trans('administration.amount'), 'Bank Details Status',  trans('profile.form.bank-code'),  trans('profile.form.bank-name'),
-                        trans('profile.form.branch-code'), trans('profile.form.branch-name'), trans('profile.form.account-type'),
-                        trans('profile.form.account-number'), trans('profile.form.beneficiary-name')
+                        trans('administration.amount'), 'Bank Details Status',  trans('profile.form.bankCode'),  trans('profile.form.bankName'),
+                        trans('profile.form.branchCode'), trans('profile.form.branchName'), trans('profile.form.accountType'),
+                        trans('profile.form.accountNumber'), trans('profile.form.beneficiaryName')
                         
 	            ];
 	            $csv->insertOne($csv_headers);
 	            $id = 1;
+                    /*
                     foreach($requests as $request){
                             if( $request->transaction_type=='instructor_debit'){
                                 $profile = $request->user->_profile('Instructor');
@@ -126,14 +127,20 @@ class WithdrawalsController extends \BaseController {
                             $csv->insertOne( $row_data );
                             ++$id;
                     }
+                     *
+                     */
                     // get more instructors with balance
 //                    $rows = User::where('instructor_balance','>', 0)->where('id','>', 2)->get();
                     $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
+                    $startDate = '2015-10-01';
+                    $endDate = '2015-10-31';
                     $testPurchases = [7044, 4403, 14, 8, 1];
-                    $ids = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
+                    $ids = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases, $startDate, $endDate){
                         $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
                                 ->whereNull('cashed_out_on')
-                                ->where('created_at', '<=', $cutoffDate )->where(function ($q) use ($testPurchases){
+                                ->where('created_at', '>=', $startDate )
+                                ->where('created_at', '<=', $endDate )
+                                ->where(function ($q) use ($testPurchases){
                                     $q->whereNotIn( 'purchase_id', $testPurchases )
                                     ->orWhereNull('purchase_id');                            
                                 });
@@ -143,7 +150,9 @@ class WithdrawalsController extends \BaseController {
                     foreach($rows as $row){
                         $instructor = Instructor::find($row->id);
                         $transactions = $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
-                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )
+                        ->whereNull('cashed_out_on')
+                        ->where('created_at', '>=', $startDate )
+                        ->where('created_at', '<=', $endDate )
                         ->where(function ($q) use ($testPurchases){
                             $q->whereNotIn( 'purchase_id', $testPurchases )
                             ->orWhereNull('purchase_id');                            
@@ -183,16 +192,19 @@ class WithdrawalsController extends \BaseController {
                             ++$id;
                     }
                     
+                    
                     // get more affiliates with balance
 //                    $rows = User::where('affiliate_balance','>', 0)->where('id','>', 2)->get();
                     $cutoffDate = date( 'Y-m-01', strtotime('-1 day') );
                     $testPurchases = [7044, 4403, 14, 8, 1];
 
                     // get all affiliates that meet the threshold
-                    $ids = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases){
+                    $ids = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate, $testPurchases, $startDate, $endDate){
                         $query->where('user_id','>',2)
                                 ->where('transaction_type','affiliate_credit')
-                                ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate )
+                                ->whereNull('cashed_out_on')
+                                ->where('created_at', '>=', $startDate )
+                                ->where('created_at', '<=', $endDate )
                                 ->where(function ($q) use ($testPurchases){
                                         $q->whereNotIn( 'purchase_id', $testPurchases )
                                         ->orWhereNull('purchase_id');                            
@@ -203,7 +215,8 @@ class WithdrawalsController extends \BaseController {
                     foreach($rows as $row){
                         $affiliate = LTCAffiliate::find($row->id);
                         $transactions = $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')
-                        ->where('created_at', '<=', $cutoffDate )
+                        ->where('created_at', '>=', $startDate )
+                        ->where('created_at', '<=', $endDate )
                         ->where(function ($q) use ($testPurchases){
                             $q->whereNotIn( 'purchase_id', $testPurchases )
                             ->orWhereNull('purchase_id');                            
@@ -243,7 +256,7 @@ class WithdrawalsController extends \BaseController {
                             ++$id;
                     }
 
-	            $csv->output('all-withdrawals.csv');
+	            $csv->output('oct-withdrawals.csv');
 	            exit();
         }
         
