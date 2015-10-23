@@ -4134,13 +4134,12 @@ h2, h3, h4, h5, h6{
 	padding: 20px 15px !important;
 }
 .instructor-course .message-preview-wrap .message-preview h3 a{
-	font-size: 14px;
-	font-weight: 600;
-	color: #0099ff;
-	position: relative;
 }
 .instructor-course .message-preview-wrap .message-preview h3{
 	margin: 0 0 9px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0099ff;
 }
 .instructor-course .message-preview-wrap .message-preview p{
 	font-size: 13px;
@@ -4179,14 +4178,14 @@ h2, h3, h4, h5, h6{
 .instructor-course .message-preview-wrap .message-preview.active::before{
     background: #0099ff;
 }
-.new-dashboard .message-preview-wrap .message-preview.unread h3 a::before{
+.new-dashboard .message-preview-wrap .message-preview.unread h3::before{
     height: 5px;
     width: 5px;
     border-radius: 5px;
     content: " ";
     position: absolute;
-    left: -15px;
-    top: 6px;
+    left: 0;
+    top: 8px;
     background: #0099ff;
 }
 /*Dashboard Tab Header*/
@@ -4400,6 +4399,10 @@ h2, h3, h4, h5, h6{
 	max-width: 90%;
 	border: solid 1px #e0e1e2;
 }
+.instructor-course .replies-box{
+    width: 89%;
+}
+
 .student-messages .replies-box .name,
 .instructor-course .replies-box .name,
 .student-course .replies-box .name{
@@ -4495,11 +4498,16 @@ h2, h3, h4, h5, h6{
 .new-dashboard .message-preview-wrap .message-preview{
 	border-top: solid 1px #e0e1e2;
 	padding: 20px 0;
+    display: block;
 }
 .new-dashboard .message-preview-wrap .message-preview.active,
 .new-dashboard .message-preview-wrap .message-preview:hover{
 	background-color: #fff;
 	cursor: pointer;
+}
+.new-dashboard .message-preview-wrap .message-preview.active h3,
+.new-dashboard .message-preview-wrap .message-preview:hover h3{
+    color: #303941;
 }
 .new-dashboard .message-preview-wrap .message-preview .avatar{
 	float: none;

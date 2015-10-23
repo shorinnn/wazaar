@@ -3,7 +3,6 @@
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard table-responsive analytics-page">
 
-
                     @if(Auth::user()->is_super_vip == 'yes')
                         <div class="row">
                             <div class="col-md-12">
@@ -29,16 +28,16 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        </div>
-    <!--                            </div>
+                                    </div>
+                            <!--</div>
                             </div>-->
                             </div>
                         </div>
-                    @elseif(Auth::user()->is_vip == 'yes')
+                        @elseif(Auth::user()->is_vip == 'yes')
                         <div class="row">
                             <div class="col-md-12">
-    <!--                        <div class="row welcome-message-wrap">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+                                <!--<div class="row welcome-message-wrap">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
                                         <div class="supervip-affiliate-link">
                                         <div class="row">
                                                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
@@ -59,19 +58,19 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        </div>
-    <!--                            </div>
+                                    </div>
+    <!--                        </div>
                             </div>-->
                             </div>
                         </div>
                     @else
-                    
+
                     <!--<div class="row">-->
                     <div class="row welcome-message-wrap">&nbsp;
                         @if(Auth::user()->is_super_vip == 'no' &&  Auth::user()->sawLetter != 1)
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert" role='alert' style="margin-bottom:0px;">
                                     {{ View::make('affiliate.welcome-letter') }}
-                            </div> 
+                            </div>
                         @endif
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert">
                             <div class="affiliate-welcome-footer">
@@ -150,7 +149,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
@@ -179,7 +178,7 @@
 
                     </div>
                 </div>
-                
+
                 {{-- 2 Tier Signups --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="with-progress-bar stat-block">
@@ -267,7 +266,8 @@
                         </ul>
                     </div>
                 </div>
-<?php /**** @sorin DISABLE THIS
+
+                <?php /**** @sorin DISABLE THIS
                 {{-- Top Free Courses --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="stat-block">
@@ -294,8 +294,8 @@
                             <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
                     </div>
-                </div>
-*/?>
+                </div>*/?>
+
                 {{-- LTC Earnings --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="with-progress-bar stat-block">
@@ -386,7 +386,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
                     <div class="stat-block">
@@ -414,15 +414,8 @@
                         </ul>
                     </div>
                 </div>
-
-                
-
-
-                
-
             </div>
 
-            <hr/>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tables Filter</h3>
@@ -468,7 +461,6 @@
                 <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
             </div>
 
-            </div>
         </div>
 
     </div>
@@ -524,12 +516,12 @@
         <div class="month-data-2-tier-earnings"></div>
         <div class="alltime-data-2-tier-earnings"></div>
     </div>
-
-
 @stop
+
 @section('extra_css')
     <link rel="stylesheet" type="text/css" href="{{url('plugins/daterangepicker/daterangepicker.css')}}"/>
 @stop
+
 @section('extra_js')
     <script type="text/javascript" src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
