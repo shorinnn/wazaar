@@ -3,12 +3,18 @@
             <div class="row">
                 <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                     <div class="profile-picture-holder">
-                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">
+                        <img
+                            @if($course->course_preview_image_id == null)
+                                src="http://placehold.it/350x150&text={{ trans('general.preview-unavailable') }}"
+                            @else
+                                src="{{ cloudfrontUrl( $course->previewImage->url ) }}"
+                            @endif
+                            class="img-responsive">
                     </div>
                 </div>
                 <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                	<a href="#" class="back-to-courses"><i class="wa-chevron-left"></i>Back to courses</a>
-                	<h1>UX Design fundamentals</h1>
+                	<a href="{{ action( 'StudentController@mycourses' ) }}" class="back-to-courses"><i class="wa-chevron-left"></i>{{ trans('courses/dashboard.back-to-courses') }}</a>
+                	<h1>{{ $course->name }}</h1>
                     <p>
                     </p>
                 </div>
@@ -32,7 +38,7 @@
                         	<a href="#students" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">118 Students</a>
                         </li>
                     </ul>
-                    <a href="#" class="right add-new-course large-button blue-button"><i class="fa fa-edit"></i> Edit course</a>
+                    <a href="{{ action('CoursesController@edit', $course->slug) }}" class="right add-new-course large-button blue-button"><i class="fa fa-edit"></i> {{ trans('courses/general.edit') }}</a>
                 </div>
             </div>
         </div>

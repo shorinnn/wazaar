@@ -4553,6 +4553,7 @@ h2, h3, h4, h5, h6{
     float: right !important;
     overflow: visible;
 }
+.instructor-course .full-messages,
 .student-messages .full-messages{
 	background: #fff;
 	border: solid #e0e1e2;
@@ -4569,9 +4570,11 @@ h2, h3, h4, h5, h6{
     -ms-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
 }
+.instructor-course .full-messages.in,
 .student-messages .full-messages.in{
     right: 0;
 }
+.instructor-course .full-messages .close-tab,
 .student-messages .full-messages .close-tab{
     right: 20px;
     top: 0;
@@ -10367,6 +10370,13 @@ footer{
 	.no-results-container{
 		padding-bottom: 20px;
 	}
+    .instructor-course .full-messages,
+    .student-messages .full-messages{
+        position: fixed;
+        right: -600px;
+        max-width: 500px;
+    }
+
 }
 @media (max-width:900px){
 	.category-box-container{
@@ -10763,6 +10773,7 @@ header .profile-name ul{
         float: left;
         margin-top: 15px;
     }
+
 }
 @media (max-width:752px){
 .navbar-nav{ 
