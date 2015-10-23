@@ -20,6 +20,28 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
+
+                            <th>
+                                {{ trans('profile.form.lastName') }}
+                            </th>
+                            <th>
+                                {{ trans('profile.form.firstName') }}
+                            </th>
+                            <th>
+                                {{ trans('profile.form.email') }}
+                            </th>
+                            <th>
+                                {{ trans('administration.total') }}
+                            </th>
+                            <th>
+                                {{ trans('administration.instructor-commision') }}
+                            </th>
+                            <th>
+                                {{ trans('administration.second-tier-pub') }}
+                            </th>
+                            <th>
+                                {{ trans('administration.bank-details') }}
+                            </th>
                             <th>
                                 <div class='checkbox-buttons'>
                                     <div class="checkbox-item"> 
@@ -30,71 +52,34 @@
                                     </div>
                                 </div>
                             </th>
-                            <th>
-                                {{ trans('administration.request-type') }}
-                            </th>
-                            <th>
-                                {{ trans('administration.user') }}
-                            </th>
-                            <th>
-                                {{ trans('administration.amount') }}
-                            </th>
-                            <th>
-                                {{ trans('administration.period') }}
-                            </th>
-                            <th>
-                                {{ trans('administration.timestamp') }}
-                            </th>
-                            <th>
-                                {{ trans('administration.reference') }}
-                            </th>
+                            @if( isset($request) && $request->status=='pending') 
+                                <th>
+                                    {{ trans('administration.notes') }}
+                                </th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($requests as $request)
                         <tr class='transaction-row'>
+                            
+                            
                             <td class="hidden-xs">
-                                <div class='checkbox-buttons'>
-                                    <div class="checkbox-item"> 
-                                        <div class="checkbox-checkbox checkbox-checked"> 
-                                            <input id="checkbox-{{$request->id}}" class="cb-togglable"
-                                                   name="request[{{$request->id}}]"
-                                                   autocomplete="off" value='{{$request->id}}' type="checkbox"> 
-                                            <label for="checkbox-{{$request->id}}" class="small-checkbox"> </label> 
-                                        </div> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="hidden-xs">
-                                {{ trans( 'transactions.'.$request->transaction_type.'_transaction' ) }}
-                            </td>
-                            <td class="hidden-xs">
-                                @if( $request->transaction_type=='instructor_debit')
-                                        @if($request->user->_profile('Instructor')==null)
-                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
-                                        @elseif( $request->user->noFill('Instructor') )
-                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
-                                        @else
-                                        @endif
-                                        
-                                    {{ $request->user->commentName('instructor') }}
-                                    
-                                @elseif( $request->transaction_type=='affiliate_debit')
-                                        @if($request->user->_profile('Affiliate')==null)
-                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
-                                         @elseif( $request->user->noFill('Affiliate') )
-                                            <p class='no-fill' style='color:red; font-weight: bold'>NO FILL</p>
-                                        @else
-                                        @endif
-                                        
-                                    {{ $request->user->commentName('affiliate') }}
+                                @if($request->user->profile==null)
+                                    $request->user->last_name
                                 @else
-                                    {{ $request->user->commentName('instructor_agency') }}
+                                    $request->user->profile->last_name
                                 @endif
-                                <br />
+                            </td>
+                            <td>
+                                @if($request->user->profile==null)
+                                    $request->user->first_name
+                                @else
+                                    $request->user->profile->first_name
+                                @endif
+                            </td>
+                            <td>
                                 {{ $request->user->email }}
-                                <br />
-                                <a onclick="toggle('.bank-deets-{{$request->id}}')">Bank Details</a>
                             </td>
                             <td>
                                 {{ trans('administration.before-fee') }}:
@@ -107,24 +92,31 @@
                             <td>
                                 {{ $request->created_at->diffForHumans() }}
                             </td>
-                            <td>
-                                @if( isset($request) && $request->status=='pending') 
-                                    <input type="text" name="reference[{{$request->id}}]" placeholder="{{ trans('administration.reference') }}" 
-                                           value="{{ $request->id }}" />
-                                @endif
+                            <td class="hidden-xs">
+                                <div class='checkbox-buttons'>
+                                    <div class="checkbox-item"> 
+                                        <div class="checkbox-checkbox checkbox-checked"> 
+                                            <input id="checkbox-{{$request->id}}" class="cb-togglable"
+                                                   name="request[{{$request->id}}]"
+                                                   autocomplete="off" value='{{$request->id}}' type="checkbox"> 
+                                            <label for="checkbox-{{$request->id}}" class="small-checkbox"> </label> 
+                                        </div> 
+                                    </div>
+                                </div>
                             </td>
+                            @if( isset($request) && $request->status=='pending') 
+                            <td>
+                                    <input type="text" name="reference[{{$request->id}}]" placeholder="{{ trans('administration.reference') }}" />
+                            </td>
+                            @endif
                             
                         </tr>
                         <tr></tr>
                         <tr>
                             <td colspan="7">
                                 <div class="row well bank-deets-{{$request->id}}" style="display:none">
-                                    @if( $request->transaction_type=='instructor_debit')
-                                        <?php $bank = $request->user->_profile('Instructor');?>
-                                    @elseif( $request->transaction_type=='affiliate_debit')
-                                        <?php $bank = $request->user->_profile('Affiliate');?>
-                                    @else
-                                    @endif
+                                    <?php $bank = $request->user->_profile('Instructor');?>
+                                    
                                     <div class="col-lg-6">
                                         Bank Code: {{ $bank->bank_code or '' }}<br />
                                         Bank Name: {{ $bank->bank_name or '' }}<br />

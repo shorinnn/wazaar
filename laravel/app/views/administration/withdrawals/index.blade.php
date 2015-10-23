@@ -45,12 +45,12 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="instructors">
-        {{ View::make('administration.withdrawals.partials.table')->withRequests( $instructorRequests )->withType('instructor')
+        {{ View::make('administration.withdrawals.partials.instructors-table')->withRequests( $instructorRequests )->withType('instructor')
                     ->withReady( $instructorsReady )->withNot( $instructorsNotReady ) }}
     </div>
     <div role="tabpanel" class="tab-pane" id="affiliates">
-        {{ View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate')
-                    ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) }}
+        {{-- View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate')
+                    ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) --}}
     </div>
   </div>
 
