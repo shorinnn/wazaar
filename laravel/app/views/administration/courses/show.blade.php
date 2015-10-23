@@ -20,6 +20,16 @@
     .course-stats .course-summary-block{
         border:0px;
     }
+    .buttons-container,
+    .actions-buttons-container{
+        padding: 10px 0px;
+    }
+    .buttons-container div{
+        margin-bottom: 10px;
+    }
+    .buttons-container div:last-child{
+        margin-bottom: 0px;
+    }
 </style>
 <div class="col-lg-10 col-lg-offset-1 show-course">
 	<div class="row" style="margin-bottom:20px;">
@@ -69,8 +79,76 @@
 	            <div class="clearfix"></div>
 	        </div>
 	    </div>
+        <div class="details-container">
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.lesson_duration' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->videoDuration()}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.price' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                    @if($course->free == 'no')
+                        ¥ {{number_format($course->price)}}
+                    @else
+                        {{ trans('administration.courses.label.free' )}}
+                    @endif
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.instructor' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->instructor->last_name.' '.$course->instructor->first_name}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.instructor_email' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->instructor->email}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.category' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->courseCategory->name}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.subcategory' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->courseSubcategory->name}}</div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.date_submitted' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->created_at->diffForHumans()}}</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <div class="text-center col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+                <a href="#" class="btn btn-default btn-block">View Description Page</a>
+            </div>
+            <div class="text-center col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+                <a href="#" class="btn btn-default btn-block">Preview Course</a>
+            </div>
+            <div class="text-center col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+                <a href="#" class="btn btn-default btn-block">View Individual Sales</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="actions-buttons-container">
+            <div class="text-center col-md-4 col-sm-4 col-xs-12">
+                <a href="#" class="btn btn-primary btn-block">Edit</a>
+            </div>
+            <div class="text-center col-md-4 col-sm-4 col-xs-12">
+                <a href="#" class="btn btn-success btn-block">Approve</a>
+            </div>
+            <div class="text-center col-md-4 col-sm-4 col-xs-12">
+                <a href="#" class="btn btn-danger btn-block">Disapprove</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>
+<div class="clearfix"></div>
 @stop
 
 @section('extra_css')
