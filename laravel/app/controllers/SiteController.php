@@ -422,6 +422,12 @@ class SiteController extends \BaseController {
 	}
 
 
+// Temporary functions for Splash
+	public function splash_2()
+	{
+            Return View::make('TEMPORARYVIEWS.splash_2');
+	}
+
 // Temporary functions for Affiliate Gift UX
 	public function affiliategift1()
 	{            
