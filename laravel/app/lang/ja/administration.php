@@ -104,6 +104,8 @@ return array(
         'total' => '総売上高',
         'refund' => 'REFUND',
         'label' => [
+            'created_latest' => 'Order Date Recent Last',
+            'created_oldest' => 'Order Date Recent First',
             'name' => 'コース名',
             'email' => 'メールアドレス別',
             'category' => 'カテゴリー別',
