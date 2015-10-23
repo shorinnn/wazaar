@@ -97,11 +97,13 @@
 	position: relative;
 }
 
-.table-wrapper .table{
+.table{
 	border: none;
 	margin: 0;
 }
-
+.table thead {
+    background-color: #40b3ff;
+}
 
 .table.table-bordered > thead > tr > th{
 	font-weight: normal;

@@ -22,6 +22,7 @@
         border-radius: 50%;
         border: 0px;
         color: #fff;
+		margin: 30px 0 10px;
     }
 </style>
 <div class="col-lg-10 col-lg-offset-1 course-categories">
@@ -156,7 +157,7 @@
                         </div>
                     </div> --}}
                     <div class="col-xs-12 text-center">
-                        <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
+                        <button type="button" class="blue-button large-button" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
                     </div>
                     <button type="button" class="pull-right btn btn-sm btn-info clearfix" onclick="downloadCsv();"><i class="fa fa-download"></i> {{ trans('administration.orders.download-csv' )}}</button>
                     <div class="clearfix"></div>
@@ -181,14 +182,14 @@
 		</div>
 	</div>
     <div id="order-modal" class="modal fade">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="details-container">
                         <img src="{{url('images/ajax-loader.gif')}}" class="img-responsive" style="margin:10px auto;" />
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" aria-label="Close">Close</button>
+                        <button type="button" class="blue-button large-button" data-dismiss="modal" aria-label="Close">Close</button>
                     </div>
                 </div>
             </div>

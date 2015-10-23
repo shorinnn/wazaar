@@ -3,6 +3,7 @@
 		<button class="btn btn-danger" type="button" onclick="deleteCourses();"><i class="fa fa-trash"></i></button>
 	</div>
 	<div class="clearfix"></div>
+    <div class="table-wrapper table-responsive">
 	<table class="table table-striped table-hover table-bordered">
 		<thead>
 			<tr>
@@ -19,4 +20,5 @@
 			{{View::make('administration.picks.listing_items', compact('courses'))}}
 		</tbody>
 	</table>
+    </div>
 {{ Form::close() }}

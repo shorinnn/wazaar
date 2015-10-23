@@ -30,6 +30,10 @@
     .buttons-container div:last-child{
         margin-bottom: 0px;
     }
+	.details-container .list{
+		padding-top:3px;
+		padding-bottom: 3px;
+	}
 </style>
 <div class="col-lg-10 col-lg-offset-1 show-course">
 	<div class="row" style="margin-bottom:20px;">
@@ -81,13 +85,13 @@
 	    </div>
         <div class="details-container">
             <div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.lesson_duration' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->videoDuration()}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.lesson_duration' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">{{$course->videoDuration()}}</div>
                 <div class="clearfix"></div>
             </div>
             <div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.price' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.price' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">
                     @if($course->free == 'no')
                         <span class="success-color">¥{{number_format($course->price)}}</span>
                     @else
@@ -97,28 +101,28 @@
                 <div class="clearfix"></div>
             </div>
             <div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.instructor' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->instructor->last_name.' '.$course->instructor->first_name}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.instructor' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">{{$course->instructor->last_name.' '.$course->instructor->first_name}}</div>
                 <div class="clearfix"></div>
             </div>
             <div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.instructor_email' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->instructor->email}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.instructor_email' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">{{$course->instructor->email}}</div>
                 <div class="clearfix"></div>
             </div>
             <div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.category' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->courseCategory->name}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.category' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">{{$course->courseCategory->name}}</div>
                 <div class="clearfix"></div>
             </div>
             <div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.subcategory' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->courseSubcategory->name}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.subcategory' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">{{$course->courseSubcategory->name}}</div>
                 <div class="clearfix"></div>
             </div>
             <div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-right">{{ trans('administration.courses.label.date_submitted' )}}</div>
-                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{$course->created_at->diffForHumans()}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right list">{{ trans('administration.courses.label.date_submitted' )}}</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left list">{{$course->created_at->diffForHumans()}}</div>
                 <div class="clearfix"></div>
             </div>
         </div>
