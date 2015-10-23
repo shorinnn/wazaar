@@ -9,14 +9,16 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{
-        // while maintenance mode, redirect to my courses if logged in
+       
+        if( !Input::has('skip-splashie')){
+            return View::make('TEMPORARYVIEWS.splash_2');
+        }
+        
+         // while maintenance mode, redirect to my courses if logged in
         if( !Session::has('quick-peek-m8') && Auth::check() && !Auth::user()->hasRole('Admin') ){
             return Redirect::action( 'StudentController@mycourses' );
         }
         
-        if( !Input::has('skip-splashie')){
-            return View::make('TEMPORARYVIEWS.splash_2');
-        }
         $data = Request::all();
 
         $filter = (isset($data['filter']) && $data['filter'] != '')? $data['filter']: '';
