@@ -193,6 +193,8 @@ return array(
             'revenue_high_low' => 'Revenue High to Low',
             'submitted_latest' => 'Submitted Recent Last',
             'submitted_oldest' => 'Submitted Recent First',
+            'student_count_low_high' => 'Student Count Low to High',
+            'student_count_high_low' => 'Student Count High to Low',
             'search' => 'Search',
             'price' => 'Price',
             'lesson_duration' => 'Lesson Duration',
