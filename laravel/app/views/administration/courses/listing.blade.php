@@ -16,7 +16,7 @@
 				@if($course->free == 'no')
 					<label>{{ trans('administration.courses.label.price' )}}</label>: <span class="success-color">¥{{number_format($course->price)}}</span><br />
 				@else
-					<label>{{ trans('administration.courses.label.price' )}}</label>: {{ trans('administration.courses.label.free' )}}<br />
+					<label>{{ trans('administration.courses.label.price' )}}</label>: <span class="success-color">{{ trans('administration.courses.label.free' )}}</span><br />
 				@endif
 				<label>{{ trans('administration.courses.label.lesson_duration' )}}</label>: {{$course->videoDuration()}}<br />
 				<label>{{ trans('administration.courses.label.instructor' )}}</label>: {{$course->instructor_name}}<br />
