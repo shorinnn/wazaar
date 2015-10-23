@@ -15,6 +15,7 @@ class UsersController extends Controller
         $this->users = $users;
         $this->beforeFilter('guest', array('only' => array('create', 'secondTierPublisherCreate', 'login' )));
 //        $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
+        $this->beforeFilter('restrictBrowsing');
     }
 
     /**
