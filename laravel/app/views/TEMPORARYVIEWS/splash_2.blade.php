@@ -38,13 +38,20 @@
             display: inline-block;
             margin-top: 40px;
         }
+        .splash-footer{
+            padding: 20px 12px;
+            text-align: center;
+            color: #fff;
+            background: #18222b;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
 <div class="splash_2">
     <div class="splash_2_header">
         <div>
-            <img src="splash/logo.png" class="img-responsive">
+            <img src="splash/logo_r.png" class="img-responsive">
         </div>
     </div>
     <section class="text-center para-holder">
@@ -54,6 +61,9 @@
             <img src="splash/splashimg_small.png" class="img-responsive">
         </div>
     </section>
+    <div class="splash-footer">
+        <span>© Wazaar 2015</span>
+    </div>
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     @if( App::environment() == 'production' )

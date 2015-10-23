@@ -90,7 +90,7 @@ body {
 	color: #000;
 	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
-	font: 16px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font: 14px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     overflow:auto;/** added because gulp version is messed **/
 }
 html{
@@ -3475,6 +3475,10 @@ h2, h3, h4, h5, h6{
 .new-dashboard .sidebar .read-message{
 	padding: 11px 24px;
 }
+.new-dashboard .sidebar .upload-picture-button{
+    padding: 11px 0;
+}
+
 .new-dashboard .sidebar .message{
 	padding: 15px 24px;
 }
@@ -3911,8 +3915,12 @@ h2, h3, h4, h5, h6{
 	border-left: solid 1px #303941;
 	padding-left: 25px;
 }
+
 .instructor-dashboard .activity-today .profit.success{
 	color: #7ec95f;
+}
+.success-color {
+    color: #7ed321;
 }
 .instructor-dashboard .activity-today .profit span,
 .instructor-dashboard .activity-today .revenue span{

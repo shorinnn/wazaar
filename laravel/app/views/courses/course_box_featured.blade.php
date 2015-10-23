@@ -2,7 +2,7 @@
     <div class="object big-box clearfix">
     	<a href="{{action("CoursesController@show", $course->slug)}}">
             <div class="price-tag">
-                ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }} 
+                <span class="success-color">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
                 @if($course->isDiscounted())
                     {{trans('courses/general.sale')}}
                 @endif

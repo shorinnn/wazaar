@@ -18,7 +18,7 @@
             <td class="link">{{$aff->username}}</td>
             <td>{{$aff->full_name}}	</td>
             <td class="text-right">{{$aff->sales_count}}</td>
-            <td class="text-right last-column">  ¥ {{$aff->sales_count}}</td>
+            <td class="text-right last-column">  ¥{{$aff->sales_count}}</td>
         </tr>
         @endforeach
 
