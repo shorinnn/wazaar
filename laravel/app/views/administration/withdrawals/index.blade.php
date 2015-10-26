@@ -23,38 +23,40 @@
         border:1px solid red;
     }
 </style>
-<a href='{{action('WithdrawalsController@settings')}}'><i class='fa fa-cogs'></i> Settings</a>
-<br /><br />
+<div class="container-fluid">
+    <div class="container">
+        <a href='{{action('WithdrawalsController@settings')}}'><i class='fa fa-cogs'></i> Settings</a>
 
-<p class='text-center'>
-    <a href="{{action('WithdrawalsController@index')}}">Pending payments</a> | 
-    <a href="{{action('WithdrawalsController@notPaid')}}">Approved But Not Paid</a>
-</p>
-<h1>
-    Calculating transactions up to {{ $cutoff }}
-</h1>
-<div>
+        <p class='text-center'>
+            <a href="{{action('WithdrawalsController@index')}}">Pending payments</a> |
+            <a href="{{action('WithdrawalsController@notPaid')}}">Approved But Not Paid</a>
+        </p>
+        <h1>
+            Calculating transactions up to {{ $cutoff }}
+        </h1>
+        <div>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#instructors" aria-controls="instructors" role="tab" data-toggle="tab">Instructors</a></li>
-    <li role="presentation"><a href="#affiliates" aria-controls="affiliates" role="tab" data-toggle="tab">Affiliates</a></li>
-  </ul>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#instructors" aria-controls="instructors" role="tab" data-toggle="tab">Instructors</a></li>
+            <li role="presentation"><a href="#affiliates" aria-controls="affiliates" role="tab" data-toggle="tab">Affiliates</a></li>
+          </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="instructors">
-        {{ View::make('administration.withdrawals.partials.instructors-table')->withRequests( $instructorRequests )->withType('instructor')
-                    ->withReady( $instructorsReady )->withNot( $instructorsNotReady ) }}
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="instructors">
+                {{ View::make('administration.withdrawals.partials.instructors-table')->withRequests( $instructorRequests )->withType('instructor')
+                            ->withReady( $instructorsReady )->withNot( $instructorsNotReady ) }}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="affiliates">
+                {{ View::make('administration.withdrawals.partials.affiliates-table')->withRequests( $affiliateRequests )->withType('affiliate')
+                            ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) }}
+            </div>
+          </div>
+
+        </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="affiliates">
-        {{ View::make('administration.withdrawals.partials.affiliates-table')->withRequests( $affiliateRequests )->withType('affiliate')
-                    ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) }}
-    </div>
-  </div>
-
 </div>
-
 @stop
 
 @section('extra_js')
