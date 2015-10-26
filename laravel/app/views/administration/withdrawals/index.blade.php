@@ -61,8 +61,6 @@
     .settings-row a:hover{
         color: #0099ff;
     }
-    .settings{
-    }
     .table-wrapper{
         border: solid #0d9eff;
         border-width: 1px 0 1px 1px;
