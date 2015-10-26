@@ -1,6 +1,7 @@
 <?php
 
-return array(
+return array(   
+    'notes' => 'Notes',
     'mark-paid' => 'Mark Paid',
     'mark-approved' => 'Mark Approved',
     'period' => 'Period',
@@ -105,6 +106,8 @@ return array(
         'refund' => 'REFUND',
         'order-id' => 'Order ID',
         'label' => [
+            'created_latest' => 'Order Date Recent Last',
+            'created_oldest' => 'Order Date Recent First',
             'name' => 'Name',
             'email' => 'Email',
             'category' => 'Category',
@@ -193,6 +196,8 @@ return array(
             'revenue_high_low' => 'Revenue High to Low',
             'submitted_latest' => 'Submitted Recent Last',
             'submitted_oldest' => 'Submitted Recent First',
+            'student_count_low_high' => 'Student Count Low to High',
+            'student_count_high_low' => 'Student Count High to Low',
             'search' => 'Search',
             'price' => 'Price',
             'lesson_duration' => 'Lesson Duration',

@@ -1,9 +1,10 @@
+
 <div class="question-answer-wrap">
     <div class="row question-answer">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row question no-margin">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
+                    <span class="close-tab right-bar-close hidden-md hidden-lg" data-target=".full-messages"><i class="fa fa-times"></i></span>
                     <div class="avatar">
                         @if( $discussion->lesson->module->course->instructor_id == $discussion->student_id
                             || $discussion->lesson->module->course->assigned_instructor_id == $discussion->student_id )
@@ -20,6 +21,7 @@
                         <h2>{{ $discussion->title }}</h2>
                         <p class="reply">{{ $discussion->content }}</p>
                     </div>
+
                 </div>
             </div>
             <div class="row">

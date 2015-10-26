@@ -1,6 +1,12 @@
 @extends('layouts.default')
 @section('page_title') 売上管理 - Wazaar @stop
 @section('content')
+    <style>
+	    .overall-content-wrap{
+	        background-color: #ebeced;
+	    }
+
+    </style>
 	<div class="container-fluid new-dashboard instructor-dashboard top-section">
     	<div class="container">
             <div class="row">

@@ -704,6 +704,7 @@ function loadRemoteCache(e){
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
     var cachedCallback = $(e.target).attr('data-cached-callback');
+    var preCallback = $(e.target).attr('data-precallback');
     elem = $(e.target);
     while( typeof(url)=='undefined' ){
         console.log('NO URL!');
@@ -712,6 +713,10 @@ function loadRemoteCache(e){
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');
         cachedCallback = elem.attr('data-cached-callback');
+        preCallback = elem.attr('data-preallback');
+    }
+    if( typeof(preCallback)!= 'undefined'){
+        window[preCallback](e);
     }
     // load content from the parent container
     $(target).parent().children().hide();

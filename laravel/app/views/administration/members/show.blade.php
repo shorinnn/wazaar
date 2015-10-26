@@ -88,7 +88,7 @@
     	<div class="col-md-12">
         	<div class="order-history">
             	<h2>{{ trans('administration.order-history') }}</h2>
-                <p class="purchased-amount">{{ trans('administration.total-purchased-amount') }}<span>¥ {{ 
+                <p class="purchased-amount">{{ trans('administration.total-purchased-amount') }}<span class="success-color">¥{{ 
                     number_format($student->purchases()->sum('purchase_price'), Config::get('custom.currency_decimals')) 
                      }}</span></p>
                 <div class="table-wrapper table-responsive clear">

@@ -8,6 +8,7 @@ class AffiliateController extends \BaseController {
             'doLogin', 'forgotPassword', 'doForgotPassword' ] ] );
         $this->beforeFilter('guest', ['only' => [ 'doLogin', 'forgotPassword', 'doForgotPassword' ]]);
         $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
+        $this->beforeFilter('restrictBrowsing');
     }
     
         public function index(){

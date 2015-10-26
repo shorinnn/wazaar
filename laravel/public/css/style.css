@@ -90,9 +90,8 @@ body {
 	color: #000;
 	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
-	font: 16px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font: 14px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     overflow:auto;/** added because gulp version is messed **/
-    background-color: #ebeced;
 }
 html{
   height: 100%;
@@ -2027,7 +2026,7 @@ header .profile-name li:hover ul{
 	padding: 9px 13px;
 }
 .large-button{
-	padding: 10px 25px;
+	padding: 10px 24px;
 }
 .extra-large-button{
 	padding: 15px 80px;
@@ -3476,6 +3475,10 @@ h2, h3, h4, h5, h6{
 .new-dashboard .sidebar .read-message{
 	padding: 11px 24px;
 }
+.new-dashboard .sidebar .upload-picture-button{
+    padding: 11px 0;
+}
+
 .new-dashboard .sidebar .message{
 	padding: 15px 24px;
 }
@@ -3912,8 +3915,12 @@ h2, h3, h4, h5, h6{
 	border-left: solid 1px #303941;
 	padding-left: 25px;
 }
+
 .instructor-dashboard .activity-today .profit.success{
 	color: #7ec95f;
+}
+.success-color {
+    color: #7ed321;
 }
 .instructor-dashboard .activity-today .profit span,
 .instructor-dashboard .activity-today .revenue span{
@@ -4553,6 +4560,7 @@ h2, h3, h4, h5, h6{
     float: right !important;
     overflow: visible;
 }
+.instructor-course .full-messages,
 .student-messages .full-messages{
 	background: #fff;
 	border: solid #e0e1e2;
@@ -4569,9 +4577,11 @@ h2, h3, h4, h5, h6{
     -ms-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
 }
+.instructor-course .full-messages.in,
 .student-messages .full-messages.in{
     right: 0;
 }
+.instructor-course .full-messages .close-tab,
 .student-messages .full-messages .close-tab{
     right: 20px;
     top: 0;
@@ -10367,6 +10377,13 @@ footer{
 	.no-results-container{
 		padding-bottom: 20px;
 	}
+    .instructor-course .full-messages,
+    .student-messages .full-messages{
+        position: fixed;
+        right: -600px;
+        max-width: 500px;
+    }
+
 }
 @media (max-width:900px){
 	.category-box-container{
@@ -10763,6 +10780,7 @@ header .profile-name ul{
         float: left;
         margin-top: 15px;
     }
+
 }
 @media (max-width:752px){
 .navbar-nav{ 

@@ -4,6 +4,9 @@
 
 @section('content')
 	<style>
+	    .overall-content-wrap{
+	        background-color: #ebeced;
+	    }
     	.student-dash .tab-content{
 			border: none !important;
 		}

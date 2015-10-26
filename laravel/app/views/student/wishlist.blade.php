@@ -5,6 +5,10 @@
     .inline-block{
         display:inline-block;
     }
+	    .overall-content-wrap{
+	        background-color: #ebeced;
+	    }
+
 </style>
 
     @if($wishlist->count() == 0)

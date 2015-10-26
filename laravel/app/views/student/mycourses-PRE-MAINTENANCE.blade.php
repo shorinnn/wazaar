@@ -10,6 +10,11 @@
 		.student-dash .tab-content .tab-pane{
 			border: 1px solid #e0e1e2;
 		}
+	    .overall-content-wrap{
+	        background-color: #ebeced;
+	    }
+
+
     </style>
 	<div class="container-fluid new-dashboard top-section" style="min-height: 200px;">
     	<div class="container">

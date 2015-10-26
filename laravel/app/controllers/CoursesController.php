@@ -1284,6 +1284,8 @@ class CoursesController extends \BaseController {
             'total_revenue,desc' => trans('administration.courses.label.revenue_high_low'),
             'courses.created_at,asc' => trans('administration.courses.label.submitted_latest'),
             'courses.created_at,desc' => trans('administration.courses.label.submitted_oldest'),
+            'courses.student_count,asc' => trans('administration.courses.label.student_count_low_high'),
+            'courses.student_count,desc' => trans('administration.courses.label.student_count_high_low'),
         ];
 
         $total = (isset($data['total']))?$data['total']:'';

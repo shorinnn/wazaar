@@ -23,17 +23,16 @@
         border:1px solid red;
     }
 </style>
-<form method="post" class="csvForm">
-    <input type="submit" class="btn btn-primary" value="Download Bank Details CSV" />
-</form>
-<form method="post" class="csvForm" action="withdrawals/all-cashout-list">
-    <input type="submit" class="btn btn-primary" value="All Cashout List" />
-</form>
+<a href='{{action('WithdrawalsController@settings')}}'><i class='fa fa-cogs'></i> Settings</a>
+<br /><br />
+
 <p class='text-center'>
     <a href="{{action('WithdrawalsController@index')}}">Pending payments</a> | 
     <a href="{{action('WithdrawalsController@notPaid')}}">Approved But Not Paid</a>
 </p>
-
+<h1>
+    Calculating transactions up to {{ $cutoff }}
+</h1>
 <div>
 
   <!-- Nav tabs -->
@@ -45,21 +44,16 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="instructors">
-        {{ View::make('administration.withdrawals.partials.table')->withRequests( $instructorRequests )->withType('instructor') }}
+        {{ View::make('administration.withdrawals.partials.instructors-table')->withRequests( $instructorRequests )->withType('instructor')
+                    ->withReady( $instructorsReady )->withNot( $instructorsNotReady ) }}
     </div>
     <div role="tabpanel" class="tab-pane" id="affiliates">
-        {{ View::make('administration.withdrawals.partials.table')->withRequests( $affiliateRequests )->withType('affiliate') }}
+        {{ View::make('administration.withdrawals.partials.affiliates-table')->withRequests( $affiliateRequests )->withType('affiliate')
+                    ->withReady( $affiliatesReady )->withNot( $affiliatesNotReady ) }}
     </div>
   </div>
 
 </div>
-
-<form method="post" class="csvForm">
-    <input type="submit" class="btn btn-primary" value="Download Bank Details CSV" />
-</form>
-<form method="post" class="csvForm" action="withdrawals/all-cashout-list">
-    <input type="submit" class="btn btn-primary" value="All Cashout List" />
-</form>
 
 @stop
 
@@ -70,15 +64,15 @@
     });
     
     function calculateReadiness(){
-        total = $('.ajax-content-instructor .transaction-row').length;
-        noFill = $('.ajax-content-instructor .no-fill').length;
-        $('#instructor-not-ready-for-payment').html(noFill);
-        $('#instructor-ready-for-payment').html( total*1 - noFill*1 );
-        
-        total = $('.ajax-content-affiliate .transaction-row').length;
-        noFill = $('.ajax-content-affiliate .no-fill').length;
-        $('#affiliate-not-ready-for-payment').html(noFill);
-        $('#affiliate-ready-for-payment').html( total*1 - noFill*1 );
+//        total = $('.ajax-content-instructor .transaction-row').length;
+//        noFill = $('.ajax-content-instructor .no-fill').length;
+//        $('#instructor-not-ready-for-payment').html(noFill);
+//        $('#instructor-ready-for-payment').html( total*1 - noFill*1 );
+//        
+//        total = $('.ajax-content-affiliate .transaction-row').length;
+//        noFill = $('.ajax-content-affiliate .no-fill').length;
+//        $('#affiliate-not-ready-for-payment').html(noFill);
+//        $('#affiliate-ready-for-payment').html( total*1 - noFill*1 );
     }
     
     function processWithdrawal(target){

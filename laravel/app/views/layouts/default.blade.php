@@ -85,7 +85,7 @@
            
         		{{ View::make('layouts.shared.header') }}
         </header>
-        <div class="overall-content-wrap">
+        <div class="overall-content-wrap clearfix">
             @yield('content')
         </div>
         <footer>
