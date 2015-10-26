@@ -87,7 +87,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	color: #000;
+	color: #303941;
 	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
 	font: 14px 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
@@ -1943,6 +1943,7 @@ header .profile-name li:hover ul{
 	width: 100%;
 	margin-top: 10px;
 }
+.red-button,
 .green-button,
 .blue-button{
 	display: inline-block;
@@ -1959,6 +1960,7 @@ header .profile-name li:hover ul{
     -moz-box-shadow: 0px 2px 0px #e7e8e9;
     box-shadow: 0px 2px 0px #e7e8e9;*/
 }
+.red-button i,
 .green-button i,
 .blue-button i{
     font-size: 14px;
@@ -1984,6 +1986,16 @@ header .profile-name li:hover ul{
 	color: #fff;
 	background: #3cbf1f;
 }
+.red-button{
+    background: #ef4c31;
+    box-shadow: none;
+    border: none;
+}
+.red-button:hover{
+    color: #fff;
+    background: #ee3011;
+}
+
 .white-button{
 	padding: 10px 63px;
 	font-size: 12px;
@@ -2667,6 +2679,9 @@ h2, h3, h4, h5, h6{
 	padding-right: 10px;
 	padding-left: 10px;
 }
+.tabbed-content-header{
+    border-bottom: 1px solid #e0e1e2;
+}
 .tabbed-content-header li{
 	float: left;
 }
@@ -2682,6 +2697,7 @@ h2, h3, h4, h5, h6{
 	display: inline-block;
 }
 .tabbed-content-header a:hover,
+.tabbed-content-header li.active a,
 .tabbed-content-header a.active{
 	color: #0099ff !important;
 	border-color: #0099ff;

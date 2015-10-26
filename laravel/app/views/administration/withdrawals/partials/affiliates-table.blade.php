@@ -8,19 +8,22 @@ $fee = $cashoutFee->value;
 <div class=" members-area  ajax-content ajax-content-{{$type}}">
     <div class="row">
     	<div class="col-md-12">
-            @if(Request::segment('3')=='')
-                <div class='label label-success'>
-                    <span id='{{$type}}-ready-for-payment'>
-                        {{ $ready }}
-                    </span> ready for payments
-                </div>
+    	    <div class="label-wrap">
+                @if(Request::segment('3')=='')
+                    <div class='lesson-status approved'>
+                        <span id='{{$type}}-ready-for-payment'>
+                            {{ $ready }}
+                        </span> ready for payments
+                    </div>
 
-                <div class='label label-danger'>
-                    <span id='{{$type}}-not-ready-for-payment'>
-                        {{ $not }}
-                    </span> without bank details
-                </div>
-            @endif
+                    <div class='lesson-status rejected'>
+                        <span id='{{$type}}-not-ready-for-payment'>
+                            {{ $not }}
+                        </span> without bank details
+                    </div>
+                    <a href='{{action('WithdrawalsController@settings')}}' class="right settings default-button large-button"><i class='fa fa-cogs'></i> Settings</a>
+                @endif
+            </div>
             <div class="table-wrapper table-responsive clear">
                <form method='post' id='withdrawForm' action='{{action('WithdrawalsController@update')}}'>
                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
@@ -138,15 +141,15 @@ $fee = $cashoutFee->value;
                         <tr>
                                 @if( isset($request) && $request->status=='pending') 
                                 <td colspan="10">
-                                    <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
+                                    <button type='button' class='blue-button large-button' onclick="processWithdrawal(this)"
                                             data-mode='complete'
                                             data-message='{{ trans('administration.mark-transaction-complete') }}?'>{{ trans('administration.mark-approved') }}</button>
-                                    <button type='button' class='btn btn-danger' onclick="processWithdrawal(this)"
+                                    <button type='button' class='red-button large-button' onclick="processWithdrawal(this)"
                                             data-mode='reject'
                                             data-message='{{ trans('administration.mark-transaction-failed') }}?'>{{ trans('administration.reject-selected') }}</button>
                                 @else
                                 <td colspan="9">
-                                    <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
+                                    <button type='button' class='blue-button large-button' onclick="processWithdrawal(this)"
                                         data-mode='paid'
                                         data-message='{{ trans('administration.mark-transaction-paid') }}?'>{{ trans('administration.mark-paid') }}</button>
                                

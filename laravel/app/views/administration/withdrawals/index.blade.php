@@ -22,24 +22,63 @@
     .errored{
         border:1px solid red;
     }
+    .checkbox-buttons{
+        float: none;
+        margin: 0;
+    }
+    .checkbox-buttons .checkbox-item{
+        padding-left: 0;
+        padding-bottom: 0;
+    }
+    .checkbox-buttons input[type="checkbox"] + label.small-checkbox{
+        background-color: #fff;
+        margin: 0;
+        border-radius: 3px;
+        vertical-align: middle;
+    }
+    .checkbox-checkbox{
+        float: none !important;
+    }
+    .label-wrap{
+        margin-bottom: 20px;
+    }
+    .members-area{
+        margin: 20px auto 0;
+    }
+    .table-wrapper{
+        margin-bottom: 30px;
+    }
+    .settings-row{
+        margin-top: 40px;
+    }
+    .settings-row a:hover{
+        color: #0099ff;
+    }
+    .settings{
+        margin-top: -8px;
+    }
+
 </style>
 <div class="container-fluid">
     <div class="container">
-        <a href='{{action('WithdrawalsController@settings')}}'><i class='fa fa-cogs'></i> Settings</a>
-
-        <p class='text-center'>
+        <p class='text-center settings-row'>
             <a href="{{action('WithdrawalsController@index')}}">Pending payments</a> |
             <a href="{{action('WithdrawalsController@notPaid')}}">Approved But Not Paid</a>
         </p>
-        <h1>
+        <h2 class="text-center">
             Calculating transactions up to {{ $cutoff }}
-        </h1>
+        </h2>
         <div>
 
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#instructors" aria-controls="instructors" role="tab" data-toggle="tab">Instructors</a></li>
-            <li role="presentation"><a href="#affiliates" aria-controls="affiliates" role="tab" data-toggle="tab">Affiliates</a></li>
+          <ul class="tabbed-content-header clearfix" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#instructors" aria-controls="instructors" role="tab" data-toggle="tab" class="tab-header-button">Instructors</a>
+            </li>
+            <li role="presentation">
+                <a href="#affiliates" aria-controls="affiliates" role="tab" data-toggle="tab" class="tab-header-button">Affiliates</a>
+            </li>
+
           </ul>
 
           <!-- Tab panes -->
