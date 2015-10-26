@@ -9770,6 +9770,7 @@ footer{
     line-height: 17px !important;
     border-bottom: none !important;
     text-transform: uppercase;
+    vertical-align: middle !important;
 }
 .courses-table thead th:first-of-type{
     padding-left: 24px;
@@ -9787,7 +9788,8 @@ footer{
 .courses-table tbody td{
     color: #242b32;
     font-size: 13px;
-    line-height: 15px !important;
+    line-height: 18px !important;
+    vertical-align: middle !important;
 }
 .courses-table .table-pagination > div{
     width: 250px;

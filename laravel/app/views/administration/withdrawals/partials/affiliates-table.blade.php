@@ -40,10 +40,10 @@ $fee = $cashoutFee->value;
                             <th>
                                 {{ trans('administration.orders.total') }}
                             </th>
-                            <th>
+                            <th class="text-center">
                                 {{ trans('analytics.affiliate_commission') }}
                             </th>
-                            <th>
+                            <th class="text-center">
                                 {{ trans('analytics.second_tier_commission') }}
                             </th>
                             <th>
@@ -91,17 +91,20 @@ $fee = $cashoutFee->value;
                                 {{ $request->user->email }}
                             </td>
                             <td>
+                                <div class="inline-block">
                                 {{ trans('administration.before-fee') }}:
-                                    <span class="success-color">¥{{ number_format( ( $request->amount + $fee ), Config::get('custom.currency_decimals')) }}</span><br />
+                                    <span class="success-color">¥{{ number_format( ( $request->amount + $fee ), Config::get('custom.currency_decimals')) }}</span>
+                                </div>
+                                <div class="inline-block">
                                 {{ trans('administration.after-fee') }}: 
                                     <span class="success-color">¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}</span>
-                                
+                                </div>
                             </td>
-                            <td> 
+                            <td class="text-center">
                                 <?php $com = $request->affiliateCommissions() ;?>
                                 <span class="success-color">¥{{ number_format( $com['affiliate'], Config::get('custom.currency_decimals')) }}</span>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <span class="success-color">¥{{ number_format( $com['second'], Config::get('custom.currency_decimals')) }}</span>
                             </td>
                             <td>

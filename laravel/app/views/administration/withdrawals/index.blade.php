@@ -48,10 +48,10 @@
     .members-area{
         margin: 20px auto 0;
     }
-    .table-wrapper{
+    .table-wrap{
         margin-bottom: 30px;
     }
-    .table-wrapper input{
+    .table-wrap input{
         margin-bottom: 0;
         background-color: #fff;
     }
