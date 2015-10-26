@@ -160,7 +160,9 @@
             .ask-a-question-heading.hidden-sm i{
                 color: #0099ff;
             }
-
+            .course-question-sidebar.in .ask-a-question-heading.hidden-sm{
+                display: none;
+            }
         </style>
             <div class="right-slide-menu"></div>
         <div class="row full-height">
@@ -368,7 +370,7 @@
                                 {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
                             @endforeach
                             <h3 class="ask-a-question-heading visible-sm-block visible-xs-block hidden-sm hidden-xs">
-                                {{ trans('conversations/general.be-the-first') }}
+                                {{ trans('conversations/general.ask-a-question') }}
                                 <span class="block text-center"><i class="fa fa-long-arrow-down"></i></span>
                             </h3>
                         </div>

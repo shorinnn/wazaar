@@ -1180,8 +1180,9 @@ header .profile-name li:hover ul{
 }
 /************** Category rows ******************/
 .category-box-container{
-	background: #ebeced;
-	border: solid #e3e5e6;
+	/*background: #ebeced;*/
+    background: #EBECED url(/images/category-sidebar.png) left top repeat-y !important;
+    border: solid #e3e5e6;
 	border-width: 1px 0;
 	padding-bottom: 50px;
 }
@@ -10398,6 +10399,10 @@ footer{
         position: fixed;
         right: -600px;
         max-width: 500px;
+    }
+    .category-box-container{
+        background-image: none !important;
+        background-color: #ebeced;
     }
 
 }
