@@ -8,7 +8,7 @@ $fee = $cashoutFee->value;
 <div class=" members-area  ajax-content ajax-content-{{$type}}">
     <div class="row">
     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    	    <div class="label-wrap">
+    	    <div class="label-wrap clearfix">
                 @if(Request::segment('3')=='')
                     <div class='lesson-status approved'>
                         <span id='{{$type}}-ready-for-payment'>
@@ -24,19 +24,15 @@ $fee = $cashoutFee->value;
                     <a href='{{action('WithdrawalsController@settings')}}' class="right settings default-button large-button"><i class='fa fa-cogs'></i> Settings</a>
                 @endif
             </div>
-            <div class="table-responsive clear">
+            <div class="table-wrapper table-responsive clear">
                <form method='post' id='withdrawForm' action='{{action('WithdrawalsController@update')}}'>
                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-               <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
 
-                            <th>
-                                {{ trans('profile.form.lastName') }}
-                            </th>
-                            <th>
-                                {{ trans('profile.form.firstName') }}
+                            <th class="hidden-xs">
+                                {{ trans('profile.form.name') }}
                             </th>
                             <th>
                                 {{ trans('profile.form.email') }}
@@ -53,7 +49,7 @@ $fee = $cashoutFee->value;
                             <th>
                                 {{ trans('profile.tabBankDetails') }}
                             </th>
-                            <th>
+                            <th class="hidden-xs">
                                 <div class='checkbox-buttons'>
                                     <div class="checkbox-item"> 
                                         <div class="checkbox-checkbox checkbox-checked"> 
@@ -81,8 +77,7 @@ $fee = $cashoutFee->value;
                                 @else
                                     {{ $request->user->profile->last_name }}
                                 @endif
-                            </td>
-                            <td>
+
                                 @if($request->user->profile==null)
                                     {{ $request->user->first_name }}
                                 @else
@@ -94,23 +89,23 @@ $fee = $cashoutFee->value;
                             </td>
                             <td>
                                 {{ trans('administration.before-fee') }}:
-                                    ¥{{ number_format( ( $request->amount + $fee ), Config::get('custom.currency_decimals')) }}<br />
+                                    <span class="success-color">¥{{ number_format( ( $request->amount + $fee ), Config::get('custom.currency_decimals')) }}</span><br />
                                 {{ trans('administration.after-fee') }}: 
-                                    ¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}
+                                    <span class="success-color">¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}</span>
                                 
                             </td>
                             <td> 
                                 <?php $com = $request->instructorCommissions() ;?>
-                                ¥{{ number_format( $com['instructor'], Config::get('custom.currency_decimals')) }}
+                                <span class="success-color">¥{{ number_format( $com['instructor'], Config::get('custom.currency_decimals')) }}</span>
                             </td>
                             <td>
-                                ¥{{ number_format( $com['second'], Config::get('custom.currency_decimals')) }}
+                                <span class="success-color">¥{{ number_format( $com['second'], Config::get('custom.currency_decimals')) }}</span>
                             </td>
                             <td>
                                 @if( $request->user->noFill('Instructor') )
-                                    {{ trans('courses/general.no')}}
+                                    <span class="danger-color">{{ trans('courses/general.no')}}</span>
                                 @else
-                                    {{ trans('courses/general.yes')}}
+                                    <span class="success-color">{{ trans('courses/general.yes')}}</span>
                                 @endif
                             </td>
                             <td class="hidden-xs">
@@ -153,7 +148,6 @@ $fee = $cashoutFee->value;
                         </tr>
                     </tbody>
                 </table>
-                </div>
                    <input type="hidden" name="action" id='action' />
                </form>
             </div>

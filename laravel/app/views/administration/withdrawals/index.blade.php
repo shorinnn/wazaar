@@ -42,6 +42,9 @@
     .label-wrap{
         margin-bottom: 20px;
     }
+    .lesson-status{
+        margin-top: 8px;
+    }
     .members-area{
         margin: 20px auto 0;
     }
@@ -59,18 +62,24 @@
         color: #0099ff;
     }
     .settings{
-        margin-top: -8px;
     }
-
+    .table-wrapper{
+        border: solid #0d9eff;
+        border-width: 1px 0 1px 1px;
+    }
+    .transaction-date input{
+        width: 95px;
+    }
 </style>
 <div class="container-fluid">
     <div class="container">
+        <h1 class="text-center margin-top-40">Manage Payments</h1>
         <p class='text-center settings-row'>
             <a href="{{action('WithdrawalsController@index')}}">Pending payments</a> |
             <a href="{{action('WithdrawalsController@notPaid')}}">Approved But Not Paid</a>
         </p>
-        <h2 class="text-center">
-            Calculating transactions up to {{ $cutoff }}
+        <h2 class="text-center transaction-date">
+            Calculating transactions up to <input type="text" readonly value="{{ $cutoff }}">
         </h2>
         <div>
 

@@ -8,7 +8,7 @@ $fee = $cashoutFee->value;
 <div class=" members-area  ajax-content ajax-content-{{$type}}">
     <div class="row">
     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    	    <div class="label-wrap">
+    	    <div class="label-wrap clearfix">
                 @if(Request::segment('3')=='')
                     <div class='lesson-status approved'>
                         <span id='{{$type}}-ready-for-payment'>
@@ -24,7 +24,7 @@ $fee = $cashoutFee->value;
                     <a href='{{action('WithdrawalsController@settings')}}' class="right settings default-button large-button"><i class='fa fa-cogs'></i> Settings</a>
                 @endif
             </div>
-            <div class="table-responsive clear">
+            <div class="table-wrapper table-responsive clear">
                <form method='post' id='withdrawForm' action='{{action('WithdrawalsController@update')}}'>
                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                 <table class="table table-bordered table-striped">
@@ -96,26 +96,26 @@ $fee = $cashoutFee->value;
                             </td>
                             <td>
                                 {{ trans('administration.before-fee') }}:
-                                    ¥{{ number_format( ( $request->amount + $fee ), Config::get('custom.currency_decimals')) }}<br />
+                                    <span class="success-color">¥{{ number_format( ( $request->amount + $fee ), Config::get('custom.currency_decimals')) }}</span><br />
                                 {{ trans('administration.after-fee') }}: 
-                                    ¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}
+                                    <span class="success-color">¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}</span>
                                 
                             </td>
                             <td> 
                                 <?php $com = $request->affiliateCommissions() ;?>
-                                ¥{{ number_format( $com['affiliate'], Config::get('custom.currency_decimals')) }}
+                                <span class="success-color">¥{{ number_format( $com['affiliate'], Config::get('custom.currency_decimals')) }}</span>
                             </td>
                             <td>
-                                ¥{{ number_format( $com['second'], Config::get('custom.currency_decimals')) }}
+                                <span class="success-color">¥{{ number_format( $com['second'], Config::get('custom.currency_decimals')) }}</span>
                             </td>
                             <td>
-                                ¥{{ number_format( $com['ltc'], Config::get('custom.currency_decimals')) }}
+                                <span class="success-color">¥{{ number_format( $com['ltc'], Config::get('custom.currency_decimals')) }}</span>
                             </td>
                             <td>
                                 @if( $request->user->noFill('Affiliate') )
-                                    {{ trans('courses/general.no')}}
+                                    <span class="danger-color">{{ trans('courses/general.no')}}</span>
                                 @else
-                                    {{ trans('courses/general.yes')}}
+                                    <span class="success-color">{{ trans('courses/general.yes')}}</span>
                                 @endif
                             </td>
                             <td class="hidden-xs">
