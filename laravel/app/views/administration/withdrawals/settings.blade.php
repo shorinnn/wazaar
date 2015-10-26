@@ -27,6 +27,7 @@
     @media (max-width:767px){
         .settings-label{
             float: left;
+            line-height: 24px;
         }
     }
 </style>

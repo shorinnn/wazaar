@@ -2,6 +2,7 @@
 
 return array(
     'you-have' => 'This may not work',
+    'be-the-first' => 'Be the first to ask a question!',
     'new-pm-from' => 'This may not work新しいプライベートメッセージ',
     'new-anouncements-in' => 'This may not work新着の通知',
     'teacher-responses-in' => 'This may not work講師の回答',
