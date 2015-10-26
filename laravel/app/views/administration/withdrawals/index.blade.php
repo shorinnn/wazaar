@@ -48,10 +48,10 @@
     .members-area{
         margin: 20px auto 0;
     }
-    .table-wrapper{
+    .table-wrap{
         margin-bottom: 30px;
     }
-    .table-wrapper input{
+    .table-wrap input{
         margin-bottom: 0;
         background-color: #fff;
     }
@@ -60,8 +60,6 @@
     }
     .settings-row a:hover{
         color: #0099ff;
-    }
-    .settings{
     }
     .table-wrapper{
         border: solid #0d9eff;
