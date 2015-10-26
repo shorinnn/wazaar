@@ -4,6 +4,19 @@
  */
 // JavaScript Document
 
+window.getFunctionFromString = function(string){
+    var scope = window;
+    var scopeSplit = string.split('.');
+    for (i = 0; i < scopeSplit.length - 1; i++)
+    {
+        scope = scope[scopeSplit[i]];
+
+        if (scope == undefined) return;
+    }
+
+    return scope[scopeSplit[scopeSplit.length - 1]];
+}
+
 function isset(variable){
     if( typeof(variable)=='undefined') return false;
     return true;
@@ -599,7 +612,8 @@ function loadRemote(e){
         $(target).load(url, function(){
             $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){
-                window[callback](e);
+                //window[callback](e);
+                getFunctionFromString(callback)(e);
             }
         });
     }

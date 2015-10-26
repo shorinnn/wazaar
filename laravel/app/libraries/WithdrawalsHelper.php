@@ -62,7 +62,7 @@ class WithdrawalsHelper{
             $str.="2,$profile->bank_code,$profile->bank_name,$profile->branch_code,$profile->branch_name,0,$profile->account_type,$profile->account_number,$profile->beneficiary_name,$w->amount,0,0,0,7,\n";
         }
         // trailer record
-        $str.= "8,5,3775000,\n";
+        $str.= "8,5,3775000,\r\n";
         // end record
         $str.= '9,';
         return $str;

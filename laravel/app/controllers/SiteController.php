@@ -9,7 +9,7 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{
-       
+            
         if( !Input::has('skip-splashie')){
             return View::make('TEMPORARYVIEWS.splash_2');
         }

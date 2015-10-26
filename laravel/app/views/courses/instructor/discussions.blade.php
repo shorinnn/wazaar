@@ -29,13 +29,15 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <ul class="nav nav-pills left" role="tablist">
                         <li role="presentation" class="active">
-                        	<a href="#discussions" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">246 Discussions</a>
+                        	<a href="#discussions" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
+                                    {{ $course->totalDiscussions() }} Discussions</a>
                         </li>
                         <li role="presentation" class="">
-                        	<a href="#questions" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">5 Questions</a>
+                        	<a href="#questions" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">0 Questions</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#students" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">118 Students</a>
+                        	<a href="#students" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">
+                                    {{ $course->sales->count() }} Students</a>
                         </li>
                     </ul>
                     <a href="{{ action('CoursesController@edit', $course->slug) }}" class="right add-new-course large-button blue-button"><i class="fa fa-edit"></i> {{ trans('courses/general.edit') }}</a>
@@ -66,8 +68,9 @@
                                 </div>
 
                                 @foreach($discussions as $discussion)
-                                <a href="#" data-no-prevent-default='1' data-no-push-state="1" class="load-remote toggle-student-message row message-preview right-bar-toggler" data-loading-container=".full-messages"
-                                   data-url="{{ action('CoursesController@viewDiscussion', $discussion->id)}}" data-target=".full-messages" data-elem=".full-messages"  data-close=".close-tab">
+                                <a href="#" data-no-prevent-default='1' data-no-push-state="1" class="load-remote toggle-student-message row message-preview right-bar-toggler" 
+                                   data-loading-container=".full-messages" data-url="{{ action('CoursesController@viewDiscussion', $discussion->id)}}" 
+                                   data-target=".full-messages" data-elem=".full-messages"  data-close=".close-tab" data-callback="Messages.opened">
                                     <div class="">
                                         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                                             <div class="message">
@@ -76,7 +79,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                            <span class="number-of-replies">47<i class="fa fa-reply"></i></span>
+                                            <span class="number-of-replies">{{ $discussion->replies->count() }}<i class="fa fa-reply"></i></span>
                                         </div>
                                     </div>
                                 </a>
