@@ -24,18 +24,15 @@ $fee = $cashoutFee->value;
                     <a href='{{action('WithdrawalsController@settings')}}' class="right settings default-button large-button"><i class='fa fa-cogs'></i> Settings</a>
                 @endif
             </div>
-            <div class="table-wrapper table-responsive clear">
+            <div class="table-wrap courses-table clear table-responsive">
                <form method='post' id='withdrawForm' action='{{action('WithdrawalsController@update')}}'>
                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-                <table class="table table-bordered table-striped">
+                <table class="table">
                     <thead>
                         <tr>
 
-                            <th class="hidden-xs">
-                                {{ trans('profile.form.lastName') }}
-                            </th>
                             <th>
-                                {{ trans('profile.form.firstName') }}
+                                {{ trans('profile.form.name') }}
                             </th>
                             <th>
                                 {{ trans('profile.form.email') }}
@@ -83,8 +80,7 @@ $fee = $cashoutFee->value;
                                 @else
                                     {{ $request->user->profile->last_name }}
                                 @endif
-                            </td>
-                            <td>
+
                                 @if($request->user->profile==null)
                                     {{ $request->user->first_name }}
                                 @else
