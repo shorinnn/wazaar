@@ -7,7 +7,7 @@ $fee = $cashoutFee->value;
 ?>
 <div class=" members-area  ajax-content ajax-content-{{$type}}">
     <div class="row">
-    	<div class="col-md-12">
+    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     	    <div class="label-wrap">
                 @if(Request::segment('3')=='')
                     <div class='lesson-status approved'>
@@ -24,14 +24,14 @@ $fee = $cashoutFee->value;
                     <a href='{{action('WithdrawalsController@settings')}}' class="right settings default-button large-button"><i class='fa fa-cogs'></i> Settings</a>
                 @endif
             </div>
-            <div class="table-wrapper table-responsive clear">
+            <div class="table-responsive clear">
                <form method='post' id='withdrawForm' action='{{action('WithdrawalsController@update')}}'>
                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
 
-                            <th>
+                            <th class="hidden-xs">
                                 {{ trans('profile.form.lastName') }}
                             </th>
                             <th>
@@ -55,7 +55,7 @@ $fee = $cashoutFee->value;
                             <th>
                                 {{ trans('profile.tabBankDetails') }}
                             </th>
-                            <th>
+                            <th class="hidden-xs">
                                 <div class='checkbox-buttons'>
                                     <div class="checkbox-item"> 
                                         <div class="checkbox-checkbox checkbox-checked"> 

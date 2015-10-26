@@ -48,6 +48,10 @@
     .table-wrapper{
         margin-bottom: 30px;
     }
+    .table-wrapper input{
+        margin-bottom: 0;
+        background-color: #fff;
+    }
     .settings-row{
         margin-top: 40px;
     }
