@@ -4,9 +4,24 @@
         <div class="container">
 
             <div class="row">
+
                 <h2>あなたもたった１週間でピアノで作曲が出来…<i class="wa-chevron-down"></i></h2>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-summary-block">
                     <div class="row">
+                        <ul class="tabbed-content-header clearfix">
+                            <li>
+                                <a href="#">Daily</a>
+                            </li>
+                            <li>
+                                <a href="#">Weekly</a>
+                            </li>
+                            <li>
+                                <a href="#">Monthly</a>
+                            </li>
+                            <li>
+                                <a href="#">All time</a>
+                            </li>
+                        </ul>
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-6 column-1">
                             <div class="row">
                                 <h3>Course summary</h3>
@@ -54,20 +69,7 @@
             </div>
 
             <div class="row periodic-stats">
-                <ul class="tabbed-content-header clearfix">
-                    <li>
-                        <a href="#">Daily</a>
-                    </li>
-                    <li>
-                        <a href="#">Weekly</a>
-                    </li>
-                    <li>
-                        <a href="#">Monthly</a>
-                    </li>
-                    <li>
-                        <a href="#">All time</a>
-                    </li>
-                </ul>
+
                 <div class="table-wrap table-responsive">
                     <table class="table">
                         <thead>

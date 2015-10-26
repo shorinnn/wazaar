@@ -10,6 +10,8 @@
 
 <div class="col-lg-3"></div>
 <div class="col-lg-6">
+    <a href='{{action('WithdrawalsController@index')}}'><i class='fa fa-arrow-left'></i> Back To Payments</a>
+    
 {{ Form::open( ['action' => 'WithdrawalsController@doSettings' ] ) }}
     Cashout Processor Fired On: 
     {{ Form::select('date', $options, $setting->value) }}
@@ -41,6 +43,16 @@
 {{ Form::open( ['action'=>'WithdrawalsController@sendBankEmail', 'class'=>'ajax-form', 'data-callback' => 'bankMailSent'] ) }}
     <button type='submit' class='btn btn-danger'>Send No Bank Account Email</button>
 {{ Form::close() }}
+<hr />
+    <center>
+        <form method="post" class="csvForm inline-form" action='{{action('WithdrawalsController@index')}}' >
+            <input type="submit" class="btn btn-primary" value="Download Bank Details CSV" />
+        </form>
+        <form method="post" class="csvForm inline-form" action="{{action('WithdrawalsController@allCashoutList')}}">
+            <input type="submit" class="btn btn-primary" value="All Cashout List" />
+        </form>
+    </center>
+
 </div>
 <div class="col-lg-3"></div>
 
@@ -54,5 +66,12 @@
         $.bootstrapGrowl( _( e.sent+' Emails Sent' ),{align:'center', type:'success'} );
         return false;
     }
+    
+    $('body').delegate('.csvForm', 'submit', function(){
+        setTimeout(function(){
+           $('input').removeAttr('disabled');
+           console.log('re-enabled');
+        }, 1000);
+    });
 </script>
 @stop

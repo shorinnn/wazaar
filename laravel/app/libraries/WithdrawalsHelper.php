@@ -69,4 +69,25 @@ class WithdrawalsHelper{
         
     }
     
+    public static function bankDetailsStats(){
+        $instructors = Instructor::whereHas('allTransactions', function($query){
+            $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_debit'])->where('status', 'pending');
+        })->get();
+        $stats['instructor_ready'] = $stats['instructor_not_ready'] = 0;
+        foreach($instructors as $instructor){
+            if($instructor->noFill('Instructor')) $stats['instructor_not_ready'] = $stats['instructor_not_ready']+1;
+            else $stats['instructor_ready'] = $stats['instructor_ready']+1;
+        }
+        
+        $affiliates = LTCAffiliate::whereHas('allTransactions', function($query){
+            $query->where('user_id','>', 2)->whereIn('transaction_type',['affiliate_debit'])->where('status', 'pending');
+        })->get();
+        $stats['affiliates_ready'] = $stats['affiliates_not_ready'] = 0;
+        foreach($affiliates as $aff){
+            if($aff->noFill('Affiliate')) $stats['affiliates_not_ready'] = $stats['affiliates_not_ready']+1;
+            else $stats['affiliates_ready'] = $stats['affiliates_ready']+1;
+        }
+        return $stats;
+    }
+    
 }

@@ -1,6 +1,7 @@
 <?php
 
-return array(
+return array(   
+    'notes' => 'Notes',
     'mark-paid' => 'Mark Paid',
     'mark-approved' => 'Mark Approved',
     'period' => 'Period',
@@ -105,6 +106,8 @@ return array(
         'refund' => 'REFUND',
         'order-id' => 'Order ID',
         'label' => [
+            'created_latest' => 'Order Date Recent Last',
+            'created_oldest' => 'Order Date Recent First',
             'name' => 'Name',
             'email' => 'Email',
             'category' => 'Category',

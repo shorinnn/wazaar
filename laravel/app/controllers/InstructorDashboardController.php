@@ -17,7 +17,14 @@ class InstructorDashboardController extends BaseController
         $secondTierSalesView = $this->secondTierSalesView();
         $courses        = Course::where('instructor_id', Auth::id())->get();
 
-        return View::make('instructors.dashboard.index', compact('salesView', 'salesCountView', 'secondTierSalesView', 'courses'));
+
+        if (Input::has('t')){
+            return View::make('TEMPORARYVIEWS.new_analytics', compact('salesView', 'salesCountView', 'secondTierSalesView', 'courses'));
+        }
+        else{
+            return View::make('instructors.dashboard.index', compact('salesView', 'salesCountView', 'secondTierSalesView', 'courses'));
+        }
+
     }
 
     public function course($courseSlug = '')

@@ -14,15 +14,15 @@
 				<label>{{ trans('administration.courses.label.category' )}}</label>: {{$course->course_category}}<br />
 				<label>{{ trans('administration.courses.label.subcategory' )}}</label>: {{$course->course_subcategory}}<br />
 				@if($course->free == 'no')
-					<label>{{ trans('administration.courses.label.price' )}}</label>: <span class="success-color">¥{{number_format($course->price)}}</span><br />
+					<label>{{ trans('administration.courses.label.price' )}}</label>: <span class="text-success">¥{{number_format($course->price)}}</span><br />
 				@else
-					<label>{{ trans('administration.courses.label.price' )}}</label>: <span class="success-color">{{ trans('administration.courses.label.free' )}}</span><br />
+					<label>{{ trans('administration.courses.label.price' )}}</label>: <span class="text-success">{{ trans('administration.courses.label.free' )}}</span><br />
 				@endif
 				<label>{{ trans('administration.courses.label.lesson_duration' )}}</label>: {{$course->videoDuration()}}<br />
 				<label>{{ trans('administration.courses.label.instructor' )}}</label>: {{$course->instructor_name}}<br />
 				<label>{{ trans('administration.courses.label.instructor_email' )}}</label>: {{$course->instructor_email}}<br />
 				<label>{{ trans('administration.courses.label.date_submitted' )}}</label>: {{$course->created_at->format('M d, Y h:i A \\(l\\)')}}<br />
-				<label>{{ trans('administration.courses.label.revenue' )}}</label>: <span class="success-color">¥{{number_format($course->total_revenue)}}</span><br />
+				<label>{{ trans('administration.courses.label.revenue' )}}</label>: <span class="text-success">¥{{number_format($course->total_revenue)}}</span><br />
 				<div class="clearfix"></div>
 			</div>
 			<div class="col-md-3 col-sm-12 col-xs-12">

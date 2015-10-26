@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'notes' => 'Notes',
     'mark-paid' => 'Mark Paid',
     'mark-approved' => 'Mark Approved',
     'period' => 'Period',
@@ -104,6 +105,8 @@ return array(
         'total' => '総売上高',
         'refund' => 'REFUND',
         'label' => [
+            'created_latest' => 'Order Date Recent Last',
+            'created_oldest' => 'Order Date Recent First',
             'name' => 'コース名',
             'email' => 'メールアドレス別',
             'category' => 'カテゴリー別',

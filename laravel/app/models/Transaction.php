@@ -61,4 +61,33 @@ class Transaction extends Ardent {
             if($first==$last) return $first;
             else return "$first - $last";
         }
+        
+        public function instructorCommissions(){
+            $commissions['instructor'] = $commissions['second'] = 0;
+            $debits = json_decode($this->debits);
+            if( !is_array($debits)) return $commissions;
+            
+            $credits = Transaction::whereIn('id', $debits)->get();
+            foreach($credits as $credit){
+                if( $credit->is_second_tier=='yes' ) $commissions['second'] += $credit->amount;
+                else $commissions['instructor'] += $credit->amount;
+            }
+            
+            return $commissions;
+        }
+        
+        public function affiliateCommissions(){
+            $commissions['affiliate'] = $commissions['second'] = $commissions['ltc'] = 0;
+            $debits = json_decode($this->debits);
+            if( !is_array($debits)) return $commissions;
+            
+            $credits = Transaction::whereIn('id', $debits)->get();
+            foreach($credits as $credit){
+                if( $credit->is_second_tier=='yes' ) $commissions['second'] += $credit->amount;
+                else if( $credit->is_ltc=='yes' ) $commissions['ltc'] += $credit->amount;
+                else $commissions['affiliate'] += $credit->amount;
+            }
+            
+            return $commissions;
+        }
 }
