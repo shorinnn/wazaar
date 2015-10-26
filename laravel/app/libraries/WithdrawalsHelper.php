@@ -44,7 +44,7 @@ class WithdrawalsHelper{
                                     ->whereBetween('created_at', ["$startDate", "$endDate"])->get();
         // payer record
         $date = date('md');
-        $str = "1,21,0,4618933800,ｶ)ﾐﾝｶﾚ,$date,0009,ﾐﾂｲｽﾐﾄﾓ,015,ﾄｳｷｮｳﾁｭｳｵｳ,1,8901282,,\n";
+        $str = "1,21,0,4618933800,ｶ)ﾐﾝｶﾚ,$date,0009,ﾐﾂｲｽﾐﾄﾓ,015,ﾄｳｷｮｳﾁｭｳｵｳ,1,8901282,,\r\n";
         foreach($withdrawals as $w){
             switch($w->transaction_type){
                 case 'affiliate_debit': $user = LTCAffiliate::find($w->user_id); break;
@@ -59,10 +59,10 @@ class WithdrawalsHelper{
             $profile = $user->profile;
             if( !$profile ) $profile = new Profile();
             // payee record
-            $str.="2,$profile->bank_code,$profile->bank_name,$profile->branch_code,$profile->branch_name,0,$profile->account_type,$profile->account_number,$profile->beneficiary_name,$w->amount,0,0,0,7,\n";
+            $str.="2,$profile->bank_code,$profile->bank_name,$profile->branch_code,$profile->branch_name,0,$profile->account_type,$profile->account_number,$profile->beneficiary_name,$w->amount,0,0,0,7,\r\n";
         }
         // trailer record
-        $str.= "8,5,3775000,\n";
+        $str.= "8,5,3775000,\r\n";
         // end record
         $str.= '9,';
         return $str;
