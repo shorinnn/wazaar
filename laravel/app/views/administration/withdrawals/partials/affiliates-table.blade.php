@@ -90,15 +90,12 @@ $fee = $cashoutFee->value;
                             <td>
                                 {{ $request->user->email }}
                             </td>
-                            <td>
-                                <div class="inline-block">
+                            <td style="min-width: 130px;">
                                 {{ trans('administration.before-fee') }}:
                                     <span class="success-color">¥{{ number_format( ( $request->amount + $fee ), Config::get('custom.currency_decimals')) }}</span>
-                                </div>
-                                <div class="inline-block">
-                                {{ trans('administration.after-fee') }}: 
+                                    <div class="clear"></div>
+                                {{ trans('administration.after-fee') }}:
                                     <span class="success-color">¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}</span>
-                                </div>
                             </td>
                             <td class="text-center">
                                 <?php $com = $request->affiliateCommissions() ;?>
@@ -139,7 +136,7 @@ $fee = $cashoutFee->value;
                         @endforeach
                         <tr>
                                 @if( isset($request) && $request->status=='pending') 
-                                <td colspan="10">
+                                <td colspan="10" class="text-center">
                                     <button type='button' class='blue-button large-button' onclick="processWithdrawal(this)"
                                             data-mode='complete'
                                             data-message='{{ trans('administration.mark-transaction-complete') }}?'>{{ trans('administration.mark-approved') }}</button>
@@ -147,7 +144,7 @@ $fee = $cashoutFee->value;
                                             data-mode='reject'
                                             data-message='{{ trans('administration.mark-transaction-failed') }}?'>{{ trans('administration.reject-selected') }}</button>
                                 @else
-                                <td colspan="9">
+                                <td colspan="9" class="text-center">
                                     <button type='button' class='blue-button large-button' onclick="processWithdrawal(this)"
                                         data-mode='paid'
                                         data-message='{{ trans('administration.mark-transaction-paid') }}?'>{{ trans('administration.mark-paid') }}</button>
