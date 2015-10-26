@@ -19,6 +19,7 @@
             height:32px;
             background-image:url('http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_blue_32.gif');
         }
+
     </style>
 
     <div class="row">

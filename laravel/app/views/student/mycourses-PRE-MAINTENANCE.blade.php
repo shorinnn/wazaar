@@ -10,9 +10,6 @@
 		.student-dash .tab-content .tab-pane{
 			border: 1px solid #e0e1e2;
 		}
-	    .overall-content-wrap{
-	        background-color: #ebeced;
-	    }
 
 
     </style>
