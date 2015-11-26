@@ -148,6 +148,21 @@
 			.classroom-content-row{
 				padding-top: 50px;
 			}
+            .ask-a-question-heading.hidden-sm {
+                color: #697480;
+                margin: 0;
+                padding: 12px 12px 12px 26px;
+                position: absolute;
+                top: 81%;
+                width: 100%;
+                text-align: center;
+            }
+            .ask-a-question-heading.hidden-sm i{
+                color: #0099ff;
+            }
+            .course-question-sidebar.in .ask-a-question-heading.hidden-sm{
+                display: none;
+            }
         </style>
             <div class="right-slide-menu"></div>
         <div class="row full-height">
@@ -313,6 +328,9 @@
                     <div class="tab-contents clear">
                     	@if( $lesson->discussions()->count() <= 0)
                         	<style>
+									.search-discussion-form{
+									    display: none;
+									 }
 								@media (max-width:991px){
 									.search-discussion-form{
 										display: none;
@@ -351,9 +369,14 @@
                             @foreach($lesson->discussions()->where( 'student_id', '!=', Auth::user()->id )->orderBy('upvotes','desc')->get() as $discussion)
                                 {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
                             @endforeach
+                            <h3 class="ask-a-question-heading visible-sm-block visible-xs-block hidden-sm hidden-xs">
+                                {{ trans('conversations/general.ask-a-question') }}
+                                <span class="block text-center"><i class="fa fa-long-arrow-down"></i></span>
+                            </h3>
                         </div>
-                        
+
                         <div class="ask-question">
+                        
                             <div class="img-container">
                                 <img src="{{Auth::user()->commentPicture('student')}}" alt="" class="img-responsive">
                             </div>

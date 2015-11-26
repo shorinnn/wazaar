@@ -2,6 +2,7 @@
 
 return array(
     'you-have' => 'You have',
+    'be-the-first' => 'Be the first to ask a question!',
     'new-pm-from' => 'new PM from',
     'new-nnouncements-in' => 'new announcements in',
     'teacher-responses-in' => 'teacher responses in',
