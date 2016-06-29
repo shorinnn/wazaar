@@ -15,13 +15,13 @@ return array(
 	|
 	*/
 
-	'debug' =>  value(function(){     
-            if( \Illuminate\Support\Facades\Input::has('set-debug') && \Illuminate\Support\Facades\Input::get('set-debug')=='yes-ryan-please')
-                return true;
-            else
-                return false;
-        }),
-
+//	'debug' =>  value(function(){     
+//            if( \Illuminate\Support\Facades\Input::has('set-debug') && \Illuminate\Support\Facades\Input::get('set-debug')=='yes-ryan-please')
+//                return true;
+//            else
+//                return true;
+//        }),][][][]
+    'debug' => true,
 	/*
 	|--------------------------------------------------------------------------
 	| Application URL
@@ -33,8 +33,8 @@ return array(
 	|
 	*/
 
-	'url' => 'http://www.wazaar.jp',
-	'base_url' => 'wazaar.jp',
+	'url' => 'http://54.218.56.123',
+	'base_url' => '54.218.56.123',
 
 	/*
 	|--------------------------------------------------------------------------

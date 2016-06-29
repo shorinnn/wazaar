@@ -59,7 +59,7 @@ App::error(function(Exception $exception, $code)
     }
 
     Log::error($exception);
-    if( App::environment()=='production') return View::make( 'site.error' );
+//    if( App::environment()=='production') return View::make( 'site.error' );
 });
 
 /*
