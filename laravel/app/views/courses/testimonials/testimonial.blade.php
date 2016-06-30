@@ -26,13 +26,15 @@
   	<div class="row no-margin">
           <div class="user-thumb col-xs-12 col-sm-2 col-md-2 col-lg-2">
           	  <div class="img-wrap">
+                      <!--
                 @if( $testimonial->student->profile != null && trim($testimonial->student->profile->photo)!='')
                     <img src='{{ $testimonial->student->profile->photo }}' class="img-responsive" />
                 @elseif( trim($testimonial->student->photo) != '')
                     <img src='{{ $testimonial->student->photo }}' class="img-responsive" />
                 @else
                     <img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" class="img-responsive" />
-                @endif
+                @endif-->
+                    <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/profile_pictures/avatar-placeholder.jpg" class="img-responsive" />
               </div>
               <span>
               {{ $testimonial->student->last_name }}
