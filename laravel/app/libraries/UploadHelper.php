@@ -174,6 +174,7 @@ class UploadHelper
 
     public static function AWSVideosInputURL()
     {
-        return Config::get('wazaar.AWS_REGION_DOMAIN') . '/' . Config::get('wazaar.AWS_VIDEO_INPUT_BUCKET');
+        //return https://s3-bucket.s3.amazonaws.com Config::get('wazaar.AWS_REGION_DOMAIN') . '/' . Config::get('wazaar.AWS_VIDEO_INPUT_BUCKET');
+        return 'https://' . Config::get('wazaar.AWS_VIDEO_INPUT_BUCKET') . '.s3.amazonaws.com';
     }
 }
