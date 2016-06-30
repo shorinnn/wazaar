@@ -18,8 +18,6 @@ class ProfileController extends Controller
 
     public function index($type = '')
     {
-        var_dump(App::environment());
-        var_dump(getenv('AWS_BUCKET'));
         if( Auth::user()->confirmed == 0 ){
             Auth::user()->setCustom('intended-redirect', action('ProfileController@index') );
             Auth::user()->updateUniques();
