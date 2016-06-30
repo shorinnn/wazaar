@@ -25,8 +25,9 @@ class Video extends \LaravelBook\Ardent\Ardent
         if (Agent::isTablet()){
             return '1421661161826-cx6nmz';
         }*/
-
-        return '1436790010046-k9rw9e';
+        $presets = Config::get('wazaar.AWS_VIDEO_PRESETS');
+        return key($presets);
+        //return  '1436790010046-k9rw9e';
     }
 
     public static function getByIdAndPreset($id, $presetId = null)
