@@ -26,7 +26,7 @@ class UploadHelper
         $s3 = AWS::get('s3');
 
         if (is_null($bucket)) {
-            $bucket = getenv('AWS_BUCKET');
+            $bucket = getenv('AWS_BUCKET'); 
         }
         $result = $s3->putObject(array(
             'ACL'         =>  'public-read',
