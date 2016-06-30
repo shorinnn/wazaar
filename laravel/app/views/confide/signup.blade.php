@@ -10,7 +10,7 @@
 	<div class="row no-margin">
     	<div class="register-page">
         	<a href="{{action('SiteController@index') }}" class="modal-box-logo clearfix">
-            	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
+            	<img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/logo.png" class="img-responsive" alt="">
             </a>
             <div class="user-data-modal clearfix">
             	<div class="user-data-modal-header">
