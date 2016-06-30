@@ -106,14 +106,14 @@ function submittedFormButton(e){
         $indicator = $(indicator);
         $indicator.attr('data-old-label', $indicator.html());
         $indicator.attr('disabled', 'disabled');
-        $indicator.html(' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $indicator.html(' <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" />');
         return false;
     }
     
     if( typeof( $(e.target).attr('data-no-processing') ) == 'undefined' || $(e.target).attr('data-no-processing') != 1){
         $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
         $(e.target).find('[type=submit]').attr('disabled', 'disabled');
-        $(e.target).find('[type=submit]').html( ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $(e.target).find('[type=submit]').html( ' <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" />');
     }
     
 }
@@ -365,7 +365,7 @@ function savingAnimation(stop) {
     if (saving_animation == 1) return false;
     saving_animation = 1;
     $('body').remove('#save-indicator');
-    $('body').append('<div id="save-indicator">'+ _('saving') +' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>');
+    $('body').append('<div id="save-indicator">'+ _('saving') +' <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" /></div>');
     $('#save-indicator').animate({
         left: '0px'
     }, 300);
@@ -408,8 +408,8 @@ function enableFileUploader($uploader){
                 else $(progressbar).find('span').html($progress);
                 if($progress=='100'){
                     console.log( $progressLabel );
-                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
-                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" />');
+                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" />');
                 }
             }).on('fileuploadfail', function (e, data) {
                 $progressLabel = $(progressLabel);

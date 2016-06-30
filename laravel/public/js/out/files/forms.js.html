@@ -136,7 +136,7 @@
                         function submittedFormButton(e){
                             $(e.target).find(&#x27;[type=submit]&#x27;).attr(&#x27;data-old-label&#x27;, $(e.target).find(&#x27;[type=submit]&#x27;).html());
                             $(e.target).find(&#x27;[type=submit]&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
-                            $(e.target).find(&#x27;[type=submit]&#x27;).html( _(&#x27;Processing...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $(e.target).find(&#x27;[type=submit]&#x27;).html( _(&#x27;Processing...&#x27;) + &#x27;&lt;img src=&quot;https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
                         }
                         
                         /**
@@ -336,7 +336,7 @@
                             if (saving_animation == 1) return false;
                             saving_animation = 1;
                             $(&#x27;body&#x27;).remove(&#x27;#save-indicator&#x27;);
-                            $(&#x27;body&#x27;).append(&#x27;&lt;div id=&quot;save-indicator&quot;&gt;&#x27;+ _(&#x27;saving&#x27;) +&#x27; &lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&lt;/div&gt;&#x27;);
+                            $(&#x27;body&#x27;).append(&#x27;&lt;div id=&quot;save-indicator&quot;&gt;&#x27;+ _(&#x27;saving&#x27;) +&#x27; &lt;img src=&quot;https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif&quot; /&gt;&lt;/div&gt;&#x27;);
                             $(&#x27;#save-indicator&#x27;).animate({
                                 left: &#x27;0px&#x27;
                             }, 300);
@@ -364,7 +364,7 @@
                                         var $progress = parseInt(data.loaded / data.total * 100, 10);
                                         $(progressbar).css(&#x27;width&#x27;, $progress + &#x27;%&#x27;);
                                         $(progressbar).find(&#x27;span&#x27;).html($progress);
-                                        if($progress==&#x27;100&#x27;) $(progressbar).find(&#x27;span&#x27;).html( _(&#x27;Upload complete. Processing&#x27;) + &#x27; &lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                                        if($progress==&#x27;100&#x27;) $(progressbar).find(&#x27;span&#x27;).html( _(&#x27;Upload complete. Processing&#x27;) + &#x27; &lt;img src=&quot;https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
                                     }).on(&#x27;fileuploadfail&#x27;, function (e, data) {
                                         $(progressbar).find(&#x27;span&#x27;).html(&#x27;&#x27;);
                                         $(progressbar).css(&#x27;width&#x27;, 0 + &#x27;%&#x27;);

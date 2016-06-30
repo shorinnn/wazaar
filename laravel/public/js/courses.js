@@ -349,7 +349,7 @@ function assignInstructor(e){
     console.log(holder);
     $('.assigned-check').remove();
     $('[name="details_displays"]').val('instructor');
-    $('#assign-instructor').prev('label').append('<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="assigned-check" />');
+    $('#assign-instructor').prev('label').append('<img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" class="assigned-check" />');
     email = $('#assign-instructor').val();
     $.get( COCORIUM_APP_PATH+'courses/search-instructor/'+email, function(result){
         $('#assigned_instructor_id').val( parseInt(result) );

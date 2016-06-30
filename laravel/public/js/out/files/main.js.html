@@ -263,7 +263,7 @@
                             }
                             $(e.target).attr(&#x27;data-loading&#x27;, 1);
                             if(typeof(loadMethod)==&#x27;undefined&#x27; || loadMethod==&#x27;load&#x27;){
-                                $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                                $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
                                 $(target).load(url, function(){
                                     $(e.target).attr(&#x27;data-loading&#x27;, 0);
                                     if( typeof(callback)!= &#x27;undefined&#x27;){
@@ -272,7 +272,7 @@
                                 });
                             }
                             else if(loadMethod==&#x27;append&#x27; || loadMethod==&#x27;prepend&#x27;){
-                                $(target).prepend(&#x27;&lt;p class=&quot;remove_this&quot;&gt;&#x27; + _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&lt;/p&gt;&#x27;);
+                                $(target).prepend(&#x27;&lt;p class=&quot;remove_this&quot;&gt;&#x27; + _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif&quot; /&gt;&lt;/p&gt;&#x27;);
                                 $.get(url, function(data){
                                     $(&#x27;.remove_this&#x27;).remove();
                                     $(e.target).attr(&#x27;data-loading&#x27;, 0);
@@ -323,7 +323,7 @@
                                 target = elem.attr(&#x27;data-target&#x27;);
                                 callback = elem.attr(&#x27;data-callback&#x27;);  
                             }
-                            $(e.target).html( _(&#x27;Loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $(e.target).html( _(&#x27;Loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
                             $.post(url,{lesson:lesson, skip:skip}, function(data) {
                                 $(e.target).attr(&#x27;href&#x27;,&#x27;#&#x27;);
                                 $(e.target).html( _(&#x27;LOAD MORE&#x27;) );
@@ -364,7 +364,7 @@
                             
                             if(elem.attr(&#x27;data-loaded&#x27;) == &#x27;1&#x27; ) return false;// content already loaded, just redisplay it
                             
-                            $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
                             $(target).load(url, function(){
                                 elem.attr(&#x27;data-loaded&#x27;,&#x27;1&#x27;);
                                 if( typeof(callback)!= &#x27;undefined&#x27;){

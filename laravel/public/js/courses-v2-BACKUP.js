@@ -257,8 +257,8 @@ function enableFileUploader($uploader){
                 else $(progressbar).find('span').html($progress);
                 if($progress=='100'){
                     console.log( $progressLabel );
-                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
-                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" />');
+                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" />');
                 }
             }).on('fileuploadfail', function (e, data) {
                 $progressLabel = $(progressLabel);
@@ -432,7 +432,7 @@ function assignInstructor(e){
     console.log(holder);
     $('.assigned-check').remove();
     $('[name="details_displays"]').val('instructor');
-    $('#assign-instructor').prev('label').append('<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="assigned-check" />');
+    $('#assign-instructor').prev('label').append('<img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" class="assigned-check" />');
     email = $('#assign-instructor').val();
     $.get( COCORIUM_APP_PATH+'courses/search-instructor/'+email, function(result){
         $('#assigned_instructor_id').val( parseInt(result) );
@@ -655,7 +655,7 @@ function linkToRemoteConfirm(e){
     }
     
     $(elem).attr('data-old-label', $(elem).html() );
-    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $(elem).html( '<img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/icons/ajax-loader.gif" />');
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
