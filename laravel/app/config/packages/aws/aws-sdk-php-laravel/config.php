@@ -30,8 +30,8 @@ return array(
     | http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html
     |
     */
-    'key'    => 'AKIAJTF5BRQXELBPJSTA', // Your AWS Access Key ID
-    'secret' => 'IDMw5pCmQ86WerXP8Dpw4Z7vF1lrataurQBN8DG+', // Your AWS Secret Access Key
+    'key'    => 'AKIAIYAIMYAYZ55OOYGQ', // Your AWS Access Key ID
+    'secret' => 'Am98akgBRRjBDdvPRE1P+HmAz5p+3ETwMQgeKI+Z', // Your AWS Secret Access Key
 
     /*
     |--------------------------------------------------------------------------
@@ -46,8 +46,8 @@ return array(
     | eu-west-1, sa-east-1, ap-northeast-1, ap-southeast-1, ap-southeast-2
     |
     */
-    'region' => 'us-west-2',
-    'elastic_transcoder_endpoint' => 'elastictranscoder.ap-northeast-1.amazonaws.com',
+    'region' => 'ap-southeast-1',
+    'elastic_transcoder_endpoint' => 'elastictranscoder.ap-southeast-1.amazonaws.com',
     /*
     |--------------------------------------------------------------------------
     | AWS Config File Location
