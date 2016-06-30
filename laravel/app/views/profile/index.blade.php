@@ -2,6 +2,7 @@
 
 @section('page_title')
     Profile - 
+    {{ getenv('DB_HOST') }}
 @stop
 
 @section('content')

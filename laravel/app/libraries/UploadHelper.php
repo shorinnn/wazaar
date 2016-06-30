@@ -27,7 +27,6 @@ class UploadHelper
 
         if (is_null($bucket)) {
             $bucket = getenv('AWS_BUCKET');
-            dd($bucket);    
         }
         $result = $s3->putObject(array(
             'ACL'         =>  'public-read',
