@@ -10,7 +10,6 @@ class SiteController extends \BaseController {
 	public function index()
 	{
             
-    dd(getenv('DB_HOST') );
 //        if( !Input::has('skip-splashie')){
 //            return View::make('TEMPORARYVIEWS.splash_2');
 //        }
