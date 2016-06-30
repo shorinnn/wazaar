@@ -14,7 +14,7 @@ $domain = Config::get('app.base_url');
 $wwwDomain = "www.$domain";
 $instructorSubdomain = 'instructors.'.Config::get('app.base_url');
 $affiliateSubdomain = 'affiliates.'. Config::get('app.base_url');
-
+Route::any('sns/callback', 'SnsController@snsCallback');
 // workaround for codeception functional tests with subdomains
 if( !isset($_SERVER['HTTP_HOST'])){
     $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
