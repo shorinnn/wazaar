@@ -6,6 +6,7 @@ function cloudfrontUrl($url = ''){
     $url = explode('.com/', $url);
     $url = str_replace('wazaardev/', '', $url[1]);
     $url = str_replace('wazaar/', '', $url);
+    return "//s3-us-west-2.amazonaws.com/wazaar-demo/".$url;
     return '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$url;
 }
 
