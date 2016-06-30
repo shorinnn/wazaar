@@ -5,7 +5,7 @@
      	<div class="top-menu unauthenticated-home-header clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
      @endif
             <a href="{{ action('SiteController@index') }}" class="main-logo">
-                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
+                <img src="https://s3-us-west-2.amazonaws.com/wazaar-demo/assets/images/logo.png" 
                class="img-responsive" alt="">
                <span class="beta-wazaar">BETA</span>
                <!--<span class="beta-wazaar">ベータ版</span>-->
