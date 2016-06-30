@@ -608,33 +608,5 @@ Route::get('test2', function (){
 
 
 Route::get('test', function (){
-    // key pair generated for cloudfront
-    $keyPairId = 'APKAJZS4MECIWRQNYUTA';
-    $resource = '0kAbDMC4XeUlg3ih1436790034239byka2c.mp4';
-    $expires = time() + 600;
-    $json = '{"Statement":[{"Resource":"' . $resource . '","Condition":{"DateLessThan":{"AWS:EpochTime":' . $expires . '}}}]}';
-
-    // read cloudfront private key pair
-    $fp = fopen( base_path() . '/pk-' . $keyPairId . '.pem', 'r');
-    $priv_key = fread($fp, 8192);
-    fclose($fp);
-
-    // create the private key
-    $key = openssl_get_privatekey($priv_key);
-
-    // sign the policy with the private key
-    // depending on your php version you might have to use
-    // openssl_sign($json, $signed_policy, $key, OPENSSL_ALGO_SHA1)
-    openssl_sign($json, $signed_policy, $key);
-
-    openssl_free_key($key);
-
-    // create url safe signed policy
-    $base64_signed_policy = base64_encode($signed_policy);
-    $signature = str_replace(array('+', '=', '/'), array('-', '_', '~'), $base64_signed_policy);
-
-    // construct the url
-    $url = $resource . '?Expires=' . $expires . '&Signature=' . $signature . '&Key-Pair-Id=' . $keyPairId;
-
-    dd($url);
+    dd(Config::get('maxcollect.sid'));
 });

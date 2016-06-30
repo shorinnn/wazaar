@@ -381,7 +381,20 @@ class AffiliateDashboardController extends BaseController
         $ltcRegistrationsView = '';//$this->ltcRegistrationsView();
         $secondTierRegistrationsView = '';//$this->secondTierRegistrationsView();
         $ltcEarningsView = '';//$this->ltcEarningsView();
+
+
+        if (Input::has('new')){
+            return $this->renderIndexV2();
+        }
+
+
         return View::make('affiliate.dashboard.index', compact('secondTierRegistrationsView','ltcEarningsView', 'topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView','ltcRegistrationsView'));
+    }
+
+    private function renderIndexV2()
+    {
+        $sales = $this->analyticsHelper->getAffiliateSalesByDateRange('2015-09-01', '2015-09-30');
+        return View::make('affiliate.dashboard.index2',compact('sales'));
     }
 
 

@@ -97,12 +97,14 @@ class AnalyticsHelper
 
     public function getAffiliateSalesByDateRange($startDate, $endDate)
     {
+
         $sales = DB::table('purchases')
                 ->select(
                     DB::raw("count(id) as 'sales_count'"),
                     DB::raw("sum(purchase_price) as 'sales_total'"),
                     DB::raw("sum(affiliate_earnings) as 'revenue'"),
                     DB::raw("sum(tax) as 'tax_total'"),
+                    DB::raw("sum(site_earnings) as 'site_earnings'"),
                     DB::raw("CASE `ltc_affiliate_id`
                             WHEN  '{$this->userId}' THEN sum(`ltc_affiliate_earnings`)
                             ELSE 0
@@ -114,13 +116,13 @@ class AnalyticsHelper
                         ELSE 0
                         END
                         as 'second_tier_earnings'"
-                           ),
-                    DB::raw("DATE(created_at) as 'date'")
+                           )
+                    //DB::raw("DATE(created_at) as 'date'")
                 )
                 ->where('product_affiliate_id',$this->userId)
                 ->where('free_product','no')
                 ->whereRaw("DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'")
-                ->groupBy(DB::raw("DATE(created_at)"))
+                //->groupBy(DB::raw("DATE(created_at)"))
 
             ;
         /*$sql = "SELECT count(id) as 'sales_count',
@@ -146,7 +148,8 @@ class AnalyticsHelper
                 AND free_product = 'no'
                 AND DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'
                 GROUP BY 	DATE(created_at)";*/
-        return $sales->paginate(Config::get('wazaar.PAGINATION'));
+        //return $sales->paginate(Config::get('wazaar.PAGINATION'));
+        return $sales->first();
     }
 
     private function dailyLtcEarnings($affiliateId, $dateFilter = '')
